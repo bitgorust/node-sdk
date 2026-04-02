@@ -1,0 +1,41 @@
+# admin Raw API Inventory
+
+- Raw exported methods: 34
+
+## Raw Exported Methods
+
+- admin.adminDeptStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_dept_stats [custom_params_serializer]
+- admin.adminUserStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_user_stats [custom_params_serializer]
+- admin.auditInfo.list -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer]
+- admin.auditInfo.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer, iterator_helper]
+- admin.badge.create -> POST ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer]
+- admin.badge.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer]
+- admin.badge.list -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer]
+- admin.badge.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer, iterator_helper]
+- admin.badge.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer]
+- admin.badgeGrant.create -> POST ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer]
+- admin.badgeGrant.delete -> DELETE ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.badgeGrant.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.badgeGrant.list -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer]
+- admin.badgeGrant.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer, iterator_helper]
+- admin.badgeGrant.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.badgeImage.create -> POST ${this.domain}/open-apis/admin/v1/badge_images [custom_params_serializer]
+- admin.password.reset -> POST ${this.domain}/open-apis/admin/v1/password/reset [custom_params_serializer]
+- admin.v1.adminDeptStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_dept_stats [custom_params_serializer]
+- admin.v1.adminUserStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_user_stats [custom_params_serializer]
+- admin.v1.auditInfo.list -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer]
+- admin.v1.auditInfo.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer, iterator_helper]
+- admin.v1.badge.create -> POST ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer]
+- admin.v1.badge.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer]
+- admin.v1.badge.list -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer]
+- admin.v1.badge.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer, iterator_helper]
+- admin.v1.badge.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer]
+- admin.v1.badgeGrant.create -> POST ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer]
+- admin.v1.badgeGrant.delete -> DELETE ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.v1.badgeGrant.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.v1.badgeGrant.list -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer]
+- admin.v1.badgeGrant.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer, iterator_helper]
+- admin.v1.badgeGrant.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer]
+- admin.v1.badgeImage.create -> POST ${this.domain}/open-apis/admin/v1/badge_images [custom_params_serializer]
+- admin.v1.password.reset -> POST ${this.domain}/open-apis/admin/v1/password/reset [custom_params_serializer]
+

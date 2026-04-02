@@ -1,0 +1,105 @@
+# im API Inventory
+
+- Canonical methods: 81
+- Event handles: 13
+
+## Canonical Methods
+
+- im.appFeedCard.create -> POST ${this.domain}/open-apis/im/v2/app_feed_card [custom_params_serializer]
+- im.appFeedCardBatch.delete -> DELETE ${this.domain}/open-apis/im/v2/app_feed_card/batch [custom_params_serializer]
+- im.appFeedCardBatch.update -> PUT ${this.domain}/open-apis/im/v2/app_feed_card/batch [custom_params_serializer]
+- im.batchMessage.delete -> DELETE ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id [custom_params_serializer] aliases: im.batchMessage.delete, im.v1.batchMessage.delete
+- im.batchMessage.getProgress -> GET ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id/get_progress [custom_params_serializer] aliases: im.batchMessage.getProgress, im.v1.batchMessage.getProgress
+- im.batchMessage.readUser -> GET ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id/read_user [custom_params_serializer] aliases: im.batchMessage.readUser, im.v1.batchMessage.readUser
+- im.bizEntityTagRelation.create -> POST ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.bizEntityTagRelation.get -> GET ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.bizEntityTagRelation.update -> PUT ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.chat.create -> POST ${this.domain}/open-apis/im/v1/chats [custom_params_serializer] aliases: im.chat.create, im.v1.chat.create
+- im.chat.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.delete, im.v1.chat.delete
+- im.chat.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.get, im.v1.chat.get
+- im.chat.link -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/link [custom_params_serializer] aliases: im.chat.link, im.v1.chat.link
+- im.chat.list -> GET ${this.domain}/open-apis/im/v1/chats [custom_params_serializer] aliases: im.chat.list, im.v1.chat.list
+- im.chat.listWithIterator -> GET ${this.domain}/open-apis/im/v1/chats [custom_params_serializer, iterator_helper] aliases: im.chat.listWithIterator, im.v1.chat.listWithIterator
+- im.chat.search -> GET ${this.domain}/open-apis/im/v1/chats/search [custom_params_serializer] aliases: im.chat.search, im.v1.chat.search
+- im.chat.searchWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/search [custom_params_serializer, iterator_helper] aliases: im.chat.searchWithIterator, im.v1.chat.searchWithIterator
+- im.chat.update -> PUT ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.update, im.v1.chat.update
+- im.chatAnnouncement.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/announcement [custom_params_serializer] aliases: im.chatAnnouncement.get, im.v1.chatAnnouncement.get
+- im.chatAnnouncement.patch -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/announcement [custom_params_serializer] aliases: im.chatAnnouncement.patch, im.v1.chatAnnouncement.patch
+- im.chatButton.update -> PUT ${this.domain}/open-apis/im/v2/chat_button [custom_params_serializer]
+- im.chatManagers.addManagers -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/managers/add_managers [custom_params_serializer] aliases: im.chatManagers.addManagers, im.v1.chatManagers.addManagers
+- im.chatManagers.deleteManagers -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/managers/delete_managers [custom_params_serializer] aliases: im.chatManagers.deleteManagers, im.v1.chatManagers.deleteManagers
+- im.chatMembers.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.create, im.v1.chatMembers.create
+- im.chatMembers.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.delete, im.v1.chatMembers.delete
+- im.chatMembers.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.get, im.v1.chatMembers.get
+- im.chatMembers.getWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer, iterator_helper] aliases: im.chatMembers.getWithIterator, im.v1.chatMembers.getWithIterator
+- im.chatMembers.isInChat -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members/is_in_chat [custom_params_serializer] aliases: im.chatMembers.isInChat, im.v1.chatMembers.isInChat
+- im.chatMembers.meJoin -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/members/me_join [custom_params_serializer] aliases: im.chatMembers.meJoin, im.v1.chatMembers.meJoin
+- im.chatMenuItem.patch -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_items/:menu_item_id [custom_params_serializer] aliases: im.chatMenuItem.patch, im.v1.chatMenuItem.patch
+- im.chatMenuTree.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.create, im.v1.chatMenuTree.create
+- im.chatMenuTree.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.delete, im.v1.chatMenuTree.delete
+- im.chatMenuTree.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.get, im.v1.chatMenuTree.get
+- im.chatMenuTree.sort -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree/sort [custom_params_serializer] aliases: im.chatMenuTree.sort, im.v1.chatMenuTree.sort
+- im.chatModeration.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer] aliases: im.chatModeration.get, im.v1.chatModeration.get
+- im.chatModeration.getWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer, iterator_helper] aliases: im.chatModeration.getWithIterator, im.v1.chatModeration.getWithIterator
+- im.chatModeration.update -> PUT ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer] aliases: im.chatModeration.update, im.v1.chatModeration.update
+- im.chatTab.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs [custom_params_serializer] aliases: im.chatTab.create, im.v1.chatTab.create
+- im.chatTab.deleteTabs -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/delete_tabs [custom_params_serializer] aliases: im.chatTab.deleteTabs, im.v1.chatTab.deleteTabs
+- im.chatTab.listTabs -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/list_tabs [custom_params_serializer] aliases: im.chatTab.listTabs, im.v1.chatTab.listTabs
+- im.chatTab.sortTabs -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/sort_tabs [custom_params_serializer] aliases: im.chatTab.sortTabs, im.v1.chatTab.sortTabs
+- im.chatTab.updateTabs -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/update_tabs [custom_params_serializer] aliases: im.chatTab.updateTabs, im.v1.chatTab.updateTabs
+- im.chatTopNotice.deleteTopNotice -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/top_notice/delete_top_notice [custom_params_serializer] aliases: im.chatTopNotice.deleteTopNotice, im.v1.chatTopNotice.deleteTopNotice
+- im.chatTopNotice.putTopNotice -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/top_notice/put_top_notice [custom_params_serializer] aliases: im.chatTopNotice.putTopNotice, im.v1.chatTopNotice.putTopNotice
+- im.feedCard.botTimeSentive -> PATCH ${this.domain}/open-apis/im/v2/feed_cards/bot_time_sentive [custom_params_serializer]
+- im.feedCard.patch -> PATCH ${this.domain}/open-apis/im/v2/feed_cards/:feed_card_id [custom_params_serializer]
+- im.file.create -> POST ${this.domain}/open-apis/im/v1/files [custom_params_serializer] aliases: im.file.create, im.v1.file.create
+- im.file.get -> GET ${this.domain}/open-apis/im/v1/files/:file_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.file.get, im.v1.file.get
+- im.image.create -> POST ${this.domain}/open-apis/im/v1/images [custom_params_serializer] aliases: im.image.create, im.v1.image.create
+- im.image.get -> GET ${this.domain}/open-apis/im/v1/images/:image_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.image.get, im.v1.image.get
+- im.message.create -> POST ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.create, im.v1.message.create
+- im.message.createByCard -> POST ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.createByCard, im.v1.message.createByCard
+- im.message.delete -> DELETE ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.delete, im.v1.message.delete
+- im.message.forward -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/forward [custom_params_serializer] aliases: im.message.forward, im.v1.message.forward
+- im.message.get -> GET ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.get, im.v1.message.get
+- im.message.list -> GET ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.list, im.v1.message.list
+- im.message.listWithIterator -> GET ${this.domain}/open-apis/im/v1/messages [custom_params_serializer, iterator_helper] aliases: im.message.listWithIterator, im.v1.message.listWithIterator
+- im.message.mergeForward -> POST ${this.domain}/open-apis/im/v1/messages/merge_forward [custom_params_serializer] aliases: im.message.mergeForward, im.v1.message.mergeForward
+- im.message.patch -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.patch, im.v1.message.patch
+- im.message.pushFollowUp -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/push_follow_up [custom_params_serializer] aliases: im.message.pushFollowUp, im.v1.message.pushFollowUp
+- im.message.readUsers -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/read_users [custom_params_serializer] aliases: im.message.readUsers, im.v1.message.readUsers
+- im.message.reply -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reply [custom_params_serializer] aliases: im.message.reply, im.v1.message.reply
+- im.message.replyByCard -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reply [custom_params_serializer] aliases: im.message.replyByCard, im.v1.message.replyByCard
+- im.message.update -> PUT ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.update, im.v1.message.update
+- im.message.updateByCard -> PUT ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.updateByCard, im.v1.message.updateByCard
+- im.message.urgentApp -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_app [custom_params_serializer] aliases: im.message.urgentApp, im.v1.message.urgentApp
+- im.message.urgentPhone -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_phone [custom_params_serializer] aliases: im.message.urgentPhone, im.v1.message.urgentPhone
+- im.message.urgentSms -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_sms [custom_params_serializer] aliases: im.message.urgentSms, im.v1.message.urgentSms
+- im.messageReaction.create -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer] aliases: im.messageReaction.create, im.v1.messageReaction.create
+- im.messageReaction.delete -> DELETE ${this.domain}/open-apis/im/v1/messages/:message_id/reactions/:reaction_id [custom_params_serializer] aliases: im.messageReaction.delete, im.v1.messageReaction.delete
+- im.messageReaction.list -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer] aliases: im.messageReaction.list, im.v1.messageReaction.list
+- im.messageReaction.listWithIterator -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer, iterator_helper] aliases: im.messageReaction.listWithIterator, im.v1.messageReaction.listWithIterator
+- im.messageResource.get -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/resources/:file_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.messageResource.get, im.v1.messageResource.get
+- im.pin.create -> POST ${this.domain}/open-apis/im/v1/pins [custom_params_serializer] aliases: im.pin.create, im.v1.pin.create
+- im.pin.delete -> DELETE ${this.domain}/open-apis/im/v1/pins/:message_id [custom_params_serializer] aliases: im.pin.delete, im.v1.pin.delete
+- im.pin.list -> GET ${this.domain}/open-apis/im/v1/pins [custom_params_serializer] aliases: im.pin.list, im.v1.pin.list
+- im.pin.listWithIterator -> GET ${this.domain}/open-apis/im/v1/pins [custom_params_serializer, iterator_helper] aliases: im.pin.listWithIterator, im.v1.pin.listWithIterator
+- im.tag.create -> POST ${this.domain}/open-apis/im/v2/tags [custom_params_serializer]
+- im.tag.patch -> PATCH ${this.domain}/open-apis/im/v2/tags/:tag_id [custom_params_serializer]
+- im.thread.forward -> POST ${this.domain}/open-apis/im/v1/threads/:thread_id/forward [custom_params_serializer] aliases: im.thread.forward, im.v1.thread.forward
+- im.urlPreview.batchUpdate -> POST ${this.domain}/open-apis/im/v2/url_previews/batch_update [custom_params_serializer]
+
+## Event Handles
+
+- im.chat.access_event.bot_p2p_chat_entered_v1
+- im.chat.disbanded_v1
+- im.chat.member.bot.added_v1
+- im.chat.member.bot.deleted_v1
+- im.chat.member.user.added_v1
+- im.chat.member.user.deleted_v1
+- im.chat.member.user.withdrawn_v1
+- im.chat.updated_v1
+- im.message.message_read_v1
+- im.message.reaction.created_v1
+- im.message.reaction.deleted_v1
+- im.message.recalled_v1
+- im.message.receive_v1
+

@@ -1,0 +1,58 @@
+# apaas API Inventory
+
+- Canonical methods: 47
+- Event handles: 0
+
+## Canonical Methods
+
+- apaas.app.list -> GET ${this.domain}/open-apis/apaas/v1/apps [custom_params_serializer]
+- apaas.app.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/apps [custom_params_serializer, iterator_helper]
+- apaas.applicationAuditLog.auditLogList -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/audit_log_list [custom_params_serializer]
+- apaas.applicationAuditLog.dataChangeLogDetail -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/data_change_log_detail [custom_params_serializer]
+- apaas.applicationAuditLog.dataChangeLogsList -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/data_change_logs_list [custom_params_serializer]
+- apaas.applicationAuditLog.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log [custom_params_serializer]
+- apaas.applicationEnvironmentVariable.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/environment_variables/:environment_variable_api_name [custom_params_serializer]
+- apaas.applicationEnvironmentVariable.query -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/environment_variables/query [custom_params_serializer]
+- apaas.applicationFlow.execute -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/flows/:flow_id/execute [custom_params_serializer]
+- apaas.applicationFunction.invoke -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/functions/:function_api_name/invoke [custom_params_serializer]
+- apaas.applicationObject.oqlQuery -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/oql_query [custom_params_serializer]
+- apaas.applicationObject.search -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/search [custom_params_serializer]
+- apaas.applicationObjectRecord.batchCreate -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_create [custom_params_serializer]
+- apaas.applicationObjectRecord.batchDelete -> DELETE ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_delete [custom_params_serializer]
+- apaas.applicationObjectRecord.batchQuery -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_query [custom_params_serializer]
+- apaas.applicationObjectRecord.batchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_update [custom_params_serializer]
+- apaas.applicationObjectRecord.create -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records [custom_params_serializer]
+- apaas.applicationObjectRecord.delete -> DELETE ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id [custom_params_serializer]
+- apaas.applicationObjectRecord.patch -> PATCH ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id [custom_params_serializer]
+- apaas.applicationObjectRecord.query -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id/query [custom_params_serializer]
+- apaas.applicationRecordPermissionMember.batchCreateAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/record_permissions/:record_permission_api_name/member/batch_create_authorization [custom_params_serializer]
+- apaas.applicationRecordPermissionMember.batchRemoveAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/record_permissions/:record_permission_api_name/member/batch_remove_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.batchCreateAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member/batch_create_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.batchRemoveAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member/batch_remove_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member [custom_params_serializer]
+- apaas.approvalInstance.cancel -> POST ${this.domain}/open-apis/apaas/v1/approval_instances/:approval_instance_id/cancel [custom_params_serializer]
+- apaas.approvalTask.addAssignee -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/add_assignee [custom_params_serializer]
+- apaas.approvalTask.agree -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/agree [custom_params_serializer]
+- apaas.approvalTask.reject -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/reject [custom_params_serializer]
+- apaas.approvalTask.transfer -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/transfer [custom_params_serializer]
+- apaas.seatActivity.list -> GET ${this.domain}/open-apis/apaas/v1/seat_activities [custom_params_serializer]
+- apaas.seatActivity.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/seat_activities [custom_params_serializer, iterator_helper]
+- apaas.seatAssignment.list -> GET ${this.domain}/open-apis/apaas/v1/seat_assignments [custom_params_serializer]
+- apaas.seatAssignment.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/seat_assignments [custom_params_serializer, iterator_helper]
+- apaas.userTask.cc -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/cc [custom_params_serializer]
+- apaas.userTask.chatGroup -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/chat_group [custom_params_serializer]
+- apaas.userTask.expediting -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/expediting [custom_params_serializer]
+- apaas.userTask.query -> POST ${this.domain}/open-apis/apaas/v1/user_task/query [custom_params_serializer]
+- apaas.userTask.rollback -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback [custom_params_serializer]
+- apaas.userTask.rollbackPoints -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback_points [custom_params_serializer]
+- apaas.workspace.sqlCommands -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/sql_commands [custom_params_serializer]
+- apaas.workspaceTable.recordsBatchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update [custom_params_serializer]
+- apaas.workspaceTable.recordsDelete -> DELETE ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsPatch -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsPost -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceView.viewsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records [custom_params_serializer]
+
+## Event Handles
+
+

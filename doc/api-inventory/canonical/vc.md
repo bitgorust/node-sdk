@@ -1,0 +1,93 @@
+# vc API Inventory
+
+- Canonical methods: 64
+- Event handles: 18
+
+## Canonical Methods
+
+- vc.alert.list -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer] aliases: vc.alert.list, vc.v1.alert.list
+- vc.alert.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer, iterator_helper] aliases: vc.alert.listWithIterator, vc.v1.alert.listWithIterator
+- vc.export.download -> GET ${this.domain}/open-apis/vc/v1/exports/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: vc.export.download, vc.v1.export.download
+- vc.export.get -> GET ${this.domain}/open-apis/vc/v1/exports/:task_id [custom_params_serializer] aliases: vc.export.get, vc.v1.export.get
+- vc.export.meetingList -> POST ${this.domain}/open-apis/vc/v1/exports/meeting_list [custom_params_serializer] aliases: vc.export.meetingList, vc.v1.export.meetingList
+- vc.export.participantList -> POST ${this.domain}/open-apis/vc/v1/exports/participant_list [custom_params_serializer] aliases: vc.export.participantList, vc.v1.export.participantList
+- vc.export.participantQualityList -> POST ${this.domain}/open-apis/vc/v1/exports/participant_quality_list [custom_params_serializer] aliases: vc.export.participantQualityList, vc.v1.export.participantQualityList
+- vc.export.resourceReservationList -> POST ${this.domain}/open-apis/vc/v1/exports/resource_reservation_list [custom_params_serializer] aliases: vc.export.resourceReservationList, vc.v1.export.resourceReservationList
+- vc.meeting.end -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/end [custom_params_serializer] aliases: vc.meeting.end, vc.v1.meeting.end
+- vc.meeting.get -> GET ${this.domain}/open-apis/vc/v1/meetings/:meeting_id [custom_params_serializer] aliases: vc.meeting.get, vc.v1.meeting.get
+- vc.meeting.invite -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/invite [custom_params_serializer] aliases: vc.meeting.invite, vc.v1.meeting.invite
+- vc.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer] aliases: vc.meeting.kickout, vc.v1.meeting.kickout
+- vc.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer] aliases: vc.meeting.listByNo, vc.v1.meeting.listByNo
+- vc.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper] aliases: vc.meeting.listByNoWithIterator, vc.v1.meeting.listByNoWithIterator
+- vc.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer] aliases: vc.meeting.setHost, vc.v1.meeting.setHost
+- vc.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer] aliases: vc.meetingList.get, vc.v1.meetingList.get
+- vc.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper] aliases: vc.meetingList.getWithIterator, vc.v1.meetingList.getWithIterator
+- vc.meetingRecording.get -> GET ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording [custom_params_serializer] aliases: vc.meetingRecording.get, vc.v1.meetingRecording.get
+- vc.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer] aliases: vc.meetingRecording.setPermission, vc.v1.meetingRecording.setPermission
+- vc.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer] aliases: vc.meetingRecording.start, vc.v1.meetingRecording.start
+- vc.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer] aliases: vc.meetingRecording.stop, vc.v1.meetingRecording.stop
+- vc.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer] aliases: vc.participantList.get, vc.v1.participantList.get
+- vc.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper] aliases: vc.participantList.getWithIterator, vc.v1.participantList.getWithIterator
+- vc.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer] aliases: vc.participantQualityList.get, vc.v1.participantQualityList.get
+- vc.participantQualityList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer, iterator_helper] aliases: vc.participantQualityList.getWithIterator, vc.v1.participantQualityList.getWithIterator
+- vc.report.getDaily -> GET ${this.domain}/open-apis/vc/v1/reports/get_daily [custom_params_serializer] aliases: vc.report.getDaily, vc.v1.report.getDaily
+- vc.report.getTopUser -> GET ${this.domain}/open-apis/vc/v1/reports/get_top_user [custom_params_serializer] aliases: vc.report.getTopUser, vc.v1.report.getTopUser
+- vc.reserve.apply -> POST ${this.domain}/open-apis/vc/v1/reserves/apply [custom_params_serializer] aliases: vc.reserve.apply, vc.v1.reserve.apply
+- vc.reserve.delete -> DELETE ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.delete, vc.v1.reserve.delete
+- vc.reserve.get -> GET ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.get, vc.v1.reserve.get
+- vc.reserve.getActiveMeeting -> GET ${this.domain}/open-apis/vc/v1/reserves/:reserve_id/get_active_meeting [custom_params_serializer] aliases: vc.reserve.getActiveMeeting, vc.v1.reserve.getActiveMeeting
+- vc.reserve.update -> PUT ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.update, vc.v1.reserve.update
+- vc.reserveConfig.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id [custom_params_serializer] aliases: vc.reserveConfig.patch, vc.v1.reserveConfig.patch
+- vc.reserveConfig.reserveScope -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/reserve_scope [custom_params_serializer] aliases: vc.reserveConfig.reserveScope, vc.v1.reserveConfig.reserveScope
+- vc.reserveConfigAdmin.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/admin [custom_params_serializer] aliases: vc.reserveConfigAdmin.get, vc.v1.reserveConfigAdmin.get
+- vc.reserveConfigAdmin.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/admin [custom_params_serializer] aliases: vc.reserveConfigAdmin.patch, vc.v1.reserveConfigAdmin.patch
+- vc.reserveConfigDisableInform.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/disable_inform [custom_params_serializer] aliases: vc.reserveConfigDisableInform.get, vc.v1.reserveConfigDisableInform.get
+- vc.reserveConfigDisableInform.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/disable_inform [custom_params_serializer] aliases: vc.reserveConfigDisableInform.patch, vc.v1.reserveConfigDisableInform.patch
+- vc.reserveConfigForm.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/form [custom_params_serializer] aliases: vc.reserveConfigForm.get, vc.v1.reserveConfigForm.get
+- vc.reserveConfigForm.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/form [custom_params_serializer] aliases: vc.reserveConfigForm.patch, vc.v1.reserveConfigForm.patch
+- vc.resourceReservationList.get -> GET ${this.domain}/open-apis/vc/v1/resource_reservation_list [custom_params_serializer] aliases: vc.resourceReservationList.get, vc.v1.resourceReservationList.get
+- vc.resourceReservationList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/resource_reservation_list [custom_params_serializer, iterator_helper] aliases: vc.resourceReservationList.getWithIterator, vc.v1.resourceReservationList.getWithIterator
+- vc.room.create -> POST ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer] aliases: vc.room.create, vc.v1.room.create
+- vc.room.delete -> DELETE ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.delete, vc.v1.room.delete
+- vc.room.get -> GET ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.get, vc.v1.room.get
+- vc.room.list -> GET ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer] aliases: vc.room.list, vc.v1.room.list
+- vc.room.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer, iterator_helper] aliases: vc.room.listWithIterator, vc.v1.room.listWithIterator
+- vc.room.mget -> POST ${this.domain}/open-apis/vc/v1/rooms/mget [custom_params_serializer] aliases: vc.room.mget, vc.v1.room.mget
+- vc.room.patch -> PATCH ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.patch, vc.v1.room.patch
+- vc.room.search -> POST ${this.domain}/open-apis/vc/v1/rooms/search [custom_params_serializer] aliases: vc.room.search, vc.v1.room.search
+- vc.roomConfig.query -> GET ${this.domain}/open-apis/vc/v1/room_configs/query [custom_params_serializer] aliases: vc.roomConfig.query, vc.v1.roomConfig.query
+- vc.roomConfig.set -> POST ${this.domain}/open-apis/vc/v1/room_configs/set [custom_params_serializer] aliases: vc.roomConfig.set, vc.v1.roomConfig.set
+- vc.roomConfig.setCheckboardAccessCode -> POST ${this.domain}/open-apis/vc/v1/room_configs/set_checkboard_access_code [custom_params_serializer] aliases: vc.roomConfig.setCheckboardAccessCode, vc.v1.roomConfig.setCheckboardAccessCode
+- vc.roomConfig.setRoomAccessCode -> POST ${this.domain}/open-apis/vc/v1/room_configs/set_room_access_code [custom_params_serializer] aliases: vc.roomConfig.setRoomAccessCode, vc.v1.roomConfig.setRoomAccessCode
+- vc.roomLevel.create -> POST ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer] aliases: vc.roomLevel.create, vc.v1.roomLevel.create
+- vc.roomLevel.del -> POST ${this.domain}/open-apis/vc/v1/room_levels/del [custom_params_serializer] aliases: vc.roomLevel.del, vc.v1.roomLevel.del
+- vc.roomLevel.get -> GET ${this.domain}/open-apis/vc/v1/room_levels/:room_level_id [custom_params_serializer] aliases: vc.roomLevel.get, vc.v1.roomLevel.get
+- vc.roomLevel.list -> GET ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer] aliases: vc.roomLevel.list, vc.v1.roomLevel.list
+- vc.roomLevel.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer, iterator_helper] aliases: vc.roomLevel.listWithIterator, vc.v1.roomLevel.listWithIterator
+- vc.roomLevel.mget -> POST ${this.domain}/open-apis/vc/v1/room_levels/mget [custom_params_serializer] aliases: vc.roomLevel.mget, vc.v1.roomLevel.mget
+- vc.roomLevel.patch -> PATCH ${this.domain}/open-apis/vc/v1/room_levels/:room_level_id [custom_params_serializer] aliases: vc.roomLevel.patch, vc.v1.roomLevel.patch
+- vc.roomLevel.search -> GET ${this.domain}/open-apis/vc/v1/room_levels/search [custom_params_serializer] aliases: vc.roomLevel.search, vc.v1.roomLevel.search
+- vc.scopeConfig.create -> POST ${this.domain}/open-apis/vc/v1/scope_config [custom_params_serializer] aliases: vc.scopeConfig.create, vc.v1.scopeConfig.create
+- vc.scopeConfig.get -> GET ${this.domain}/open-apis/vc/v1/scope_config [custom_params_serializer] aliases: vc.scopeConfig.get, vc.v1.scopeConfig.get
+
+## Event Handles
+
+- vc.meeting.all_meeting_ended_v1
+- vc.meeting.all_meeting_started_v1
+- vc.meeting.join_meeting_v1
+- vc.meeting.leave_meeting_v1
+- vc.meeting.meeting_ended_v1
+- vc.meeting.meeting_started_v1
+- vc.meeting.recording_ended_v1
+- vc.meeting.recording_ready_v1
+- vc.meeting.recording_started_v1
+- vc.meeting.share_ended_v1
+- vc.meeting.share_started_v1
+- vc.reserve_config.updated_v1
+- vc.room.created_v1
+- vc.room.deleted_v1
+- vc.room.updated_v1
+- vc.room_level.created_v1
+- vc.room_level.deleted_v1
+- vc.room_level.updated_v1
+
