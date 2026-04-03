@@ -293,6 +293,94 @@ export default abstract class Client extends application {
                     });
             },
             /**
+             * {@link https://open.feishu.cn/api-explorer?project=approval&resource=approval&apiName=get&version=v4 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/get document }
+             *
+             * 查看审批定义（按照 Approval ID）
+             */
+            getById: async (
+                payload?: {
+                    params?: {
+                        locale?:
+                            | "zh-CN"
+                            | "en-US"
+                            | "ja-JP"
+                            | "zh-HK"
+                            | "zh-TW"
+                            | "de-DE"
+                            | "es-ES"
+                            | "fr-FR"
+                            | "id-ID"
+                            | "it-IT"
+                            | "ko-KR"
+                            | "pt-BR"
+                            | "th-TH"
+                            | "vi-VN"
+                            | "ms-MY"
+                            | "ru-RU";
+                        with_admin_id?: boolean;
+                        user_id_type?: "user_id" | "union_id" | "open_id";
+                        with_option?: boolean;
+                        user_id?: string;
+                    };
+                    path: { approval_id: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                approval_name?: string;
+                                status?:
+                                    | "ACTIVE"
+                                    | "INACTIVE"
+                                    | "DELETED"
+                                    | "UNKNOWN";
+                                form?: string;
+                                node_list?: Array<{
+                                    name?: string;
+                                    need_approver?: boolean;
+                                    node_id?: string;
+                                    custom_node_id?: string;
+                                    node_type?:
+                                        | "AND"
+                                        | "OR"
+                                        | "SEQUENTIAL"
+                                        | "CC_NODE";
+                                    approver_chosen_multi?: boolean;
+                                    approver_chosen_range?: Array<{
+                                        approver_range_type?: number;
+                                        approver_range_ids?: Array<string>;
+                                    }>;
+                                }>;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/approval/v4/approvals/:approval_id`,
+                            path
+                        ),
+                        method: "GET",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
              * {@link https://open.feishu.cn/api-explorer?project=approval&resource=approval&apiName=subscribe&version=v4 click to debug }
              *
              * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/subscribe document }
@@ -350,6 +438,111 @@ export default abstract class Client extends application {
                     .request<any, { code?: number; msg?: string; data?: {} }>({
                         url: fillApiPath(
                             `${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe`,
+                            path
+                        ),
+                        method: "POST",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
+         * 地理库
+         */
+        district: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=approval&resource=district&apiName=list&version=v4 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/list document }
+             *
+             * 查询地理库信息
+             */
+            list: async (
+                payload?: {
+                    params?: {
+                        page_size?: number;
+                        page_token?: string;
+                        root_district_id?: string;
+                        list_type?: string;
+                        locale?: string;
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                version?: string;
+                                has_more?: boolean;
+                                page_token?: string;
+                                items?: Array<{
+                                    id?: string;
+                                    name?: string;
+                                    level?: string;
+                                    has_sub_district?: boolean;
+                                    parent_districts?: Array<{
+                                        id?: string;
+                                        name?: string;
+                                        level?: string;
+                                    }>;
+                                }>;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/approval/v4/districts`,
+                            path
+                        ),
+                        method: "GET",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=approval&resource=district&apiName=search&version=v4 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/search document }
+             *
+             * 搜索地理库信息
+             */
+            search: async (
+                payload?: {
+                    params?: { locale?: string };
+                    data?: {
+                        district_ids?: Array<string>;
+                        keyword?: string;
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<any, { code?: number; msg?: string; data?: { items?: Array<any> } }>({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/approval/v4/districts/search`,
                             path
                         ),
                         method: "POST",
@@ -1191,6 +1384,59 @@ export default abstract class Client extends application {
                             path
                         ),
                         method: "POST",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=approval&resource=instance&apiName=list&version=v4 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/instance/list document }
+             *
+             * 批量获取审批实例 ID
+             */
+            list: async (
+                payload?: {
+                    params: {
+                        approval_code: string;
+                        start_time: string;
+                        end_time: string;
+                        page_size?: number;
+                        page_token?: string;
+                        user_id_type?: "user_id" | "union_id" | "open_id";
+                        locale?: string;
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                instance_code_list?: Array<string>;
+                                page_token?: string;
+                                has_more?: boolean;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/approval/v4/instances`,
+                            path
+                        ),
+                        method: "GET",
                         data,
                         params,
                         headers,
@@ -3239,6 +3485,94 @@ export default abstract class Client extends application {
                         });
                 },
                 /**
+                 * {@link https://open.feishu.cn/api-explorer?project=approval&resource=approval&apiName=get&version=v4 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/get document }
+                 *
+                 * 查看审批定义（按照 Approval ID）
+                 */
+                getById: async (
+                    payload?: {
+                        params?: {
+                            locale?:
+                                | "zh-CN"
+                                | "en-US"
+                                | "ja-JP"
+                                | "zh-HK"
+                                | "zh-TW"
+                                | "de-DE"
+                                | "es-ES"
+                                | "fr-FR"
+                                | "id-ID"
+                                | "it-IT"
+                                | "ko-KR"
+                                | "pt-BR"
+                                | "th-TH"
+                                | "vi-VN"
+                                | "ms-MY"
+                                | "ru-RU";
+                            with_admin_id?: boolean;
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                            with_option?: boolean;
+                            user_id?: string;
+                        };
+                        path: { approval_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    approval_name?: string;
+                                    status?:
+                                        | "ACTIVE"
+                                        | "INACTIVE"
+                                        | "DELETED"
+                                        | "UNKNOWN";
+                                    form?: string;
+                                    node_list?: Array<{
+                                        name?: string;
+                                        need_approver?: boolean;
+                                        node_id?: string;
+                                        custom_node_id?: string;
+                                        node_type?:
+                                            | "AND"
+                                            | "OR"
+                                            | "SEQUENTIAL"
+                                            | "CC_NODE";
+                                        approver_chosen_multi?: boolean;
+                                        approver_chosen_range?: Array<{
+                                            approver_range_type?: number;
+                                            approver_range_ids?: Array<string>;
+                                        }>;
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/approval/v4/approvals/:approval_id`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
                  * {@link https://open.feishu.cn/api-explorer?project=approval&resource=approval&apiName=subscribe&version=v4 click to debug }
                  *
                  * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/subscribe document }
@@ -3302,6 +3636,118 @@ export default abstract class Client extends application {
                         >({
                             url: fillApiPath(
                                 `${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * 地理库
+             */
+            district: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=approval&resource=district&apiName=list&version=v4 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/list document }
+                 *
+                 * 查询地理库信息
+                 */
+                list: async (
+                    payload?: {
+                        params?: {
+                            page_size?: number;
+                            page_token?: string;
+                            root_district_id?: string;
+                            list_type?: string;
+                            locale?: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    version?: string;
+                                    has_more?: boolean;
+                                    page_token?: string;
+                                    items?: Array<{
+                                        id?: string;
+                                        name?: string;
+                                        level?: string;
+                                        has_sub_district?: boolean;
+                                        parent_districts?: Array<{
+                                            id?: string;
+                                            name?: string;
+                                            level?: string;
+                                        }>;
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/approval/v4/districts`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=approval&resource=district&apiName=search&version=v4 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/search document }
+                 *
+                 * 搜索地理库信息
+                 */
+                search: async (
+                    payload?: {
+                        params?: { locale?: string };
+                        data?: {
+                            district_ids?: Array<string>;
+                            keyword?: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: { items?: Array<any> };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/approval/v4/districts/search`,
                                 path
                             ),
                             method: "POST",
@@ -4121,6 +4567,62 @@ export default abstract class Client extends application {
              * 原生审批实例
              */
             instance: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=approval&resource=instance&apiName=list&version=v4 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/instance/list document }
+                 *
+                 * 批量获取审批实例 ID
+                 */
+                list: async (
+                    payload?: {
+                        params: {
+                            approval_code: string;
+                            start_time: string;
+                            end_time: string;
+                            page_size?: number;
+                            page_token?: string;
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id";
+                            locale?: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    instance_code_list?: Array<string>;
+                                    page_token?: string;
+                                    has_more?: boolean;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/approval/v4/instances`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
                 /**
                  * {@link https://open.feishu.cn/api-explorer?project=approval&resource=instance&apiName=add_sign&version=v4 click to debug }
                  *
