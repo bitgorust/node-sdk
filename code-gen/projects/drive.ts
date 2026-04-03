@@ -213,6 +213,119 @@ export default abstract class Client extends docx {
             },
         },
         /**
+         * 用户
+         */
+        user: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=subscription&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription.md document }
+             *
+             * 订阅用户云文档事件
+             */
+            subscription: async (
+                payload?: {
+                    data: { event_type: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<any, { code?: number; msg?: string; data?: {} }>(
+                        {
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/subscription`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        }
+                    )
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=subscription_status&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription_status.md document }
+             *
+             * 查询用户云文档事件订阅状态
+             */
+            subscriptionStatus: async (
+                payload?: {
+                    params: { event_type: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<any, { code?: number; msg?: string; data?: any }>(
+                        {
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/subscription_status`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        }
+                    )
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=remove_subscription&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/remove_subscription.md document }
+             *
+             * 取消用户云文档事件订阅
+             */
+            removeSubscription: async (
+                payload?: {
+                    params: { event_type: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<any, { code?: number; msg?: string; data?: {} }>(
+                        {
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/remove_subscription`,
+                                path
+                            ),
+                            method: "DELETE",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        }
+                    )
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
          * 评论
          */
         fileComment: {
@@ -4342,6 +4455,122 @@ export default abstract class Client extends docx {
                                 path
                             ),
                             method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * 用户
+             */
+            user: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=subscription&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription.md document }
+                 *
+                 * 订阅用户云文档事件
+                 */
+                subscription: async (
+                    payload?: {
+                        data: { event_type: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            { code?: number; msg?: string; data?: {} }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/subscription`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=subscription_status&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription_status.md document }
+                 *
+                 * 查询用户云文档事件订阅状态
+                 */
+                subscriptionStatus: async (
+                    payload?: {
+                        params: { event_type: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            { code?: number; msg?: string; data?: any }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/subscription_status`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=drive&resource=user&apiName=remove_subscription&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/remove_subscription.md document }
+                 *
+                 * 取消用户云文档事件订阅
+                 */
+                removeSubscription: async (
+                    payload?: {
+                        params: { event_type: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            { code?: number; msg?: string; data?: {} }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/drive/v1/user/remove_subscription`,
+                                path
+                            ),
+                            method: "DELETE",
                             data,
                             params,
                             headers,
