@@ -13,6 +13,7 @@ const DEFAULTS = {
     concurrency: 8,
     apiLimit: 0,
     eventLimit: 0,
+    sdkInventoryPath: null,
 };
 
 const URLS = {
@@ -63,6 +64,9 @@ function parseArgs(argv) {
             i += 1;
         } else if (key === '--event-limit' && value) {
             args.eventLimit = Number(value) || 0;
+            i += 1;
+        } else if (key === '--sdk-inventory' && value) {
+            args.sdkInventoryPath = path.resolve(repoRoot, value);
             i += 1;
         }
     }
@@ -125,7 +129,15 @@ function normalizeEndpointPath(endpoint) {
     return match[1].replace(/\/+$/, '');
 }
 
-function buildSdkInventory() {
+function stripVersionSegmentFromPath(path) {
+    const normalized = normalizeEndpointPath(path);
+    return normalized.replace(/(\/open-apis?\/[^/]+)\/v[0-9]+(?=\/|$)/, '$1');
+}
+
+function buildSdkInventory(inventoryPath) {
+    if (inventoryPath && fs.existsSync(inventoryPath)) {
+        return JSON.parse(fs.readFileSync(inventoryPath, 'utf8'));
+    }
     const stdout = execFileSync(process.execPath, ['scripts/analyze-public-api.js'], {
         cwd: repoRoot,
         encoding: 'utf8',
@@ -138,11 +150,18 @@ function buildSdkInventory() {
 function groupSdkByEndpoint(canonicalGeneratedApiMethods) {
     const map = new Map();
     canonicalGeneratedApiMethods.forEach((item) => {
-        const key = `${item.httpMethod} ${normalizeEndpointPath(item.apiPath)}`;
-        if (!map.has(key)) {
-            map.set(key, []);
+        const normalizedPath = normalizeEndpointPath(item.apiPath);
+        const fallbackPath = stripVersionSegmentFromPath(normalizedPath);
+        const keys = new Set([`${item.httpMethod} ${normalizedPath}`]);
+        if (fallbackPath !== normalizedPath) {
+            keys.add(`${item.httpMethod} ${fallbackPath}`);
         }
-        map.get(key).push(item);
+        keys.forEach((key) => {
+            if (!map.has(key)) {
+                map.set(key, []);
+            }
+            map.get(key).push(item);
+        });
     });
     return map;
 }
@@ -1802,7 +1821,7 @@ async function main() {
         'scopes.json',
     ].forEach((name) => removeIfExists(path.join(args.outputDir, name)));
 
-    const sdkInventory = buildSdkInventory();
+    const sdkInventory = buildSdkInventory(args.sdkInventoryPath);
     const sdkByEndpoint = groupSdkByEndpoint(
         sdkInventory.canonicalGeneratedApiMethods || []
     );

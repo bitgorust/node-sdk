@@ -48,4 +48,4 @@ Regenerate with:
 node scripts/analyze-feishu-coverage.js
 ```
 
-Generated at: 2026-04-02T19:51:00.764Z
+Generated at: 2026-04-03T03:16:37.047Z

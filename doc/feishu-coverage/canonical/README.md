@@ -27,4 +27,4 @@ Rule:
 
 - Permission outputs use API Explorer when available, and fall back to markdown only when API Explorer is unavailable.
 
-Generated at: 2026-04-02T19:51:00.764Z
+Generated at: 2026-04-03T03:16:37.047Z

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T19:51:00.749Z",
+  "generatedAt": "2026-04-03T03:16:37.040Z",
   "summary": {
     "apiCount": 1432,
     "apisWithRequiredScopes": 1421,
@@ -11787,10 +11787,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "drive.exportTask.download"
+        ],
+        "sdkAliases": [
+          "drive.exportTask.download",
+          "drive.v1.exportTask.download"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/drive.ts"
+        ]
       }
     },
     {
@@ -31629,10 +31636,18 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.department.queryOperationLogs",
+          "corehr.department.queryOperationLogsWithIterator"
+        ],
+        "sdkAliases": [
+          "corehr.v2.department.queryOperationLogs",
+          "corehr.v2.department.queryOperationLogsWithIterator"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -36777,10 +36792,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "docx.document.convert"
+        ],
+        "sdkAliases": [
+          "docx.document.convert",
+          "docx.v1.document.convert"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/docx.ts"
+        ]
       }
     },
     {
@@ -38269,10 +38291,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "hire.jobRequirement.listById"
+        ],
+        "sdkAliases": [
+          "hire.jobRequirement.listById",
+          "hire.v1.jobRequirement.listById"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/hire.ts"
+        ]
       }
     },
     {
@@ -38295,10 +38324,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "hire.location.query"
+        ],
+        "sdkAliases": [
+          "hire.location.query",
+          "hire.v1.location.query"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/hire.ts"
+        ]
       }
     },
     {
@@ -38321,10 +38357,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "hire.talent.tag"
+        ],
+        "sdkAliases": [
+          "hire.talent.tag",
+          "hire.v1.talent.tag"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/hire.ts"
+        ]
       }
     },
     {

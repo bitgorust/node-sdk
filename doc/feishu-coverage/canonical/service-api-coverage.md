@@ -1,9 +1,9 @@
 # Feishu Service API Coverage
 
 - Evaluated current APIs: 1432
-- Covered by SDK: 1360
-- Uncovered by SDK: 72
-- Coverage rate: 94.97%
+- Covered by SDK: 1366
+- Uncovered by SDK: 66
+- Coverage rate: 95.39%
 - Old APIs archived separately: 110
 - History/deprecated APIs archived separately: 68
 
@@ -26,16 +26,16 @@
 - cardkit: 9/9 covered (0 uncovered)
 - compensation: 21/21 covered (0 uncovered)
 - contact: 67/68 covered (1 uncovered)
-- corehr: 249/260 covered (11 uncovered)
+- corehr: 250/260 covered (10 uncovered)
 - directory: 21/21 covered (0 uncovered)
 - docs: 1/1 covered (0 uncovered)
 - document_ai: 18/18 covered (0 uncovered)
-- docx: 12/13 covered (1 uncovered)
-- drive: 43/47 covered (4 uncovered)
+- docx: 13/13 covered (0 uncovered)
+- drive: 44/47 covered (3 uncovered)
 - ehr: 2/2 covered (0 uncovered)
 - event: 1/1 covered (0 uncovered)
 - helpdesk: 50/50 covered (0 uncovered)
-- hire: 172/175 covered (3 uncovered)
+- hire: 175/175 covered (0 uncovered)
 - human_authentication: 1/1 covered (0 uncovered)
 - im: 64/64 covered (0 uncovered)
 - lingo: 14/14 covered (0 uncovered)
@@ -122,10 +122,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/querybyid.md
   permissions: corehr:employment.custom_org:read, corehr:employment.custom_org:write
   tokens: tenant_access_token
-- GET /open-apis/drive/export_tasks/file/:file_token/download | 下载导出文件 | drive.export_task.download
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/export_task/download.md
-  permissions: docs:document:export, drive:export:readonly
-  tokens: tenant_access_token, user_access_token
 - GET /open-apis/drive/v1/user/subscription_status | 查询用户云文档事件订阅状态 | drive.user.subscription_status
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription_status.md
   permissions: docs:event:subscribe
@@ -238,10 +234,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/basic_batch.md
   permissions: contact:user.basic_profile:readonly
   tokens: tenant_access_token, user_access_token
-- POST /open-apis/corehr/departments/query_operation_logs | 批量查询部门操作日志 | corehr.department.query_operation_logs
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/department/query_operation_logs.md
-  permissions: corehr:department.operation_log:read
-  tokens: tenant_access_token
 - POST /open-apis/corehr/v2/companies/query_multi_timeline | 查询指定时间范围公司版本 | corehr.company.query_multi_timeline
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/company/query_multi_timeline.md
   permissions: corehr:company:read, corehr:company:write
@@ -274,26 +266,10 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/process-query_flow_data_template/create.md
   permissions: corehr:process.instance:write
   tokens: tenant_access_token
-- POST /open-apis/docx/documents/blocks/convert | Markdown/HTML 内容转换为文档块 | docx.document.convert
-  doc: https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/document-docx/docx-v1/document/convert.md
-  permissions: docx:document.block:convert
-  tokens: tenant_access_token, user_access_token
 - POST /open-apis/drive/v1/user/subscription | 订阅用户云文档事件 | drive.user.subscription
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription.md
   permissions: docs:event:subscribe
   tokens: tenant_access_token, user_access_token
-- POST /open-apis/hire/job_requirements/search | 获取招聘需求信息 | hire.job_requirement.list_by_id
-  doc: https://open.feishu.cn/document/ukTMukTMukTM/uMzM1YjLzMTN24yMzUjN/hire-v1/job_requirement/list_by_id.md
-  permissions: hire:job_requirement, hire:job_requirement:readonly
-  tokens: tenant_access_token
-- POST /open-apis/hire/locations/query | 查询地点列表 | hire.location.query
-  doc: https://open.feishu.cn/document/ukTMukTMukTM/uMzM1YjLzMTN24yMzUjN/hire-v1/location/query.md
-  permissions: hire:location:readonly
-  tokens: tenant_access_token
-- POST /open-apis/hire/talents/:talent_id/tag | 操作人才标签 | hire.talent.tag
-  doc: https://open.feishu.cn/document/ukTMukTMukTM/uMzM1YjLzMTN24yMzUjN/hire-v1/talent/tag.md
-  permissions: hire:talent
-  tokens: tenant_access_token
 - POST /open-apis/performance/v1/review_datas/query | 获取绩效结果 | performance.review_data.query
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/performance-v1/review_data/query.md
   permissions: performance:performance, performance:performance:readonly
