@@ -20,10 +20,14 @@ export const formatErrors = (e: any) => {
         const errors = [filteredErrorInfo];
         const specificError = e?.response?.data;
         if (specificError) {
-            errors.push({
-                ...specificError,
-                ...(specificError.error ? specificError.error : {})
-            });
+            if (typeof specificError === 'object') {
+                errors.push({
+                    ...specificError,
+                    ...(specificError.error ? specificError.error : {}),
+                });
+            } else {
+                errors.push(specificError);
+            }
         }
         return errors;
     }
