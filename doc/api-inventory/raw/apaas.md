@@ -1,6 +1,6 @@
 # apaas Raw API Inventory
 
-- Raw exported methods: 47
+- Raw exported methods: 51
 
 ## Raw Exported Methods
 
@@ -45,10 +45,14 @@
 - apaas.v1.userTask.rollback -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback [custom_params_serializer]
 - apaas.v1.userTask.rollbackPoints -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback_points [custom_params_serializer]
 - apaas.v1.workspace.sqlCommands -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/sql_commands [custom_params_serializer]
+- apaas.v1.workspaceEnum.enumGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums/:enum_name [custom_params_serializer]
+- apaas.v1.workspaceEnum.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums [custom_params_serializer]
+- apaas.v1.workspaceTable.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsBatchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsDelete -> DELETE ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsPatch -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsPost -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.v1.workspaceTable.tableGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name [custom_params_serializer]
 - apaas.v1.workspaceView.viewsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records [custom_params_serializer]
 

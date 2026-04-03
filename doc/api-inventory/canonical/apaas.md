@@ -1,6 +1,6 @@
 # apaas API Inventory
 
-- Canonical methods: 47
+- Canonical methods: 51
 - Event handles: 0
 
 ## Canonical Methods
@@ -46,11 +46,15 @@
 - apaas.userTask.rollback -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback [custom_params_serializer]
 - apaas.userTask.rollbackPoints -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback_points [custom_params_serializer]
 - apaas.workspace.sqlCommands -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/sql_commands [custom_params_serializer]
+- apaas.workspaceEnum.enumGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums/:enum_name [custom_params_serializer]
+- apaas.workspaceEnum.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums [custom_params_serializer]
+- apaas.workspaceTable.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables [custom_params_serializer]
 - apaas.workspaceTable.recordsBatchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update [custom_params_serializer]
 - apaas.workspaceTable.recordsDelete -> DELETE ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.workspaceTable.recordsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.workspaceTable.recordsPatch -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.workspaceTable.recordsPost -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.tableGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name [custom_params_serializer]
 - apaas.workspaceView.viewsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records [custom_params_serializer]
 
 ## Event Handles

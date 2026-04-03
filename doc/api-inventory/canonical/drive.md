@@ -1,6 +1,6 @@
 # drive API Inventory
 
-- Canonical methods: 65
+- Canonical methods: 68
 - Event handles: 11
 
 ## Canonical Methods
@@ -70,6 +70,9 @@
 - drive.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.create, drive.v1.permissionPublicPassword.create
 - drive.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.delete, drive.v1.permissionPublicPassword.delete
 - drive.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.update, drive.v1.permissionPublicPassword.update
+- drive.user.removeSubscription -> DELETE ${this.domain}/open-apis/drive/v1/user/remove_subscription [custom_params_serializer] aliases: drive.user.removeSubscription, drive.v1.user.removeSubscription
+- drive.user.subscription -> POST ${this.domain}/open-apis/drive/v1/user/subscription [custom_params_serializer] aliases: drive.user.subscription, drive.v1.user.subscription
+- drive.user.subscriptionStatus -> GET ${this.domain}/open-apis/drive/v1/user/subscription_status [custom_params_serializer] aliases: drive.user.subscriptionStatus, drive.v1.user.subscriptionStatus
 
 ## Event Handles
 

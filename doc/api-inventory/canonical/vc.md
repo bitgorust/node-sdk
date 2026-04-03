@@ -1,6 +1,6 @@
 # vc API Inventory
 
-- Canonical methods: 64
+- Canonical methods: 66
 - Event handles: 18
 
 ## Canonical Methods
@@ -19,6 +19,7 @@
 - vc.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer] aliases: vc.meeting.kickout, vc.v1.meeting.kickout
 - vc.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer] aliases: vc.meeting.listByNo, vc.v1.meeting.listByNo
 - vc.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper] aliases: vc.meeting.listByNoWithIterator, vc.v1.meeting.listByNoWithIterator
+- vc.meeting.search -> POST ${this.domain}/open-apis/vc/v1/meetings/search [custom_params_serializer] aliases: vc.meeting.search, vc.v1.meeting.search
 - vc.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer] aliases: vc.meeting.setHost, vc.v1.meeting.setHost
 - vc.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer] aliases: vc.meetingList.get, vc.v1.meetingList.get
 - vc.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper] aliases: vc.meetingList.getWithIterator, vc.v1.meetingList.getWithIterator
@@ -26,6 +27,7 @@
 - vc.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer] aliases: vc.meetingRecording.setPermission, vc.v1.meetingRecording.setPermission
 - vc.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer] aliases: vc.meetingRecording.start, vc.v1.meetingRecording.start
 - vc.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer] aliases: vc.meetingRecording.stop, vc.v1.meetingRecording.stop
+- vc.note.get -> GET ${this.domain}/open-apis/vc/v1/notes/:note_id [custom_params_serializer] aliases: vc.note.get, vc.v1.note.get
 - vc.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer] aliases: vc.participantList.get, vc.v1.participantList.get
 - vc.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper] aliases: vc.participantList.getWithIterator, vc.v1.participantList.getWithIterator
 - vc.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer] aliases: vc.participantQualityList.get, vc.v1.participantQualityList.get

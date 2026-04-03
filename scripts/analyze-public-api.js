@@ -176,7 +176,6 @@ function extractRequestMeta(source) {
 
 function parseGeneratedProject(filePath) {
     const lines = read(filePath).split('\n');
-    const projectName = path.basename(filePath, '.ts');
     const results = [];
     const stack = [];
     let lineIndex = 0;
@@ -186,7 +185,7 @@ function parseGeneratedProject(filePath) {
 
         if (stack.length === 0) {
             const projectMatch = line.match(/^\s*([A-Za-z0-9_]+)\s*=\s*\{$/);
-            if (projectMatch && projectMatch[1] === projectName) {
+            if (projectMatch) {
                 stack.push({ key: projectMatch[1], indent: getIndent(line) });
             }
             lineIndex += 1;

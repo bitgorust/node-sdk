@@ -1,9 +1,11 @@
 # application Raw API Inventory
 
-- Raw exported methods: 58
+- Raw exported methods: 66
 
 ## Raw Exported Methods
 
+- application.app_avatar.upload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
+- application.appAvatarUpload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
 - application.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer]
 - application.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer]
 - application.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
@@ -34,11 +36,17 @@
 - application.scope.apply -> POST ${this.domain}/open-apis/application/v6/scopes/apply [custom_params_serializer]
 - application.scope.list -> GET ${this.domain}/open-apis/application/v6/scopes [custom_params_serializer]
 - application.v6.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer]
+- application.v6.application.ability.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/ability [custom_params_serializer]
+- application.v6.application.base.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/base [custom_params_serializer]
+- application.v6.application.config.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/config [custom_params_serializer]
 - application.v6.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer]
+- application.v6.application.favourite -> GET ${this.domain}/open-apis/application/v5/applications/favourite [custom_params_serializer]
 - application.v6.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
 - application.v6.application.list -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer]
 - application.v6.application.listWithIterator -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer, iterator_helper]
 - application.v6.application.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
+- application.v6.application.publish.create -> POST ${this.domain}/open-apis/application/v7/applications/:app_id/publish [custom_params_serializer]
+- application.v6.application.recommend -> GET ${this.domain}/open-apis/application/v5/applications/recommend [custom_params_serializer]
 - application.v6.application.underauditlist -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer]
 - application.v6.application.underauditlistWithIterator -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer, iterator_helper]
 - application.v6.applicationAppUsage.departmentOverview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/department_overview [custom_params_serializer]

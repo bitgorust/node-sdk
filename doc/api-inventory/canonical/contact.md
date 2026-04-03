@@ -1,6 +1,6 @@
 # contact API Inventory
 
-- Canonical methods: 85
+- Canonical methods: 86
 - Event handles: 13
 
 ## Canonical Methods
@@ -74,6 +74,7 @@
 - contact.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer] aliases: contact.unit.listDepartment, contact.v3.unit.listDepartment
 - contact.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.patch, contact.v3.unit.patch
 - contact.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer] aliases: contact.unit.unbindDepartment, contact.v3.unit.unbindDepartment
+- contact.user.basicBatch -> POST ${this.domain}/open-apis/contact/v3/users/basic_batch [custom_params_serializer] aliases: contact.user.basicBatch, contact.v3.user.basicBatch
 - contact.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer] aliases: contact.user.batch, contact.v3.user.batch
 - contact.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer] aliases: contact.user.batchGetId, contact.v3.user.batchGetId
 - contact.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer] aliases: contact.user.create, contact.v3.user.create

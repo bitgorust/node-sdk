@@ -48,6 +48,7 @@ See also:
 - [lingo](./lingo.md)
 - [mail](./mail.md)
 - [mdm](./mdm.md)
+- [miaoda](./miaoda.md)
 - [minutes](./minutes.md)
 - [moments](./moments.md)
 - [okr](./okr.md)
@@ -64,7 +65,9 @@ See also:
 - [task](./task.md)
 - [tenant](./tenant.md)
 - [translation](./translation.md)
+- [trustParty](./trustParty.md)
 - [vc](./vc.md)
 - [verification](./verification.md)
 - [wiki](./wiki.md)
+- [workplace](./workplace.md)
 

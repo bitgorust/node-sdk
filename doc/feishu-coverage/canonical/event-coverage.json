@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T05:55:11.104Z",
+  "generatedAt": "2026-04-03T07:56:52.267Z",
   "summary": {
     "total": 204,
     "covered": 181,
@@ -1820,7 +1820,7 @@
         "scopeNames": [],
         "scopes": []
       },
-      "docFetchError": "Failed to fetch https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/event/scope-change.md: 404",
+      "docFetchError": "fetch failed",
       "sdkCoverage": {
         "covered": false,
         "sdkHandle": null
@@ -1861,7 +1861,7 @@
         "scopeNames": [],
         "scopes": []
       },
-      "docFetchError": "Failed to fetch https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/event/department-update.md: 404",
+      "docFetchError": "fetch failed",
       "sdkCoverage": {
         "covered": false,
         "sdkHandle": null
@@ -1902,7 +1902,7 @@
         "scopeNames": [],
         "scopes": []
       },
-      "docFetchError": "Failed to fetch https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/event/employee-change.md: 404",
+      "docFetchError": "fetch failed",
       "sdkCoverage": {
         "covered": false,
         "sdkHandle": null
@@ -1943,7 +1943,7 @@
         "scopeNames": [],
         "scopes": []
       },
-      "docFetchError": "Failed to fetch https://open.feishu.cn/document/ukTMukTMukTM/uETNz4SM1MjLxUzM/event/user-status-changed.md: 404",
+      "docFetchError": "fetch failed",
       "sdkCoverage": {
         "covered": false,
         "sdkHandle": null
