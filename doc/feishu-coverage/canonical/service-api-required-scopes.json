@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T03:16:37.040Z",
+  "generatedAt": "2026-04-03T05:56:26.424Z",
   "summary": {
     "apiCount": 1432,
     "apisWithRequiredScopes": 1421,
@@ -2254,10 +2254,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "drive.user.removeSubscription"
+        ],
+        "sdkAliases": [
+          "drive.user.removeSubscription",
+          "drive.v1.user.removeSubscription"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/drive.ts"
+        ]
       }
     },
     {
@@ -5616,10 +5623,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.favourite"
+        ],
+        "sdkAliases": [
+          "application.v6.application.favourite"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -5642,10 +5655,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.recommend"
+        ],
+        "sdkAliases": [
+          "application.v6.application.recommend"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -6049,10 +6068,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "approval.approval.getById"
+        ],
+        "sdkAliases": [
+          "approval.approval.getById",
+          "approval.v4.approval.getById"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/approval.ts"
+        ]
       }
     },
     {
@@ -6077,10 +6103,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "approval.district.list"
+        ],
+        "sdkAliases": [
+          "approval.district.list",
+          "approval.v4.district.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/approval.ts"
+        ]
       }
     },
     {
@@ -6177,10 +6210,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "approval.instance.list"
+        ],
+        "sdkAliases": [
+          "approval.instance.list",
+          "approval.v4.instance.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/approval.ts"
+        ]
       }
     },
     {
@@ -12324,10 +12364,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "drive.user.subscriptionStatus"
+        ],
+        "sdkAliases": [
+          "drive.user.subscriptionStatus",
+          "drive.v1.user.subscriptionStatus"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/drive.ts"
+        ]
       }
     },
     {
@@ -21388,10 +21435,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.ability.patch"
+        ],
+        "sdkAliases": [
+          "application.v6.application.ability.patch"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -21415,10 +21468,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.base.patch"
+        ],
+        "sdkAliases": [
+          "application.v6.application.base.patch"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -21442,10 +21501,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.config.patch"
+        ],
+        "sdkAliases": [
+          "application.v6.application.config.patch"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -26676,10 +26741,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.app_avatar.upload.create"
+        ],
+        "sdkAliases": [
+          "application.app_avatar.upload.create"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -26703,10 +26774,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "application.application.publish.create"
+        ],
+        "sdkAliases": [
+          "application.v6.application.publish.create"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/application.ts"
+        ]
       }
     },
     {
@@ -26833,10 +26910,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "approval.district.search"
+        ],
+        "sdkAliases": [
+          "approval.district.search",
+          "approval.v4.district.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/approval.ts"
+        ]
       }
     },
     {
@@ -31577,10 +31661,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "contact.user.basicBatch"
+        ],
+        "sdkAliases": [
+          "contact.user.basicBatch",
+          "contact.v3.user.basicBatch"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/contact.ts"
+        ]
       }
     },
     {
@@ -37703,10 +37794,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "drive.user.subscription"
+        ],
+        "sdkAliases": [
+          "drive.user.subscription",
+          "drive.v1.user.subscription"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/drive.ts"
+        ]
       }
     },
     {
@@ -43928,10 +44026,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "search.docWiki.search"
+        ],
+        "sdkAliases": [
+          "search.docWiki.search",
+          "search.v2.docWiki.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/search.ts"
+        ]
       }
     },
     {
