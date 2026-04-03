@@ -27,4 +27,4 @@ Rule:
 
 - Safe fallback permission outputs are generated from the union of API Explorer and markdown for preflight permission requests.
 
-Generated at: 2026-04-02T19:51:00.764Z
+Generated at: 2026-04-03T03:16:37.047Z
