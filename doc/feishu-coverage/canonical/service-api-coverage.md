@@ -1,9 +1,9 @@
 # Feishu Service API Coverage
 
 - Evaluated current APIs: 1432
-- Covered by SDK: 1366
-- Uncovered by SDK: 66
-- Coverage rate: 95.39%
+- Covered by SDK: 1378
+- Uncovered by SDK: 54
+- Coverage rate: 96.27%
 - Old APIs archived separately: 110
 - History/deprecated APIs archived separately: 68
 
@@ -62,7 +62,7 @@
 - vc: 56/58 covered (2 uncovered)
 - verification: 1/1 covered (0 uncovered)
 - wiki: 16/16 covered (0 uncovered)
-- workplace: 0/3 covered (3 uncovered)
+- workplace: 3/3 covered (0 uncovered)
 
 ## Uncovered APIs
 
@@ -318,16 +318,3 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/meeting/search.md
   permissions: vc:meeting.search:read
   tokens: user_access_token
-- POST /open-apis/workplace/v1/custom_workplace_access_data/search | 获取定制工作台访问数据 | workplace.custom_workplace_access_data.search
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/workplace-v1/custom_workplace_access_data/search.md
-  permissions: workplace:workplace_using_data:read
-  tokens: tenant_access_token
-- POST /open-apis/workplace/v1/workplace_access_data/search | 获取工作台访问数据 | workplace.workplace_access_data.search
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/workplace-v1/workplace_access_data/search.md
-  permissions: workplace:workplace_using_data:read
-  tokens: tenant_access_token
-- POST /open-apis/workplace/v1/workplace_block_access_data/search | 获取定制工作台小组件访问数据 | workplace.workplace_block_access_data.search
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/workplace-v1/workplace_block_access_data/search.md
-  permissions: workplace:workplace_using_data:read
-  tokens: tenant_access_token
-
