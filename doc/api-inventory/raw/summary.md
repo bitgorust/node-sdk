@@ -1,34 +1,34 @@
 # Raw Public API Inventory
 
-- Raw exported API methods: 2800
-- Generated projects: 52
+- Raw exported API methods: 2888
+- Generated projects: 55
 
 ## Raw Project Summary
 
 - acs: 32 methods across 14 resources
 - admin: 34 methods across 14 resources
 - aily: 26 methods across 7 resources
-- apaas: 47 methods across 17 resources
-- application: 58 methods across 24 resources
-- approval: 64 methods across 14 resources
+- apaas: 51 methods across 18 resources
+- application: 66 methods across 30 resources
+- approval: 72 methods across 16 resources
 - attendance: 84 methods across 32 resources
 - auth: 10 methods across 6 resources
 - authen: 10 methods across 10 resources
 - baike: 32 methods across 8 resources
 - base: 4 methods across 1 resources
-- bitable: 112 methods across 22 resources
+- bitable: 117 methods across 25 resources
 - block: 6 methods across 4 resources
 - board: 6 methods across 2 resources
 - calendar: 98 methods across 22 resources
 - cardkit: 10 methods across 2 resources
 - compensation: 30 methods across 12 resources
-- contact: 170 methods across 28 resources
-- corehr: 401 methods across 123 resources
+- contact: 172 methods across 28 resources
+- corehr: 411 methods across 124 resources
 - directory: 26 methods across 5 resources
 - docs: 1 methods across 1 resources
 - document_ai: 18 methods across 18 resources
 - docx: 44 methods across 14 resources
-- drive: 126 methods across 30 resources
+- drive: 132 methods across 32 resources
 - ehr: 6 methods across 4 resources
 - event: 4 methods across 2 resources
 - helpdesk: 106 methods across 26 resources
@@ -38,25 +38,28 @@
 - lingo: 17 methods across 5 resources
 - mail: 152 methods across 34 resources
 - mdm: 6 methods across 4 resources
-- minutes: 4 methods across 4 resources
+- miaoda: 12 methods across 5 resources
+- minutes: 5 methods across 4 resources
 - moments: 2 methods across 2 resources
 - okr: 24 methods across 14 resources
 - optical_char_recognition: 2 methods across 2 resources
 - passport: 4 methods across 2 resources
 - payroll: 20 methods across 10 resources
-- performance: 21 methods across 14 resources
+- performance: 26 methods across 18 resources
 - personal_settings: 14 methods across 2 resources
 - report: 6 methods across 6 resources
-- search: 30 methods across 10 resources
-- security_and_compliance: 10 methods across 4 resources
+- search: 32 methods across 12 resources
+- security_and_compliance: 15 methods across 6 resources
 - sheets: 54 methods across 12 resources
 - speech_to_text: 4 methods across 2 resources
 - task: 116 methods across 19 resources
 - tenant: 4 methods across 4 resources
 - translation: 4 methods across 2 resources
-- vc: 128 methods across 36 resources
+- trustParty: 10 methods across 8 resources
+- vc: 132 methods across 38 resources
 - verification: 1 methods across 1 resources
 - wiki: 36 methods across 11 resources
+- workplace: 6 methods across 6 resources
 
 ## Raw Exported Methods
 
@@ -193,12 +196,18 @@
 - apaas.v1.userTask.rollback -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback [custom_params_serializer]
 - apaas.v1.userTask.rollbackPoints -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback_points [custom_params_serializer]
 - apaas.v1.workspace.sqlCommands -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/sql_commands [custom_params_serializer]
+- apaas.v1.workspaceEnum.enumGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums/:enum_name [custom_params_serializer]
+- apaas.v1.workspaceEnum.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums [custom_params_serializer]
+- apaas.v1.workspaceTable.list -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsBatchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsDelete -> DELETE ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsPatch -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
 - apaas.v1.workspaceTable.recordsPost -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.v1.workspaceTable.tableGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name [custom_params_serializer]
 - apaas.v1.workspaceView.viewsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records [custom_params_serializer]
+- application.app_avatar.upload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
+- application.appAvatarUpload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
 - application.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer]
 - application.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer]
 - application.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
@@ -229,11 +238,17 @@
 - application.scope.apply -> POST ${this.domain}/open-apis/application/v6/scopes/apply [custom_params_serializer]
 - application.scope.list -> GET ${this.domain}/open-apis/application/v6/scopes [custom_params_serializer]
 - application.v6.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer]
+- application.v6.application.ability.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/ability [custom_params_serializer]
+- application.v6.application.base.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/base [custom_params_serializer]
+- application.v6.application.config.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/config [custom_params_serializer]
 - application.v6.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer]
+- application.v6.application.favourite -> GET ${this.domain}/open-apis/application/v5/applications/favourite [custom_params_serializer]
 - application.v6.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
 - application.v6.application.list -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer]
 - application.v6.application.listWithIterator -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer, iterator_helper]
 - application.v6.application.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer]
+- application.v6.application.publish.create -> POST ${this.domain}/open-apis/application/v7/applications/:app_id/publish [custom_params_serializer]
+- application.v6.application.recommend -> GET ${this.domain}/open-apis/application/v5/applications/recommend [custom_params_serializer]
 - application.v6.application.underauditlist -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer]
 - application.v6.application.underauditlistWithIterator -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer, iterator_helper]
 - application.v6.applicationAppUsage.departmentOverview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/department_overview [custom_params_serializer]
@@ -259,8 +274,11 @@
 - application.v6.scope.list -> GET ${this.domain}/open-apis/application/v6/scopes [custom_params_serializer]
 - approval.approval.create -> POST ${this.domain}/open-apis/approval/v4/approvals [custom_params_serializer]
 - approval.approval.get -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_code [custom_params_serializer]
+- approval.approval.getById -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_id [custom_params_serializer]
 - approval.approval.subscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe [custom_params_serializer]
 - approval.approval.unsubscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe [custom_params_serializer]
+- approval.district.list -> GET ${this.domain}/open-apis/approval/v4/districts [custom_params_serializer]
+- approval.district.search -> POST ${this.domain}/open-apis/approval/v4/districts/search [custom_params_serializer]
 - approval.externalApproval.create -> POST ${this.domain}/open-apis/approval/v4/external_approvals [custom_params_serializer]
 - approval.externalApproval.get -> GET ${this.domain}/open-apis/approval/v4/external_approvals/:approval_code [custom_params_serializer]
 - approval.externalInstance.check -> POST ${this.domain}/open-apis/approval/v4/external_instances/check [custom_params_serializer]
@@ -272,6 +290,7 @@
 - approval.instance.cc -> POST ${this.domain}/open-apis/approval/v4/instances/cc [custom_params_serializer]
 - approval.instance.create -> POST ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.instance.get -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id [custom_params_serializer]
+- approval.instance.list -> GET ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.instance.preview -> POST ${this.domain}/open-apis/approval/v4/instances/preview [custom_params_serializer]
 - approval.instance.query -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer]
 - approval.instance.queryWithIterator -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer, iterator_helper]
@@ -291,8 +310,11 @@
 - approval.task.transfer -> POST ${this.domain}/open-apis/approval/v4/tasks/transfer [custom_params_serializer]
 - approval.v4.approval.create -> POST ${this.domain}/open-apis/approval/v4/approvals [custom_params_serializer]
 - approval.v4.approval.get -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_code [custom_params_serializer]
+- approval.v4.approval.getById -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_id [custom_params_serializer]
 - approval.v4.approval.subscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe [custom_params_serializer]
 - approval.v4.approval.unsubscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe [custom_params_serializer]
+- approval.v4.district.list -> GET ${this.domain}/open-apis/approval/v4/districts [custom_params_serializer]
+- approval.v4.district.search -> POST ${this.domain}/open-apis/approval/v4/districts/search [custom_params_serializer]
 - approval.v4.externalApproval.create -> POST ${this.domain}/open-apis/approval/v4/external_approvals [custom_params_serializer]
 - approval.v4.externalApproval.get -> GET ${this.domain}/open-apis/approval/v4/external_approvals/:approval_code [custom_params_serializer]
 - approval.v4.externalInstance.check -> POST ${this.domain}/open-apis/approval/v4/external_instances/check [custom_params_serializer]
@@ -304,6 +326,7 @@
 - approval.v4.instance.cc -> POST ${this.domain}/open-apis/approval/v4/instances/cc [custom_params_serializer]
 - approval.v4.instance.create -> POST ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.v4.instance.get -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id [custom_params_serializer]
+- approval.v4.instance.list -> GET ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.v4.instance.preview -> POST ${this.domain}/open-apis/approval/v4/instances/preview [custom_params_serializer]
 - approval.v4.instance.query -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer]
 - approval.v4.instance.queryWithIterator -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer, iterator_helper]
@@ -465,6 +488,7 @@
 - bitable.app.create -> POST ${this.domain}/open-apis/bitable/v1/apps [custom_params_serializer]
 - bitable.app.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer]
 - bitable.app.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer]
+- bitable.appBlockWorkflow.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/block_workflows [custom_params_serializer]
 - bitable.appDashboard.copy -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards/:block_id/copy [custom_params_serializer]
 - bitable.appDashboard.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer]
 - bitable.appDashboard.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer, iterator_helper]
@@ -491,8 +515,10 @@
 - bitable.appTableField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer]
 - bitable.appTableField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer, iterator_helper]
 - bitable.appTableField.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id [custom_params_serializer]
+- bitable.appTableFieldGroup.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups [custom_params_serializer]
 - bitable.appTableForm.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer]
 - bitable.appTableForm.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer]
+- bitable.appTableForm.upgrade -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade [custom_params_serializer]
 - bitable.appTableFormField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer]
 - bitable.appTableFormField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer, iterator_helper]
 - bitable.appTableFormField.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields/:field_id [custom_params_serializer]
@@ -547,8 +573,10 @@
 - bitable.v1.appTableField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer]
 - bitable.v1.appTableField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer, iterator_helper]
 - bitable.v1.appTableField.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id [custom_params_serializer]
+- bitable.v1.appTableFieldGroup.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups [custom_params_serializer]
 - bitable.v1.appTableForm.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer]
 - bitable.v1.appTableForm.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer]
+- bitable.v1.appTableForm.upgrade -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade [custom_params_serializer]
 - bitable.v1.appTableFormField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer]
 - bitable.v1.appTableFormField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer, iterator_helper]
 - bitable.v1.appTableFormField.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields/:field_id [custom_params_serializer]
@@ -792,6 +820,7 @@
 - contact.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer]
 - contact.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer]
 - contact.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer]
+- contact.user.basicBatch -> POST ${this.domain}/open-apis/contact/v3/users/basic_batch [custom_params_serializer]
 - contact.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer]
 - contact.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer]
 - contact.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer]
@@ -874,6 +903,7 @@
 - contact.v3.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer]
 - contact.v3.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer]
 - contact.v3.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer]
+- contact.v3.user.basicBatch -> POST ${this.domain}/open-apis/contact/v3/users/basic_batch [custom_params_serializer]
 - contact.v3.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer]
 - contact.v3.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer]
 - contact.v3.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer]
@@ -1131,6 +1161,7 @@
 - corehr.v2.bp.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/bps [custom_params_serializer, iterator_helper]
 - corehr.v2.company.active -> POST ${this.domain}/open-apis/corehr/v2/companies/active [custom_params_serializer]
 - corehr.v2.company.batchGet -> POST ${this.domain}/open-apis/corehr/v2/companies/batch_get [custom_params_serializer]
+- corehr.v2.company.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/companies/query_multi_timeline [custom_params_serializer]
 - corehr.v2.company.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer]
 - corehr.v2.company.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer, iterator_helper]
 - corehr.v2.contract.search -> POST ${this.domain}/open-apis/corehr/v2/contracts/search [custom_params_serializer]
@@ -1176,6 +1207,11 @@
 - corehr.v2.draft.get -> GET ${this.domain}/open-apis/corehr/v2/drafts/:draft_id [custom_params_serializer]
 - corehr.v2.employee.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/batch_get [custom_params_serializer]
 - corehr.v2.employee.create -> POST ${this.domain}/open-apis/corehr/v2/employees [custom_params_serializer]
+- corehr.v2.employee.customOrg.createEmpCustomOrg -> POST ${this.domain}/open-apis/corehr/v2/custom_org/create_emp_custom_org [custom_params_serializer]
+- corehr.v2.employee.customOrg.del -> POST ${this.domain}/open-apis/corehr/v2/custom_org/del [custom_params_serializer]
+- corehr.v2.employee.customOrg.editEmpCustomOrg -> POST ${this.domain}/open-apis/corehr/v2/custom_org/edit_emp_custom_org [custom_params_serializer]
+- corehr.v2.employee.customOrg.employmentCustomOrgRecord -> GET ${this.domain}/open-apis/corehr/v2/custom_org/employment_custom_org_record [custom_params_serializer]
+- corehr.v2.employee.customOrg.queryById -> GET ${this.domain}/open-apis/corehr/v2/custom_org/querybyid [custom_params_serializer]
 - corehr.v2.employee.search -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer]
 - corehr.v2.employee.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer, iterator_helper]
 - corehr.v2.employeesAdditionalJob.batch -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/batch [custom_params_serializer]
@@ -1218,6 +1254,7 @@
 - corehr.v2.location.active -> POST ${this.domain}/open-apis/corehr/v2/locations/active [custom_params_serializer]
 - corehr.v2.location.batchGet -> POST ${this.domain}/open-apis/corehr/v2/locations/batch_get [custom_params_serializer]
 - corehr.v2.location.patch -> PATCH ${this.domain}/open-apis/corehr/v2/locations/:location_id [custom_params_serializer]
+- corehr.v2.location.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/locations/query_multi_timeline [custom_params_serializer]
 - corehr.v2.location.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer]
 - corehr.v2.location.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer, iterator_helper]
 - corehr.v2.locationAddress.create -> POST ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses [custom_params_serializer]
@@ -1252,6 +1289,7 @@
 - corehr.v2.preHire.transformOnboardingTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/transform_onboarding_task [custom_params_serializer]
 - corehr.v2.preHire.transitTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id/transit_task [custom_params_serializer]
 - corehr.v2.preHire.withdrawOnboarding -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/withdraw_onboarding [custom_params_serializer]
+- corehr.v2.probation.edit -> POST ${this.domain}/open-apis/corehr/v2/probation/edit [custom_params_serializer]
 - corehr.v2.probation.enableDisableAssessment -> POST ${this.domain}/open-apis/corehr/v2/probation/enable_disable_assessment [custom_params_serializer]
 - corehr.v2.probation.search -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer]
 - corehr.v2.probation.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer, iterator_helper]
@@ -1264,6 +1302,8 @@
 - corehr.v2.process.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id [custom_params_serializer]
 - corehr.v2.process.list -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer]
 - corehr.v2.process.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer, iterator_helper]
+- corehr.v2.process.queryFlowDataTemplate -> POST ${this.domain}/open-apis/corehr/v2/query_flow_data_template [custom_params_serializer]
+- corehr.v2.process.start -> POST ${this.domain}/open-apis/corehr/v2/process_start [custom_params_serializer]
 - corehr.v2.processApprover.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/approvers/:approver_id [custom_params_serializer]
 - corehr.v2.processExtra.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/extra [custom_params_serializer]
 - corehr.v2.processFormVariableData.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id/form_variable_data [custom_params_serializer]
@@ -1444,6 +1484,9 @@
 - drive.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
+- drive.user.removeSubscription -> DELETE ${this.domain}/open-apis/drive/v1/user/remove_subscription [custom_params_serializer]
+- drive.user.subscription -> POST ${this.domain}/open-apis/drive/v1/user/subscription [custom_params_serializer]
+- drive.user.subscriptionStatus -> GET ${this.domain}/open-apis/drive/v1/user/subscription_status [custom_params_serializer]
 - drive.v1.exportTask.create -> POST ${this.domain}/open-apis/drive/v1/export_tasks [custom_params_serializer]
 - drive.v1.exportTask.download -> GET ${this.domain}/open-apis/drive/v1/export_tasks/file/:file_token/download [custom_params_serializer, stream_response, write_file_helper, readable_stream_helper]
 - drive.v1.exportTask.get -> GET ${this.domain}/open-apis/drive/v1/export_tasks/:ticket [custom_params_serializer]
@@ -1505,6 +1548,9 @@
 - drive.v1.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.v1.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.v1.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
+- drive.v1.user.removeSubscription -> DELETE ${this.domain}/open-apis/drive/v1/user/remove_subscription [custom_params_serializer]
+- drive.v1.user.subscription -> POST ${this.domain}/open-apis/drive/v1/user/subscription [custom_params_serializer]
+- drive.v1.user.subscriptionStatus -> GET ${this.domain}/open-apis/drive/v1/user/subscription_status [custom_params_serializer]
 - drive.v2.fileLike.list -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer]
 - drive.v2.fileLike.listWithIterator -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer, iterator_helper]
 - drive.v2.permissionPublic.get -> GET ${this.domain}/open-apis/drive/v2/permissions/:token/public [custom_params_serializer]
@@ -2376,6 +2422,19 @@
 - mdm.v1.userAuthDataRelation.unbind -> POST ${this.domain}/open-apis/mdm/v1/user_auth_data_relations/unbind [custom_params_serializer]
 - mdm.v3.batchCountryRegion.get -> GET ${this.domain}/open-apis/mdm/v3/batch_country_region [custom_params_serializer]
 - mdm.v3.countryRegion.list -> GET ${this.domain}/open-apis/mdm/v3/country_regions [custom_params_serializer]
+- miaoda.app.enum.get_enum_detail -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/enums/:enum_name [custom_params_serializer]
+- miaoda.app.enum.get_enum_list -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/enums [custom_params_serializer]
+- miaoda.app.sql_commands -> POST ${this.domain}/open-apis/spark/v1/apps/:app_id/sql_commands [custom_params_serializer]
+- miaoda.app.table.batch_update_table_records -> PATCH ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records_batch_update [custom_params_serializer]
+- miaoda.app.table.delete_table_records -> DELETE ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records [custom_params_serializer]
+- miaoda.app.table.get_table_detail -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name [custom_params_serializer]
+- miaoda.app.table.get_table_list -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/tables [custom_params_serializer]
+- miaoda.app.table.get_table_record_list -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records [custom_params_serializer]
+- miaoda.app.table.patch_table_records -> PATCH ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records [custom_params_serializer]
+- miaoda.app.table.post_table_records -> POST ${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records [custom_params_serializer]
+- miaoda.app.view.get_view_record_list -> GET ${this.domain}/open-apis/spark/v1/apps/:app_id/views/:view_name/records [custom_params_serializer]
+- miaoda.directory.user.id_convert -> POST ${this.domain}/open-apis/spark/v1/directory/user/id_convert [custom_params_serializer]
+- minutes.v1.minute.artifacts -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/artifacts [custom_params_serializer]
 - minutes.v1.minute.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token [custom_params_serializer]
 - minutes.v1.minuteMedia.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/media [custom_params_serializer]
 - minutes.v1.minuteStatistics.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/statistics [custom_params_serializer]
@@ -2432,6 +2491,10 @@
 - payroll.v1.paymentActivity.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/payment_activitys [custom_params_serializer, iterator_helper]
 - payroll.v1.paymentActivityDetail.list -> GET ${this.domain}/open-apis/payroll/v1/payment_activity_details [custom_params_serializer]
 - payroll.v1.paymentDetail.query -> POST ${this.domain}/open-apis/payroll/v1/payment_detail/query [custom_params_serializer]
+- performance.v1.reviewData.query -> POST ${this.domain}/open-apis/performance/v1/review_datas/query [custom_params_serializer]
+- performance.v1.semester.list -> GET ${this.domain}/open-apis/performance/v1/semesters [custom_params_serializer]
+- performance.v1.stageTask.findByPage -> POST ${this.domain}/open-apis/performance/v1/stage_tasks/find_by_page [custom_params_serializer]
+- performance.v1.stageTask.findByUserList -> POST ${this.domain}/open-apis/performance/v1/stage_tasks/find_by_user_list [custom_params_serializer]
 - performance.v2.activity.query -> POST ${this.domain}/open-apis/performance/v2/activity/query [custom_params_serializer]
 - performance.v2.additionalInformation.import -> POST ${this.domain}/open-apis/performance/v2/additional_informations/import [custom_params_serializer]
 - performance.v2.additionalInformation.query -> POST ${this.domain}/open-apis/performance/v2/additional_informations/query [custom_params_serializer]
@@ -2453,6 +2516,7 @@
 - performance.v2.reviewTemplate.query -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer]
 - performance.v2.reviewTemplate.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer, iterator_helper]
 - performance.v2.userGroupUserRel.write -> POST ${this.domain}/open-apis/performance/v2/user_group_user_rels/write [custom_params_serializer]
+- performance.v2.userInfo.query -> POST ${this.domain}/open-apis/performance/v2/user_info/query [custom_params_serializer]
 - personal_settings.systemStatus.batchClose -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id/batch_close [custom_params_serializer]
 - personal_settings.systemStatus.batchOpen -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id/batch_open [custom_params_serializer]
 - personal_settings.systemStatus.create -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses [custom_params_serializer]
@@ -2483,6 +2547,7 @@
 - search.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer]
 - search.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
 - search.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
+- search.docWiki.search -> POST ${this.domain}/open-apis/search/v2/doc_wiki/search [custom_params_serializer]
 - search.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer]
 - search.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer]
 - search.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]
@@ -2498,13 +2563,19 @@
 - search.v2.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer]
 - search.v2.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
 - search.v2.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
+- search.v2.docWiki.search -> POST ${this.domain}/open-apis/search/v2/doc_wiki/search [custom_params_serializer]
 - search.v2.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer]
 - search.v2.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer]
 - search.v2.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]
 - search.v2.schema.get -> GET ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]
 - search.v2.schema.patch -> PATCH ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]
 - security_and_compliance.openapiLog.listData -> POST ${this.domain}/open-apis/security_and_compliance/v1/openapi_logs/list_data [custom_params_serializer]
+- security_and_compliance.v1.multiGeoEntity.tenant.get -> GET ${this.domain}/open-apis/security_and_compliance/v1/multi_geo_entity/tenant [custom_params_serializer]
 - security_and_compliance.v1.openapiLog.listData -> POST ${this.domain}/open-apis/security_and_compliance/v1/openapi_logs/list_data [custom_params_serializer]
+- security_and_compliance.v1.userMigration.cancel -> POST ${this.domain}/open-apis/security_and_compliance/v1/user_migrations/cancel [custom_params_serializer]
+- security_and_compliance.v1.userMigration.create -> POST ${this.domain}/open-apis/security_and_compliance/v1/user_migrations [custom_params_serializer]
+- security_and_compliance.v1.userMigration.get -> GET ${this.domain}/open-apis/security_and_compliance/v1/user_migrations/:user_id [custom_params_serializer]
+- security_and_compliance.v1.userMigration.search -> POST ${this.domain}/open-apis/security_and_compliance/v1/user_migrations/search [custom_params_serializer]
 - security_and_compliance.v2.deviceApplyRecord.update -> PUT ${this.domain}/open-apis/security_and_compliance/v2/device_apply_records/:device_apply_record_id [custom_params_serializer]
 - security_and_compliance.v2.deviceRecord.create -> POST ${this.domain}/open-apis/security_and_compliance/v2/device_records [custom_params_serializer]
 - security_and_compliance.v2.deviceRecord.delete -> DELETE ${this.domain}/open-apis/security_and_compliance/v2/device_records/:device_record_id [custom_params_serializer]
@@ -2695,6 +2766,16 @@
 - translation.text.translate -> POST ${this.domain}/open-apis/translation/v1/text/translate [custom_params_serializer]
 - translation.v1.text.detect -> POST ${this.domain}/open-apis/translation/v1/text/detect [custom_params_serializer]
 - translation.v1.text.translate -> POST ${this.domain}/open-apis/translation/v1/text/translate [custom_params_serializer]
+- trustParty.collaborationDepartment.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_departments/:target_department_id [custom_params_serializer]
+- trustParty.collaborationTenant.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key [custom_params_serializer]
+- trustParty.collaborationTenant.list -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants [custom_params_serializer]
+- trustParty.collaborationUser.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_users/:target_user_id [custom_params_serializer]
+- trustParty.v1.collaborationDepartment.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_departments/:target_department_id [custom_params_serializer]
+- trustParty.v1.collaborationTenant.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key [custom_params_serializer]
+- trustParty.v1.collaborationTenant.list -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants [custom_params_serializer]
+- trustParty.v1.collaborationUser.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_users/:target_user_id [custom_params_serializer]
+- trustParty.v1.visibleOrganization.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/visible_organization [custom_params_serializer]
+- trustParty.visibleOrganization.get -> GET ${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/visible_organization [custom_params_serializer]
 - vc.alert.list -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer]
 - vc.alert.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer, iterator_helper]
 - vc.export.download -> GET ${this.domain}/open-apis/vc/v1/exports/download [custom_params_serializer, stream_response, write_file_helper, readable_stream_helper]
@@ -2709,6 +2790,7 @@
 - vc.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer]
 - vc.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer]
 - vc.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper]
+- vc.meeting.search -> POST ${this.domain}/open-apis/vc/v1/meetings/search [custom_params_serializer]
 - vc.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer]
 - vc.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer]
 - vc.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper]
@@ -2716,6 +2798,7 @@
 - vc.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer]
 - vc.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer]
 - vc.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer]
+- vc.note.get -> GET ${this.domain}/open-apis/vc/v1/notes/:note_id [custom_params_serializer]
 - vc.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer]
 - vc.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper]
 - vc.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer]
@@ -2773,6 +2856,7 @@
 - vc.v1.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer]
 - vc.v1.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer]
 - vc.v1.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper]
+- vc.v1.meeting.search -> POST ${this.domain}/open-apis/vc/v1/meetings/search [custom_params_serializer]
 - vc.v1.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer]
 - vc.v1.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer]
 - vc.v1.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper]
@@ -2780,6 +2864,7 @@
 - vc.v1.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer]
 - vc.v1.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer]
 - vc.v1.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer]
+- vc.v1.note.get -> GET ${this.domain}/open-apis/vc/v1/notes/:note_id [custom_params_serializer]
 - vc.v1.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer]
 - vc.v1.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper]
 - vc.v1.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer]
@@ -2860,3 +2945,9 @@
 - wiki.v2.spaceNode.updateTitle -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title [custom_params_serializer]
 - wiki.v2.spaceSetting.update -> PUT ${this.domain}/open-apis/wiki/v2/spaces/:space_id/setting [custom_params_serializer]
 - wiki.v2.task.get -> GET ${this.domain}/open-apis/wiki/v2/tasks/:task_id [custom_params_serializer]
+- workplace.customWorkplaceAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/custom_workplace_access_data/search [custom_params_serializer]
+- workplace.v1.customWorkplaceAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/custom_workplace_access_data/search [custom_params_serializer]
+- workplace.v1.workplaceAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/workplace_access_data/search [custom_params_serializer]
+- workplace.v1.workplaceBlockAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/workplace_block_access_data/search [custom_params_serializer]
+- workplace.workplaceAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/workplace_access_data/search [custom_params_serializer]
+- workplace.workplaceBlockAccessData.search -> POST ${this.domain}/open-apis/workplace/v1/workplace_block_access_data/search [custom_params_serializer]

@@ -1,6 +1,6 @@
 # bitable API Inventory
 
-- Canonical methods: 56
+- Canonical methods: 59
 - Event handles: 0
 
 ## Canonical Methods
@@ -9,6 +9,7 @@
 - bitable.app.create -> POST ${this.domain}/open-apis/bitable/v1/apps [custom_params_serializer] aliases: bitable.app.create, bitable.v1.app.create
 - bitable.app.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer] aliases: bitable.app.get, bitable.v1.app.get
 - bitable.app.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer] aliases: bitable.app.update, bitable.v1.app.update
+- bitable.appBlockWorkflow.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/block_workflows [custom_params_serializer]
 - bitable.appDashboard.copy -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards/:block_id/copy [custom_params_serializer] aliases: bitable.appDashboard.copy, bitable.v1.appDashboard.copy
 - bitable.appDashboard.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer] aliases: bitable.appDashboard.list, bitable.v1.appDashboard.list
 - bitable.appDashboard.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer, iterator_helper] aliases: bitable.appDashboard.listWithIterator, bitable.v1.appDashboard.listWithIterator
@@ -35,8 +36,10 @@
 - bitable.appTableField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer] aliases: bitable.appTableField.list, bitable.v1.appTableField.list
 - bitable.appTableField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer, iterator_helper] aliases: bitable.appTableField.listWithIterator, bitable.v1.appTableField.listWithIterator
 - bitable.appTableField.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id [custom_params_serializer] aliases: bitable.appTableField.update, bitable.v1.appTableField.update
+- bitable.appTableFieldGroup.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups [custom_params_serializer] aliases: bitable.appTableFieldGroup.create, bitable.v1.appTableFieldGroup.create
 - bitable.appTableForm.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer] aliases: bitable.appTableForm.get, bitable.v1.appTableForm.get
 - bitable.appTableForm.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer] aliases: bitable.appTableForm.patch, bitable.v1.appTableForm.patch
+- bitable.appTableForm.upgrade -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade [custom_params_serializer] aliases: bitable.appTableForm.upgrade, bitable.v1.appTableForm.upgrade
 - bitable.appTableFormField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer] aliases: bitable.appTableFormField.list, bitable.v1.appTableFormField.list
 - bitable.appTableFormField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer, iterator_helper] aliases: bitable.appTableFormField.listWithIterator, bitable.v1.appTableFormField.listWithIterator
 - bitable.appTableFormField.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields/:field_id [custom_params_serializer] aliases: bitable.appTableFormField.patch, bitable.v1.appTableFormField.patch

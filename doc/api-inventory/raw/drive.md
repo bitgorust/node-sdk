@@ -1,6 +1,6 @@
 # drive Raw API Inventory
 
-- Raw exported methods: 126
+- Raw exported methods: 132
 
 ## Raw Exported Methods
 
@@ -65,6 +65,9 @@
 - drive.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
+- drive.user.removeSubscription -> DELETE ${this.domain}/open-apis/drive/v1/user/remove_subscription [custom_params_serializer]
+- drive.user.subscription -> POST ${this.domain}/open-apis/drive/v1/user/subscription [custom_params_serializer]
+- drive.user.subscriptionStatus -> GET ${this.domain}/open-apis/drive/v1/user/subscription_status [custom_params_serializer]
 - drive.v1.exportTask.create -> POST ${this.domain}/open-apis/drive/v1/export_tasks [custom_params_serializer]
 - drive.v1.exportTask.download -> GET ${this.domain}/open-apis/drive/v1/export_tasks/file/:file_token/download [custom_params_serializer, stream_response, write_file_helper, readable_stream_helper]
 - drive.v1.exportTask.get -> GET ${this.domain}/open-apis/drive/v1/export_tasks/:ticket [custom_params_serializer]
@@ -126,6 +129,9 @@
 - drive.v1.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.v1.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
 - drive.v1.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer]
+- drive.v1.user.removeSubscription -> DELETE ${this.domain}/open-apis/drive/v1/user/remove_subscription [custom_params_serializer]
+- drive.v1.user.subscription -> POST ${this.domain}/open-apis/drive/v1/user/subscription [custom_params_serializer]
+- drive.v1.user.subscriptionStatus -> GET ${this.domain}/open-apis/drive/v1/user/subscription_status [custom_params_serializer]
 - drive.v2.fileLike.list -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer]
 - drive.v2.fileLike.listWithIterator -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer, iterator_helper]
 - drive.v2.permissionPublic.get -> GET ${this.domain}/open-apis/drive/v2/permissions/:token/public [custom_params_serializer]

@@ -1,13 +1,16 @@
 # approval Raw API Inventory
 
-- Raw exported methods: 64
+- Raw exported methods: 72
 
 ## Raw Exported Methods
 
 - approval.approval.create -> POST ${this.domain}/open-apis/approval/v4/approvals [custom_params_serializer]
 - approval.approval.get -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_code [custom_params_serializer]
+- approval.approval.getById -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_id [custom_params_serializer]
 - approval.approval.subscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe [custom_params_serializer]
 - approval.approval.unsubscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe [custom_params_serializer]
+- approval.district.list -> GET ${this.domain}/open-apis/approval/v4/districts [custom_params_serializer]
+- approval.district.search -> POST ${this.domain}/open-apis/approval/v4/districts/search [custom_params_serializer]
 - approval.externalApproval.create -> POST ${this.domain}/open-apis/approval/v4/external_approvals [custom_params_serializer]
 - approval.externalApproval.get -> GET ${this.domain}/open-apis/approval/v4/external_approvals/:approval_code [custom_params_serializer]
 - approval.externalInstance.check -> POST ${this.domain}/open-apis/approval/v4/external_instances/check [custom_params_serializer]
@@ -19,6 +22,7 @@
 - approval.instance.cc -> POST ${this.domain}/open-apis/approval/v4/instances/cc [custom_params_serializer]
 - approval.instance.create -> POST ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.instance.get -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id [custom_params_serializer]
+- approval.instance.list -> GET ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.instance.preview -> POST ${this.domain}/open-apis/approval/v4/instances/preview [custom_params_serializer]
 - approval.instance.query -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer]
 - approval.instance.queryWithIterator -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer, iterator_helper]
@@ -38,8 +42,11 @@
 - approval.task.transfer -> POST ${this.domain}/open-apis/approval/v4/tasks/transfer [custom_params_serializer]
 - approval.v4.approval.create -> POST ${this.domain}/open-apis/approval/v4/approvals [custom_params_serializer]
 - approval.v4.approval.get -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_code [custom_params_serializer]
+- approval.v4.approval.getById -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_id [custom_params_serializer]
 - approval.v4.approval.subscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe [custom_params_serializer]
 - approval.v4.approval.unsubscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe [custom_params_serializer]
+- approval.v4.district.list -> GET ${this.domain}/open-apis/approval/v4/districts [custom_params_serializer]
+- approval.v4.district.search -> POST ${this.domain}/open-apis/approval/v4/districts/search [custom_params_serializer]
 - approval.v4.externalApproval.create -> POST ${this.domain}/open-apis/approval/v4/external_approvals [custom_params_serializer]
 - approval.v4.externalApproval.get -> GET ${this.domain}/open-apis/approval/v4/external_approvals/:approval_code [custom_params_serializer]
 - approval.v4.externalInstance.check -> POST ${this.domain}/open-apis/approval/v4/external_instances/check [custom_params_serializer]
@@ -51,6 +58,7 @@
 - approval.v4.instance.cc -> POST ${this.domain}/open-apis/approval/v4/instances/cc [custom_params_serializer]
 - approval.v4.instance.create -> POST ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.v4.instance.get -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id [custom_params_serializer]
+- approval.v4.instance.list -> GET ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer]
 - approval.v4.instance.preview -> POST ${this.domain}/open-apis/approval/v4/instances/preview [custom_params_serializer]
 - approval.v4.instance.query -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer]
 - approval.v4.instance.queryWithIterator -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer, iterator_helper]

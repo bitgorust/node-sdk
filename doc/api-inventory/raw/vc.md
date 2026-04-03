@@ -1,6 +1,6 @@
 # vc Raw API Inventory
 
-- Raw exported methods: 128
+- Raw exported methods: 132
 
 ## Raw Exported Methods
 
@@ -18,6 +18,7 @@
 - vc.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer]
 - vc.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer]
 - vc.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper]
+- vc.meeting.search -> POST ${this.domain}/open-apis/vc/v1/meetings/search [custom_params_serializer]
 - vc.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer]
 - vc.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer]
 - vc.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper]
@@ -25,6 +26,7 @@
 - vc.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer]
 - vc.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer]
 - vc.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer]
+- vc.note.get -> GET ${this.domain}/open-apis/vc/v1/notes/:note_id [custom_params_serializer]
 - vc.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer]
 - vc.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper]
 - vc.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer]
@@ -82,6 +84,7 @@
 - vc.v1.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer]
 - vc.v1.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer]
 - vc.v1.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper]
+- vc.v1.meeting.search -> POST ${this.domain}/open-apis/vc/v1/meetings/search [custom_params_serializer]
 - vc.v1.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer]
 - vc.v1.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer]
 - vc.v1.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper]
@@ -89,6 +92,7 @@
 - vc.v1.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer]
 - vc.v1.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer]
 - vc.v1.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer]
+- vc.v1.note.get -> GET ${this.domain}/open-apis/vc/v1/notes/:note_id [custom_params_serializer]
 - vc.v1.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer]
 - vc.v1.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper]
 - vc.v1.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer]

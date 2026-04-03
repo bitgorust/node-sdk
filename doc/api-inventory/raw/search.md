@@ -1,6 +1,6 @@
 # search Raw API Inventory
 
-- Raw exported methods: 30
+- Raw exported methods: 32
 
 ## Raw Exported Methods
 
@@ -14,6 +14,7 @@
 - search.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer]
 - search.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
 - search.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
+- search.docWiki.search -> POST ${this.domain}/open-apis/search/v2/doc_wiki/search [custom_params_serializer]
 - search.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer]
 - search.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer]
 - search.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]
@@ -29,6 +30,7 @@
 - search.v2.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer]
 - search.v2.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
 - search.v2.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer]
+- search.v2.docWiki.search -> POST ${this.domain}/open-apis/search/v2/doc_wiki/search [custom_params_serializer]
 - search.v2.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer]
 - search.v2.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer]
 - search.v2.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer]

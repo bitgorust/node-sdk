@@ -1,6 +1,6 @@
 # performance API Inventory
 
-- Canonical methods: 21
+- Canonical methods: 26
 - Event handles: 2
 
 ## Canonical Methods
@@ -21,11 +21,16 @@
 - performance.metricTemplate.query -> POST ${this.domain}/open-apis/performance/v2/metric_templates/query [custom_params_serializer]
 - performance.question.query -> POST ${this.domain}/open-apis/performance/v2/questions/query [custom_params_serializer]
 - performance.question.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/questions/query [custom_params_serializer, iterator_helper]
+- performance.reviewData.query -> POST ${this.domain}/open-apis/performance/v1/review_datas/query [custom_params_serializer]
 - performance.reviewData.query -> POST ${this.domain}/open-apis/performance/v2/review_datas/query [custom_params_serializer]
 - performance.reviewee.query -> POST ${this.domain}/open-apis/performance/v2/reviewees/query [custom_params_serializer]
 - performance.reviewTemplate.query -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer]
 - performance.reviewTemplate.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer, iterator_helper]
+- performance.semester.list -> GET ${this.domain}/open-apis/performance/v1/semesters [custom_params_serializer]
+- performance.stageTask.findByPage -> POST ${this.domain}/open-apis/performance/v1/stage_tasks/find_by_page [custom_params_serializer]
+- performance.stageTask.findByUserList -> POST ${this.domain}/open-apis/performance/v1/stage_tasks/find_by_user_list [custom_params_serializer]
 - performance.userGroupUserRel.write -> POST ${this.domain}/open-apis/performance/v2/user_group_user_rels/write [custom_params_serializer]
+- performance.userInfo.query -> POST ${this.domain}/open-apis/performance/v2/user_info/query [custom_params_serializer]
 
 ## Event Handles
 

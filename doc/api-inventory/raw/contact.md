@@ -1,6 +1,6 @@
 # contact Raw API Inventory
 
-- Raw exported methods: 170
+- Raw exported methods: 172
 
 ## Raw Exported Methods
 
@@ -73,6 +73,7 @@
 - contact.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer]
 - contact.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer]
 - contact.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer]
+- contact.user.basicBatch -> POST ${this.domain}/open-apis/contact/v3/users/basic_batch [custom_params_serializer]
 - contact.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer]
 - contact.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer]
 - contact.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer]
@@ -155,6 +156,7 @@
 - contact.v3.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer]
 - contact.v3.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer]
 - contact.v3.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer]
+- contact.v3.user.basicBatch -> POST ${this.domain}/open-apis/contact/v3/users/basic_batch [custom_params_serializer]
 - contact.v3.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer]
 - contact.v3.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer]
 - contact.v3.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer]

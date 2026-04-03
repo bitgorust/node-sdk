@@ -1,16 +1,24 @@
 # application API Inventory
 
-- Canonical methods: 29
+- Canonical methods: 37
 - Event handles: 8
 
 ## Canonical Methods
 
+- application.app_avatar.upload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
+- application.appAvatarUpload.create -> POST ${this.domain}/open-apis/application/v7/app_avatar/upload [custom_params_serializer]
 - application.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer] aliases: application.appBadge.set, application.v6.appBadge.set
+- application.application.ability.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/ability [custom_params_serializer]
+- application.application.base.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/base [custom_params_serializer]
+- application.application.config.patch -> PATCH ${this.domain}/open-apis/application/v7/applications/:app_id/config [custom_params_serializer]
 - application.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer] aliases: application.application.contactsRangeConfiguration, application.v6.application.contactsRangeConfiguration
+- application.application.favourite -> GET ${this.domain}/open-apis/application/v5/applications/favourite [custom_params_serializer]
 - application.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer] aliases: application.application.get, application.v6.application.get
 - application.application.list -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer] aliases: application.application.list, application.v6.application.list
 - application.application.listWithIterator -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer, iterator_helper] aliases: application.application.listWithIterator, application.v6.application.listWithIterator
 - application.application.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer] aliases: application.application.patch, application.v6.application.patch
+- application.application.publish.create -> POST ${this.domain}/open-apis/application/v7/applications/:app_id/publish [custom_params_serializer]
+- application.application.recommend -> GET ${this.domain}/open-apis/application/v5/applications/recommend [custom_params_serializer]
 - application.application.underauditlist -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer] aliases: application.application.underauditlist, application.v6.application.underauditlist
 - application.application.underauditlistWithIterator -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer, iterator_helper] aliases: application.application.underauditlistWithIterator, application.v6.application.underauditlistWithIterator
 - application.applicationAppUsage.departmentOverview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/department_overview [custom_params_serializer] aliases: application.applicationAppUsage.departmentOverview, application.v6.applicationAppUsage.departmentOverview

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T05:56:26.426Z",
+  "generatedAt": "2026-04-03T07:56:52.272Z",
   "summary": {
     "apiCount": 1432,
     "apisWithRequiredScopes": 1421,
@@ -1143,7 +1143,8 @@
         ],
         "sdkAliases": [
           "corehr.department.delete",
-          "corehr.v1.department.delete"
+          "corehr.v1.department.delete",
+          "corehr.v2.department.delete"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -1506,7 +1507,8 @@
         ],
         "sdkAliases": [
           "corehr.preHire.delete",
-          "corehr.v1.preHire.delete"
+          "corehr.v1.preHire.delete",
+          "corehr.v2.preHire.delete"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -1633,7 +1635,9 @@
           "corehr.department.delete"
         ],
         "sdkAliases": [
-          "corehr.v2.department.delete"
+          "corehr.v2.department.delete",
+          "corehr.department.delete",
+          "corehr.v1.department.delete"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -1819,7 +1823,9 @@
           "corehr.preHire.delete"
         ],
         "sdkAliases": [
-          "corehr.v2.preHire.delete"
+          "corehr.v2.preHire.delete",
+          "corehr.preHire.delete",
+          "corehr.v1.preHire.delete"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -3885,10 +3891,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.delete_table_records"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.delete_table_records"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -5288,10 +5300,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "apaas.workspaceEnum.list"
+        ],
+        "sdkAliases": [
+          "apaas.v1.workspaceEnum.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/apaas.ts"
+        ]
       }
     },
     {
@@ -5314,10 +5332,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "apaas.workspaceEnum.enumGet"
+        ],
+        "sdkAliases": [
+          "apaas.v1.workspaceEnum.enumGet"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/apaas.ts"
+        ]
       }
     },
     {
@@ -5340,10 +5364,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "apaas.workspaceTable.list"
+        ],
+        "sdkAliases": [
+          "apaas.v1.workspaceTable.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/apaas.ts"
+        ]
       }
     },
     {
@@ -5366,10 +5396,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "apaas.workspaceTable.tableGet"
+        ],
+        "sdkAliases": [
+          "apaas.v1.workspaceTable.tableGet"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/apaas.ts"
+        ]
       }
     },
     {
@@ -5889,11 +5925,14 @@
       "sdkCoverage": {
         "covered": true,
         "sdkMethods": [
-          "approval.approval.getById"
+          "approval.approval.getById",
+          "approval.approval.get"
         ],
         "sdkAliases": [
           "approval.approval.getById",
-          "approval.v4.approval.getById"
+          "approval.v4.approval.getById",
+          "approval.approval.get",
+          "approval.v4.approval.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/approval.ts"
@@ -6749,10 +6788,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "bitable.appBlockWorkflow.list"
+        ],
+        "sdkAliases": [
+          "bitable.appBlockWorkflow.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/bitable.ts"
+        ]
       }
     },
     {
@@ -9575,7 +9620,8 @@
         ],
         "sdkAliases": [
           "corehr.job.list",
-          "corehr.v1.job.list"
+          "corehr.v1.job.list",
+          "corehr.v2.job.list"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -9610,7 +9656,8 @@
         ],
         "sdkAliases": [
           "corehr.job.get",
-          "corehr.v1.job.get"
+          "corehr.v1.job.get",
+          "corehr.v2.job.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -10027,7 +10074,8 @@
         ],
         "sdkAliases": [
           "corehr.processFormVariableData.get",
-          "corehr.v1.processFormVariableData.get"
+          "corehr.v1.processFormVariableData.get",
+          "corehr.v2.processFormVariableData.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -10500,10 +10548,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.employee.customOrg.employmentCustomOrgRecord"
+        ],
+        "sdkAliases": [
+          "corehr.v2.employee.customOrg.employmentCustomOrgRecord"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -10526,10 +10580,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.employee.customOrg.queryById"
+        ],
+        "sdkAliases": [
+          "corehr.v2.employee.customOrg.queryById"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -10795,7 +10855,9 @@
           "corehr.job.list"
         ],
         "sdkAliases": [
-          "corehr.v2.job.list"
+          "corehr.v2.job.list",
+          "corehr.job.list",
+          "corehr.v1.job.list"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -10830,7 +10892,9 @@
           "corehr.job.get"
         ],
         "sdkAliases": [
-          "corehr.v2.job.get"
+          "corehr.v2.job.get",
+          "corehr.job.get",
+          "corehr.v1.job.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -12087,7 +12151,9 @@
           "drive.permissionPublic.get"
         ],
         "sdkAliases": [
-          "drive.v2.permissionPublic.get"
+          "drive.v2.permissionPublic.get",
+          "drive.permissionPublic.get",
+          "drive.v1.permissionPublic.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/drive.ts"
@@ -13310,7 +13376,9 @@
           "hire.interviewRecord.list",
           "hire.v1.interviewRecord.list",
           "hire.interviewRecord.listWithIterator",
-          "hire.v1.interviewRecord.listWithIterator"
+          "hire.v1.interviewRecord.listWithIterator",
+          "hire.v2.interviewRecord.list",
+          "hire.v2.interviewRecord.listWithIterator"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -13343,7 +13411,8 @@
         ],
         "sdkAliases": [
           "hire.interviewRecord.get",
-          "hire.v1.interviewRecord.get"
+          "hire.v1.interviewRecord.get",
+          "hire.v2.interviewRecord.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -14822,7 +14891,8 @@
         ],
         "sdkAliases": [
           "hire.talent.get",
-          "hire.v1.talent.get"
+          "hire.v1.talent.get",
+          "hire.v2.talent.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -15169,7 +15239,11 @@
         ],
         "sdkAliases": [
           "hire.v2.interviewRecord.list",
-          "hire.v2.interviewRecord.listWithIterator"
+          "hire.v2.interviewRecord.listWithIterator",
+          "hire.interviewRecord.list",
+          "hire.v1.interviewRecord.list",
+          "hire.interviewRecord.listWithIterator",
+          "hire.v1.interviewRecord.listWithIterator"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -15202,7 +15276,9 @@
           "hire.interviewRecord.get"
         ],
         "sdkAliases": [
-          "hire.v2.interviewRecord.get"
+          "hire.v2.interviewRecord.get",
+          "hire.interviewRecord.get",
+          "hire.v1.interviewRecord.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -15234,7 +15310,9 @@
           "hire.talent.get"
         ],
         "sdkAliases": [
-          "hire.v2.talent.get"
+          "hire.v2.talent.get",
+          "hire.talent.get",
+          "hire.v1.talent.get"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/hire.ts"
@@ -16836,10 +16914,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "minutes.minute.artifacts"
+        ],
+        "sdkAliases": [
+          "minutes.v1.minute.artifacts"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/minutes.ts"
+        ]
       }
     },
     {
@@ -17470,10 +17554,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "performance.semester.list"
+        ],
+        "sdkAliases": [
+          "performance.v1.semester.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/performance.ts"
+        ]
       }
     },
     {
@@ -17736,10 +17826,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "security_and_compliance.multiGeoEntity.tenant.get"
+        ],
+        "sdkAliases": [
+          "security_and_compliance.v1.multiGeoEntity.tenant.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/security_and_compliance.ts"
+        ]
       }
     },
     {
@@ -17764,10 +17860,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "security_and_compliance.userMigration.get"
+        ],
+        "sdkAliases": [
+          "security_and_compliance.v1.userMigration.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/security_and_compliance.ts"
+        ]
       }
     },
     {
@@ -18255,10 +18357,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.enum.get_enum_list"
+        ],
+        "sdkAliases": [
+          "miaoda.app.enum.get_enum_list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18281,10 +18389,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.enum.get_enum_detail"
+        ],
+        "sdkAliases": [
+          "miaoda.app.enum.get_enum_detail"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18307,10 +18421,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.get_table_list"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.get_table_list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18333,10 +18453,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.get_table_detail"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.get_table_detail"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18359,10 +18485,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.get_table_record_list"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.get_table_record_list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18385,10 +18517,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.view.get_view_record_list"
+        ],
+        "sdkAliases": [
+          "miaoda.app.view.get_view_record_list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -18421,7 +18559,9 @@
           "task.task.list",
           "task.v1.task.list",
           "task.task.listWithIterator",
-          "task.v1.task.listWithIterator"
+          "task.v1.task.listWithIterator",
+          "task.v2.task.list",
+          "task.v2.task.listWithIterator"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/task.ts"
@@ -19041,7 +19181,11 @@
         ],
         "sdkAliases": [
           "task.v2.task.list",
-          "task.v2.task.listWithIterator"
+          "task.v2.task.listWithIterator",
+          "task.task.list",
+          "task.v1.task.list",
+          "task.task.listWithIterator",
+          "task.v1.task.listWithIterator"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/task.ts"
@@ -19233,10 +19377,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "trustParty.collaborationTenant.list"
+        ],
+        "sdkAliases": [
+          "trustParty.collaborationTenant.list",
+          "trustParty.v1.collaborationTenant.list"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/trust_party.ts"
+        ]
       }
     },
     {
@@ -19259,10 +19410,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "trustParty.collaborationTenant.get"
+        ],
+        "sdkAliases": [
+          "trustParty.collaborationTenant.get",
+          "trustParty.v1.collaborationTenant.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/trust_party.ts"
+        ]
       }
     },
     {
@@ -19285,10 +19443,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "trustParty.collaborationDepartment.get"
+        ],
+        "sdkAliases": [
+          "trustParty.collaborationDepartment.get",
+          "trustParty.v1.collaborationDepartment.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/trust_party.ts"
+        ]
       }
     },
     {
@@ -19311,10 +19476,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "trustParty.collaborationUser.get"
+        ],
+        "sdkAliases": [
+          "trustParty.collaborationUser.get",
+          "trustParty.v1.collaborationUser.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/trust_party.ts"
+        ]
       }
     },
     {
@@ -19337,10 +19509,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "trustParty.visibleOrganization.get"
+        ],
+        "sdkAliases": [
+          "trustParty.v1.visibleOrganization.get",
+          "trustParty.visibleOrganization.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/trust_party.ts"
+        ]
       }
     },
     {
@@ -19606,10 +19785,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "vc.note.get"
+        ],
+        "sdkAliases": [
+          "vc.note.get",
+          "vc.v1.note.get"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/vc.ts"
+        ]
       }
     },
     {
@@ -21538,7 +21724,8 @@
         ],
         "sdkAliases": [
           "corehr.department.patch",
-          "corehr.v1.department.patch"
+          "corehr.v1.department.patch",
+          "corehr.v2.department.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -21802,7 +21989,8 @@
         ],
         "sdkAliases": [
           "corehr.person.patch",
-          "corehr.v1.person.patch"
+          "corehr.v1.person.patch",
+          "corehr.v2.person.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -21835,7 +22023,8 @@
         ],
         "sdkAliases": [
           "corehr.preHire.patch",
-          "corehr.v1.preHire.patch"
+          "corehr.v1.preHire.patch",
+          "corehr.v2.preHire.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -21993,7 +22182,9 @@
           "corehr.department.patch"
         ],
         "sdkAliases": [
-          "corehr.v2.department.patch"
+          "corehr.v2.department.patch",
+          "corehr.department.patch",
+          "corehr.v1.department.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -22210,7 +22401,9 @@
           "corehr.person.patch"
         ],
         "sdkAliases": [
-          "corehr.v2.person.patch"
+          "corehr.v2.person.patch",
+          "corehr.person.patch",
+          "corehr.v1.person.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -22272,7 +22465,9 @@
           "corehr.preHire.patch"
         ],
         "sdkAliases": [
-          "corehr.v2.preHire.patch"
+          "corehr.v2.preHire.patch",
+          "corehr.preHire.patch",
+          "corehr.v1.preHire.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -22607,7 +22802,9 @@
           "drive.permissionPublic.patch"
         ],
         "sdkAliases": [
-          "drive.v2.permissionPublic.patch"
+          "drive.v2.permissionPublic.patch",
+          "drive.permissionPublic.patch",
+          "drive.v1.permissionPublic.patch"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/drive.ts"
@@ -23774,10 +23971,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.patch_table_records"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.patch_table_records"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -23799,10 +24002,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.batch_update_table_records"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.batch_update_table_records"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -25963,10 +26172,12 @@
       "sdkCoverage": {
         "covered": true,
         "sdkMethods": [
-          "application.app_avatar.upload.create"
+          "application.app_avatar.upload.create",
+          "application.appAvatarUpload.create"
         ],
         "sdkAliases": [
-          "application.app_avatar.upload.create"
+          "application.app_avatar.upload.create",
+          "application.appAvatarUpload.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/application.ts"
@@ -28268,10 +28479,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "bitable.appTableFieldGroup.create"
+        ],
+        "sdkAliases": [
+          "bitable.appTableFieldGroup.create",
+          "bitable.v1.appTableFieldGroup.create"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/bitable.ts"
+        ]
       }
     },
     {
@@ -28328,10 +28546,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "bitable.appTableForm.upgrade"
+        ],
+        "sdkAliases": [
+          "bitable.appTableForm.upgrade",
+          "bitable.v1.appTableForm.upgrade"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/bitable.ts"
+        ]
       }
     },
     {
@@ -31239,7 +31464,8 @@
         ],
         "sdkAliases": [
           "corehr.jobChange.create",
-          "corehr.v1.jobChange.create"
+          "corehr.v1.jobChange.create",
+          "corehr.v2.jobChange.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -31677,7 +31903,8 @@
         ],
         "sdkAliases": [
           "corehr.person.create",
-          "corehr.v1.person.create"
+          "corehr.v1.person.create",
+          "corehr.v2.person.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -32323,10 +32550,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.company.queryMultiTimeline"
+        ],
+        "sdkAliases": [
+          "corehr.v2.company.queryMultiTimeline"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -32600,10 +32833,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.employee.customOrg.createEmpCustomOrg"
+        ],
+        "sdkAliases": [
+          "corehr.v2.employee.customOrg.createEmpCustomOrg"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -32625,10 +32864,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.employee.customOrg.del"
+        ],
+        "sdkAliases": [
+          "corehr.v2.employee.customOrg.del"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -32650,10 +32895,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.employee.customOrg.editEmpCustomOrg"
+        ],
+        "sdkAliases": [
+          "corehr.v2.employee.customOrg.editEmpCustomOrg"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -33442,7 +33693,9 @@
           "corehr.jobChange.create"
         ],
         "sdkAliases": [
-          "corehr.v2.jobChange.create"
+          "corehr.v2.jobChange.create",
+          "corehr.jobChange.create",
+          "corehr.v1.jobChange.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -33855,10 +34108,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.location.queryMultiTimeline"
+        ],
+        "sdkAliases": [
+          "corehr.v2.location.queryMultiTimeline"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -34072,7 +34331,9 @@
           "corehr.person.create"
         ],
         "sdkAliases": [
-          "corehr.v2.person.create"
+          "corehr.v2.person.create",
+          "corehr.person.create",
+          "corehr.v1.person.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/corehr.ts"
@@ -34441,10 +34702,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.probation.edit"
+        ],
+        "sdkAliases": [
+          "corehr.v2.probation.edit"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -34593,10 +34860,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.process.start"
+        ],
+        "sdkAliases": [
+          "corehr.v2.process.start"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -34618,10 +34891,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "corehr.process.queryFlowDataTemplate"
+        ],
+        "sdkAliases": [
+          "corehr.v2.process.queryFlowDataTemplate"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/corehr.ts"
+        ]
       }
     },
     {
@@ -41911,10 +42190,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "performance.reviewData.query"
+        ],
+        "sdkAliases": [
+          "performance.v1.reviewData.query",
+          "performance.v2.reviewData.query"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/performance.ts"
+        ]
       }
     },
     {
@@ -41938,10 +42224,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "performance.stageTask.findByPage"
+        ],
+        "sdkAliases": [
+          "performance.v1.stageTask.findByPage"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/performance.ts"
+        ]
       }
     },
     {
@@ -41966,10 +42258,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "performance.stageTask.findByUserList"
+        ],
+        "sdkAliases": [
+          "performance.v1.stageTask.findByUserList"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/performance.ts"
+        ]
       }
     },
     {
@@ -42330,7 +42628,8 @@
           "performance.reviewData.query"
         ],
         "sdkAliases": [
-          "performance.v2.reviewData.query"
+          "performance.v2.reviewData.query",
+          "performance.v1.reviewData.query"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/performance.ts"
@@ -42456,10 +42755,16 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "performance.userInfo.query"
+        ],
+        "sdkAliases": [
+          "performance.v2.userInfo.query"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/performance.ts"
+        ]
       }
     },
     {
@@ -42872,10 +43177,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "security_and_compliance.userMigration.create"
+        ],
+        "sdkAliases": [
+          "security_and_compliance.v1.userMigration.create"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/security_and_compliance.ts"
+        ]
       }
     },
     {
@@ -42899,10 +43210,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "security_and_compliance.userMigration.cancel"
+        ],
+        "sdkAliases": [
+          "security_and_compliance.v1.userMigration.cancel"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/security_and_compliance.ts"
+        ]
       }
     },
     {
@@ -42927,10 +43244,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "security_and_compliance.userMigration.search"
+        ],
+        "sdkAliases": [
+          "security_and_compliance.v1.userMigration.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/security_and_compliance.ts"
+        ]
       }
     },
     {
@@ -43265,10 +43588,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.sql_commands"
+        ],
+        "sdkAliases": [
+          "miaoda.app.sql_commands"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -43290,10 +43619,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.app.table.post_table_records"
+        ],
+        "sdkAliases": [
+          "miaoda.app.table.post_table_records"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -43316,10 +43651,16 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "miaoda.directory.user.id_convert"
+        ],
+        "sdkAliases": [
+          "miaoda.directory.user.id_convert"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/spark.ts"
+        ]
       }
     },
     {
@@ -43413,7 +43754,8 @@
         ],
         "sdkAliases": [
           "task.task.create",
-          "task.v1.task.create"
+          "task.v1.task.create",
+          "task.v2.task.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/task.ts"
@@ -43878,7 +44220,9 @@
           "task.task.create"
         ],
         "sdkAliases": [
-          "task.v2.task.create"
+          "task.v2.task.create",
+          "task.task.create",
+          "task.v1.task.create"
         ],
         "sdkSourceFiles": [
           "code-gen/projects/task.ts"
@@ -44433,10 +44777,17 @@
         "user_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "vc.meeting.search"
+        ],
+        "sdkAliases": [
+          "vc.meeting.search",
+          "vc.v1.meeting.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/vc.ts"
+        ]
       }
     },
     {
@@ -45094,10 +45445,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "workplace.customWorkplaceAccessData.search"
+        ],
+        "sdkAliases": [
+          "workplace.customWorkplaceAccessData.search",
+          "workplace.v1.customWorkplaceAccessData.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/workplace.ts"
+        ]
       }
     },
     {
@@ -45119,10 +45477,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "workplace.workplaceAccessData.search"
+        ],
+        "sdkAliases": [
+          "workplace.v1.workplaceAccessData.search",
+          "workplace.workplaceAccessData.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/workplace.ts"
+        ]
       }
     },
     {
@@ -45144,10 +45509,17 @@
         "tenant_access_token"
       ],
       "sdkCoverage": {
-        "covered": false,
-        "sdkMethods": [],
-        "sdkAliases": [],
-        "sdkSourceFiles": []
+        "covered": true,
+        "sdkMethods": [
+          "workplace.workplaceBlockAccessData.search"
+        ],
+        "sdkAliases": [
+          "workplace.v1.workplaceBlockAccessData.search",
+          "workplace.workplaceBlockAccessData.search"
+        ],
+        "sdkSourceFiles": [
+          "code-gen/projects/workplace.ts"
+        ]
       }
     },
     {

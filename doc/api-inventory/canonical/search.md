@@ -1,6 +1,6 @@
 # search API Inventory
 
-- Canonical methods: 15
+- Canonical methods: 16
 - Event handles: 0
 
 ## Canonical Methods
@@ -15,6 +15,7 @@
 - search.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer] aliases: search.dataSourceItem.create, search.v2.dataSourceItem.create
 - search.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer] aliases: search.dataSourceItem.delete, search.v2.dataSourceItem.delete
 - search.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer] aliases: search.dataSourceItem.get, search.v2.dataSourceItem.get
+- search.docWiki.search -> POST ${this.domain}/open-apis/search/v2/doc_wiki/search [custom_params_serializer] aliases: search.docWiki.search, search.v2.docWiki.search
 - search.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer] aliases: search.message.create, search.v2.message.create
 - search.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer] aliases: search.schema.create, search.v2.schema.create
 - search.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer] aliases: search.schema.delete, search.v2.schema.delete

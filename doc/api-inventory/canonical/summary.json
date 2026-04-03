@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-02T20:05:31.571Z",
+  "generatedAt": "2026-04-03T07:53:11.491Z",
   "summary": {
-    "projectCount": 52,
-    "canonicalGeneratedApiMethodCount": 1656,
+    "projectCount": 55,
+    "canonicalGeneratedApiMethodCount": 1723,
     "eventHandleCount": 190,
     "handwrittenExportedMethodCount": 24
   },
@@ -740,8 +740,8 @@
     },
     {
       "project": "apaas",
-      "canonicalMethodCount": 47,
-      "aliasCount": 47,
+      "canonicalMethodCount": 51,
+      "aliasCount": 51,
       "uniqueMethodNames": [
         "addAssignee",
         "agree",
@@ -759,6 +759,7 @@
         "dataChangeLogDetail",
         "dataChangeLogsList",
         "delete",
+        "enumGet",
         "execute",
         "expediting",
         "get",
@@ -778,38 +779,42 @@
         "rollbackPoints",
         "search",
         "sqlCommands",
+        "tableGet",
         "transfer",
         "viewsGet"
       ],
-      "resourceCount": 17
+      "resourceCount": 18
     },
     {
       "project": "application",
-      "canonicalMethodCount": 29,
-      "aliasCount": 58,
+      "canonicalMethodCount": 37,
+      "aliasCount": 66,
       "uniqueMethodNames": [
         "apply",
         "checkWhiteBlackList",
         "contactsRangeConfiguration",
         "contactsRangeSuggest",
+        "create",
         "departmentOverview",
+        "favourite",
         "get",
         "list",
         "listWithIterator",
         "messagePushOverview",
         "overview",
         "patch",
+        "recommend",
         "set",
         "underauditlist",
         "underauditlistWithIterator",
         "update"
       ],
-      "resourceCount": 12
+      "resourceCount": 18
     },
     {
       "project": "approval",
-      "canonicalMethodCount": 32,
-      "aliasCount": 64,
+      "canonicalMethodCount": 36,
+      "aliasCount": 72,
       "uniqueMethodNames": [
         "addSign",
         "approve",
@@ -819,6 +824,7 @@
         "create",
         "delete",
         "get",
+        "getById",
         "list",
         "listWithIterator",
         "preview",
@@ -834,7 +840,7 @@
         "transfer",
         "unsubscribe"
       ],
-      "resourceCount": 7
+      "resourceCount": 8
     },
     {
       "project": "attendance",
@@ -920,8 +926,8 @@
     },
     {
       "project": "bitable",
-      "canonicalMethodCount": 56,
-      "aliasCount": 112,
+      "canonicalMethodCount": 59,
+      "aliasCount": 117,
       "uniqueMethodNames": [
         "batchCreate",
         "batchDelete",
@@ -936,9 +942,10 @@
         "patch",
         "search",
         "searchWithIterator",
-        "update"
+        "update",
+        "upgrade"
       ],
-      "resourceCount": 11
+      "resourceCount": 13
     },
     {
       "project": "block",
@@ -1029,10 +1036,11 @@
     },
     {
       "project": "contact",
-      "canonicalMethodCount": 85,
-      "aliasCount": 170,
+      "canonicalMethodCount": 86,
+      "aliasCount": 172,
       "uniqueMethodNames": [
         "add",
+        "basicBatch",
         "batch",
         "batchAdd",
         "batchCreate",
@@ -1071,8 +1079,8 @@
     },
     {
       "project": "corehr",
-      "canonicalMethodCount": 295,
-      "aliasCount": 401,
+      "canonicalMethodCount": 305,
+      "aliasCount": 411,
       "uniqueMethodNames": [
         "active",
         "addEnumOption",
@@ -1088,13 +1096,17 @@
         "complete",
         "convert",
         "create",
+        "createEmpCustomOrg",
         "createVersion",
+        "del",
         "delPosition",
         "delete",
         "deleteOrg",
         "download",
         "edit",
+        "editEmpCustomOrg",
         "editEnumOption",
+        "employmentCustomOrgRecord",
         "enableDisableAssessment",
         "flowVariableData",
         "get",
@@ -1115,6 +1127,8 @@
         "parents",
         "patch",
         "query",
+        "queryById",
+        "queryFlowDataTemplate",
         "queryMultiTimeline",
         "queryOperationLogs",
         "queryOperationLogsWithIterator",
@@ -1128,6 +1142,7 @@
         "revoke",
         "search",
         "searchWithIterator",
+        "start",
         "submit",
         "submitV2",
         "terminate",
@@ -1144,7 +1159,7 @@
         "workCalendar",
         "workCalendarDate"
       ],
-      "resourceCount": 78
+      "resourceCount": 79
     },
     {
       "project": "directory",
@@ -1207,8 +1222,8 @@
     },
     {
       "project": "drive",
-      "canonicalMethodCount": 65,
-      "aliasCount": 126,
+      "canonicalMethodCount": 68,
+      "aliasCount": 132,
       "uniqueMethodNames": [
         "auth",
         "batchCreate",
@@ -1227,7 +1242,10 @@
         "listWithIterator",
         "move",
         "patch",
+        "removeSubscription",
         "subscribe",
+        "subscription",
+        "subscriptionStatus",
         "taskCheck",
         "transferOwner",
         "update",
@@ -1236,7 +1254,7 @@
         "uploadPart",
         "uploadPrepare"
       ],
-      "resourceCount": 15
+      "resourceCount": 16
     },
     {
       "project": "ehr",
@@ -1469,10 +1487,31 @@
       "resourceCount": 3
     },
     {
-      "project": "minutes",
-      "canonicalMethodCount": 4,
-      "aliasCount": 4,
+      "project": "miaoda",
+      "canonicalMethodCount": 12,
+      "aliasCount": 12,
       "uniqueMethodNames": [
+        "batch_update_table_records",
+        "delete_table_records",
+        "get_enum_detail",
+        "get_enum_list",
+        "get_table_detail",
+        "get_table_list",
+        "get_table_record_list",
+        "get_view_record_list",
+        "id_convert",
+        "patch_table_records",
+        "post_table_records",
+        "sql_commands"
+      ],
+      "resourceCount": 5
+    },
+    {
+      "project": "minutes",
+      "canonicalMethodCount": 5,
+      "aliasCount": 5,
+      "uniqueMethodNames": [
+        "artifacts",
         "get"
       ],
       "resourceCount": 4
@@ -1538,10 +1577,12 @@
     },
     {
       "project": "performance",
-      "canonicalMethodCount": 21,
-      "aliasCount": 21,
+      "canonicalMethodCount": 26,
+      "aliasCount": 26,
       "uniqueMethodNames": [
         "delete",
+        "findByPage",
+        "findByUserList",
         "import",
         "list",
         "listWithIterator",
@@ -1549,7 +1590,7 @@
         "queryWithIterator",
         "write"
       ],
-      "resourceCount": 14
+      "resourceCount": 17
     },
     {
       "project": "personal_settings",
@@ -1578,23 +1619,25 @@
     },
     {
       "project": "search",
-      "canonicalMethodCount": 15,
-      "aliasCount": 30,
+      "canonicalMethodCount": 16,
+      "aliasCount": 32,
       "uniqueMethodNames": [
         "create",
         "delete",
         "get",
         "list",
         "listWithIterator",
-        "patch"
+        "patch",
+        "search"
       ],
-      "resourceCount": 5
+      "resourceCount": 6
     },
     {
       "project": "security_and_compliance",
-      "canonicalMethodCount": 9,
-      "aliasCount": 10,
+      "canonicalMethodCount": 14,
+      "aliasCount": 15,
       "uniqueMethodNames": [
+        "cancel",
         "create",
         "delete",
         "get",
@@ -1602,9 +1645,10 @@
         "listData",
         "listWithIterator",
         "mine",
+        "search",
         "update"
       ],
-      "resourceCount": 3
+      "resourceCount": 5
     },
     {
       "project": "sheets",
@@ -1686,9 +1730,19 @@
       "resourceCount": 1
     },
     {
+      "project": "trustParty",
+      "canonicalMethodCount": 5,
+      "aliasCount": 10,
+      "uniqueMethodNames": [
+        "get",
+        "list"
+      ],
+      "resourceCount": 4
+    },
+    {
       "project": "vc",
-      "canonicalMethodCount": 64,
-      "aliasCount": 128,
+      "canonicalMethodCount": 66,
+      "aliasCount": 132,
       "uniqueMethodNames": [
         "apply",
         "create",
@@ -1725,7 +1779,7 @@
         "stop",
         "update"
       ],
-      "resourceCount": 18
+      "resourceCount": 19
     },
     {
       "project": "verification",
@@ -1756,6 +1810,15 @@
         "updateTitle"
       ],
       "resourceCount": 6
+    },
+    {
+      "project": "workplace",
+      "canonicalMethodCount": 3,
+      "aliasCount": 6,
+      "uniqueMethodNames": [
+        "search"
+      ],
+      "resourceCount": 3
     }
   ],
   "canonicalGeneratedApiMethods": [
@@ -3212,6 +3275,48 @@
       ]
     },
     {
+      "canonicalClientPath": "apaas.workspaceEnum.enumGet",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums/:enum_name",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "apaas.v1.workspaceEnum.enumGet"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/apaas.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "apaas.workspaceEnum.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "apaas.v1.workspaceEnum.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/apaas.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "apaas.workspaceTable.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "apaas.v1.workspaceTable.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/apaas.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "apaas.workspaceTable.recordsBatchUpdate",
       "httpMethod": "PATCH",
       "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update",
@@ -3282,6 +3387,20 @@
       ]
     },
     {
+      "canonicalClientPath": "apaas.workspaceTable.tableGet",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "apaas.v1.workspaceTable.tableGet"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/apaas.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "apaas.workspaceView.viewsGet",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records",
@@ -3293,6 +3412,34 @@
       ],
       "sourceFiles": [
         "code-gen/projects/apaas.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.app_avatar.upload.create",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/application/v7/app_avatar/upload",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.app_avatar.upload.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.appAvatarUpload.create",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/application/v7/app_avatar/upload",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.appAvatarUpload.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
       ]
     },
     {
@@ -3311,6 +3458,48 @@
       ]
     },
     {
+      "canonicalClientPath": "application.application.ability.patch",
+      "httpMethod": "PATCH",
+      "apiPath": "${this.domain}/open-apis/application/v7/applications/:app_id/ability",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.ability.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.application.base.patch",
+      "httpMethod": "PATCH",
+      "apiPath": "${this.domain}/open-apis/application/v7/applications/:app_id/base",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.base.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.application.config.patch",
+      "httpMethod": "PATCH",
+      "apiPath": "${this.domain}/open-apis/application/v7/applications/:app_id/config",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.config.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "application.application.contactsRangeConfiguration",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration",
@@ -3320,6 +3509,20 @@
       "aliases": [
         "application.application.contactsRangeConfiguration",
         "application.v6.application.contactsRangeConfiguration"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.application.favourite",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/application/v5/applications/favourite",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.favourite"
       ],
       "sourceFiles": [
         "code-gen/projects/application.ts"
@@ -3381,6 +3584,34 @@
       "aliases": [
         "application.application.patch",
         "application.v6.application.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.application.publish.create",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/application/v7/applications/:app_id/publish",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.publish.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/application.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "application.application.recommend",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/application/v5/applications/recommend",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "application.v6.application.recommend"
       ],
       "sourceFiles": [
         "code-gen/projects/application.ts"
@@ -3765,6 +3996,21 @@
       ]
     },
     {
+      "canonicalClientPath": "approval.approval.getById",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/approval/v4/approvals/:approval_id",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "approval.approval.getById",
+        "approval.v4.approval.getById"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/approval.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "approval.approval.subscribe",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe",
@@ -3789,6 +4035,36 @@
       "aliases": [
         "approval.approval.unsubscribe",
         "approval.v4.approval.unsubscribe"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/approval.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "approval.district.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/approval/v4/districts",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "approval.district.list",
+        "approval.v4.district.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/approval.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "approval.district.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/approval/v4/districts/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "approval.district.search",
+        "approval.v4.district.search"
       ],
       "sourceFiles": [
         "code-gen/projects/approval.ts"
@@ -3955,6 +4231,21 @@
       "aliases": [
         "approval.instance.get",
         "approval.v4.instance.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/approval.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "approval.instance.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/approval/v4/instances",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "approval.instance.list",
+        "approval.v4.instance.list"
       ],
       "sourceFiles": [
         "code-gen/projects/approval.ts"
@@ -5368,6 +5659,20 @@
       ]
     },
     {
+      "canonicalClientPath": "bitable.appBlockWorkflow.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/bitable/v1/apps/:app_token/block_workflows",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "bitable.appBlockWorkflow.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/bitable.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "bitable.appDashboard.copy",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards/:block_id/copy",
@@ -5763,6 +6068,21 @@
       ]
     },
     {
+      "canonicalClientPath": "bitable.appTableFieldGroup.create",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "bitable.appTableFieldGroup.create",
+        "bitable.v1.appTableFieldGroup.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/bitable.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "bitable.appTableForm.get",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id",
@@ -5787,6 +6107,21 @@
       "aliases": [
         "bitable.appTableForm.patch",
         "bitable.v1.appTableForm.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/bitable.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "bitable.appTableForm.upgrade",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "bitable.appTableForm.upgrade",
+        "bitable.v1.appTableForm.upgrade"
       ],
       "sourceFiles": [
         "code-gen/projects/bitable.ts"
@@ -8646,6 +8981,21 @@
       ]
     },
     {
+      "canonicalClientPath": "contact.user.basicBatch",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/contact/v3/users/basic_batch",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "contact.user.basicBatch",
+        "contact.v3.user.basicBatch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/contact.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "contact.user.batch",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/contact/v3/users/batch",
@@ -9539,6 +9889,20 @@
       "aliases": [
         "corehr.company.patch",
         "corehr.v1.company.patch"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.company.queryMultiTimeline",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/companies/query_multi_timeline",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.company.queryMultiTimeline"
       ],
       "sourceFiles": [
         "code-gen/projects/corehr.ts"
@@ -10446,6 +10810,76 @@
       ],
       "aliases": [
         "corehr.v2.employee.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.employee.customOrg.createEmpCustomOrg",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/custom_org/create_emp_custom_org",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.employee.customOrg.createEmpCustomOrg"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.employee.customOrg.del",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/custom_org/del",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.employee.customOrg.del"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.employee.customOrg.editEmpCustomOrg",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/custom_org/edit_emp_custom_org",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.employee.customOrg.editEmpCustomOrg"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.employee.customOrg.employmentCustomOrgRecord",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/custom_org/employment_custom_org_record",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.employee.customOrg.employmentCustomOrgRecord"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.employee.customOrg.queryById",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/custom_org/querybyid",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.employee.customOrg.queryById"
       ],
       "sourceFiles": [
         "code-gen/projects/corehr.ts"
@@ -11681,6 +12115,20 @@
       ]
     },
     {
+      "canonicalClientPath": "corehr.location.queryMultiTimeline",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/locations/query_multi_timeline",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.location.queryMultiTimeline"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "corehr.location.queryRecentChange",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/corehr/v2/locations/query_recent_change",
@@ -12432,6 +12880,20 @@
       ]
     },
     {
+      "canonicalClientPath": "corehr.probation.edit",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/probation/edit",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.probation.edit"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "corehr.probation.enableDisableAssessment",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/corehr/v2/probation/enable_disable_assessment",
@@ -12596,6 +13058,34 @@
       ],
       "aliases": [
         "corehr.v2.process.listWithIterator"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.process.queryFlowDataTemplate",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/query_flow_data_template",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.process.queryFlowDataTemplate"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/corehr.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "corehr.process.start",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/corehr/v2/process_start",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "corehr.v2.process.start"
       ],
       "sourceFiles": [
         "code-gen/projects/corehr.ts"
@@ -15115,6 +15605,51 @@
       "aliases": [
         "drive.permissionPublicPassword.update",
         "drive.v1.permissionPublicPassword.update"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/drive.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "drive.user.removeSubscription",
+      "httpMethod": "DELETE",
+      "apiPath": "${this.domain}/open-apis/drive/v1/user/remove_subscription",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "drive.user.removeSubscription",
+        "drive.v1.user.removeSubscription"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/drive.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "drive.user.subscription",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/drive/v1/user/subscription",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "drive.user.subscription",
+        "drive.v1.user.subscription"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/drive.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "drive.user.subscriptionStatus",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/drive/v1/user/subscription_status",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "drive.user.subscriptionStatus",
+        "drive.v1.user.subscriptionStatus"
       ],
       "sourceFiles": [
         "code-gen/projects/drive.ts"
@@ -21928,6 +22463,188 @@
       ]
     },
     {
+      "canonicalClientPath": "miaoda.app.enum.get_enum_detail",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/enums/:enum_name",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.enum.get_enum_detail"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.enum.get_enum_list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/enums",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.enum.get_enum_list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.sql_commands",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/sql_commands",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.sql_commands"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.batch_update_table_records",
+      "httpMethod": "PATCH",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records_batch_update",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.batch_update_table_records"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.delete_table_records",
+      "httpMethod": "DELETE",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.delete_table_records"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.get_table_detail",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.get_table_detail"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.get_table_list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.get_table_list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.get_table_record_list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.get_table_record_list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.patch_table_records",
+      "httpMethod": "PATCH",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.patch_table_records"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.table.post_table_records",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/tables/:table_name/records",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.table.post_table_records"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.app.view.get_view_record_list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/spark/v1/apps/:app_id/views/:view_name/records",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.app.view.get_view_record_list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "miaoda.directory.user.id_convert",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/spark/v1/directory/user/id_convert",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "miaoda.directory.user.id_convert"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/spark.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "minutes.minute.artifacts",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/minutes/v1/minutes/:minute_token/artifacts",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "minutes.v1.minute.artifacts"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/minutes.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "minutes.minute.get",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/minutes/v1/minutes/:minute_token",
@@ -22745,6 +23462,20 @@
     {
       "canonicalClientPath": "performance.reviewData.query",
       "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/performance/v1/review_datas/query",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "performance.v1.reviewData.query"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/performance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "performance.reviewData.query",
+      "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/performance/v2/review_datas/query",
       "traits": [
         "custom_params_serializer"
@@ -22800,6 +23531,48 @@
       ]
     },
     {
+      "canonicalClientPath": "performance.semester.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/performance/v1/semesters",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "performance.v1.semester.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/performance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "performance.stageTask.findByPage",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/performance/v1/stage_tasks/find_by_page",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "performance.v1.stageTask.findByPage"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/performance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "performance.stageTask.findByUserList",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/performance/v1/stage_tasks/find_by_user_list",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "performance.v1.stageTask.findByUserList"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/performance.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "performance.userGroupUserRel.write",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/performance/v2/user_group_user_rels/write",
@@ -22808,6 +23581,20 @@
       ],
       "aliases": [
         "performance.v2.userGroupUserRel.write"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/performance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "performance.userInfo.query",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/performance/v2/user_info/query",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "performance.v2.userInfo.query"
       ],
       "sourceFiles": [
         "code-gen/projects/performance.ts"
@@ -23116,6 +23903,21 @@
       ]
     },
     {
+      "canonicalClientPath": "search.docWiki.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/search/v2/doc_wiki/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "search.docWiki.search",
+        "search.v2.docWiki.search"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/search.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "search.message.create",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/search/v2/message",
@@ -23304,6 +24106,20 @@
       ]
     },
     {
+      "canonicalClientPath": "security_and_compliance.multiGeoEntity.tenant.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/multi_geo_entity/tenant",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "security_and_compliance.v1.multiGeoEntity.tenant.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/security_and_compliance.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "security_and_compliance.openapiLog.listData",
       "httpMethod": "POST",
       "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/openapi_logs/list_data",
@@ -23313,6 +24129,62 @@
       "aliases": [
         "security_and_compliance.openapiLog.listData",
         "security_and_compliance.v1.openapiLog.listData"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/security_and_compliance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "security_and_compliance.userMigration.cancel",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/user_migrations/cancel",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "security_and_compliance.v1.userMigration.cancel"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/security_and_compliance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "security_and_compliance.userMigration.create",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/user_migrations",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "security_and_compliance.v1.userMigration.create"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/security_and_compliance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "security_and_compliance.userMigration.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/user_migrations/:user_id",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "security_and_compliance.v1.userMigration.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/security_and_compliance.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "security_and_compliance.userMigration.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/security_and_compliance/v1/user_migrations/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "security_and_compliance.v1.userMigration.search"
       ],
       "sourceFiles": [
         "code-gen/projects/security_and_compliance.ts"
@@ -25087,6 +25959,81 @@
       ]
     },
     {
+      "canonicalClientPath": "trustParty.collaborationDepartment.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_departments/:target_department_id",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "trustParty.collaborationDepartment.get",
+        "trustParty.v1.collaborationDepartment.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/trust_party.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "trustParty.collaborationTenant.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "trustParty.collaborationTenant.get",
+        "trustParty.v1.collaborationTenant.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/trust_party.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "trustParty.collaborationTenant.list",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/trust_party/v1/collaboration_tenants",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "trustParty.collaborationTenant.list",
+        "trustParty.v1.collaborationTenant.list"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/trust_party.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "trustParty.collaborationUser.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_users/:target_user_id",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "trustParty.collaborationUser.get",
+        "trustParty.v1.collaborationUser.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/trust_party.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "trustParty.visibleOrganization.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/visible_organization",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "trustParty.v1.visibleOrganization.get",
+        "trustParty.visibleOrganization.get"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/trust_party.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "vc.alert.list",
       "httpMethod": "GET",
       "apiPath": "${this.domain}/open-apis/vc/v1/alerts",
@@ -25302,6 +26249,21 @@
       ]
     },
     {
+      "canonicalClientPath": "vc.meeting.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/vc/v1/meetings/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "vc.meeting.search",
+        "vc.v1.meeting.search"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/vc.ts"
+      ]
+    },
+    {
       "canonicalClientPath": "vc.meeting.setHost",
       "httpMethod": "PATCH",
       "apiPath": "${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host",
@@ -25402,6 +26364,21 @@
       "aliases": [
         "vc.meetingRecording.stop",
         "vc.v1.meetingRecording.stop"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/vc.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "vc.note.get",
+      "httpMethod": "GET",
+      "apiPath": "${this.domain}/open-apis/vc/v1/notes/:note_id",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "vc.note.get",
+        "vc.v1.note.get"
       ],
       "sourceFiles": [
         "code-gen/projects/vc.ts"
@@ -26355,6 +27332,51 @@
       ],
       "sourceFiles": [
         "code-gen/projects/wiki.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "workplace.customWorkplaceAccessData.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/workplace/v1/custom_workplace_access_data/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "workplace.customWorkplaceAccessData.search",
+        "workplace.v1.customWorkplaceAccessData.search"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/workplace.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "workplace.workplaceAccessData.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/workplace/v1/workplace_access_data/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "workplace.v1.workplaceAccessData.search",
+        "workplace.workplaceAccessData.search"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/workplace.ts"
+      ]
+    },
+    {
+      "canonicalClientPath": "workplace.workplaceBlockAccessData.search",
+      "httpMethod": "POST",
+      "apiPath": "${this.domain}/open-apis/workplace/v1/workplace_block_access_data/search",
+      "traits": [
+        "custom_params_serializer"
+      ],
+      "aliases": [
+        "workplace.v1.workplaceBlockAccessData.search",
+        "workplace.workplaceBlockAccessData.search"
+      ],
+      "sourceFiles": [
+        "code-gen/projects/workplace.ts"
       ]
     }
   ],

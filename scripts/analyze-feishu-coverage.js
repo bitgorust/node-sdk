@@ -134,6 +134,21 @@ function stripVersionSegmentFromPath(path) {
     return normalized.replace(/(\/open-apis?\/[^/]+)\/v[0-9]+(?=\/|$)/, '$1');
 }
 
+function buildEndpointLookupKeys(httpMethod, ...paths) {
+    const keys = new Set();
+
+    paths.filter(Boolean).forEach((endpointPath) => {
+        const normalizedPath = normalizeEndpointPath(endpointPath);
+        const fallbackPath = stripVersionSegmentFromPath(normalizedPath);
+        keys.add(`${httpMethod} ${normalizedPath}`);
+        if (fallbackPath !== normalizedPath) {
+            keys.add(`${httpMethod} ${fallbackPath}`);
+        }
+    });
+
+    return [...keys];
+}
+
 function buildSdkInventory(inventoryPath) {
     if (inventoryPath && fs.existsSync(inventoryPath)) {
         return JSON.parse(fs.readFileSync(inventoryPath, 'utf8'));
@@ -150,12 +165,7 @@ function buildSdkInventory(inventoryPath) {
 function groupSdkByEndpoint(canonicalGeneratedApiMethods) {
     const map = new Map();
     canonicalGeneratedApiMethods.forEach((item) => {
-        const normalizedPath = normalizeEndpointPath(item.apiPath);
-        const fallbackPath = stripVersionSegmentFromPath(normalizedPath);
-        const keys = new Set([`${item.httpMethod} ${normalizedPath}`]);
-        if (fallbackPath !== normalizedPath) {
-            keys.add(`${item.httpMethod} ${fallbackPath}`);
-        }
+        const keys = buildEndpointLookupKeys(item.httpMethod, item.apiPath);
         keys.forEach((key) => {
             if (!map.has(key)) {
                 map.set(key, []);
@@ -1569,7 +1579,6 @@ async function analyzeServiceApis({
     const analyzedItems = await mapLimit(selectedApis, concurrency, async (api) => {
         const httpMethod = String(api.url).split(':')[0];
         const pathValue = normalizeEndpointPath(String(api.url).split(':').slice(1).join(':'));
-        const endpointKey = `${httpMethod} ${pathValue}`;
         const markdownUrl = buildFeishuMarkdownUrl(api.fullPath);
         let parsed = {
             supportAppTypesText: '',
@@ -1652,7 +1661,13 @@ async function analyzeServiceApis({
         }
 
         const permissionSources = buildPermissionSources(parsed, explorerDefinition, scopeMap);
-        const sdkMatches = sdkByEndpoint.get(endpointKey) || [];
+        const endpointLookupKeys = buildEndpointLookupKeys(
+            httpMethod,
+            pathValue,
+            definition?.request?.basic?.httpUrl
+        );
+        const sdkMatches = endpointLookupKeys.flatMap((key) => sdkByEndpoint.get(key) || []);
+        const endpointKey = endpointLookupKeys[0];
 
         if (api.meta?.Version === 'old') {
             legacyReason = 'old_version';
@@ -1696,8 +1711,8 @@ async function analyzeServiceApis({
             permissionSources,
             sdkCoverage: {
                 covered: sdkMatches.length > 0,
-                sdkMethods: sdkMatches.map((match) => match.canonicalClientPath),
-                sdkAliases: sdkMatches.flatMap((match) => match.aliases),
+                sdkMethods: [...new Set(sdkMatches.map((match) => match.canonicalClientPath))],
+                sdkAliases: [...new Set(sdkMatches.flatMap((match) => match.aliases))],
                 sdkSourceFiles: [...new Set(sdkMatches.flatMap((match) => match.sourceFiles))],
             },
         };
