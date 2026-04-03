@@ -1,9 +1,9 @@
 # Feishu Service API Coverage
 
 - Evaluated current APIs: 1432
-- Covered by SDK: 1366
-- Uncovered by SDK: 66
-- Coverage rate: 95.39%
+- Covered by SDK: 1371
+- Uncovered by SDK: 61
+- Coverage rate: 95.74%
 - Old APIs archived separately: 110
 - History/deprecated APIs archived separately: 68
 
@@ -58,7 +58,7 @@
 - task: 60/60 covered (0 uncovered)
 - tenant: 2/2 covered (0 uncovered)
 - translation: 2/2 covered (0 uncovered)
-- trust_party: 0/5 covered (5 uncovered)
+- trust_party: 5/5 covered (0 uncovered)
 - vc: 56/58 covered (2 uncovered)
 - verification: 1/1 covered (0 uncovered)
 - wiki: 16/16 covered (0 uncovered)
@@ -166,26 +166,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/spark-v1/app-view/get_view_record_list.md
   permissions: spark:app.table.record:read, spark:app.table.record:write
   tokens: user_access_token
-- GET /open-apis/trust_party/v1/collaboration_tenants | 获取可见关联组织的列表 | trust_party.collaboration_tenant.list
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/trust_party-v1/collaboration_tenant/list.md
-  permissions: trust_party:collaboration.tenant:readonly
-  tokens: tenant_access_token, user_access_token
-- GET /open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key | 获取关联组织详情 | trust_party.collaboration_tenant.get
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/trust_party-v1/collaboration_tenant/get.md
-  permissions: trust_party:collaboration.tenant:readonly
-  tokens: tenant_access_token, user_access_token
-- GET /open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_departments/:target_department_id | 获取关联组织部门详情 | trust_party.collaboration_tenant.collaboration_department.get
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/trust_party-v1/collaboration_tenant-collaboration_department/get.md
-  permissions: trust_party:collaboration.tenant:readonly
-  tokens: tenant_access_token, user_access_token
-- GET /open-apis/trust_party/v1/collaboration_tenants/:target_tenant_key/collaboration_users/:target_user_id | 获取关联组织成员详情 | trust_party.collaboration_tenant.collaboration_user.get
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/trust_party-v1/collaboration_tenant-collaboration_user/get.md
-  permissions: trust_party:collaboration.tenant:readonly
-  tokens: tenant_access_token, user_access_token
-- GET /open-apis/trust_party/v1/collaboration_tenants/visible_organization | 获取关联组织的部门和成员信息 | trust_party.collaboration_tenant.visible_organization
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/trust_party-v1/collaboration_tenant/visible_organization.md
-  permissions: trust_party:collaboration.tenant:readonly
-  tokens: tenant_access_token, user_access_token
 - GET /open-apis/vc/v1/notes/:note_id | 获取纪要详情 | vc.note.get
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/note/get.md
   permissions: vc:note:read
@@ -330,4 +310,3 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/workplace-v1/workplace_block_access_data/search.md
   permissions: workplace:workplace_using_data:read
   tokens: tenant_access_token
-
