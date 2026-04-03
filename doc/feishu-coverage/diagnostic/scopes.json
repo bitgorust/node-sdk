@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T03:16:37.047Z",
+  "generatedAt": "2026-04-03T05:56:26.437Z",
   "source": "https://open.feishu.cn/api/tools/scope/list",
   "bizInfos": [
     {
@@ -5161,7 +5161,7 @@
     {
       "bizTag": "approval",
       "desc": "获取审批实例详情",
-      "detail": "获取审批实例详情",
+      "detail": "开通权限后，应用可获取审批实例中的表单详情、发起人、任务进展等信息。",
       "documentBasics": [],
       "level": 2,
       "name": "approval:instance:read",
@@ -5174,7 +5174,7 @@
     {
       "bizTag": "approval",
       "desc": "操作审批实例",
-      "detail": "操作审批实例",
+      "detail": "开通权限后，应用可操作审批实例，包括发起、撤回等。",
       "documentBasics": [],
       "level": 2,
       "name": "approval:instance:write",
@@ -5285,7 +5285,7 @@
     {
       "bizTag": "approval",
       "desc": "获取任务基本信息",
-      "detail": "获取任务基本信息",
+      "detail": "开通权限后，应用可获取任务基本信息，包括类型、状态、审批实例 Code、部分表单字段等。",
       "documentBasics": [],
       "level": 2,
       "name": "approval:task:read",
@@ -5298,7 +5298,7 @@
     {
       "bizTag": "approval",
       "desc": "处理审批任务",
-      "detail": "处理审批任务",
+      "detail": "开通权限后，应用可处理审批任务，包括同意、拒绝、抄送、加签等。",
       "documentBasics": [],
       "level": 2,
       "name": "approval:task:write",
@@ -7689,7 +7689,7 @@
     {
       "bizTag": "base",
       "desc": "读取多维表格历史记录",
-      "detail": "读取多维表格历史记录",
+      "detail": "开通权限后，应用可读取多维表格历史记录。",
       "documentBasics": [],
       "level": 2,
       "name": "base:history:read",
@@ -8427,7 +8427,7 @@
     {
       "bizTag": "base",
       "desc": "获取多维表格空间列表",
-      "detail": "列出多维表格空间",
+      "detail": "开通权限后，应用可列出多维表格空间。",
       "documentBasics": [],
       "level": 2,
       "name": "base:workspace:list",

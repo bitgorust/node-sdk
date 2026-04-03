@@ -339,6 +339,55 @@ export default abstract class Client extends apaas {
             },
         },
         /**
+         * 应用图标
+         */
+        appAvatarUpload: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=application&resource=app_avatar.upload&apiName=create&version=v7 click to debug }
+             *
+             * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=create&project=application&resource=app_avatar.upload&version=v7 document }
+             */
+            create: async (
+                payload?: {
+                    data: { avatar: Buffer | fs.ReadStream };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                const res = await this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: { url?: string };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/application/v7/app_avatar/upload`,
+                            path
+                        ),
+                        method: "POST",
+                        data,
+                        params,
+                        headers: {
+                            ...headers,
+                            "Content-Type": "multipart/form-data",
+                        },
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+
+                return res?.data || null;
+            },
+        },
+        /**
          * 应用使用情况
          */
         applicationAppUsage: {
@@ -2344,6 +2393,44 @@ export default abstract class Client extends apaas {
                         this.logger.error(formatErrors(e));
                         throw e;
                     });
+            },
+        },
+        /**
+         * {@link https://open.feishu.cn/api-explorer?project=application&resource=app_avatar.upload&apiName=create&version=v7 click to debug }
+         *
+         * 上传应用图标
+         */
+        app_avatar: {
+            upload: {
+                create: async (
+                    payload?: {
+                        data?: {
+                            avatar?: unknown;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, any>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/application/v7/app_avatar/upload`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
             },
         },
         /**
@@ -4705,6 +4792,79 @@ export default abstract class Client extends apaas {
                         });
                 },
                 /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=favourite&version=v5 click to debug }
+                 *
+                 * 获取用户自定义常用的应用
+                 */
+                favourite: async (
+                    payload?: {
+                        params?: {
+                            language?: string;
+                            page_token?: string;
+                            page_size?: number;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, any>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/application/v5/applications/favourite`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=recommend&version=v5 click to debug }
+                 *
+                 * 获取管理员推荐的应用
+                 */
+                recommend: async (
+                    payload?: {
+                        params?: {
+                            language?: string;
+                            recommend_type?: string;
+                            page_token?: string;
+                            page_size?: number;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, any>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/application/v5/applications/recommend`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
                  * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=patch&version=v6 click to debug }
                  *
                  * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v6/application/patch document }
@@ -4769,6 +4929,165 @@ export default abstract class Client extends apaas {
                             this.logger.error(formatErrors(e));
                             throw e;
                         });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=ability&version=v7 click to debug }
+                 *
+                 * 更新应用能力配置
+                 */
+                ability: {
+                    patch: async (
+                        payload?: {
+                            path: { app_id: string };
+                            data?: Record<string, unknown>;
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, any>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/application/v7/applications/:app_id/ability`,
+                                    path
+                                ),
+                                method: "PATCH",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=base&version=v7 click to debug }
+                 *
+                 * 更新应用基础信息配置
+                 */
+                base: {
+                    patch: async (
+                        payload?: {
+                            path: { app_id: string };
+                            data?: {
+                                i18ns?: Array<Record<string, unknown>>;
+                                avatar_url?: string;
+                                homepage_url?: string;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, any>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/application/v7/applications/:app_id/base`,
+                                    path
+                                ),
+                                method: "PATCH",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=config&version=v7 click to debug }
+                 *
+                 * 更新应用权限与可见配置
+                 */
+                config: {
+                    patch: async (
+                        payload?: {
+                            path: { app_id: string };
+                            params?: {
+                                department_id_type?:
+                                    | "department_id"
+                                    | "open_department_id";
+                                user_id_type?:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id";
+                            };
+                            data?: Record<string, unknown>;
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, any>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/application/v7/applications/:app_id/config`,
+                                    path
+                                ),
+                                method: "PATCH",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=application&resource=application&apiName=publish&version=v7 click to debug }
+                 *
+                 * 提交应用发布申请
+                 */
+                publish: {
+                    create: async (
+                        payload?: {
+                            path: { app_id: string };
+                            data?: {
+                                mobile_default_ability?: string;
+                                pc_default_ability?: string;
+                                remark?: string;
+                                changelog?: string;
+                                version?: string;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, any>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/application/v7/applications/:app_id/publish`,
+                                    path
+                                ),
+                                method: "POST",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
                 },
                 underauditlistWithIterator: async (
                     payload?: {

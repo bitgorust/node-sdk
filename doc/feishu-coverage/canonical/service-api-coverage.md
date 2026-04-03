@@ -1,9 +1,9 @@
 # Feishu Service API Coverage
 
 - Evaluated current APIs: 1432
-- Covered by SDK: 1366
-- Uncovered by SDK: 66
-- Coverage rate: 95.39%
+- Covered by SDK: 1382
+- Uncovered by SDK: 50
+- Coverage rate: 96.51%
 - Old APIs archived separately: 110
 - History/deprecated APIs archived separately: 68
 
@@ -13,8 +13,8 @@
 - admin: 14/14 covered (0 uncovered)
 - aily: 21/21 covered (0 uncovered)
 - apaas: 44/48 covered (4 uncovered)
-- application: 25/32 covered (7 uncovered)
-- approval: 27/31 covered (4 uncovered)
+- application: 32/32 covered (0 uncovered)
+- approval: 31/31 covered (0 uncovered)
 - attendance: 39/39 covered (0 uncovered)
 - auth: 5/5 covered (0 uncovered)
 - authen: 1/1 covered (0 uncovered)
@@ -25,13 +25,13 @@
 - calendar: 44/44 covered (0 uncovered)
 - cardkit: 9/9 covered (0 uncovered)
 - compensation: 21/21 covered (0 uncovered)
-- contact: 67/68 covered (1 uncovered)
+- contact: 68/68 covered (0 uncovered)
 - corehr: 250/260 covered (10 uncovered)
 - directory: 21/21 covered (0 uncovered)
 - docs: 1/1 covered (0 uncovered)
 - document_ai: 18/18 covered (0 uncovered)
 - docx: 13/13 covered (0 uncovered)
-- drive: 44/47 covered (3 uncovered)
+- drive: 47/47 covered (0 uncovered)
 - ehr: 2/2 covered (0 uncovered)
 - event: 1/1 covered (0 uncovered)
 - helpdesk: 50/50 covered (0 uncovered)
@@ -50,7 +50,7 @@
 - performance: 16/21 covered (5 uncovered)
 - personal_settings: 6/6 covered (0 uncovered)
 - report: 3/3 covered (0 uncovered)
-- search: 14/15 covered (1 uncovered)
+- search: 15/15 covered (0 uncovered)
 - security_and_compliance: 8/13 covered (5 uncovered)
 - sheets: 27/27 covered (0 uncovered)
 - spark: 0/12 covered (12 uncovered)
@@ -66,10 +66,6 @@
 
 ## Uncovered APIs
 
-- DELETE /open-apis/drive/v1/user/remove_subscription | 取消用户云文档事件订阅 | drive.user.remove_subscription
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/remove_subscription.md
-  permissions: docs:event:subscribe
-  tokens: tenant_access_token, user_access_token
 - DELETE /open-apis/spark/v1/apps/:app_id/tables/:table_name/records | 删除数据表中的记录 | spark.app.table.delete_table_records
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/spark-v1/app-table/delete_table_records.md
   permissions: spark:app.table.record:write
@@ -90,26 +86,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/apaas-v1/workspace-table/table_get.md
   permissions: app_engine:workspace.table:read, app_engine:workspace.table:write
   tokens: user_access_token
-- GET /open-apis/application/v5/applications/favourite | 获取用户自定义常用的应用 | application.application.favourite
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v5/application/favourite.md
-  permissions: admin:app.info:readonly
-  tokens: user_access_token
-- GET /open-apis/application/v5/applications/recommend | 获取管理员推荐的应用 | application.application.recommend
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v5/application/recommend.md
-  permissions: admin:app.info:readonly
-  tokens: user_access_token
-- GET /open-apis/approval/v4/approvals/:approval_id | 查看指定审批定义 | approval.approval.get
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/get.md
-  permissions: approval:approval, approval:approval:readonly, approval:definition
-  tokens: tenant_access_token
-- GET /open-apis/approval/v4/districts | 查询地理库信息 | approval.district.list
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/list.md
-  permissions: approval:approval, approval:approval:readonly
-  tokens: tenant_access_token, user_access_token
-- GET /open-apis/approval/v4/instances | 批量获取审批实例 ID | approval.instance.list
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/instance/list.md
-  permissions: approval:approval, approval:approval:readonly, approval:instance
-  tokens: tenant_access_token
 - GET /open-apis/bitable/v1/apps/:app_token/block_workflows | 列出工作流 | bitable.app.block_workflow.list
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-block_workflow/list.md
   permissions: base:workflow:read, bitable:app
@@ -122,10 +98,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/querybyid.md
   permissions: corehr:employment.custom_org:read, corehr:employment.custom_org:write
   tokens: tenant_access_token
-- GET /open-apis/drive/v1/user/subscription_status | 查询用户云文档事件订阅状态 | drive.user.subscription_status
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription_status.md
-  permissions: docs:event:subscribe
-  tokens: tenant_access_token, user_access_token
 - GET /open-apis/minutes/v1/minutes/:minute_token/artifacts | 获取妙记AI产物 | minutes.minute.artifacts
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/minutes-v1/minute/artifacts.md
   permissions: minutes:minutes.artifacts:read
@@ -190,18 +162,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/note/get.md
   permissions: vc:note:read
   tokens: user_access_token
-- PATCH /open-apis/application/v7/applications/:app_id/ability | 更新应用能力配置 | application.application.ability.patch
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v7/application-v7/application-ability/patch.md
-  permissions: application:application:patch
-  tokens: tenant_access_token, user_access_token
-- PATCH /open-apis/application/v7/applications/:app_id/base | 更新应用基础信息配置 | application.application.base.patch
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v7/application-v7/application-base/patch.md
-  permissions: application:application:patch
-  tokens: tenant_access_token, user_access_token
-- PATCH /open-apis/application/v7/applications/:app_id/config | 更新应用开发配置 | application.application.config.patch
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v7/application-v7/application-config/patch.md
-  permissions: application:application:patch
-  tokens: tenant_access_token, user_access_token
 - PATCH /open-apis/spark/v1/apps/:app_id/tables/:table_name/records | 按条件更新数据表中的记录 | spark.app.table.patch_table_records
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/spark-v1/app-table/patch_table_records.md
   permissions: spark:app.table.record:write
@@ -210,18 +170,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/spark-v1/app-table/batch_update_table_records.md
   permissions: spark:app.table.record:write
   tokens: user_access_token
-- POST /open-apis/application/v7/app_avatar/upload | 上传应用图标 | application.app_avatar.upload.create
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v7/application-v7/app_avatar-upload/create.md
-  permissions: application:application:patch
-  tokens: tenant_access_token, user_access_token
-- POST /open-apis/application/v7/applications/:app_id/publish | 提交发布自建应用 | application.application.publish.create
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/application-v7/application-v7/application-publish/create.md
-  permissions: application:application:patch
-  tokens: tenant_access_token, user_access_token
-- POST /open-apis/approval/v4/districts/search | 搜索地理库信息 | approval.district.search
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/district/search.md
-  permissions: approval:approval, approval:approval:readonly
-  tokens: tenant_access_token, user_access_token
 - POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups | 创建字段编组 | bitable.app.table.field_group.create
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-field_group/create.md
   permissions: base:field_group:create
@@ -229,10 +177,6 @@
 - POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade | 升级表单 | bitable.app.table.form.upgrade
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-form/upgrade.md
   permissions: base:form:update
-  tokens: tenant_access_token, user_access_token
-- POST /open-apis/contact/v3/users/basic_batch | 通过 ID 获取用户姓名 | contact.user.basic_batch
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/basic_batch.md
-  permissions: contact:user.basic_profile:readonly
   tokens: tenant_access_token, user_access_token
 - POST /open-apis/corehr/v2/companies/query_multi_timeline | 查询指定时间范围公司版本 | corehr.company.query_multi_timeline
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/company/query_multi_timeline.md
@@ -266,10 +210,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/process-query_flow_data_template/create.md
   permissions: corehr:process.instance:write
   tokens: tenant_access_token
-- POST /open-apis/drive/v1/user/subscription | 订阅用户云文档事件 | drive.user.subscription
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/user/subscription.md
-  permissions: docs:event:subscribe
-  tokens: tenant_access_token, user_access_token
 - POST /open-apis/performance/v1/review_datas/query | 获取绩效结果 | performance.review_data.query
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/performance-v1/review_data/query.md
   permissions: performance:performance, performance:performance:readonly
@@ -286,10 +226,6 @@
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/performance-v2/user_info/query.md
   permissions: performance:performance, performance:performance:readonly
   tokens: tenant_access_token
-- POST /open-apis/search/v2/doc_wiki/search | 搜索文档 | search.doc_wiki.search
-  doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/search-v2/doc_wiki/search.md
-  permissions: search:docs:read
-  tokens: user_access_token
 - POST /open-apis/security_and_compliance/v1/user_migrations | 迁移用户 | security_and_compliance.user_migration.create
   doc: https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/user_migration/create.md
   permissions: security_and_compliance:user_migration, security_and_compliance:user_migration:multi-geo
