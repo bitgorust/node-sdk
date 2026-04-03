@@ -4712,6 +4712,60 @@ export default abstract class Client extends compensation {
                     });
             },
             /**
+             * {@link https://open.feishu.cn/api-explorer?project=contact&resource=user&apiName=basic_batch&version=v3 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/basic_batch document }
+             *
+             * 批量获取用户姓名
+             */
+            basicBatch: async (
+                payload?: {
+                    data: { user_ids: Array<string> };
+                    params?: {
+                        user_id_type?: "open_id" | "union_id" | "user_id";
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                users?: Array<{
+                                    user_id?: string;
+                                    name?: string;
+                                    i18n_name?: {
+                                        zh_cn?: string;
+                                        ja_jp?: string;
+                                        en_us?: string;
+                                    };
+                                }>;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/contact/v3/users/basic_batch`,
+                            path
+                        ),
+                        method: "POST",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
              * {@link https://open.feishu.cn/api-explorer?project=contact&resource=user&apiName=batch_get_id&version=v3 click to debug }
              *
              * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/batch_get_id document }
@@ -11432,6 +11486,62 @@ export default abstract class Client extends compensation {
                                 path
                             ),
                             method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=contact&resource=user&apiName=basic_batch&version=v3 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/basic_batch document }
+                 *
+                 * 批量获取用户姓名
+                 *
+                 * 通过用户 ID 列表批量获取基础信息，例如 name/i18n_name，便于后续展示。
+                 */
+                basicBatch: async (
+                    payload?: {
+                        data: { user_ids: Array<string> };
+                        params?: {
+                            user_id_type?: "open_id" | "union_id" | "user_id";
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    users?: Array<{
+                                        user_id?: string;
+                                        name?: string;
+                                        i18n_name?: {
+                                            zh_cn?: string;
+                                            ja_jp?: string;
+                                            en_us?: string;
+                                        };
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/contact/v3/users/basic_batch`,
+                                path
+                            ),
+                            method: "POST",
                             data,
                             params,
                             headers,

@@ -592,6 +592,102 @@ export default abstract class Client extends search_in_app {
             },
         },
         /**
+         * {@link https://open.feishu.cn/api-explorer?project=search&resource=doc_wiki&apiName=search&version=v2 click to debug }
+         *
+         * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/search-v2/doc_wiki/search document }
+         *
+         * 搜索文档
+         *
+         * 搜索飞书文档和 Wiki 内容，支持多种过滤器和分页。
+         */
+        docWiki: {
+            search: async (
+                payload?: {
+                    data: {
+                        query: string;
+                        doc_filter?: {
+                            creator_ids?: Array<string>;
+                            doc_types?: Array<string>;
+                            folder_tokens?: Array<string>;
+                            only_title?: boolean;
+                            open_time?: { start?: number; end?: number };
+                            sort_type?: string;
+                            create_time?: { start?: number; end?: number };
+                            chat_ids?: Array<string>;
+                            sharer_ids?: Array<string>;
+                            only_comment?: boolean;
+                        };
+                        wiki_filter?: {
+                            creator_ids?: Array<string>;
+                            doc_types?: Array<string>;
+                            space_ids?: Array<string>;
+                            only_title?: boolean;
+                            open_time?: { start?: number; end?: number };
+                            sort_type?: string;
+                            create_time?: { start?: number; end?: number };
+                            chat_ids?: Array<string>;
+                            sharer_ids?: Array<string>;
+                            only_comment?: boolean;
+                        };
+                        page_token?: string;
+                        page_size?: number;
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                total?: number;
+                                has_more?: boolean;
+                                res_units?: Array<{
+                                    title_highlighted?: string;
+                                    summary_highlighted?: string;
+                                    entity_type?: string;
+                                    result_meta?: {
+                                        doc_types?: string;
+                                        update_time?: number;
+                                        url?: string;
+                                        owner_name?: string;
+                                        owner_id?: string;
+                                        is_cross_tenant?: boolean;
+                                        create_time?: number;
+                                        last_open_time?: number;
+                                        edit_user_id?: string;
+                                        edit_user_name?: string;
+                                        token?: string;
+                                        file_type?: string;
+                                    };
+                                }>;
+                                page_token?: string;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/search/v2/doc_wiki/search`,
+                            path
+                        ),
+                        method: "POST",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
          * 数据项
          */
         dataSourceItem: {
@@ -1385,6 +1481,96 @@ export default abstract class Client extends search_in_app {
                         >({
                             url: fillApiPath(
                                 `${this.domain}/open-apis/search/v2/app`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * 搜索文档
+             */
+            docWiki: {
+                search: async (
+                    payload?: {
+                        data: {
+                            query: string;
+                            doc_filter?: {
+                                creator_ids?: Array<string>;
+                                doc_types?: Array<string>;
+                                folder_tokens?: Array<string>;
+                                only_title?: boolean;
+                                open_time?: { start?: number; end?: number };
+                                sort_type?: string;
+                                create_time?: { start?: number; end?: number };
+                                chat_ids?: Array<string>;
+                                sharer_ids?: Array<string>;
+                                only_comment?: boolean;
+                            };
+                            wiki_filter?: {
+                                creator_ids?: Array<string>;
+                                doc_types?: Array<string>;
+                                space_ids?: Array<string>;
+                                only_title?: boolean;
+                                open_time?: { start?: number; end?: number };
+                                sort_type?: string;
+                                create_time?: { start?: number; end?: number };
+                                chat_ids?: Array<string>;
+                                sharer_ids?: Array<string>;
+                                only_comment?: boolean;
+                            };
+                            page_token?: string;
+                            page_size?: number;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    total?: number;
+                                    has_more?: boolean;
+                                    res_units?: Array<{
+                                        title_highlighted?: string;
+                                        summary_highlighted?: string;
+                                        entity_type?: string;
+                                        result_meta?: {
+                                            doc_types?: string;
+                                            update_time?: number;
+                                            url?: string;
+                                            owner_name?: string;
+                                            owner_id?: string;
+                                            is_cross_tenant?: boolean;
+                                            create_time?: number;
+                                            last_open_time?: number;
+                                            edit_user_id?: string;
+                                            edit_user_name?: string;
+                                            token?: string;
+                                            file_type?: string;
+                                        };
+                                    }>;
+                                    page_token?: string;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/search/v2/doc_wiki/search`,
                                 path
                             ),
                             method: "POST",
