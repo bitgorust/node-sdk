@@ -171,6 +171,270 @@ export default abstract class Client extends search {
                         });
                 },
             },
+            /**
+             * multi_geo_entity
+             */
+            multiGeoEntity: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=security_and_compliance&resource=multi_geo_entity.tenant&apiName=get&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/multi_geo_entity-tenant/get.md document }
+                 *
+                 * 获取地理位置列表
+                 */
+                tenant: {
+                    get: async (
+                        payload?: {
+                            params?: {};
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<
+                                any,
+                                {
+                                    code?: number;
+                                    msg?: string;
+                                    data?: {
+                                        tenant?: {
+                                            tenant_id?: string;
+                                            tenant_name?: string;
+                                            geo?: string;
+                                            domain?: string;
+                                        };
+                                        available_geo_locations?: Array<string>;
+                                    };
+                                }
+                            >({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/security_and_compliance/v1/multi_geo_entity/tenant`,
+                                    path
+                                ),
+                                method: "GET",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                },
+            },
+            /**
+             * user_migration
+             */
+            userMigration: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=security_and_compliance&resource=user_migration&apiName=get&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/user_migration/get.md document }
+                 *
+                 * 获取单个用户迁移状态
+                 */
+                get: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                        path: { user_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    user_migration?: {
+                                        user_id?: string;
+                                        dest_geo?: string;
+                                        task_id?: string;
+                                        status?: string;
+                                        progress?: number;
+                                    };
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/security_and_compliance/v1/user_migrations/:user_id`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=security_and_compliance&resource=user_migration&apiName=create&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/user_migration/create.md document }
+                 *
+                 * 迁移用户
+                 */
+                create: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                        data?: {
+                            user_ids?: Array<string>;
+                            dest_geo?: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    user_migrations?: Array<{
+                                        user_id?: string;
+                                        dest_geo?: string;
+                                        task_id?: string;
+                                        status?: string;
+                                        progress?: number;
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/security_and_compliance/v1/user_migrations`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=security_and_compliance&resource=user_migration&apiName=cancel&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/user_migration/cancel.md document }
+                 *
+                 * 取消用户迁移
+                 */
+                cancel: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                        data?: {
+                            user_ids?: Array<string>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            { code?: number; msg?: string; data?: {} }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/security_and_compliance/v1/user_migrations/cancel`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=security_and_compliance&resource=user_migration&apiName=search&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/security_and_compliance-v1/user_migration/search.md document }
+                 *
+                 * 批量获取用户迁移状态
+                 */
+                search: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                        data?: {
+                            user_ids?: Array<string>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    items?: Array<{
+                                        user_id?: string;
+                                        dest_geo?: string;
+                                        task_id?: string;
+                                        status?: string;
+                                        progress?: number;
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/security_and_compliance/v1/user_migrations/search`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
         },
         v2: {
             /**
