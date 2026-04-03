@@ -26920,6 +26920,43 @@ export default abstract class Client extends contract {
                             headers,
                             paramsSerializer: (params) =>
                                 stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=company&apiName=query_multi_timeline&version=v2 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/company/query_multi_timeline document }
+                 */
+                queryMultiTimeline: async (
+                    payload?: {
+                        data: {
+                            company_ids: Array<string>;
+                            start_date?: string;
+                            end_date?: string;
+                            fields?: Array<string>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: any }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/corehr/v2/companies/query_multi_timeline`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
                         })
                         .catch((e) => {
                             this.logger.error(formatErrors(e));
@@ -30168,6 +30205,234 @@ export default abstract class Client extends contract {
              * employee
              */
             employee: {
+                /**
+                 * custom_org
+                 */
+                customOrg: {
+                    /**
+                     * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee.custom_org&apiName=employment_custom_org_record&version=v2 click to debug }
+                     *
+                     * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/employment_custom_org_record document }
+                     */
+                    employmentCustomOrgRecord: async (
+                        payload?: {
+                            params: {
+                                user_ids: Array<string>;
+                                object_api_names: Array<string>;
+                                user_id_type:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id"
+                                    | "people_corehr_id";
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, { code?: number; msg?: string; data?: any }>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/corehr/v2/custom_org/employment_custom_org_record`,
+                                    path
+                                ),
+                                method: "GET",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                    /**
+                     * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee.custom_org&apiName=querybyid&version=v2 click to debug }
+                     *
+                     * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/query_by_id document }
+                     */
+                    queryById: async (
+                        payload?: {
+                            params: {
+                                job_data_custom_org_id: string;
+                                object_api_name: string;
+                                user_id_type:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id"
+                                    | "people_corehr_id";
+                                version_id?: Array<string>;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, { code?: number; msg?: string; data?: any }>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/corehr/v2/custom_org/querybyid`,
+                                    path
+                                ),
+                                method: "GET",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                    /**
+                     * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee.custom_org&apiName=create_emp_custom_org&version=v2 click to debug }
+                     *
+                     * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/create_emp_custom_org document }
+                     */
+                    createEmpCustomOrg: async (
+                        payload?: {
+                            params?: {
+                                user_id_type?:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id"
+                                    | "people_corehr_id";
+                            };
+                            data: {
+                                user_id: string;
+                                object_api_name: string;
+                                custom_org_with_rates: Array<{
+                                    id: string;
+                                    rate?: string;
+                                }>;
+                                start_reason?: string;
+                                effective_time: string;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, { code?: number; msg?: string; data?: any }>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/corehr/v2/custom_org/create_emp_custom_org`,
+                                    path
+                                ),
+                                method: "POST",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                    /**
+                     * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee.custom_org&apiName=del&version=v2 click to debug }
+                     *
+                     * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/del document }
+                     */
+                    del: async (
+                        payload?: {
+                            params?: {
+                                user_id_type?:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id"
+                                    | "people_corehr_id";
+                            };
+                            data: {
+                                user_id: string;
+                                job_data_custom_org_id: string;
+                                version_id: string;
+                                object_api_name: string;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, { code?: number; msg?: string; data?: any }>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/corehr/v2/custom_org/del`,
+                                    path
+                                ),
+                                method: "POST",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                    /**
+                     * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee.custom_org&apiName=edit_emp_custom_org&version=v2 click to debug }
+                     *
+                     * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/employee-custom_org/edit_emp_custom_org document }
+                     */
+                    editEmpCustomOrg: async (
+                        payload?: {
+                            params?: {
+                                user_id_type?:
+                                    | "user_id"
+                                    | "union_id"
+                                    | "open_id"
+                                    | "people_corehr_id";
+                            };
+                            data: {
+                                user_id: string;
+                                object_api_name: string;
+                                job_data_custom_org_id: string;
+                                version_id: string;
+                                custom_org_with_rates: Array<{
+                                    id: string;
+                                    rate?: string;
+                                }>;
+                                effective_time: string;
+                                start_reason?: string;
+                            };
+                        },
+                        options?: IRequestOptions
+                    ) => {
+                        const { headers, params, data, path } =
+                            await this.formatPayload(payload, options);
+
+                        return this.httpInstance
+                            .request<any, { code?: number; msg?: string; data?: any }>({
+                                url: fillApiPath(
+                                    `${this.domain}/open-apis/corehr/v2/custom_org/edit_emp_custom_org`,
+                                    path
+                                ),
+                                method: "POST",
+                                data,
+                                params,
+                                headers,
+                                paramsSerializer: (params) =>
+                                    stringify(params, { arrayFormat: "repeat" }),
+                            })
+                            .catch((e) => {
+                                this.logger.error(formatErrors(e));
+                                throw e;
+                            });
+                    },
+                },
                 /**
                  * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=employee&apiName=batch_get&version=v2 click to debug }
                  *
@@ -38528,6 +38793,43 @@ export default abstract class Client extends contract {
                         >({
                             url: fillApiPath(
                                 `${this.domain}/open-apis/corehr/v2/locations/batch_get`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=location&apiName=query_multi_timeline&version=v2 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/location/query_multi_timeline document }
+                 */
+                queryMultiTimeline: async (
+                    payload?: {
+                        data: {
+                            location_ids: Array<string>;
+                            start_date?: string;
+                            end_date?: string;
+                            fields?: Array<string>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: any }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/corehr/v2/locations/query_multi_timeline`,
                                 path
                             ),
                             method: "POST",
@@ -49113,6 +49415,62 @@ export default abstract class Client extends contract {
                             throw e;
                         });
                 },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=probation&apiName=edit&version=v2 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/probation/edit document }
+                 */
+                edit: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id"
+                                | "people_corehr_id";
+                        };
+                        data: {
+                            employment_id: string;
+                            probation_start_date?: string;
+                            probation_expected_end_date?: string;
+                            probation_outcome?: string;
+                            actual_probation_end_date?: string;
+                            probation_extend_expected_end_date?: string;
+                            extended_probation_period_duration?: number;
+                            extended_probation_period_unit?: string;
+                            notes?: string;
+                            self_review?: string;
+                            custom_fields?: Array<{
+                                custom_api_name: string;
+                                name?: { zh_cn?: string; en_us?: string };
+                                type?: number;
+                                value: string;
+                            }>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: any }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/corehr/v2/probation/edit`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
                 searchWithIterator: async (
                     payload?: {
                         data?: {
@@ -49869,6 +50227,100 @@ export default abstract class Client extends contract {
              * process
              */
             process: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=process&apiName=process_start&version=v2 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/process_start document }
+                 */
+                start: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id"
+                                | "people_corehr_id";
+                            department_id_type?:
+                                | "open_department_id"
+                                | "department_id"
+                                | "people_corehr_department_id";
+                        };
+                        data: {
+                            flow_definition_id: string;
+                            initiator_id?: string;
+                            system_initiator?: boolean;
+                            flow_data?: Array<{
+                                variable_api_name: string;
+                                variable_value?: any;
+                                sub_values?: Array<any>;
+                            }>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: any }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/corehr/v2/process_start`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=process&apiName=query_flow_data_template&version=v2 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/corehr-v2/query_flow_data_template document }
+                 */
+                queryFlowDataTemplate: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id"
+                                | "people_corehr_id";
+                        };
+                        data: {
+                            flow_definition_id: string;
+                            variable_api_names: Array<string>;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: any }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/corehr/v2/query_flow_data_template`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
                 /**
                  * {@link https://open.feishu.cn/api-explorer?project=corehr&resource=process&apiName=flow_variable_data&version=v2 click to debug }
                  *
