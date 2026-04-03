@@ -32,6 +32,195 @@ export default abstract class Client extends people_bytedance {
          
          */
     performance = {
+        v1: {
+            /**
+             * semester
+             */
+            semester: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=performance&resource=semester&apiName=list&version=v1 click to debug }
+                 *
+                 * 查询绩效周期
+                 */
+                list: async (
+                    payload?: {
+                        params?: {
+                            start_time?: string;
+                            end_time?: string;
+                            year?: number;
+                            type_group?: string;
+                            type?: string;
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: {} }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/performance/v1/semesters`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * review_data
+             */
+            reviewData: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=performance&resource=review_data&apiName=query&version=v1 click to debug }
+                 *
+                 * 查询绩效评估数据
+                 */
+                query: async (
+                    payload?: {
+                        data: {
+                            start_time: string;
+                            end_time: string;
+                            stage_types: Array<
+                                | "leader_review"
+                                | "communication_and_open_result"
+                            >;
+                            stage_progress?: Array<number>;
+                            semester_id_list?: Array<string>;
+                            reviewee_user_id_list: Array<string>;
+                            updated_later_than?: string;
+                        };
+                        params?: {
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id"
+                                | "people_admin_id";
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: {} }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/performance/v1/review_datas/query`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * stage_task
+             */
+            stageTask: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=performance&resource=stage_task&apiName=find_by_page&version=v1 click to debug }
+                 *
+                 * 分页查询环节信息
+                 */
+                findByPage: async (
+                    payload?: {
+                        data: {
+                            semester_id: string;
+                            task_option_lists?: Array<number>;
+                            after_time?: string;
+                            before_time?: string;
+                            page_token?: string;
+                            page_size?: number;
+                        };
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: {} }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/performance/v1/stage_tasks/find_by_page`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=performance&resource=stage_task&apiName=find_by_user_list&version=v1 click to debug }
+                 *
+                 * 按人员查询环节信息
+                 */
+                findByUserList: async (
+                    payload?: {
+                        data: {
+                            semester_id: string;
+                            user_id_lists: Array<string>;
+                            task_option_lists?: Array<number>;
+                            after_time?: string;
+                            before_time?: string;
+                        };
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: {} }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/performance/v1/stage_tasks/find_by_user_list`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+        },
         v2: {
             /**
              * activity
@@ -2042,6 +2231,50 @@ export default abstract class Client extends people_bytedance {
                         >({
                             url: fillApiPath(
                                 `${this.domain}/open-apis/performance/v2/user_group_user_rels/write`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * user_info
+             */
+            userInfo: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=performance&resource=user_info&apiName=query&version=v2 click to debug }
+                 *
+                 * 查询绩效人员信息
+                 */
+                query: async (
+                    payload?: {
+                        data: {
+                            semester_id: string;
+                            user_ids: Array<string>;
+                        };
+                        params?: {
+                            user_id_type?: "user_id" | "union_id" | "open_id";
+                            department_id_type?: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<any, { code?: number; msg?: string; data?: {} }>({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/performance/v2/user_info/query`,
                                 path
                             ),
                             method: "POST",
