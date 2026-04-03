@@ -1,0 +1,237 @@
+# hire API Inventory
+
+- Canonical methods: 214
+- Event handles: 12
+
+## Canonical Methods
+
+- hire.advertisement.publish -> POST ${this.domain}/open-apis/hire/v1/advertisements/:advertisement_id/publish [custom_params_serializer] aliases: hire.advertisement.publish, hire.v1.advertisement.publish
+- hire.agency.batchQuery -> POST ${this.domain}/open-apis/hire/v1/agencies/batch_query [custom_params_serializer] aliases: hire.agency.batchQuery, hire.v1.agency.batchQuery
+- hire.agency.get -> GET ${this.domain}/open-apis/hire/v1/agencies/:agency_id [custom_params_serializer] aliases: hire.agency.get, hire.v1.agency.get
+- hire.agency.getAgencyAccount -> POST ${this.domain}/open-apis/hire/v1/agencies/get_agency_account [custom_params_serializer] aliases: hire.agency.getAgencyAccount, hire.v1.agency.getAgencyAccount
+- hire.agency.operateAgencyAccount -> POST ${this.domain}/open-apis/hire/v1/agencies/operate_agency_account [custom_params_serializer] aliases: hire.agency.operateAgencyAccount, hire.v1.agency.operateAgencyAccount
+- hire.agency.protect -> POST ${this.domain}/open-apis/hire/v1/agencies/protect [custom_params_serializer] aliases: hire.agency.protect, hire.v1.agency.protect
+- hire.agency.protectSearch -> POST ${this.domain}/open-apis/hire/v1/agencies/protection_period/search [custom_params_serializer] aliases: hire.agency.protectSearch, hire.v1.agency.protectSearch
+- hire.agency.query -> GET ${this.domain}/open-apis/hire/v1/agencies/query [custom_params_serializer] aliases: hire.agency.query, hire.v1.agency.query
+- hire.application.cancelOnboard -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/cancel_onboard [custom_params_serializer] aliases: hire.application.cancelOnboard, hire.v1.application.cancelOnboard
+- hire.application.create -> POST ${this.domain}/open-apis/hire/v1/applications [custom_params_serializer] aliases: hire.application.create, hire.v1.application.create
+- hire.application.get -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id [custom_params_serializer] aliases: hire.application.get, hire.v1.application.get
+- hire.application.getDetail -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/get_detail [custom_params_serializer] aliases: hire.application.getDetail, hire.v1.application.getDetail
+- hire.application.list -> GET ${this.domain}/open-apis/hire/v1/applications [custom_params_serializer] aliases: hire.application.list, hire.v1.application.list
+- hire.application.offer -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/offer [custom_params_serializer] aliases: hire.application.offer, hire.v1.application.offer
+- hire.application.recover -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/recover [custom_params_serializer] aliases: hire.application.recover, hire.v1.application.recover
+- hire.application.terminate -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/terminate [custom_params_serializer] aliases: hire.application.terminate, hire.v1.application.terminate
+- hire.application.transferOnboard -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/transfer_onboard [custom_params_serializer] aliases: hire.application.transferOnboard, hire.v1.application.transferOnboard
+- hire.application.transferStage -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/transfer_stage [custom_params_serializer] aliases: hire.application.transferStage, hire.v1.application.transferStage
+- hire.applicationInterview.list -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/interviews [custom_params_serializer] aliases: hire.applicationInterview.list, hire.v1.applicationInterview.list
+- hire.attachment.create -> POST ${this.domain}/open-apis/hire/v1/attachments [custom_params_serializer] aliases: hire.attachment.create, hire.v1.attachment.create
+- hire.attachment.get -> GET ${this.domain}/open-apis/hire/v1/attachments/:attachment_id [custom_params_serializer] aliases: hire.attachment.get, hire.v1.attachment.get
+- hire.attachment.preview -> GET ${this.domain}/open-apis/hire/v1/attachments/:attachment_id/preview [custom_params_serializer] aliases: hire.attachment.preview, hire.v1.attachment.preview
+- hire.backgroundCheckOrder.batchQuery -> POST ${this.domain}/open-apis/hire/v1/background_check_orders/batch_query [custom_params_serializer] aliases: hire.backgroundCheckOrder.batchQuery, hire.v1.backgroundCheckOrder.batchQuery
+- hire.backgroundCheckOrder.list -> GET ${this.domain}/open-apis/hire/v1/background_check_orders [custom_params_serializer] aliases: hire.backgroundCheckOrder.list, hire.v1.backgroundCheckOrder.list
+- hire.diversityInclusion.search -> POST ${this.domain}/open-apis/hire/v1/applications/diversity_inclusions/search [custom_params_serializer] aliases: hire.diversityInclusion.search, hire.v1.diversityInclusion.search
+- hire.ecoAccountCustomField.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_account_custom_fields/batch_delete [custom_params_serializer] aliases: hire.ecoAccountCustomField.batchDelete, hire.v1.ecoAccountCustomField.batchDelete
+- hire.ecoAccountCustomField.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_account_custom_fields/batch_update [custom_params_serializer] aliases: hire.ecoAccountCustomField.batchUpdate, hire.v1.ecoAccountCustomField.batchUpdate
+- hire.ecoAccountCustomField.create -> POST ${this.domain}/open-apis/hire/v1/eco_account_custom_fields [custom_params_serializer] aliases: hire.ecoAccountCustomField.create, hire.v1.ecoAccountCustomField.create
+- hire.ecoBackgroundCheck.cancel -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/cancel [custom_params_serializer] aliases: hire.ecoBackgroundCheck.cancel, hire.v1.ecoBackgroundCheck.cancel
+- hire.ecoBackgroundCheck.updateProgress -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/update_progress [custom_params_serializer] aliases: hire.ecoBackgroundCheck.updateProgress, hire.v1.ecoBackgroundCheck.updateProgress
+- hire.ecoBackgroundCheck.updateResult -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/update_result [custom_params_serializer] aliases: hire.ecoBackgroundCheck.updateResult, hire.v1.ecoBackgroundCheck.updateResult
+- hire.ecoBackgroundCheckCustomField.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields/batch_delete [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.batchDelete, hire.v1.ecoBackgroundCheckCustomField.batchDelete
+- hire.ecoBackgroundCheckCustomField.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields/batch_update [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.batchUpdate, hire.v1.ecoBackgroundCheckCustomField.batchUpdate
+- hire.ecoBackgroundCheckCustomField.create -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.create, hire.v1.ecoBackgroundCheckCustomField.create
+- hire.ecoBackgroundCheckPackage.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_packages/batch_delete [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.batchDelete, hire.v1.ecoBackgroundCheckPackage.batchDelete
+- hire.ecoBackgroundCheckPackage.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_background_check_packages/batch_update [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.batchUpdate, hire.v1.ecoBackgroundCheckPackage.batchUpdate
+- hire.ecoBackgroundCheckPackage.create -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_packages [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.create, hire.v1.ecoBackgroundCheckPackage.create
+- hire.ecoExam.loginInfo -> POST ${this.domain}/open-apis/hire/v1/eco_exams/:exam_id/login_info [custom_params_serializer] aliases: hire.ecoExam.loginInfo, hire.v1.ecoExam.loginInfo
+- hire.ecoExam.updateResult -> POST ${this.domain}/open-apis/hire/v1/eco_exams/:exam_id/update_result [custom_params_serializer] aliases: hire.ecoExam.updateResult, hire.v1.ecoExam.updateResult
+- hire.ecoExamPaper.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_exam_papers/batch_delete [custom_params_serializer] aliases: hire.ecoExamPaper.batchDelete, hire.v1.ecoExamPaper.batchDelete
+- hire.ecoExamPaper.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_exam_papers/batch_update [custom_params_serializer] aliases: hire.ecoExamPaper.batchUpdate, hire.v1.ecoExamPaper.batchUpdate
+- hire.ecoExamPaper.create -> POST ${this.domain}/open-apis/hire/v1/eco_exam_papers [custom_params_serializer] aliases: hire.ecoExamPaper.create, hire.v1.ecoExamPaper.create
+- hire.ehrImportTask.patch -> PATCH ${this.domain}/open-apis/hire/v1/ehr_import_tasks/:ehr_import_task_id [custom_params_serializer] aliases: hire.ehrImportTask.patch, hire.v1.ehrImportTask.patch
+- hire.employee.get -> GET ${this.domain}/open-apis/hire/v1/employees/:employee_id [custom_params_serializer] aliases: hire.employee.get, hire.v1.employee.get
+- hire.employee.getByApplication -> GET ${this.domain}/open-apis/hire/v1/employees/get_by_application [custom_params_serializer] aliases: hire.employee.getByApplication, hire.v1.employee.getByApplication
+- hire.employee.patch -> PATCH ${this.domain}/open-apis/hire/v1/employees/:employee_id [custom_params_serializer] aliases: hire.employee.patch, hire.v1.employee.patch
+- hire.evaluation.list -> GET ${this.domain}/open-apis/hire/v1/evaluations [custom_params_serializer] aliases: hire.evaluation.list, hire.v1.evaluation.list
+- hire.evaluation.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/evaluations [custom_params_serializer, iterator_helper] aliases: hire.evaluation.listWithIterator, hire.v1.evaluation.listWithIterator
+- hire.evaluationTask.list -> GET ${this.domain}/open-apis/hire/v1/evaluation_tasks [custom_params_serializer] aliases: hire.evaluationTask.list, hire.v1.evaluationTask.list
+- hire.evaluationTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/evaluation_tasks [custom_params_serializer, iterator_helper] aliases: hire.evaluationTask.listWithIterator, hire.v1.evaluationTask.listWithIterator
+- hire.exam.create -> POST ${this.domain}/open-apis/hire/v1/exams [custom_params_serializer] aliases: hire.exam.create, hire.v1.exam.create
+- hire.examMarkingTask.list -> GET ${this.domain}/open-apis/hire/v1/exam_marking_tasks [custom_params_serializer] aliases: hire.examMarkingTask.list, hire.v1.examMarkingTask.list
+- hire.examMarkingTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/exam_marking_tasks [custom_params_serializer, iterator_helper] aliases: hire.examMarkingTask.listWithIterator, hire.v1.examMarkingTask.listWithIterator
+- hire.externalApplication.create -> POST ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer] aliases: hire.externalApplication.create, hire.v1.externalApplication.create
+- hire.externalApplication.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_applications/:external_application_id [custom_params_serializer] aliases: hire.externalApplication.delete, hire.v1.externalApplication.delete
+- hire.externalApplication.list -> GET ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer] aliases: hire.externalApplication.list, hire.v1.externalApplication.list
+- hire.externalApplication.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer, iterator_helper] aliases: hire.externalApplication.listWithIterator, hire.v1.externalApplication.listWithIterator
+- hire.externalApplication.update -> PUT ${this.domain}/open-apis/hire/v1/external_applications/:external_application_id [custom_params_serializer] aliases: hire.externalApplication.update, hire.v1.externalApplication.update
+- hire.externalBackgroundCheck.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_background_checks/batch_query [custom_params_serializer] aliases: hire.externalBackgroundCheck.batchQuery, hire.v1.externalBackgroundCheck.batchQuery
+- hire.externalBackgroundCheck.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_background_checks/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalBackgroundCheck.batchQueryWithIterator, hire.v1.externalBackgroundCheck.batchQueryWithIterator
+- hire.externalBackgroundCheck.create -> POST ${this.domain}/open-apis/hire/v1/external_background_checks [custom_params_serializer] aliases: hire.externalBackgroundCheck.create, hire.v1.externalBackgroundCheck.create
+- hire.externalBackgroundCheck.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_background_checks/:external_background_check_id [custom_params_serializer] aliases: hire.externalBackgroundCheck.delete, hire.v1.externalBackgroundCheck.delete
+- hire.externalBackgroundCheck.update -> PUT ${this.domain}/open-apis/hire/v1/external_background_checks/:external_background_check_id [custom_params_serializer] aliases: hire.externalBackgroundCheck.update, hire.v1.externalBackgroundCheck.update
+- hire.externalInterview.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_interviews/batch_query [custom_params_serializer] aliases: hire.externalInterview.batchQuery, hire.v1.externalInterview.batchQuery
+- hire.externalInterview.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_interviews/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalInterview.batchQueryWithIterator, hire.v1.externalInterview.batchQueryWithIterator
+- hire.externalInterview.create -> POST ${this.domain}/open-apis/hire/v1/external_interviews [custom_params_serializer] aliases: hire.externalInterview.create, hire.v1.externalInterview.create
+- hire.externalInterview.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_interviews/:external_interview_id [custom_params_serializer] aliases: hire.externalInterview.delete, hire.v1.externalInterview.delete
+- hire.externalInterview.update -> PUT ${this.domain}/open-apis/hire/v1/external_interviews/:external_interview_id [custom_params_serializer] aliases: hire.externalInterview.update, hire.v1.externalInterview.update
+- hire.externalInterviewAssessment.create -> POST ${this.domain}/open-apis/hire/v1/external_interview_assessments [custom_params_serializer] aliases: hire.externalInterviewAssessment.create, hire.v1.externalInterviewAssessment.create
+- hire.externalInterviewAssessment.patch -> PATCH ${this.domain}/open-apis/hire/v1/external_interview_assessments/:external_interview_assessment_id [custom_params_serializer] aliases: hire.externalInterviewAssessment.patch, hire.v1.externalInterviewAssessment.patch
+- hire.externalOffer.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_offers/batch_query [custom_params_serializer] aliases: hire.externalOffer.batchQuery, hire.v1.externalOffer.batchQuery
+- hire.externalOffer.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_offers/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalOffer.batchQueryWithIterator, hire.v1.externalOffer.batchQueryWithIterator
+- hire.externalOffer.create -> POST ${this.domain}/open-apis/hire/v1/external_offers [custom_params_serializer] aliases: hire.externalOffer.create, hire.v1.externalOffer.create
+- hire.externalOffer.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_offers/:external_offer_id [custom_params_serializer] aliases: hire.externalOffer.delete, hire.v1.externalOffer.delete
+- hire.externalOffer.update -> PUT ${this.domain}/open-apis/hire/v1/external_offers/:external_offer_id [custom_params_serializer] aliases: hire.externalOffer.update, hire.v1.externalOffer.update
+- hire.externalReferralReward.create -> POST ${this.domain}/open-apis/hire/v1/external_referral_rewards [custom_params_serializer] aliases: hire.externalReferralReward.create, hire.v1.externalReferralReward.create
+- hire.externalReferralReward.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_referral_rewards/:external_referral_reward_id [custom_params_serializer] aliases: hire.externalReferralReward.delete, hire.v1.externalReferralReward.delete
+- hire.interview.getByTalent -> GET ${this.domain}/open-apis/hire/v1/interviews/get_by_talent [custom_params_serializer] aliases: hire.interview.getByTalent, hire.v1.interview.getByTalent
+- hire.interview.list -> GET ${this.domain}/open-apis/hire/v1/interviews [custom_params_serializer] aliases: hire.interview.list, hire.v1.interview.list
+- hire.interviewer.list -> GET ${this.domain}/open-apis/hire/v1/interviewers [custom_params_serializer] aliases: hire.interviewer.list, hire.v1.interviewer.list
+- hire.interviewer.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interviewers [custom_params_serializer, iterator_helper] aliases: hire.interviewer.listWithIterator, hire.v1.interviewer.listWithIterator
+- hire.interviewer.patch -> PATCH ${this.domain}/open-apis/hire/v1/interviewers/:interviewer_id [custom_params_serializer] aliases: hire.interviewer.patch, hire.v1.interviewer.patch
+- hire.interviewFeedbackForm.list -> GET ${this.domain}/open-apis/hire/v1/interview_feedback_forms [custom_params_serializer] aliases: hire.interviewFeedbackForm.list, hire.v1.interviewFeedbackForm.list
+- hire.interviewFeedbackForm.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_feedback_forms [custom_params_serializer, iterator_helper] aliases: hire.interviewFeedbackForm.listWithIterator, hire.v1.interviewFeedbackForm.listWithIterator
+- hire.interviewRecord.get -> GET ${this.domain}/open-apis/hire/v1/interview_records/:interview_record_id [custom_params_serializer] aliases: hire.interviewRecord.get, hire.v1.interviewRecord.get
+- hire.interviewRecord.get -> GET ${this.domain}/open-apis/hire/v2/interview_records/:interview_record_id [custom_params_serializer]
+- hire.interviewRecord.list -> GET ${this.domain}/open-apis/hire/v1/interview_records [custom_params_serializer] aliases: hire.interviewRecord.list, hire.v1.interviewRecord.list
+- hire.interviewRecord.list -> GET ${this.domain}/open-apis/hire/v2/interview_records [custom_params_serializer]
+- hire.interviewRecord.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_records [custom_params_serializer, iterator_helper] aliases: hire.interviewRecord.listWithIterator, hire.v1.interviewRecord.listWithIterator
+- hire.interviewRecord.listWithIterator -> GET ${this.domain}/open-apis/hire/v2/interview_records [custom_params_serializer, iterator_helper]
+- hire.interviewRecordAttachment.get -> GET ${this.domain}/open-apis/hire/v1/interview_records/attachments [custom_params_serializer] aliases: hire.interviewRecordAttachment.get, hire.v1.interviewRecordAttachment.get
+- hire.interviewRegistrationSchema.list -> GET ${this.domain}/open-apis/hire/v1/interview_registration_schemas [custom_params_serializer] aliases: hire.interviewRegistrationSchema.list, hire.v1.interviewRegistrationSchema.list
+- hire.interviewRegistrationSchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_registration_schemas [custom_params_serializer, iterator_helper] aliases: hire.interviewRegistrationSchema.listWithIterator, hire.v1.interviewRegistrationSchema.listWithIterator
+- hire.interviewRoundType.list -> GET ${this.domain}/open-apis/hire/v1/interview_round_types [custom_params_serializer] aliases: hire.interviewRoundType.list, hire.v1.interviewRoundType.list
+- hire.interviewTask.list -> GET ${this.domain}/open-apis/hire/v1/interview_tasks [custom_params_serializer] aliases: hire.interviewTask.list, hire.v1.interviewTask.list
+- hire.interviewTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_tasks [custom_params_serializer, iterator_helper] aliases: hire.interviewTask.listWithIterator, hire.v1.interviewTask.listWithIterator
+- hire.job.close -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/close [custom_params_serializer] aliases: hire.job.close, hire.v1.job.close
+- hire.job.combinedCreate -> POST ${this.domain}/open-apis/hire/v1/jobs/combined_create [custom_params_serializer] aliases: hire.job.combinedCreate, hire.v1.job.combinedCreate
+- hire.job.combinedUpdate -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/combined_update [custom_params_serializer] aliases: hire.job.combinedUpdate, hire.v1.job.combinedUpdate
+- hire.job.config -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/config [custom_params_serializer] aliases: hire.job.config, hire.v1.job.config
+- hire.job.get -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id [custom_params_serializer] aliases: hire.job.get, hire.v1.job.get
+- hire.job.getDetail -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/get_detail [custom_params_serializer] aliases: hire.job.getDetail, hire.v1.job.getDetail
+- hire.job.list -> GET ${this.domain}/open-apis/hire/v1/jobs [custom_params_serializer] aliases: hire.job.list, hire.v1.job.list
+- hire.job.open -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/open [custom_params_serializer] aliases: hire.job.open, hire.v1.job.open
+- hire.job.recruiter -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/recruiter [custom_params_serializer] aliases: hire.job.recruiter, hire.v1.job.recruiter
+- hire.job.updateConfig -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/update_config [custom_params_serializer] aliases: hire.job.updateConfig, hire.v1.job.updateConfig
+- hire.jobFunction.list -> GET ${this.domain}/open-apis/hire/v1/job_functions [custom_params_serializer] aliases: hire.jobFunction.list, hire.v1.jobFunction.list
+- hire.jobFunction.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/job_functions [custom_params_serializer, iterator_helper] aliases: hire.jobFunction.listWithIterator, hire.v1.jobFunction.listWithIterator
+- hire.jobManager.batchUpdate -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/managers/batch_update [custom_params_serializer] aliases: hire.jobManager.batchUpdate, hire.v1.jobManager.batchUpdate
+- hire.jobManager.get -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/managers/:manager_id [custom_params_serializer] aliases: hire.jobManager.get, hire.v1.jobManager.get
+- hire.jobProcess.list -> GET ${this.domain}/open-apis/hire/v1/job_processes [custom_params_serializer] aliases: hire.jobProcess.list, hire.v1.jobProcess.list
+- hire.jobPublishRecord.search -> POST ${this.domain}/open-apis/hire/v1/job_publish_records/search [custom_params_serializer] aliases: hire.jobPublishRecord.search, hire.v1.jobPublishRecord.search
+- hire.jobRequirement.create -> POST ${this.domain}/open-apis/hire/v1/job_requirements [custom_params_serializer] aliases: hire.jobRequirement.create, hire.v1.jobRequirement.create
+- hire.jobRequirement.delete -> DELETE ${this.domain}/open-apis/hire/v1/job_requirements/:job_requirement_id [custom_params_serializer] aliases: hire.jobRequirement.delete, hire.v1.jobRequirement.delete
+- hire.jobRequirement.list -> GET ${this.domain}/open-apis/hire/v1/job_requirements [custom_params_serializer] aliases: hire.jobRequirement.list, hire.v1.jobRequirement.list
+- hire.jobRequirement.listById -> POST ${this.domain}/open-apis/hire/v1/job_requirements/search [custom_params_serializer] aliases: hire.jobRequirement.listById, hire.v1.jobRequirement.listById
+- hire.jobRequirement.update -> PUT ${this.domain}/open-apis/hire/v1/job_requirements/:job_requirement_id [custom_params_serializer] aliases: hire.jobRequirement.update, hire.v1.jobRequirement.update
+- hire.jobRequirementSchema.list -> GET ${this.domain}/open-apis/hire/v1/job_requirement_schemas [custom_params_serializer] aliases: hire.jobRequirementSchema.list, hire.v1.jobRequirementSchema.list
+- hire.jobSchema.list -> GET ${this.domain}/open-apis/hire/v1/job_schemas [custom_params_serializer] aliases: hire.jobSchema.list, hire.v1.jobSchema.list
+- hire.jobType.list -> GET ${this.domain}/open-apis/hire/v1/job_types [custom_params_serializer] aliases: hire.jobType.list, hire.v1.jobType.list
+- hire.jobType.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/job_types [custom_params_serializer, iterator_helper] aliases: hire.jobType.listWithIterator, hire.v1.jobType.listWithIterator
+- hire.location.list -> GET ${this.domain}/open-apis/hire/v1/locations [custom_params_serializer] aliases: hire.location.list, hire.v1.location.list
+- hire.location.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/locations [custom_params_serializer, iterator_helper] aliases: hire.location.listWithIterator, hire.v1.location.listWithIterator
+- hire.location.query -> POST ${this.domain}/open-apis/hire/v1/locations/query [custom_params_serializer] aliases: hire.location.query, hire.v1.location.query
+- hire.minutes.get -> GET ${this.domain}/open-apis/hire/v1/minutes [custom_params_serializer] aliases: hire.minutes.get, hire.v1.minutes.get
+- hire.note.create -> POST ${this.domain}/open-apis/hire/v1/notes [custom_params_serializer] aliases: hire.note.create, hire.v1.note.create
+- hire.note.delete -> DELETE ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.delete, hire.v1.note.delete
+- hire.note.get -> GET ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.get, hire.v1.note.get
+- hire.note.list -> GET ${this.domain}/open-apis/hire/v1/notes [custom_params_serializer] aliases: hire.note.list, hire.v1.note.list
+- hire.note.patch -> PATCH ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.patch, hire.v1.note.patch
+- hire.offer.create -> POST ${this.domain}/open-apis/hire/v1/offers [custom_params_serializer] aliases: hire.offer.create, hire.v1.offer.create
+- hire.offer.get -> GET ${this.domain}/open-apis/hire/v1/offers/:offer_id [custom_params_serializer] aliases: hire.offer.get, hire.v1.offer.get
+- hire.offer.internOfferStatus -> POST ${this.domain}/open-apis/hire/v1/offers/:offer_id/intern_offer_status [custom_params_serializer] aliases: hire.offer.internOfferStatus, hire.v1.offer.internOfferStatus
+- hire.offer.list -> GET ${this.domain}/open-apis/hire/v1/offers [custom_params_serializer] aliases: hire.offer.list, hire.v1.offer.list
+- hire.offer.offerStatus -> PATCH ${this.domain}/open-apis/hire/v1/offers/:offer_id/offer_status [custom_params_serializer] aliases: hire.offer.offerStatus, hire.v1.offer.offerStatus
+- hire.offer.update -> PUT ${this.domain}/open-apis/hire/v1/offers/:offer_id [custom_params_serializer] aliases: hire.offer.update, hire.v1.offer.update
+- hire.offerApplicationForm.get -> GET ${this.domain}/open-apis/hire/v1/offer_application_forms/:offer_application_form_id [custom_params_serializer] aliases: hire.offerApplicationForm.get, hire.v1.offerApplicationForm.get
+- hire.offerApplicationForm.list -> GET ${this.domain}/open-apis/hire/v1/offer_application_forms [custom_params_serializer] aliases: hire.offerApplicationForm.list, hire.v1.offerApplicationForm.list
+- hire.offerApprovalTemplate.list -> GET ${this.domain}/open-apis/hire/v1/offer_approval_templates [custom_params_serializer] aliases: hire.offerApprovalTemplate.list, hire.v1.offerApprovalTemplate.list
+- hire.offerCustomField.update -> PUT ${this.domain}/open-apis/hire/v1/offer_custom_fields/:offer_custom_field_id [custom_params_serializer] aliases: hire.offerCustomField.update, hire.v1.offerCustomField.update
+- hire.offerSchema.get -> GET ${this.domain}/open-apis/hire/v1/offer_schemas/:offer_schema_id [custom_params_serializer] aliases: hire.offerSchema.get, hire.v1.offerSchema.get
+- hire.portalApplySchema.list -> GET ${this.domain}/open-apis/hire/v1/portal_apply_schemas [custom_params_serializer] aliases: hire.portalApplySchema.list, hire.v1.portalApplySchema.list
+- hire.portalApplySchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/portal_apply_schemas [custom_params_serializer, iterator_helper] aliases: hire.portalApplySchema.listWithIterator, hire.v1.portalApplySchema.listWithIterator
+- hire.questionnaire.list -> GET ${this.domain}/open-apis/hire/v1/questionnaires [custom_params_serializer] aliases: hire.questionnaire.list, hire.v1.questionnaire.list
+- hire.referral.getByApplication -> GET ${this.domain}/open-apis/hire/v1/referrals/get_by_application [custom_params_serializer] aliases: hire.referral.getByApplication, hire.v1.referral.getByApplication
+- hire.referral.search -> POST ${this.domain}/open-apis/hire/v1/referrals/search [custom_params_serializer] aliases: hire.referral.search, hire.v1.referral.search
+- hire.referralAccount.create -> POST ${this.domain}/open-apis/hire/v1/referral_account [custom_params_serializer] aliases: hire.referralAccount.create, hire.v1.referralAccount.create
+- hire.referralAccount.deactivate -> POST ${this.domain}/open-apis/hire/v1/referral_account/:referral_account_id/deactivate [custom_params_serializer] aliases: hire.referralAccount.deactivate, hire.v1.referralAccount.deactivate
+- hire.referralAccount.enable -> POST ${this.domain}/open-apis/hire/v1/referral_account/enable [custom_params_serializer] aliases: hire.referralAccount.enable, hire.v1.referralAccount.enable
+- hire.referralAccount.getAccountAssets -> GET ${this.domain}/open-apis/hire/v1/referral_account/get_account_assets [custom_params_serializer] aliases: hire.referralAccount.getAccountAssets, hire.v1.referralAccount.getAccountAssets
+- hire.referralAccount.reconciliation -> POST ${this.domain}/open-apis/hire/v1/referral_account/reconciliation [custom_params_serializer] aliases: hire.referralAccount.reconciliation, hire.v1.referralAccount.reconciliation
+- hire.referralAccount.withdraw -> POST ${this.domain}/open-apis/hire/v1/referral_account/:referral_account_id/withdraw [custom_params_serializer] aliases: hire.referralAccount.withdraw, hire.v1.referralAccount.withdraw
+- hire.referralWebsiteJobPost.get -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts/:job_post_id [custom_params_serializer] aliases: hire.referralWebsiteJobPost.get, hire.v1.referralWebsiteJobPost.get
+- hire.referralWebsiteJobPost.list -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts [custom_params_serializer] aliases: hire.referralWebsiteJobPost.list, hire.v1.referralWebsiteJobPost.list
+- hire.referralWebsiteJobPost.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts [custom_params_serializer, iterator_helper] aliases: hire.referralWebsiteJobPost.listWithIterator, hire.v1.referralWebsiteJobPost.listWithIterator
+- hire.registrationSchema.list -> GET ${this.domain}/open-apis/hire/v1/registration_schemas [custom_params_serializer] aliases: hire.registrationSchema.list, hire.v1.registrationSchema.list
+- hire.registrationSchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/registration_schemas [custom_params_serializer, iterator_helper] aliases: hire.registrationSchema.listWithIterator, hire.v1.registrationSchema.listWithIterator
+- hire.resumeSource.list -> GET ${this.domain}/open-apis/hire/v1/resume_sources [custom_params_serializer] aliases: hire.resumeSource.list, hire.v1.resumeSource.list
+- hire.resumeSource.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/resume_sources [custom_params_serializer, iterator_helper] aliases: hire.resumeSource.listWithIterator, hire.v1.resumeSource.listWithIterator
+- hire.role.get -> GET ${this.domain}/open-apis/hire/v1/roles/:role_id [custom_params_serializer] aliases: hire.role.get, hire.v1.role.get
+- hire.role.list -> GET ${this.domain}/open-apis/hire/v1/roles [custom_params_serializer] aliases: hire.role.list, hire.v1.role.list
+- hire.role.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/roles [custom_params_serializer, iterator_helper] aliases: hire.role.listWithIterator, hire.v1.role.listWithIterator
+- hire.subject.list -> GET ${this.domain}/open-apis/hire/v1/subjects [custom_params_serializer] aliases: hire.subject.list, hire.v1.subject.list
+- hire.talent.addToFolder -> POST ${this.domain}/open-apis/hire/v1/talents/add_to_folder [custom_params_serializer] aliases: hire.talent.addToFolder, hire.v1.talent.addToFolder
+- hire.talent.batchGetId -> POST ${this.domain}/open-apis/hire/v1/talents/batch_get_id [custom_params_serializer] aliases: hire.talent.batchGetId, hire.v1.talent.batchGetId
+- hire.talent.combinedCreate -> POST ${this.domain}/open-apis/hire/v1/talents/combined_create [custom_params_serializer] aliases: hire.talent.combinedCreate, hire.v1.talent.combinedCreate
+- hire.talent.combinedUpdate -> POST ${this.domain}/open-apis/hire/v1/talents/combined_update [custom_params_serializer] aliases: hire.talent.combinedUpdate, hire.v1.talent.combinedUpdate
+- hire.talent.get -> GET ${this.domain}/open-apis/hire/v1/talents/:talent_id [custom_params_serializer] aliases: hire.talent.get, hire.v1.talent.get
+- hire.talent.get -> GET ${this.domain}/open-apis/hire/v2/talents/:talent_id [custom_params_serializer]
+- hire.talent.list -> GET ${this.domain}/open-apis/hire/v1/talents [custom_params_serializer] aliases: hire.talent.list, hire.v1.talent.list
+- hire.talent.onboardStatus -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/onboard_status [custom_params_serializer] aliases: hire.talent.onboardStatus, hire.v1.talent.onboardStatus
+- hire.talent.removeToFolder -> POST ${this.domain}/open-apis/hire/v1/talents/remove_to_folder [custom_params_serializer] aliases: hire.talent.removeToFolder, hire.v1.talent.removeToFolder
+- hire.talent.tag -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/tag [custom_params_serializer] aliases: hire.talent.tag, hire.v1.talent.tag
+- hire.talentBlocklist.changeTalentBlock -> POST ${this.domain}/open-apis/hire/v1/talent_blocklist/change_talent_block [custom_params_serializer] aliases: hire.talentBlocklist.changeTalentBlock, hire.v1.talentBlocklist.changeTalentBlock
+- hire.talentExternalInfo.create -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/external_info [custom_params_serializer] aliases: hire.talentExternalInfo.create, hire.v1.talentExternalInfo.create
+- hire.talentExternalInfo.update -> PUT ${this.domain}/open-apis/hire/v1/talents/:talent_id/external_info [custom_params_serializer] aliases: hire.talentExternalInfo.update, hire.v1.talentExternalInfo.update
+- hire.talentFolder.list -> GET ${this.domain}/open-apis/hire/v1/talent_folders [custom_params_serializer] aliases: hire.talentFolder.list, hire.v1.talentFolder.list
+- hire.talentFolder.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_folders [custom_params_serializer, iterator_helper] aliases: hire.talentFolder.listWithIterator, hire.v1.talentFolder.listWithIterator
+- hire.talentObject.query -> GET ${this.domain}/open-apis/hire/v1/talent_objects/query [custom_params_serializer] aliases: hire.talentObject.query, hire.v1.talentObject.query
+- hire.talentOperationLog.search -> POST ${this.domain}/open-apis/hire/v1/talent_operation_logs/search [custom_params_serializer] aliases: hire.talentOperationLog.search, hire.v1.talentOperationLog.search
+- hire.talentPool.batchChangeTalentPool -> POST ${this.domain}/open-apis/hire/v1/talent_pools/:talent_pool_id/batch_change_talent_pool [custom_params_serializer] aliases: hire.talentPool.batchChangeTalentPool, hire.v1.talentPool.batchChangeTalentPool
+- hire.talentPool.moveTalent -> POST ${this.domain}/open-apis/hire/v1/talent_pools/:talent_pool_id/talent_relationship [custom_params_serializer] aliases: hire.talentPool.moveTalent, hire.v1.talentPool.moveTalent
+- hire.talentPool.search -> GET ${this.domain}/open-apis/hire/v1/talent_pools/ [custom_params_serializer] aliases: hire.talentPool.search, hire.v1.talentPool.search
+- hire.talentPool.searchWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_pools/ [custom_params_serializer, iterator_helper] aliases: hire.talentPool.searchWithIterator, hire.v1.talentPool.searchWithIterator
+- hire.talentTag.list -> GET ${this.domain}/open-apis/hire/v1/talent_tags [custom_params_serializer] aliases: hire.talentTag.list, hire.v1.talentTag.list
+- hire.talentTag.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_tags [custom_params_serializer, iterator_helper] aliases: hire.talentTag.listWithIterator, hire.v1.talentTag.listWithIterator
+- hire.terminationReason.list -> GET ${this.domain}/open-apis/hire/v1/termination_reasons [custom_params_serializer] aliases: hire.terminationReason.list, hire.v1.terminationReason.list
+- hire.terminationReason.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/termination_reasons [custom_params_serializer, iterator_helper] aliases: hire.terminationReason.listWithIterator, hire.v1.terminationReason.listWithIterator
+- hire.test.search -> POST ${this.domain}/open-apis/hire/v1/tests/search [custom_params_serializer] aliases: hire.test.search, hire.v1.test.search
+- hire.test.searchWithIterator -> POST ${this.domain}/open-apis/hire/v1/tests/search [custom_params_serializer, iterator_helper] aliases: hire.test.searchWithIterator, hire.v1.test.searchWithIterator
+- hire.todo.list -> GET ${this.domain}/open-apis/hire/v1/todos [custom_params_serializer] aliases: hire.todo.list, hire.v1.todo.list
+- hire.todo.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/todos [custom_params_serializer, iterator_helper] aliases: hire.todo.listWithIterator, hire.v1.todo.listWithIterator
+- hire.tripartiteAgreement.create -> POST ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer] aliases: hire.tripartiteAgreement.create, hire.v1.tripartiteAgreement.create
+- hire.tripartiteAgreement.delete -> DELETE ${this.domain}/open-apis/hire/v1/tripartite_agreements/:tripartite_agreement_id [custom_params_serializer] aliases: hire.tripartiteAgreement.delete, hire.v1.tripartiteAgreement.delete
+- hire.tripartiteAgreement.list -> GET ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer] aliases: hire.tripartiteAgreement.list, hire.v1.tripartiteAgreement.list
+- hire.tripartiteAgreement.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer, iterator_helper] aliases: hire.tripartiteAgreement.listWithIterator, hire.v1.tripartiteAgreement.listWithIterator
+- hire.tripartiteAgreement.update -> PUT ${this.domain}/open-apis/hire/v1/tripartite_agreements/:tripartite_agreement_id [custom_params_serializer] aliases: hire.tripartiteAgreement.update, hire.v1.tripartiteAgreement.update
+- hire.userRole.list -> GET ${this.domain}/open-apis/hire/v1/user_roles [custom_params_serializer] aliases: hire.userRole.list, hire.v1.userRole.list
+- hire.userRole.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/user_roles [custom_params_serializer, iterator_helper] aliases: hire.userRole.listWithIterator, hire.v1.userRole.listWithIterator
+- hire.website.list -> GET ${this.domain}/open-apis/hire/v1/websites [custom_params_serializer] aliases: hire.v1.website.list, hire.website.list
+- hire.website.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/websites [custom_params_serializer, iterator_helper] aliases: hire.v1.website.listWithIterator, hire.website.listWithIterator
+- hire.websiteChannel.create -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/channels [custom_params_serializer] aliases: hire.v1.websiteChannel.create, hire.websiteChannel.create
+- hire.websiteChannel.delete -> DELETE ${this.domain}/open-apis/hire/v1/websites/:website_id/channels/:channel_id [custom_params_serializer] aliases: hire.v1.websiteChannel.delete, hire.websiteChannel.delete
+- hire.websiteChannel.list -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/channels [custom_params_serializer] aliases: hire.v1.websiteChannel.list, hire.websiteChannel.list
+- hire.websiteChannel.update -> PUT ${this.domain}/open-apis/hire/v1/websites/:website_id/channels/:channel_id [custom_params_serializer] aliases: hire.v1.websiteChannel.update, hire.websiteChannel.update
+- hire.websiteDelivery.createByAttachment -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/deliveries/create_by_attachment [custom_params_serializer] aliases: hire.v1.websiteDelivery.createByAttachment, hire.websiteDelivery.createByAttachment
+- hire.websiteDelivery.createByResume -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/deliveries/create_by_resume [custom_params_serializer] aliases: hire.v1.websiteDelivery.createByResume, hire.websiteDelivery.createByResume
+- hire.websiteDeliveryTask.get -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/delivery_tasks/:delivery_task_id [custom_params_serializer] aliases: hire.v1.websiteDeliveryTask.get, hire.websiteDeliveryTask.get
+- hire.websiteJobPost.get -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/:job_post_id [custom_params_serializer] aliases: hire.v1.websiteJobPost.get, hire.websiteJobPost.get
+- hire.websiteJobPost.list -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts [custom_params_serializer] aliases: hire.v1.websiteJobPost.list, hire.websiteJobPost.list
+- hire.websiteJobPost.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts [custom_params_serializer, iterator_helper] aliases: hire.v1.websiteJobPost.listWithIterator, hire.websiteJobPost.listWithIterator
+- hire.websiteJobPost.search -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/search [custom_params_serializer] aliases: hire.v1.websiteJobPost.search, hire.websiteJobPost.search
+- hire.websiteJobPost.searchWithIterator -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/search [custom_params_serializer, iterator_helper] aliases: hire.v1.websiteJobPost.searchWithIterator, hire.websiteJobPost.searchWithIterator
+- hire.websiteSiteUser.create -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/site_users [custom_params_serializer] aliases: hire.v1.websiteSiteUser.create, hire.websiteSiteUser.create
+
+## Event Handles
+
+- hire.application.deleted_v1
+- hire.application.stage_changed_v1
+- hire.eco_account.created_v1
+- hire.eco_background_check.canceled_v1
+- hire.eco_background_check.created_v1
+- hire.eco_exam.created_v1
+- hire.ehr_import_task.imported_v1
+- hire.ehr_import_task_for_internship_offer.imported_v1
+- hire.offer.status_changed_v1
+- hire.referral_account.assets_update_v1
+- hire.talent.deleted_v1
+- hire.talent.tag_subscription_v1
+

@@ -1,0 +1,2008 @@
+# Public API Inventory
+
+- Canonical generated API methods: 1656
+- Generated event handles: 190
+- Generated projects: 52
+- Handwritten exported methods/functions: 24
+
+## Runtime Surface
+
+- adaptDefault
+- adaptExpress
+- adaptKoa
+- adaptKoaRouter
+- generateChallenge
+- withAll
+- withTenantKey
+- withHelpDeskCredential
+- withTenantToken
+- withUserAccessToken
+- messageCard.defaultCard
+- Aily.completions.create
+- Aily.completions.createWithStream
+- Aily.completions.sessionRecords.get
+- Aily.completions.sessionRecords.update
+- Client (client/client.ts): formatPayload, request
+- EventDispatcher (dispatcher/event.ts): register, invoke
+- CardActionHandler (dispatcher/card.ts): invoke
+- AESCipher (utils/aes-cipher.ts): decrypt
+- WSClient (ws-client/index.ts): getReconnectInfo, close, start
+- Aily (scene/aily/client.ts): 
+
+## Canonical Project Summary
+
+- acs: 16 canonical methods across 7 resources (32 exported aliases)
+- admin: 17 canonical methods across 7 resources (34 exported aliases)
+- aily: 26 canonical methods across 7 resources (26 exported aliases)
+- apaas: 47 canonical methods across 17 resources (47 exported aliases)
+- application: 29 canonical methods across 12 resources (58 exported aliases)
+- approval: 32 canonical methods across 7 resources (64 exported aliases)
+- attendance: 42 canonical methods across 16 resources (84 exported aliases)
+- auth: 5 canonical methods across 3 resources (10 exported aliases)
+- authen: 5 canonical methods across 5 resources (10 exported aliases)
+- baike: 16 canonical methods across 4 resources (32 exported aliases)
+- base: 4 canonical methods across 1 resources (4 exported aliases)
+- bitable: 56 canonical methods across 11 resources (112 exported aliases)
+- block: 3 canonical methods across 2 resources (6 exported aliases)
+- board: 6 canonical methods across 2 resources (6 exported aliases)
+- calendar: 49 canonical methods across 11 resources (98 exported aliases)
+- cardkit: 10 canonical methods across 2 resources (10 exported aliases)
+- compensation: 30 canonical methods across 12 resources (30 exported aliases)
+- contact: 85 canonical methods across 14 resources (170 exported aliases)
+- corehr: 295 canonical methods across 78 resources (401 exported aliases)
+- directory: 26 canonical methods across 5 resources (26 exported aliases)
+- docs: 1 canonical methods across 1 resources (1 exported aliases)
+- document_ai: 18 canonical methods across 18 resources (18 exported aliases)
+- docx: 22 canonical methods across 7 resources (44 exported aliases)
+- drive: 65 canonical methods across 15 resources (126 exported aliases)
+- ehr: 3 canonical methods across 2 resources (6 exported aliases)
+- event: 2 canonical methods across 1 resources (4 exported aliases)
+- helpdesk: 53 canonical methods across 13 resources (106 exported aliases)
+- hire: 214 canonical methods across 78 resources (424 exported aliases)
+- human_authentication: 1 canonical methods across 1 resources (2 exported aliases)
+- im: 81 canonical methods across 24 resources (150 exported aliases)
+- lingo: 17 canonical methods across 5 resources (17 exported aliases)
+- mail: 76 canonical methods across 17 resources (152 exported aliases)
+- mdm: 4 canonical methods across 3 resources (6 exported aliases)
+- minutes: 4 canonical methods across 4 resources (4 exported aliases)
+- moments: 1 canonical methods across 1 resources (2 exported aliases)
+- okr: 12 canonical methods across 7 resources (24 exported aliases)
+- optical_char_recognition: 1 canonical methods across 1 resources (2 exported aliases)
+- passport: 2 canonical methods across 1 resources (4 exported aliases)
+- payroll: 20 canonical methods across 10 resources (20 exported aliases)
+- performance: 21 canonical methods across 14 resources (21 exported aliases)
+- personal_settings: 7 canonical methods across 1 resources (14 exported aliases)
+- report: 3 canonical methods across 3 resources (6 exported aliases)
+- search: 15 canonical methods across 5 resources (30 exported aliases)
+- security_and_compliance: 9 canonical methods across 3 resources (10 exported aliases)
+- sheets: 27 canonical methods across 6 resources (54 exported aliases)
+- speech_to_text: 2 canonical methods across 1 resources (4 exported aliases)
+- task: 88 canonical methods across 13 resources (116 exported aliases)
+- tenant: 2 canonical methods across 2 resources (4 exported aliases)
+- translation: 2 canonical methods across 1 resources (4 exported aliases)
+- vc: 64 canonical methods across 18 resources (128 exported aliases)
+- verification: 1 canonical methods across 1 resources (1 exported aliases)
+- wiki: 19 canonical methods across 6 resources (36 exported aliases)
+
+## Handwritten Surface And Call Chains
+
+- Client.formatPayload (client/client.ts)
+  note: Merges payload/options and injects Authorization or helpdesk headers before HTTP dispatch.
+  internal: TokenManager.getTenantAccessToken, string2Base64
+- Client.request (client/client.ts)
+  note: Final HTTP dispatch path used by generated API methods after payload formatting.
+  internal: Client.formatPayload, httpInstance.request
+- withAll (client/request-with.ts)
+  note: Combines multiple IRequestOptions fragments.
+  internal: lodash.merge
+- withTenantKey (client/request-with.ts)
+  note: Produces request options carrying CTenantKey for ISV tenant token resolution.
+- withHelpDeskCredential (client/request-with.ts)
+  note: Marks a request so Client.formatPayload injects X-Lark-Helpdesk-Authorization.
+- withTenantToken (client/request-with.ts)
+  note: Builds Authorization header directly from a tenant token.
+- withUserAccessToken (client/request-with.ts)
+  note: Marks a request so Client.formatPayload injects a user access token.
+- EventDispatcher.register (dispatcher/event.ts)
+  note: Registers handlers keyed by event type.
+- EventDispatcher.invoke (dispatcher/event.ts)
+  note: Validates, parses, and routes callback payloads to registered handlers.
+  internal: RequestHandle.checkIsEventValidated, RequestHandle.parse, registered event handlers
+- CardActionHandler.invoke (dispatcher/card.ts)
+  note: Validates card callbacks, runs app_ticket handler when needed, otherwise calls cardHandler.
+  internal: RequestHandle.checkIsCardEventValidated, RequestHandle.parse, registered event handlers, cardHandler callback
+- adaptDefault (adaptor/default.ts)
+  note: Builds a Node HTTP handler for event/card callbacks.
+  internal: pickRequestData, generateChallenge, dispatcher.invoke
+- adaptExpress (adaptor/express.ts)
+  note: Builds an Express handler for event/card callbacks.
+  internal: pickRequestData, generateChallenge, dispatcher.invoke
+- adaptKoa (adaptor/koa.ts)
+  note: Builds a Koa middleware for event/card callbacks.
+  internal: pickRequestData, generateChallenge, dispatcher.invoke
+- adaptKoaRouter (adaptor/koa-router.ts)
+  note: Builds a koa-router style middleware for event/card callbacks.
+  internal: pickRequestData, generateChallenge, dispatcher.invoke
+- generateChallenge (adaptor/services/challenge.ts)
+  note: Detects url_verification challenge payloads and returns challenge response body.
+  internal: AESCipher.decrypt
+- messageCard.defaultCard (utils/message-card.ts)
+  note: Creates a minimal interactive card JSON payload from title/content variables.
+- AESCipher.decrypt (utils/aes-cipher.ts)
+  note: Decrypts Feishu encrypted callback payloads using AES-256-CBC.
+  internal: crypto.createDecipheriv
+- WSClient.start (ws-client/index.ts)
+  note: Starts persistent connection mode and binds an EventDispatcher.
+  internal: WSClient.reConnect(true)
+  apis: POST wsConfig.wsConfigUrl
+- WSClient.close (ws-client/index.ts)
+  note: Stops ping/reconnect loops and closes the active WebSocket instance.
+  internal: wsInstance.close / wsInstance.terminate
+- WSClient.getReconnectInfo (ws-client/index.ts)
+  note: Returns in-memory reconnect timing state.
+- Aily.completions.create (scene/aily/client.ts)
+  note: Creates a session if needed, sends a message, starts a run, polls run status, then returns the assistant reply.
+  internal: Aily.waitReply, aily.v1.ailySessionAilyMessage.listWithIterator
+  apis: POST ${this.domain}/open-apis/aily/v1/sessions, POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages, POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs, GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs/:run_id, GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages
+- Aily.completions.createWithStream (scene/aily/client.ts)
+  note: Uses the same session/message/run flow as create, but streams assistant messages from listWithIterator.
+  internal: Aily.waitReply, aily.v1.ailySessionAilyMessage.listWithIterator
+  apis: POST ${this.domain}/open-apis/aily/v1/sessions, POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages, POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs, GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs/:run_id, GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages
+- Aily.completions.sessionRecords.get (scene/aily/client.ts)
+  note: Reads persisted session-id mappings from cache.
+  internal: cache.get (uses CAilySessionRecord key)
+- Aily.completions.sessionRecords.update (scene/aily/client.ts)
+  note: Writes persisted session-id mappings to cache.
+  internal: cache.set (uses CAilySessionRecord key)
+
+## Canonical Generated API Methods
+
+- acs.accessRecord.list -> GET ${this.domain}/open-apis/acs/v1/access_records [custom_params_serializer] aliases: acs.accessRecord.list, acs.v1.accessRecord.list
+- acs.accessRecord.listWithIterator -> GET ${this.domain}/open-apis/acs/v1/access_records [custom_params_serializer, iterator_helper] aliases: acs.accessRecord.listWithIterator, acs.v1.accessRecord.listWithIterator
+- acs.accessRecordAccessPhoto.get -> GET ${this.domain}/open-apis/acs/v1/access_records/:access_record_id/access_photo [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: acs.accessRecordAccessPhoto.get, acs.v1.accessRecordAccessPhoto.get
+- acs.device.list -> GET ${this.domain}/open-apis/acs/v1/devices [custom_params_serializer] aliases: acs.device.list, acs.v1.device.list
+- acs.ruleExternal.create -> POST ${this.domain}/open-apis/acs/v1/rule_external [custom_params_serializer] aliases: acs.ruleExternal.create, acs.v1.ruleExternal.create
+- acs.ruleExternal.delete -> DELETE ${this.domain}/open-apis/acs/v1/rule_external [custom_params_serializer] aliases: acs.ruleExternal.delete, acs.v1.ruleExternal.delete
+- acs.ruleExternal.deviceBind -> POST ${this.domain}/open-apis/acs/v1/rule_external/device_bind [custom_params_serializer] aliases: acs.ruleExternal.deviceBind, acs.v1.ruleExternal.deviceBind
+- acs.ruleExternal.get -> GET ${this.domain}/open-apis/acs/v1/rule_external [custom_params_serializer] aliases: acs.ruleExternal.get, acs.v1.ruleExternal.get
+- acs.user.get -> GET ${this.domain}/open-apis/acs/v1/users/:user_id [custom_params_serializer] aliases: acs.user.get, acs.v1.user.get
+- acs.user.list -> GET ${this.domain}/open-apis/acs/v1/users [custom_params_serializer] aliases: acs.user.list, acs.v1.user.list
+- acs.user.listWithIterator -> GET ${this.domain}/open-apis/acs/v1/users [custom_params_serializer, iterator_helper] aliases: acs.user.listWithIterator, acs.v1.user.listWithIterator
+- acs.user.patch -> PATCH ${this.domain}/open-apis/acs/v1/users/:user_id [custom_params_serializer] aliases: acs.user.patch, acs.v1.user.patch
+- acs.userFace.get -> GET ${this.domain}/open-apis/acs/v1/users/:user_id/face [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: acs.userFace.get, acs.v1.userFace.get
+- acs.userFace.update -> PUT ${this.domain}/open-apis/acs/v1/users/:user_id/face [custom_params_serializer] aliases: acs.userFace.update, acs.v1.userFace.update
+- acs.visitor.create -> POST ${this.domain}/open-apis/acs/v1/visitors [custom_params_serializer] aliases: acs.v1.visitor.create, acs.visitor.create
+- acs.visitor.delete -> DELETE ${this.domain}/open-apis/acs/v1/visitors/:visitor_id [custom_params_serializer] aliases: acs.v1.visitor.delete, acs.visitor.delete
+- admin.adminDeptStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_dept_stats [custom_params_serializer] aliases: admin.adminDeptStat.list, admin.v1.adminDeptStat.list
+- admin.adminUserStat.list -> GET ${this.domain}/open-apis/admin/v1/admin_user_stats [custom_params_serializer] aliases: admin.adminUserStat.list, admin.v1.adminUserStat.list
+- admin.auditInfo.list -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer] aliases: admin.auditInfo.list, admin.v1.auditInfo.list
+- admin.auditInfo.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/audit_infos [custom_params_serializer, iterator_helper] aliases: admin.auditInfo.listWithIterator, admin.v1.auditInfo.listWithIterator
+- admin.badge.create -> POST ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer] aliases: admin.badge.create, admin.v1.badge.create
+- admin.badge.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer] aliases: admin.badge.get, admin.v1.badge.get
+- admin.badge.list -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer] aliases: admin.badge.list, admin.v1.badge.list
+- admin.badge.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges [custom_params_serializer, iterator_helper] aliases: admin.badge.listWithIterator, admin.v1.badge.listWithIterator
+- admin.badge.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id [custom_params_serializer] aliases: admin.badge.update, admin.v1.badge.update
+- admin.badgeGrant.create -> POST ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer] aliases: admin.badgeGrant.create, admin.v1.badgeGrant.create
+- admin.badgeGrant.delete -> DELETE ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer] aliases: admin.badgeGrant.delete, admin.v1.badgeGrant.delete
+- admin.badgeGrant.get -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer] aliases: admin.badgeGrant.get, admin.v1.badgeGrant.get
+- admin.badgeGrant.list -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer] aliases: admin.badgeGrant.list, admin.v1.badgeGrant.list
+- admin.badgeGrant.listWithIterator -> GET ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants [custom_params_serializer, iterator_helper] aliases: admin.badgeGrant.listWithIterator, admin.v1.badgeGrant.listWithIterator
+- admin.badgeGrant.update -> PUT ${this.domain}/open-apis/admin/v1/badges/:badge_id/grants/:grant_id [custom_params_serializer] aliases: admin.badgeGrant.update, admin.v1.badgeGrant.update
+- admin.badgeImage.create -> POST ${this.domain}/open-apis/admin/v1/badge_images [custom_params_serializer] aliases: admin.badgeImage.create, admin.v1.badgeImage.create
+- admin.password.reset -> POST ${this.domain}/open-apis/admin/v1/password/reset [custom_params_serializer] aliases: admin.password.reset, admin.v1.password.reset
+- aily.ailySession.create -> POST ${this.domain}/open-apis/aily/v1/sessions [custom_params_serializer]
+- aily.ailySession.delete -> DELETE ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id [custom_params_serializer]
+- aily.ailySession.get -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id [custom_params_serializer]
+- aily.ailySession.update -> PUT ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id [custom_params_serializer]
+- aily.ailySessionAilyMessage.create -> POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages [custom_params_serializer]
+- aily.ailySessionAilyMessage.get -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages/:aily_message_id [custom_params_serializer]
+- aily.ailySessionAilyMessage.list -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages [custom_params_serializer]
+- aily.ailySessionAilyMessage.listWithIterator -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/messages [custom_params_serializer, iterator_helper]
+- aily.ailySessionRun.cancel -> POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs/:run_id/cancel [custom_params_serializer]
+- aily.ailySessionRun.create -> POST ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs [custom_params_serializer]
+- aily.ailySessionRun.get -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs/:run_id [custom_params_serializer]
+- aily.ailySessionRun.list -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs [custom_params_serializer]
+- aily.ailySessionRun.listWithIterator -> GET ${this.domain}/open-apis/aily/v1/sessions/:aily_session_id/runs [custom_params_serializer, iterator_helper]
+- aily.appDataAsset.create -> POST ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets [custom_params_serializer]
+- aily.appDataAsset.delete -> DELETE ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets/:data_asset_id [custom_params_serializer]
+- aily.appDataAsset.get -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets/:data_asset_id [custom_params_serializer]
+- aily.appDataAsset.list -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets [custom_params_serializer]
+- aily.appDataAsset.listWithIterator -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets [custom_params_serializer, iterator_helper]
+- aily.appDataAsset.uploadFile -> POST ${this.domain}/open-apis/aily/v1/apps/:app_id/data_assets/upload_file [custom_params_serializer]
+- aily.appDataAssetTag.list -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/data_asset_tags [custom_params_serializer]
+- aily.appDataAssetTag.listWithIterator -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/data_asset_tags [custom_params_serializer, iterator_helper]
+- aily.appKnowledge.ask -> POST ${this.domain}/open-apis/aily/v1/apps/:app_id/knowledges/ask [custom_params_serializer]
+- aily.appSkill.get -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/skills/:skill_id [custom_params_serializer]
+- aily.appSkill.list -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/skills [custom_params_serializer]
+- aily.appSkill.listWithIterator -> GET ${this.domain}/open-apis/aily/v1/apps/:app_id/skills [custom_params_serializer, iterator_helper]
+- aily.appSkill.start -> POST ${this.domain}/open-apis/aily/v1/apps/:app_id/skills/:skill_id/start [custom_params_serializer]
+- apaas.app.list -> GET ${this.domain}/open-apis/apaas/v1/apps [custom_params_serializer]
+- apaas.app.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/apps [custom_params_serializer, iterator_helper]
+- apaas.applicationAuditLog.auditLogList -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/audit_log_list [custom_params_serializer]
+- apaas.applicationAuditLog.dataChangeLogDetail -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/data_change_log_detail [custom_params_serializer]
+- apaas.applicationAuditLog.dataChangeLogsList -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log/data_change_logs_list [custom_params_serializer]
+- apaas.applicationAuditLog.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/audit_log [custom_params_serializer]
+- apaas.applicationEnvironmentVariable.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/environment_variables/:environment_variable_api_name [custom_params_serializer]
+- apaas.applicationEnvironmentVariable.query -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/environment_variables/query [custom_params_serializer]
+- apaas.applicationFlow.execute -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/flows/:flow_id/execute [custom_params_serializer]
+- apaas.applicationFunction.invoke -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/functions/:function_api_name/invoke [custom_params_serializer]
+- apaas.applicationObject.oqlQuery -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/oql_query [custom_params_serializer]
+- apaas.applicationObject.search -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/search [custom_params_serializer]
+- apaas.applicationObjectRecord.batchCreate -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_create [custom_params_serializer]
+- apaas.applicationObjectRecord.batchDelete -> DELETE ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_delete [custom_params_serializer]
+- apaas.applicationObjectRecord.batchQuery -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_query [custom_params_serializer]
+- apaas.applicationObjectRecord.batchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/batch_update [custom_params_serializer]
+- apaas.applicationObjectRecord.create -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records [custom_params_serializer]
+- apaas.applicationObjectRecord.delete -> DELETE ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id [custom_params_serializer]
+- apaas.applicationObjectRecord.patch -> PATCH ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id [custom_params_serializer]
+- apaas.applicationObjectRecord.query -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/objects/:object_api_name/records/:id/query [custom_params_serializer]
+- apaas.applicationRecordPermissionMember.batchCreateAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/record_permissions/:record_permission_api_name/member/batch_create_authorization [custom_params_serializer]
+- apaas.applicationRecordPermissionMember.batchRemoveAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/record_permissions/:record_permission_api_name/member/batch_remove_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.batchCreateAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member/batch_create_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.batchRemoveAuthorization -> POST ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member/batch_remove_authorization [custom_params_serializer]
+- apaas.applicationRoleMember.get -> GET ${this.domain}/open-apis/apaas/v1/applications/:namespace/roles/:role_api_name/member [custom_params_serializer]
+- apaas.approvalInstance.cancel -> POST ${this.domain}/open-apis/apaas/v1/approval_instances/:approval_instance_id/cancel [custom_params_serializer]
+- apaas.approvalTask.addAssignee -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/add_assignee [custom_params_serializer]
+- apaas.approvalTask.agree -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/agree [custom_params_serializer]
+- apaas.approvalTask.reject -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/reject [custom_params_serializer]
+- apaas.approvalTask.transfer -> POST ${this.domain}/open-apis/apaas/v1/approval_tasks/:approval_task_id/transfer [custom_params_serializer]
+- apaas.seatActivity.list -> GET ${this.domain}/open-apis/apaas/v1/seat_activities [custom_params_serializer]
+- apaas.seatActivity.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/seat_activities [custom_params_serializer, iterator_helper]
+- apaas.seatAssignment.list -> GET ${this.domain}/open-apis/apaas/v1/seat_assignments [custom_params_serializer]
+- apaas.seatAssignment.listWithIterator -> GET ${this.domain}/open-apis/apaas/v1/seat_assignments [custom_params_serializer, iterator_helper]
+- apaas.userTask.cc -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/cc [custom_params_serializer]
+- apaas.userTask.chatGroup -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/chat_group [custom_params_serializer]
+- apaas.userTask.expediting -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/expediting [custom_params_serializer]
+- apaas.userTask.query -> POST ${this.domain}/open-apis/apaas/v1/user_task/query [custom_params_serializer]
+- apaas.userTask.rollback -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback [custom_params_serializer]
+- apaas.userTask.rollbackPoints -> POST ${this.domain}/open-apis/apaas/v1/user_tasks/:task_id/rollback_points [custom_params_serializer]
+- apaas.workspace.sqlCommands -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/sql_commands [custom_params_serializer]
+- apaas.workspaceTable.recordsBatchUpdate -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records_batch_update [custom_params_serializer]
+- apaas.workspaceTable.recordsDelete -> DELETE ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsPatch -> PATCH ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceTable.recordsPost -> POST ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name/records [custom_params_serializer]
+- apaas.workspaceView.viewsGet -> GET ${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/views/:view_name/records [custom_params_serializer]
+- application.appBadge.set -> POST ${this.domain}/open-apis/application/v6/app_badge/set [custom_params_serializer] aliases: application.appBadge.set, application.v6.appBadge.set
+- application.application.contactsRangeConfiguration -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range_configuration [custom_params_serializer] aliases: application.application.contactsRangeConfiguration, application.v6.application.contactsRangeConfiguration
+- application.application.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer] aliases: application.application.get, application.v6.application.get
+- application.application.list -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer] aliases: application.application.list, application.v6.application.list
+- application.application.listWithIterator -> GET ${this.domain}/open-apis/application/v6/applications [custom_params_serializer, iterator_helper] aliases: application.application.listWithIterator, application.v6.application.listWithIterator
+- application.application.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id [custom_params_serializer] aliases: application.application.patch, application.v6.application.patch
+- application.application.underauditlist -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer] aliases: application.application.underauditlist, application.v6.application.underauditlist
+- application.application.underauditlistWithIterator -> GET ${this.domain}/open-apis/application/v6/applications/underauditlist [custom_params_serializer, iterator_helper] aliases: application.application.underauditlistWithIterator, application.v6.application.underauditlistWithIterator
+- application.applicationAppUsage.departmentOverview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/department_overview [custom_params_serializer] aliases: application.applicationAppUsage.departmentOverview, application.v6.applicationAppUsage.departmentOverview
+- application.applicationAppUsage.messagePushOverview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/message_push_overview [custom_params_serializer] aliases: application.applicationAppUsage.messagePushOverview, application.v6.applicationAppUsage.messagePushOverview
+- application.applicationAppUsage.overview -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/app_usage/overview [custom_params_serializer] aliases: application.applicationAppUsage.overview, application.v6.applicationAppUsage.overview
+- application.applicationAppVersion.contactsRangeSuggest -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/app_versions/:version_id/contacts_range_suggest [custom_params_serializer] aliases: application.applicationAppVersion.contactsRangeSuggest, application.v6.applicationAppVersion.contactsRangeSuggest
+- application.applicationAppVersion.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/app_versions/:version_id [custom_params_serializer] aliases: application.applicationAppVersion.get, application.v6.applicationAppVersion.get
+- application.applicationAppVersion.list -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/app_versions [custom_params_serializer] aliases: application.applicationAppVersion.list, application.v6.applicationAppVersion.list
+- application.applicationAppVersion.listWithIterator -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/app_versions [custom_params_serializer, iterator_helper] aliases: application.applicationAppVersion.listWithIterator, application.v6.applicationAppVersion.listWithIterator
+- application.applicationAppVersion.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id/app_versions/:version_id [custom_params_serializer] aliases: application.applicationAppVersion.patch, application.v6.applicationAppVersion.patch
+- application.applicationCollaborators.get -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/collaborators [custom_params_serializer] aliases: application.applicationCollaborators.get, application.v6.applicationCollaborators.get
+- application.applicationCollaborators.update -> PUT ${this.domain}/open-apis/application/v6/applications/:app_id/collaborators [custom_params_serializer] aliases: application.applicationCollaborators.update, application.v6.applicationCollaborators.update
+- application.applicationContactsRange.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id/contacts_range [custom_params_serializer] aliases: application.applicationContactsRange.patch, application.v6.applicationContactsRange.patch
+- application.applicationFeedback.list -> GET ${this.domain}/open-apis/application/v6/applications/:app_id/feedbacks [custom_params_serializer] aliases: application.applicationFeedback.list, application.v6.applicationFeedback.list
+- application.applicationFeedback.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id/feedbacks/:feedback_id [custom_params_serializer] aliases: application.applicationFeedback.patch, application.v6.applicationFeedback.patch
+- application.applicationManagement.update -> PUT ${this.domain}/open-apis/application/v6/applications/:app_id/management [custom_params_serializer] aliases: application.applicationManagement.update, application.v6.applicationManagement.update
+- application.applicationOwner.update -> PUT ${this.domain}/open-apis/application/v6/applications/:app_id/owner [custom_params_serializer] aliases: application.applicationOwner.update, application.v6.applicationOwner.update
+- application.applicationVisibility.checkWhiteBlackList -> POST ${this.domain}/open-apis/application/v6/applications/:app_id/visibility/check_white_black_list [custom_params_serializer] aliases: application.applicationVisibility.checkWhiteBlackList, application.v6.applicationVisibility.checkWhiteBlackList
+- application.applicationVisibility.patch -> PATCH ${this.domain}/open-apis/application/v6/applications/:app_id/visibility [custom_params_serializer] aliases: application.applicationVisibility.patch, application.v6.applicationVisibility.patch
+- application.appRecommendRule.list -> GET ${this.domain}/open-apis/application/v6/app_recommend_rules [custom_params_serializer] aliases: application.appRecommendRule.list, application.v6.appRecommendRule.list
+- application.appRecommendRule.listWithIterator -> GET ${this.domain}/open-apis/application/v6/app_recommend_rules [custom_params_serializer, iterator_helper] aliases: application.appRecommendRule.listWithIterator, application.v6.appRecommendRule.listWithIterator
+- application.scope.apply -> POST ${this.domain}/open-apis/application/v6/scopes/apply [custom_params_serializer] aliases: application.scope.apply, application.v6.scope.apply
+- application.scope.list -> GET ${this.domain}/open-apis/application/v6/scopes [custom_params_serializer] aliases: application.scope.list, application.v6.scope.list
+- approval.approval.create -> POST ${this.domain}/open-apis/approval/v4/approvals [custom_params_serializer] aliases: approval.approval.create, approval.v4.approval.create
+- approval.approval.get -> GET ${this.domain}/open-apis/approval/v4/approvals/:approval_code [custom_params_serializer] aliases: approval.approval.get, approval.v4.approval.get
+- approval.approval.subscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/subscribe [custom_params_serializer] aliases: approval.approval.subscribe, approval.v4.approval.subscribe
+- approval.approval.unsubscribe -> POST ${this.domain}/open-apis/approval/v4/approvals/:approval_code/unsubscribe [custom_params_serializer] aliases: approval.approval.unsubscribe, approval.v4.approval.unsubscribe
+- approval.externalApproval.create -> POST ${this.domain}/open-apis/approval/v4/external_approvals [custom_params_serializer] aliases: approval.externalApproval.create, approval.v4.externalApproval.create
+- approval.externalApproval.get -> GET ${this.domain}/open-apis/approval/v4/external_approvals/:approval_code [custom_params_serializer] aliases: approval.externalApproval.get, approval.v4.externalApproval.get
+- approval.externalInstance.check -> POST ${this.domain}/open-apis/approval/v4/external_instances/check [custom_params_serializer] aliases: approval.externalInstance.check, approval.v4.externalInstance.check
+- approval.externalInstance.create -> POST ${this.domain}/open-apis/approval/v4/external_instances [custom_params_serializer] aliases: approval.externalInstance.create, approval.v4.externalInstance.create
+- approval.externalTask.list -> GET ${this.domain}/open-apis/approval/v4/external_tasks [custom_params_serializer] aliases: approval.externalTask.list, approval.v4.externalTask.list
+- approval.externalTask.listWithIterator -> GET ${this.domain}/open-apis/approval/v4/external_tasks [custom_params_serializer, iterator_helper] aliases: approval.externalTask.listWithIterator, approval.v4.externalTask.listWithIterator
+- approval.instance.addSign -> POST ${this.domain}/open-apis/approval/v4/instances/add_sign [custom_params_serializer] aliases: approval.instance.addSign, approval.v4.instance.addSign
+- approval.instance.cancel -> POST ${this.domain}/open-apis/approval/v4/instances/cancel [custom_params_serializer] aliases: approval.instance.cancel, approval.v4.instance.cancel
+- approval.instance.cc -> POST ${this.domain}/open-apis/approval/v4/instances/cc [custom_params_serializer] aliases: approval.instance.cc, approval.v4.instance.cc
+- approval.instance.create -> POST ${this.domain}/open-apis/approval/v4/instances [custom_params_serializer] aliases: approval.instance.create, approval.v4.instance.create
+- approval.instance.get -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id [custom_params_serializer] aliases: approval.instance.get, approval.v4.instance.get
+- approval.instance.preview -> POST ${this.domain}/open-apis/approval/v4/instances/preview [custom_params_serializer] aliases: approval.instance.preview, approval.v4.instance.preview
+- approval.instance.query -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer] aliases: approval.instance.query, approval.v4.instance.query
+- approval.instance.queryWithIterator -> POST ${this.domain}/open-apis/approval/v4/instances/query [custom_params_serializer, iterator_helper] aliases: approval.instance.queryWithIterator, approval.v4.instance.queryWithIterator
+- approval.instance.searchCc -> POST ${this.domain}/open-apis/approval/v4/instances/search_cc [custom_params_serializer] aliases: approval.instance.searchCc, approval.v4.instance.searchCc
+- approval.instance.specifiedRollback -> POST ${this.domain}/open-apis/approval/v4/instances/specified_rollback [custom_params_serializer] aliases: approval.instance.specifiedRollback, approval.v4.instance.specifiedRollback
+- approval.instanceComment.create -> POST ${this.domain}/open-apis/approval/v4/instances/:instance_id/comments [custom_params_serializer] aliases: approval.instanceComment.create, approval.v4.instanceComment.create
+- approval.instanceComment.delete -> DELETE ${this.domain}/open-apis/approval/v4/instances/:instance_id/comments/:comment_id [custom_params_serializer] aliases: approval.instanceComment.delete, approval.v4.instanceComment.delete
+- approval.instanceComment.list -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id/comments [custom_params_serializer] aliases: approval.instanceComment.list, approval.v4.instanceComment.list
+- approval.instanceComment.listWithIterator -> GET ${this.domain}/open-apis/approval/v4/instances/:instance_id/comments [custom_params_serializer, iterator_helper] aliases: approval.instanceComment.listWithIterator, approval.v4.instanceComment.listWithIterator
+- approval.instanceComment.remove -> POST ${this.domain}/open-apis/approval/v4/instances/:instance_id/comments/remove [custom_params_serializer] aliases: approval.instanceComment.remove, approval.v4.instanceComment.remove
+- approval.task.approve -> POST ${this.domain}/open-apis/approval/v4/tasks/approve [custom_params_serializer] aliases: approval.task.approve, approval.v4.task.approve
+- approval.task.query -> GET ${this.domain}/open-apis/approval/v4/tasks/query [custom_params_serializer] aliases: approval.task.query, approval.v4.task.query
+- approval.task.queryWithIterator -> GET ${this.domain}/open-apis/approval/v4/tasks/query [custom_params_serializer, iterator_helper] aliases: approval.task.queryWithIterator, approval.v4.task.queryWithIterator
+- approval.task.reject -> POST ${this.domain}/open-apis/approval/v4/tasks/reject [custom_params_serializer] aliases: approval.task.reject, approval.v4.task.reject
+- approval.task.resubmit -> POST ${this.domain}/open-apis/approval/v4/tasks/resubmit [custom_params_serializer] aliases: approval.task.resubmit, approval.v4.task.resubmit
+- approval.task.search -> POST ${this.domain}/open-apis/approval/v4/tasks/search [custom_params_serializer] aliases: approval.task.search, approval.v4.task.search
+- approval.task.transfer -> POST ${this.domain}/open-apis/approval/v4/tasks/transfer [custom_params_serializer] aliases: approval.task.transfer, approval.v4.task.transfer
+- attendance.approvalInfo.process -> POST ${this.domain}/open-apis/attendance/v1/approval_infos/process [custom_params_serializer] aliases: attendance.approvalInfo.process, attendance.v1.approvalInfo.process
+- attendance.archiveRule.delReport -> POST ${this.domain}/open-apis/attendance/v1/archive_rule/del_report [custom_params_serializer] aliases: attendance.archiveRule.delReport, attendance.v1.archiveRule.delReport
+- attendance.archiveRule.list -> GET ${this.domain}/open-apis/attendance/v1/archive_rule [custom_params_serializer] aliases: attendance.archiveRule.list, attendance.v1.archiveRule.list
+- attendance.archiveRule.listWithIterator -> GET ${this.domain}/open-apis/attendance/v1/archive_rule [custom_params_serializer, iterator_helper] aliases: attendance.archiveRule.listWithIterator, attendance.v1.archiveRule.listWithIterator
+- attendance.archiveRule.uploadReport -> POST ${this.domain}/open-apis/attendance/v1/archive_rule/upload_report [custom_params_serializer] aliases: attendance.archiveRule.uploadReport, attendance.v1.archiveRule.uploadReport
+- attendance.archiveRule.userStatsFieldsQuery -> POST ${this.domain}/open-apis/attendance/v1/archive_rule/user_stats_fields_query [custom_params_serializer] aliases: attendance.archiveRule.userStatsFieldsQuery, attendance.v1.archiveRule.userStatsFieldsQuery
+- attendance.file.download -> GET ${this.domain}/open-apis/attendance/v1/files/:file_id/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: attendance.file.download, attendance.v1.file.download
+- attendance.file.upload -> POST ${this.domain}/open-apis/attendance/v1/files/upload [custom_params_serializer] aliases: attendance.file.upload, attendance.v1.file.upload
+- attendance.group.create -> POST ${this.domain}/open-apis/attendance/v1/groups [custom_params_serializer] aliases: attendance.group.create, attendance.v1.group.create
+- attendance.group.delete -> DELETE ${this.domain}/open-apis/attendance/v1/groups/:group_id [custom_params_serializer] aliases: attendance.group.delete, attendance.v1.group.delete
+- attendance.group.get -> GET ${this.domain}/open-apis/attendance/v1/groups/:group_id [custom_params_serializer] aliases: attendance.group.get, attendance.v1.group.get
+- attendance.group.list -> GET ${this.domain}/open-apis/attendance/v1/groups [custom_params_serializer] aliases: attendance.group.list, attendance.v1.group.list
+- attendance.group.listUser -> GET ${this.domain}/open-apis/attendance/v1/groups/:group_id/list_user [custom_params_serializer] aliases: attendance.group.listUser, attendance.v1.group.listUser
+- attendance.group.listWithIterator -> GET ${this.domain}/open-apis/attendance/v1/groups [custom_params_serializer, iterator_helper] aliases: attendance.group.listWithIterator, attendance.v1.group.listWithIterator
+- attendance.group.search -> POST ${this.domain}/open-apis/attendance/v1/groups/search [custom_params_serializer] aliases: attendance.group.search, attendance.v1.group.search
+- attendance.leaveAccrualRecord.patch -> PATCH ${this.domain}/open-apis/attendance/v1/leave_accrual_record/:leave_id [custom_params_serializer] aliases: attendance.leaveAccrualRecord.patch, attendance.v1.leaveAccrualRecord.patch
+- attendance.leaveEmployExpireRecord.get -> GET ${this.domain}/open-apis/attendance/v1/leave_employ_expire_records/:leave_id [custom_params_serializer] aliases: attendance.leaveEmployExpireRecord.get, attendance.v1.leaveEmployExpireRecord.get
+- attendance.shift.create -> POST ${this.domain}/open-apis/attendance/v1/shifts [custom_params_serializer] aliases: attendance.shift.create, attendance.v1.shift.create
+- attendance.shift.delete -> DELETE ${this.domain}/open-apis/attendance/v1/shifts/:shift_id [custom_params_serializer] aliases: attendance.shift.delete, attendance.v1.shift.delete
+- attendance.shift.get -> GET ${this.domain}/open-apis/attendance/v1/shifts/:shift_id [custom_params_serializer] aliases: attendance.shift.get, attendance.v1.shift.get
+- attendance.shift.list -> GET ${this.domain}/open-apis/attendance/v1/shifts [custom_params_serializer] aliases: attendance.shift.list, attendance.v1.shift.list
+- attendance.shift.listWithIterator -> GET ${this.domain}/open-apis/attendance/v1/shifts [custom_params_serializer, iterator_helper] aliases: attendance.shift.listWithIterator, attendance.v1.shift.listWithIterator
+- attendance.shift.query -> POST ${this.domain}/open-apis/attendance/v1/shifts/query [custom_params_serializer] aliases: attendance.shift.query, attendance.v1.shift.query
+- attendance.userApproval.create -> POST ${this.domain}/open-apis/attendance/v1/user_approvals [custom_params_serializer] aliases: attendance.userApproval.create, attendance.v1.userApproval.create
+- attendance.userApproval.query -> POST ${this.domain}/open-apis/attendance/v1/user_approvals/query [custom_params_serializer] aliases: attendance.userApproval.query, attendance.v1.userApproval.query
+- attendance.userDailyShift.batchCreate -> POST ${this.domain}/open-apis/attendance/v1/user_daily_shifts/batch_create [custom_params_serializer] aliases: attendance.userDailyShift.batchCreate, attendance.v1.userDailyShift.batchCreate
+- attendance.userDailyShift.batchCreateTemp -> POST ${this.domain}/open-apis/attendance/v1/user_daily_shifts/batch_create_temp [custom_params_serializer] aliases: attendance.userDailyShift.batchCreateTemp, attendance.v1.userDailyShift.batchCreateTemp
+- attendance.userDailyShift.query -> POST ${this.domain}/open-apis/attendance/v1/user_daily_shifts/query [custom_params_serializer] aliases: attendance.userDailyShift.query, attendance.v1.userDailyShift.query
+- attendance.userFlow.batchCreate -> POST ${this.domain}/open-apis/attendance/v1/user_flows/batch_create [custom_params_serializer] aliases: attendance.userFlow.batchCreate, attendance.v1.userFlow.batchCreate
+- attendance.userFlow.batchDel -> POST ${this.domain}/open-apis/attendance/v1/user_flows/batch_del [custom_params_serializer] aliases: attendance.userFlow.batchDel, attendance.v1.userFlow.batchDel
+- attendance.userFlow.get -> GET ${this.domain}/open-apis/attendance/v1/user_flows/:user_flow_id [custom_params_serializer] aliases: attendance.userFlow.get, attendance.v1.userFlow.get
+- attendance.userFlow.query -> POST ${this.domain}/open-apis/attendance/v1/user_flows/query [custom_params_serializer] aliases: attendance.userFlow.query, attendance.v1.userFlow.query
+- attendance.userSetting.modify -> POST ${this.domain}/open-apis/attendance/v1/user_settings/modify [custom_params_serializer] aliases: attendance.userSetting.modify, attendance.v1.userSetting.modify
+- attendance.userSetting.query -> GET ${this.domain}/open-apis/attendance/v1/user_settings/query [custom_params_serializer] aliases: attendance.userSetting.query, attendance.v1.userSetting.query
+- attendance.userStatsData.query -> POST ${this.domain}/open-apis/attendance/v1/user_stats_datas/query [custom_params_serializer] aliases: attendance.userStatsData.query, attendance.v1.userStatsData.query
+- attendance.userStatsField.query -> POST ${this.domain}/open-apis/attendance/v1/user_stats_fields/query [custom_params_serializer] aliases: attendance.userStatsField.query, attendance.v1.userStatsField.query
+- attendance.userStatsView.query -> POST ${this.domain}/open-apis/attendance/v1/user_stats_views/query [custom_params_serializer] aliases: attendance.userStatsView.query, attendance.v1.userStatsView.query
+- attendance.userStatsView.update -> PUT ${this.domain}/open-apis/attendance/v1/user_stats_views/:user_stats_view_id [custom_params_serializer] aliases: attendance.userStatsView.update, attendance.v1.userStatsView.update
+- attendance.userTask.query -> POST ${this.domain}/open-apis/attendance/v1/user_tasks/query [custom_params_serializer] aliases: attendance.userTask.query, attendance.v1.userTask.query
+- attendance.userTaskRemedy.create -> POST ${this.domain}/open-apis/attendance/v1/user_task_remedys [custom_params_serializer] aliases: attendance.userTaskRemedy.create, attendance.v1.userTaskRemedy.create
+- attendance.userTaskRemedy.query -> POST ${this.domain}/open-apis/attendance/v1/user_task_remedys/query [custom_params_serializer] aliases: attendance.userTaskRemedy.query, attendance.v1.userTaskRemedy.query
+- attendance.userTaskRemedy.queryUserAllowedRemedys -> POST ${this.domain}/open-apis/attendance/v1/user_task_remedys/query_user_allowed_remedys [custom_params_serializer] aliases: attendance.userTaskRemedy.queryUserAllowedRemedys, attendance.v1.userTaskRemedy.queryUserAllowedRemedys
+- auth.appAccessToken.create -> POST ${this.domain}/open-apis/auth/v3/app_access_token [custom_params_serializer] aliases: auth.appAccessToken.create, auth.v3.appAccessToken.create
+- auth.appAccessToken.internal -> POST ${this.domain}/open-apis/auth/v3/app_access_token/internal [custom_params_serializer] aliases: auth.appAccessToken.internal, auth.v3.appAccessToken.internal
+- auth.appTicket.resend -> POST ${this.domain}/open-apis/auth/v3/app_ticket/resend [custom_params_serializer] aliases: auth.appTicket.resend, auth.v3.appTicket.resend
+- auth.tenantAccessToken.create -> POST ${this.domain}/open-apis/auth/v3/tenant_access_token [custom_params_serializer] aliases: auth.tenantAccessToken.create, auth.v3.tenantAccessToken.create
+- auth.tenantAccessToken.internal -> POST ${this.domain}/open-apis/auth/v3/tenant_access_token/internal [custom_params_serializer] aliases: auth.tenantAccessToken.internal, auth.v3.tenantAccessToken.internal
+- authen.accessToken.create -> POST ${this.domain}/open-apis/authen/v1/access_token [custom_params_serializer] aliases: authen.accessToken.create, authen.v1.accessToken.create
+- authen.oidcAccessToken.create -> POST ${this.domain}/open-apis/authen/v1/oidc/access_token [custom_params_serializer] aliases: authen.oidcAccessToken.create, authen.v1.oidcAccessToken.create
+- authen.oidcRefreshAccessToken.create -> POST ${this.domain}/open-apis/authen/v1/oidc/refresh_access_token [custom_params_serializer] aliases: authen.oidcRefreshAccessToken.create, authen.v1.oidcRefreshAccessToken.create
+- authen.refreshAccessToken.create -> POST ${this.domain}/open-apis/authen/v1/refresh_access_token [custom_params_serializer] aliases: authen.refreshAccessToken.create, authen.v1.refreshAccessToken.create
+- authen.userInfo.get -> GET ${this.domain}/open-apis/authen/v1/user_info [custom_params_serializer] aliases: authen.userInfo.get, authen.v1.userInfo.get
+- baike.classification.list -> GET ${this.domain}/open-apis/baike/v1/classifications [custom_params_serializer] aliases: baike.classification.list, baike.v1.classification.list
+- baike.classification.listWithIterator -> GET ${this.domain}/open-apis/baike/v1/classifications [custom_params_serializer, iterator_helper] aliases: baike.classification.listWithIterator, baike.v1.classification.listWithIterator
+- baike.draft.create -> POST ${this.domain}/open-apis/baike/v1/drafts [custom_params_serializer] aliases: baike.draft.create, baike.v1.draft.create
+- baike.draft.update -> PUT ${this.domain}/open-apis/baike/v1/drafts/:draft_id [custom_params_serializer] aliases: baike.draft.update, baike.v1.draft.update
+- baike.entity.create -> POST ${this.domain}/open-apis/baike/v1/entities [custom_params_serializer] aliases: baike.entity.create, baike.v1.entity.create
+- baike.entity.extract -> POST ${this.domain}/open-apis/baike/v1/entities/extract [custom_params_serializer] aliases: baike.entity.extract, baike.v1.entity.extract
+- baike.entity.get -> GET ${this.domain}/open-apis/baike/v1/entities/:entity_id [custom_params_serializer] aliases: baike.entity.get, baike.v1.entity.get
+- baike.entity.highlight -> POST ${this.domain}/open-apis/baike/v1/entities/highlight [custom_params_serializer] aliases: baike.entity.highlight, baike.v1.entity.highlight
+- baike.entity.list -> GET ${this.domain}/open-apis/baike/v1/entities [custom_params_serializer] aliases: baike.entity.list, baike.v1.entity.list
+- baike.entity.listWithIterator -> GET ${this.domain}/open-apis/baike/v1/entities [custom_params_serializer, iterator_helper] aliases: baike.entity.listWithIterator, baike.v1.entity.listWithIterator
+- baike.entity.match -> POST ${this.domain}/open-apis/baike/v1/entities/match [custom_params_serializer] aliases: baike.entity.match, baike.v1.entity.match
+- baike.entity.search -> POST ${this.domain}/open-apis/baike/v1/entities/search [custom_params_serializer] aliases: baike.entity.search, baike.v1.entity.search
+- baike.entity.searchWithIterator -> POST ${this.domain}/open-apis/baike/v1/entities/search [custom_params_serializer, iterator_helper] aliases: baike.entity.searchWithIterator, baike.v1.entity.searchWithIterator
+- baike.entity.update -> PUT ${this.domain}/open-apis/baike/v1/entities/:entity_id [custom_params_serializer] aliases: baike.entity.update, baike.v1.entity.update
+- baike.file.download -> GET ${this.domain}/open-apis/baike/v1/files/:file_token/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: baike.file.download, baike.v1.file.download
+- baike.file.upload -> POST ${this.domain}/open-apis/baike/v1/files/upload [custom_params_serializer] aliases: baike.file.upload, baike.v1.file.upload
+- base.appRole.create -> POST ${this.domain}/open-apis/base/v2/apps/:app_token/roles [custom_params_serializer]
+- base.appRole.list -> GET ${this.domain}/open-apis/base/v2/apps/:app_token/roles [custom_params_serializer]
+- base.appRole.listWithIterator -> GET ${this.domain}/open-apis/base/v2/apps/:app_token/roles [custom_params_serializer, iterator_helper]
+- base.appRole.update -> PUT ${this.domain}/open-apis/base/v2/apps/:app_token/roles/:role_id [custom_params_serializer]
+- bitable.app.copy -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/copy [custom_params_serializer] aliases: bitable.app.copy, bitable.v1.app.copy
+- bitable.app.create -> POST ${this.domain}/open-apis/bitable/v1/apps [custom_params_serializer] aliases: bitable.app.create, bitable.v1.app.create
+- bitable.app.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer] aliases: bitable.app.get, bitable.v1.app.get
+- bitable.app.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token [custom_params_serializer] aliases: bitable.app.update, bitable.v1.app.update
+- bitable.appDashboard.copy -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards/:block_id/copy [custom_params_serializer] aliases: bitable.appDashboard.copy, bitable.v1.appDashboard.copy
+- bitable.appDashboard.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer] aliases: bitable.appDashboard.list, bitable.v1.appDashboard.list
+- bitable.appDashboard.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/dashboards [custom_params_serializer, iterator_helper] aliases: bitable.appDashboard.listWithIterator, bitable.v1.appDashboard.listWithIterator
+- bitable.appRole.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles [custom_params_serializer] aliases: bitable.appRole.create, bitable.v1.appRole.create
+- bitable.appRole.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id [custom_params_serializer] aliases: bitable.appRole.delete, bitable.v1.appRole.delete
+- bitable.appRole.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles [custom_params_serializer] aliases: bitable.appRole.list, bitable.v1.appRole.list
+- bitable.appRole.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles [custom_params_serializer, iterator_helper] aliases: bitable.appRole.listWithIterator, bitable.v1.appRole.listWithIterator
+- bitable.appRole.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id [custom_params_serializer] aliases: bitable.appRole.update, bitable.v1.appRole.update
+- bitable.appRoleMember.batchCreate -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_create [custom_params_serializer] aliases: bitable.appRoleMember.batchCreate, bitable.v1.appRoleMember.batchCreate
+- bitable.appRoleMember.batchDelete -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_delete [custom_params_serializer] aliases: bitable.appRoleMember.batchDelete, bitable.v1.appRoleMember.batchDelete
+- bitable.appRoleMember.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members [custom_params_serializer] aliases: bitable.appRoleMember.create, bitable.v1.appRoleMember.create
+- bitable.appRoleMember.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/:member_id [custom_params_serializer] aliases: bitable.appRoleMember.delete, bitable.v1.appRoleMember.delete
+- bitable.appRoleMember.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members [custom_params_serializer] aliases: bitable.appRoleMember.list, bitable.v1.appRoleMember.list
+- bitable.appRoleMember.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/roles/:role_id/members [custom_params_serializer, iterator_helper] aliases: bitable.appRoleMember.listWithIterator, bitable.v1.appRoleMember.listWithIterator
+- bitable.appTable.batchCreate -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/batch_create [custom_params_serializer] aliases: bitable.appTable.batchCreate, bitable.v1.appTable.batchCreate
+- bitable.appTable.batchDelete -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/batch_delete [custom_params_serializer] aliases: bitable.appTable.batchDelete, bitable.v1.appTable.batchDelete
+- bitable.appTable.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables [custom_params_serializer] aliases: bitable.appTable.create, bitable.v1.appTable.create
+- bitable.appTable.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id [custom_params_serializer] aliases: bitable.appTable.delete, bitable.v1.appTable.delete
+- bitable.appTable.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables [custom_params_serializer] aliases: bitable.appTable.list, bitable.v1.appTable.list
+- bitable.appTable.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables [custom_params_serializer, iterator_helper] aliases: bitable.appTable.listWithIterator, bitable.v1.appTable.listWithIterator
+- bitable.appTable.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id [custom_params_serializer] aliases: bitable.appTable.patch, bitable.v1.appTable.patch
+- bitable.appTableField.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer] aliases: bitable.appTableField.create, bitable.v1.appTableField.create
+- bitable.appTableField.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id [custom_params_serializer] aliases: bitable.appTableField.delete, bitable.v1.appTableField.delete
+- bitable.appTableField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer] aliases: bitable.appTableField.list, bitable.v1.appTableField.list
+- bitable.appTableField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields [custom_params_serializer, iterator_helper] aliases: bitable.appTableField.listWithIterator, bitable.v1.appTableField.listWithIterator
+- bitable.appTableField.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id [custom_params_serializer] aliases: bitable.appTableField.update, bitable.v1.appTableField.update
+- bitable.appTableForm.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer] aliases: bitable.appTableForm.get, bitable.v1.appTableForm.get
+- bitable.appTableForm.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id [custom_params_serializer] aliases: bitable.appTableForm.patch, bitable.v1.appTableForm.patch
+- bitable.appTableFormField.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer] aliases: bitable.appTableFormField.list, bitable.v1.appTableFormField.list
+- bitable.appTableFormField.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields [custom_params_serializer, iterator_helper] aliases: bitable.appTableFormField.listWithIterator, bitable.v1.appTableFormField.listWithIterator
+- bitable.appTableFormField.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/fields/:field_id [custom_params_serializer] aliases: bitable.appTableFormField.patch, bitable.v1.appTableFormField.patch
+- bitable.appTableRecord.batchCreate -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_create [custom_params_serializer] aliases: bitable.appTableRecord.batchCreate, bitable.v1.appTableRecord.batchCreate
+- bitable.appTableRecord.batchDelete -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_delete [custom_params_serializer] aliases: bitable.appTableRecord.batchDelete, bitable.v1.appTableRecord.batchDelete
+- bitable.appTableRecord.batchGet -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_get [custom_params_serializer] aliases: bitable.appTableRecord.batchGet, bitable.v1.appTableRecord.batchGet
+- bitable.appTableRecord.batchUpdate -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_update [custom_params_serializer] aliases: bitable.appTableRecord.batchUpdate, bitable.v1.appTableRecord.batchUpdate
+- bitable.appTableRecord.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records [custom_params_serializer] aliases: bitable.appTableRecord.create, bitable.v1.appTableRecord.create
+- bitable.appTableRecord.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id [custom_params_serializer] aliases: bitable.appTableRecord.delete, bitable.v1.appTableRecord.delete
+- bitable.appTableRecord.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id [custom_params_serializer] aliases: bitable.appTableRecord.get, bitable.v1.appTableRecord.get
+- bitable.appTableRecord.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records [custom_params_serializer] aliases: bitable.appTableRecord.list, bitable.v1.appTableRecord.list
+- bitable.appTableRecord.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records [custom_params_serializer, iterator_helper] aliases: bitable.appTableRecord.listWithIterator, bitable.v1.appTableRecord.listWithIterator
+- bitable.appTableRecord.search -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/search [custom_params_serializer] aliases: bitable.appTableRecord.search, bitable.v1.appTableRecord.search
+- bitable.appTableRecord.searchWithIterator -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/search [custom_params_serializer, iterator_helper] aliases: bitable.appTableRecord.searchWithIterator, bitable.v1.appTableRecord.searchWithIterator
+- bitable.appTableRecord.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id [custom_params_serializer] aliases: bitable.appTableRecord.update, bitable.v1.appTableRecord.update
+- bitable.appTableView.create -> POST ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views [custom_params_serializer] aliases: bitable.appTableView.create, bitable.v1.appTableView.create
+- bitable.appTableView.delete -> DELETE ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id [custom_params_serializer] aliases: bitable.appTableView.delete, bitable.v1.appTableView.delete
+- bitable.appTableView.get -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id [custom_params_serializer] aliases: bitable.appTableView.get, bitable.v1.appTableView.get
+- bitable.appTableView.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views [custom_params_serializer] aliases: bitable.appTableView.list, bitable.v1.appTableView.list
+- bitable.appTableView.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views [custom_params_serializer, iterator_helper] aliases: bitable.appTableView.listWithIterator, bitable.v1.appTableView.listWithIterator
+- bitable.appTableView.patch -> PATCH ${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id [custom_params_serializer] aliases: bitable.appTableView.patch, bitable.v1.appTableView.patch
+- bitable.appWorkflow.list -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/workflows [custom_params_serializer] aliases: bitable.appWorkflow.list, bitable.v1.appWorkflow.list
+- bitable.appWorkflow.listWithIterator -> GET ${this.domain}/open-apis/bitable/v1/apps/:app_token/workflows [custom_params_serializer, iterator_helper] aliases: bitable.appWorkflow.listWithIterator, bitable.v1.appWorkflow.listWithIterator
+- bitable.appWorkflow.update -> PUT ${this.domain}/open-apis/bitable/v1/apps/:app_token/workflows/:workflow_id [custom_params_serializer] aliases: bitable.appWorkflow.update, bitable.v1.appWorkflow.update
+- block.entity.create -> POST ${this.domain}/open-apis/block/v2/entities [custom_params_serializer] aliases: block.entity.create, block.v2.entity.create
+- block.entity.update -> PUT ${this.domain}/open-apis/block/v2/entities/:block_id [custom_params_serializer] aliases: block.entity.update, block.v2.entity.update
+- block.message.create -> POST ${this.domain}/open-apis/block/v2/message [custom_params_serializer] aliases: block.message.create, block.v2.message.create
+- board.whiteboard.downloadAsImage -> GET ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/download_as_image [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper]
+- board.whiteboard.theme -> GET ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/theme [custom_params_serializer]
+- board.whiteboard.updateTheme -> POST ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/update_theme [custom_params_serializer]
+- board.whiteboardNode.create -> POST ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/nodes [custom_params_serializer]
+- board.whiteboardNode.createPlantuml -> POST ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/nodes/plantuml [custom_params_serializer]
+- board.whiteboardNode.list -> GET ${this.domain}/open-apis/board/v1/whiteboards/:whiteboard_id/nodes [custom_params_serializer]
+- calendar.calendar.create -> POST ${this.domain}/open-apis/calendar/v4/calendars [custom_params_serializer] aliases: calendar.calendar.create, calendar.v4.calendar.create
+- calendar.calendar.delete -> DELETE ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id [custom_params_serializer] aliases: calendar.calendar.delete, calendar.v4.calendar.delete
+- calendar.calendar.get -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id [custom_params_serializer] aliases: calendar.calendar.get, calendar.v4.calendar.get
+- calendar.calendar.list -> GET ${this.domain}/open-apis/calendar/v4/calendars [custom_params_serializer] aliases: calendar.calendar.list, calendar.v4.calendar.list
+- calendar.calendar.mget -> POST ${this.domain}/open-apis/calendar/v4/calendars/mget [custom_params_serializer] aliases: calendar.calendar.mget, calendar.v4.calendar.mget
+- calendar.calendar.patch -> PATCH ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id [custom_params_serializer] aliases: calendar.calendar.patch, calendar.v4.calendar.patch
+- calendar.calendar.primary -> POST ${this.domain}/open-apis/calendar/v4/calendars/primary [custom_params_serializer] aliases: calendar.calendar.primary, calendar.v4.calendar.primary
+- calendar.calendar.primarys -> POST ${this.domain}/open-apis/calendar/v4/calendars/primarys [custom_params_serializer] aliases: calendar.calendar.primarys, calendar.v4.calendar.primarys
+- calendar.calendar.search -> POST ${this.domain}/open-apis/calendar/v4/calendars/search [custom_params_serializer] aliases: calendar.calendar.search, calendar.v4.calendar.search
+- calendar.calendar.searchWithIterator -> POST ${this.domain}/open-apis/calendar/v4/calendars/search [custom_params_serializer, iterator_helper] aliases: calendar.calendar.searchWithIterator, calendar.v4.calendar.searchWithIterator
+- calendar.calendar.subscribe -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/subscribe [custom_params_serializer] aliases: calendar.calendar.subscribe, calendar.v4.calendar.subscribe
+- calendar.calendar.subscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/subscription [custom_params_serializer] aliases: calendar.calendar.subscription, calendar.v4.calendar.subscription
+- calendar.calendar.unsubscribe -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/unsubscribe [custom_params_serializer] aliases: calendar.calendar.unsubscribe, calendar.v4.calendar.unsubscribe
+- calendar.calendar.unsubscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/unsubscription [custom_params_serializer] aliases: calendar.calendar.unsubscription, calendar.v4.calendar.unsubscription
+- calendar.calendarAcl.create -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls [custom_params_serializer] aliases: calendar.calendarAcl.create, calendar.v4.calendarAcl.create
+- calendar.calendarAcl.delete -> DELETE ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls/:acl_id [custom_params_serializer] aliases: calendar.calendarAcl.delete, calendar.v4.calendarAcl.delete
+- calendar.calendarAcl.list -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls [custom_params_serializer] aliases: calendar.calendarAcl.list, calendar.v4.calendarAcl.list
+- calendar.calendarAcl.listWithIterator -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls [custom_params_serializer, iterator_helper] aliases: calendar.calendarAcl.listWithIterator, calendar.v4.calendarAcl.listWithIterator
+- calendar.calendarAcl.subscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls/subscription [custom_params_serializer] aliases: calendar.calendarAcl.subscription, calendar.v4.calendarAcl.subscription
+- calendar.calendarAcl.unsubscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/acls/unsubscription [custom_params_serializer] aliases: calendar.calendarAcl.unsubscription, calendar.v4.calendarAcl.unsubscription
+- calendar.calendarEvent.create -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events [custom_params_serializer] aliases: calendar.calendarEvent.create, calendar.v4.calendarEvent.create
+- calendar.calendarEvent.delete -> DELETE ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id [custom_params_serializer] aliases: calendar.calendarEvent.delete, calendar.v4.calendarEvent.delete
+- calendar.calendarEvent.get -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id [custom_params_serializer] aliases: calendar.calendarEvent.get, calendar.v4.calendarEvent.get
+- calendar.calendarEvent.instances -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/instances [custom_params_serializer] aliases: calendar.calendarEvent.instances, calendar.v4.calendarEvent.instances
+- calendar.calendarEvent.instanceView -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/instance_view [custom_params_serializer] aliases: calendar.calendarEvent.instanceView, calendar.v4.calendarEvent.instanceView
+- calendar.calendarEvent.list -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events [custom_params_serializer] aliases: calendar.calendarEvent.list, calendar.v4.calendarEvent.list
+- calendar.calendarEvent.patch -> PATCH ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id [custom_params_serializer] aliases: calendar.calendarEvent.patch, calendar.v4.calendarEvent.patch
+- calendar.calendarEvent.reply -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/reply [custom_params_serializer] aliases: calendar.calendarEvent.reply, calendar.v4.calendarEvent.reply
+- calendar.calendarEvent.search -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/search [custom_params_serializer] aliases: calendar.calendarEvent.search, calendar.v4.calendarEvent.search
+- calendar.calendarEvent.searchWithIterator -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/search [custom_params_serializer, iterator_helper] aliases: calendar.calendarEvent.searchWithIterator, calendar.v4.calendarEvent.searchWithIterator
+- calendar.calendarEvent.subscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/subscription [custom_params_serializer] aliases: calendar.calendarEvent.subscription, calendar.v4.calendarEvent.subscription
+- calendar.calendarEvent.unsubscription -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/unsubscription [custom_params_serializer] aliases: calendar.calendarEvent.unsubscription, calendar.v4.calendarEvent.unsubscription
+- calendar.calendarEventAttendee.batchDelete -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees/batch_delete [custom_params_serializer] aliases: calendar.calendarEventAttendee.batchDelete, calendar.v4.calendarEventAttendee.batchDelete
+- calendar.calendarEventAttendee.create -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees [custom_params_serializer] aliases: calendar.calendarEventAttendee.create, calendar.v4.calendarEventAttendee.create
+- calendar.calendarEventAttendee.list -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees [custom_params_serializer] aliases: calendar.calendarEventAttendee.list, calendar.v4.calendarEventAttendee.list
+- calendar.calendarEventAttendee.listWithIterator -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees [custom_params_serializer, iterator_helper] aliases: calendar.calendarEventAttendee.listWithIterator, calendar.v4.calendarEventAttendee.listWithIterator
+- calendar.calendarEventAttendeeChatMember.list -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees/:attendee_id/chat_members [custom_params_serializer] aliases: calendar.calendarEventAttendeeChatMember.list, calendar.v4.calendarEventAttendeeChatMember.list
+- calendar.calendarEventAttendeeChatMember.listWithIterator -> GET ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees/:attendee_id/chat_members [custom_params_serializer, iterator_helper] aliases: calendar.calendarEventAttendeeChatMember.listWithIterator, calendar.v4.calendarEventAttendeeChatMember.listWithIterator
+- calendar.calendarEventMeetingChat.create -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat [custom_params_serializer] aliases: calendar.calendarEventMeetingChat.create, calendar.v4.calendarEventMeetingChat.create
+- calendar.calendarEventMeetingChat.delete -> DELETE ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat [custom_params_serializer] aliases: calendar.calendarEventMeetingChat.delete, calendar.v4.calendarEventMeetingChat.delete
+- calendar.calendarEventMeetingMinute.create -> POST ${this.domain}/open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_minute [custom_params_serializer] aliases: calendar.calendarEventMeetingMinute.create, calendar.v4.calendarEventMeetingMinute.create
+- calendar.exchangeBinding.create -> POST ${this.domain}/open-apis/calendar/v4/exchange_bindings [custom_params_serializer] aliases: calendar.exchangeBinding.create, calendar.v4.exchangeBinding.create
+- calendar.exchangeBinding.delete -> DELETE ${this.domain}/open-apis/calendar/v4/exchange_bindings/:exchange_binding_id [custom_params_serializer] aliases: calendar.exchangeBinding.delete, calendar.v4.exchangeBinding.delete
+- calendar.exchangeBinding.get -> GET ${this.domain}/open-apis/calendar/v4/exchange_bindings/:exchange_binding_id [custom_params_serializer] aliases: calendar.exchangeBinding.get, calendar.v4.exchangeBinding.get
+- calendar.freebusy.batch -> POST ${this.domain}/open-apis/calendar/v4/freebusy/batch [custom_params_serializer] aliases: calendar.freebusy.batch, calendar.v4.freebusy.batch
+- calendar.freebusy.list -> POST ${this.domain}/open-apis/calendar/v4/freebusy/list [custom_params_serializer] aliases: calendar.freebusy.list, calendar.v4.freebusy.list
+- calendar.setting.generateCaldavConf -> POST ${this.domain}/open-apis/calendar/v4/settings/generate_caldav_conf [custom_params_serializer] aliases: calendar.setting.generateCaldavConf, calendar.v4.setting.generateCaldavConf
+- calendar.timeoffEvent.create -> POST ${this.domain}/open-apis/calendar/v4/timeoff_events [custom_params_serializer] aliases: calendar.timeoffEvent.create, calendar.v4.timeoffEvent.create
+- calendar.timeoffEvent.delete -> DELETE ${this.domain}/open-apis/calendar/v4/timeoff_events/:timeoff_event_id [custom_params_serializer] aliases: calendar.timeoffEvent.delete, calendar.v4.timeoffEvent.delete
+- cardkit.card.batchUpdate -> POST ${this.domain}/open-apis/cardkit/v1/cards/:card_id/batch_update [custom_params_serializer]
+- cardkit.card.create -> POST ${this.domain}/open-apis/cardkit/v1/cards [custom_params_serializer]
+- cardkit.card.idConvert -> POST ${this.domain}/open-apis/cardkit/v1/cards/id_convert [custom_params_serializer]
+- cardkit.card.settings -> PATCH ${this.domain}/open-apis/cardkit/v1/cards/:card_id/settings [custom_params_serializer]
+- cardkit.card.update -> PUT ${this.domain}/open-apis/cardkit/v1/cards/:card_id [custom_params_serializer]
+- cardkit.cardElement.content -> PUT ${this.domain}/open-apis/cardkit/v1/cards/:card_id/elements/:element_id/content [custom_params_serializer]
+- cardkit.cardElement.create -> POST ${this.domain}/open-apis/cardkit/v1/cards/:card_id/elements [custom_params_serializer]
+- cardkit.cardElement.delete -> DELETE ${this.domain}/open-apis/cardkit/v1/cards/:card_id/elements/:element_id [custom_params_serializer]
+- cardkit.cardElement.patch -> PATCH ${this.domain}/open-apis/cardkit/v1/cards/:card_id/elements/:element_id [custom_params_serializer]
+- cardkit.cardElement.update -> PUT ${this.domain}/open-apis/cardkit/v1/cards/:card_id/elements/:element_id [custom_params_serializer]
+- compensation.archive.create -> POST ${this.domain}/open-apis/compensation/v1/archives [custom_params_serializer]
+- compensation.archive.query -> POST ${this.domain}/open-apis/compensation/v1/archives/query [custom_params_serializer]
+- compensation.changeReason.list -> GET ${this.domain}/open-apis/compensation/v1/change_reasons [custom_params_serializer]
+- compensation.changeReason.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/change_reasons [custom_params_serializer, iterator_helper]
+- compensation.indicator.list -> GET ${this.domain}/open-apis/compensation/v1/indicators [custom_params_serializer]
+- compensation.indicator.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/indicators [custom_params_serializer, iterator_helper]
+- compensation.item.list -> GET ${this.domain}/open-apis/compensation/v1/items [custom_params_serializer]
+- compensation.item.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/items [custom_params_serializer, iterator_helper]
+- compensation.itemCategory.list -> GET ${this.domain}/open-apis/compensation/v1/item_categories [custom_params_serializer]
+- compensation.itemCategory.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/item_categories [custom_params_serializer, iterator_helper]
+- compensation.lumpSumPayment.batchCreate -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/batch_create [custom_params_serializer]
+- compensation.lumpSumPayment.batchRemove -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/batch_remove [custom_params_serializer]
+- compensation.lumpSumPayment.batchUpdate -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/batch_update [custom_params_serializer]
+- compensation.lumpSumPayment.query -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/query [custom_params_serializer]
+- compensation.lumpSumPayment.queryDetail -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/query_detail [custom_params_serializer]
+- compensation.lumpSumPayment.queryDetailWithIterator -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/query_detail [custom_params_serializer, iterator_helper]
+- compensation.lumpSumPayment.queryWithIterator -> POST ${this.domain}/open-apis/compensation/v1/lump_sum_payment/query [custom_params_serializer, iterator_helper]
+- compensation.plan.list -> GET ${this.domain}/open-apis/compensation/v1/plans [custom_params_serializer]
+- compensation.plan.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/plans [custom_params_serializer, iterator_helper]
+- compensation.recurringPayment.batchCreate -> POST ${this.domain}/open-apis/compensation/v1/recurring_payment/batch_create [custom_params_serializer]
+- compensation.recurringPayment.batchRemove -> POST ${this.domain}/open-apis/compensation/v1/recurring_payment/batch_remove [custom_params_serializer]
+- compensation.recurringPayment.batchUpdate -> POST ${this.domain}/open-apis/compensation/v1/recurring_payment/batch_update [custom_params_serializer]
+- compensation.recurringPayment.query -> POST ${this.domain}/open-apis/compensation/v1/recurring_payment/query [custom_params_serializer]
+- compensation.recurringPayment.queryWithIterator -> POST ${this.domain}/open-apis/compensation/v1/recurring_payment/query [custom_params_serializer, iterator_helper]
+- compensation.socialArchive.query -> POST ${this.domain}/open-apis/compensation/v1/social_archive/query [custom_params_serializer]
+- compensation.socialArchiveAdjustRecord.query -> POST ${this.domain}/open-apis/compensation/v1/social_archive_adjust_record/query [custom_params_serializer]
+- compensation.socialInsurance.list -> GET ${this.domain}/open-apis/compensation/v1/social_insurances [custom_params_serializer]
+- compensation.socialPlan.list -> GET ${this.domain}/open-apis/compensation/v1/social_plans [custom_params_serializer]
+- compensation.socialPlan.listWithIterator -> GET ${this.domain}/open-apis/compensation/v1/social_plans [custom_params_serializer, iterator_helper]
+- compensation.socialPlan.query -> POST ${this.domain}/open-apis/compensation/v1/social_plans/query [custom_params_serializer]
+- contact.customAttr.list -> GET ${this.domain}/open-apis/contact/v3/custom_attrs [custom_params_serializer] aliases: contact.customAttr.list, contact.v3.customAttr.list
+- contact.customAttr.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/custom_attrs [custom_params_serializer, iterator_helper] aliases: contact.customAttr.listWithIterator, contact.v3.customAttr.listWithIterator
+- contact.department.batch -> GET ${this.domain}/open-apis/contact/v3/departments/batch [custom_params_serializer] aliases: contact.department.batch, contact.v3.department.batch
+- contact.department.children -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id/children [custom_params_serializer] aliases: contact.department.children, contact.v3.department.children
+- contact.department.childrenWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id/children [custom_params_serializer, iterator_helper] aliases: contact.department.childrenWithIterator, contact.v3.department.childrenWithIterator
+- contact.department.create -> POST ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer] aliases: contact.department.create, contact.v3.department.create
+- contact.department.delete -> DELETE ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.delete, contact.v3.department.delete
+- contact.department.get -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.get, contact.v3.department.get
+- contact.department.list -> GET ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer] aliases: contact.department.list, contact.v3.department.list
+- contact.department.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer, iterator_helper] aliases: contact.department.listWithIterator, contact.v3.department.listWithIterator
+- contact.department.parent -> GET ${this.domain}/open-apis/contact/v3/departments/parent [custom_params_serializer] aliases: contact.department.parent, contact.v3.department.parent
+- contact.department.parentWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments/parent [custom_params_serializer, iterator_helper] aliases: contact.department.parentWithIterator, contact.v3.department.parentWithIterator
+- contact.department.patch -> PATCH ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.patch, contact.v3.department.patch
+- contact.department.search -> POST ${this.domain}/open-apis/contact/v3/departments/search [custom_params_serializer] aliases: contact.department.search, contact.v3.department.search
+- contact.department.searchWithIterator -> POST ${this.domain}/open-apis/contact/v3/departments/search [custom_params_serializer, iterator_helper] aliases: contact.department.searchWithIterator, contact.v3.department.searchWithIterator
+- contact.department.unbindDepartmentChat -> POST ${this.domain}/open-apis/contact/v3/departments/unbind_department_chat [custom_params_serializer] aliases: contact.department.unbindDepartmentChat, contact.v3.department.unbindDepartmentChat
+- contact.department.update -> PUT ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.update, contact.v3.department.update
+- contact.department.updateDepartmentId -> PATCH ${this.domain}/open-apis/contact/v3/departments/:department_id/update_department_id [custom_params_serializer] aliases: contact.department.updateDepartmentId, contact.v3.department.updateDepartmentId
+- contact.employeeTypeEnum.create -> POST ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer] aliases: contact.employeeTypeEnum.create, contact.v3.employeeTypeEnum.create
+- contact.employeeTypeEnum.delete -> DELETE ${this.domain}/open-apis/contact/v3/employee_type_enums/:enum_id [custom_params_serializer] aliases: contact.employeeTypeEnum.delete, contact.v3.employeeTypeEnum.delete
+- contact.employeeTypeEnum.list -> GET ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer] aliases: contact.employeeTypeEnum.list, contact.v3.employeeTypeEnum.list
+- contact.employeeTypeEnum.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer, iterator_helper] aliases: contact.employeeTypeEnum.listWithIterator, contact.v3.employeeTypeEnum.listWithIterator
+- contact.employeeTypeEnum.update -> PUT ${this.domain}/open-apis/contact/v3/employee_type_enums/:enum_id [custom_params_serializer] aliases: contact.employeeTypeEnum.update, contact.v3.employeeTypeEnum.update
+- contact.functionalRole.create -> POST ${this.domain}/open-apis/contact/v3/functional_roles [custom_params_serializer] aliases: contact.functionalRole.create, contact.v3.functionalRole.create
+- contact.functionalRole.delete -> DELETE ${this.domain}/open-apis/contact/v3/functional_roles/:role_id [custom_params_serializer] aliases: contact.functionalRole.delete, contact.v3.functionalRole.delete
+- contact.functionalRole.update -> PUT ${this.domain}/open-apis/contact/v3/functional_roles/:role_id [custom_params_serializer] aliases: contact.functionalRole.update, contact.v3.functionalRole.update
+- contact.functionalRoleMember.batchCreate -> POST ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/batch_create [custom_params_serializer] aliases: contact.functionalRoleMember.batchCreate, contact.v3.functionalRoleMember.batchCreate
+- contact.functionalRoleMember.batchDelete -> PATCH ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/batch_delete [custom_params_serializer] aliases: contact.functionalRoleMember.batchDelete, contact.v3.functionalRoleMember.batchDelete
+- contact.functionalRoleMember.get -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/:member_id [custom_params_serializer] aliases: contact.functionalRoleMember.get, contact.v3.functionalRoleMember.get
+- contact.functionalRoleMember.list -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members [custom_params_serializer] aliases: contact.functionalRoleMember.list, contact.v3.functionalRoleMember.list
+- contact.functionalRoleMember.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members [custom_params_serializer, iterator_helper] aliases: contact.functionalRoleMember.listWithIterator, contact.v3.functionalRoleMember.listWithIterator
+- contact.functionalRoleMember.scopes -> PATCH ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/scopes [custom_params_serializer] aliases: contact.functionalRoleMember.scopes, contact.v3.functionalRoleMember.scopes
+- contact.group.create -> POST ${this.domain}/open-apis/contact/v3/group [custom_params_serializer] aliases: contact.group.create, contact.v3.group.create
+- contact.group.delete -> DELETE ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.delete, contact.v3.group.delete
+- contact.group.get -> GET ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.get, contact.v3.group.get
+- contact.group.memberBelong -> GET ${this.domain}/open-apis/contact/v3/group/member_belong [custom_params_serializer] aliases: contact.group.memberBelong, contact.v3.group.memberBelong
+- contact.group.patch -> PATCH ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.patch, contact.v3.group.patch
+- contact.group.simplelist -> GET ${this.domain}/open-apis/contact/v3/group/simplelist [custom_params_serializer] aliases: contact.group.simplelist, contact.v3.group.simplelist
+- contact.group.simplelistWithIterator -> GET ${this.domain}/open-apis/contact/v3/group/simplelist [custom_params_serializer, iterator_helper] aliases: contact.group.simplelistWithIterator, contact.v3.group.simplelistWithIterator
+- contact.groupMember.add -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/add [custom_params_serializer] aliases: contact.groupMember.add, contact.v3.groupMember.add
+- contact.groupMember.batchAdd -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/batch_add [custom_params_serializer] aliases: contact.groupMember.batchAdd, contact.v3.groupMember.batchAdd
+- contact.groupMember.batchRemove -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/batch_remove [custom_params_serializer] aliases: contact.groupMember.batchRemove, contact.v3.groupMember.batchRemove
+- contact.groupMember.remove -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/remove [custom_params_serializer] aliases: contact.groupMember.remove, contact.v3.groupMember.remove
+- contact.groupMember.simplelist -> GET ${this.domain}/open-apis/contact/v3/group/:group_id/member/simplelist [custom_params_serializer] aliases: contact.groupMember.simplelist, contact.v3.groupMember.simplelist
+- contact.jobFamily.create -> POST ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer] aliases: contact.jobFamily.create, contact.v3.jobFamily.create
+- contact.jobFamily.delete -> DELETE ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.delete, contact.v3.jobFamily.delete
+- contact.jobFamily.get -> GET ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.get, contact.v3.jobFamily.get
+- contact.jobFamily.list -> GET ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer] aliases: contact.jobFamily.list, contact.v3.jobFamily.list
+- contact.jobFamily.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer, iterator_helper] aliases: contact.jobFamily.listWithIterator, contact.v3.jobFamily.listWithIterator
+- contact.jobFamily.update -> PUT ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.update, contact.v3.jobFamily.update
+- contact.jobLevel.create -> POST ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer] aliases: contact.jobLevel.create, contact.v3.jobLevel.create
+- contact.jobLevel.delete -> DELETE ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.delete, contact.v3.jobLevel.delete
+- contact.jobLevel.get -> GET ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.get, contact.v3.jobLevel.get
+- contact.jobLevel.list -> GET ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer] aliases: contact.jobLevel.list, contact.v3.jobLevel.list
+- contact.jobLevel.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer, iterator_helper] aliases: contact.jobLevel.listWithIterator, contact.v3.jobLevel.listWithIterator
+- contact.jobLevel.update -> PUT ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.update, contact.v3.jobLevel.update
+- contact.jobTitle.get -> GET ${this.domain}/open-apis/contact/v3/job_titles/:job_title_id [custom_params_serializer] aliases: contact.jobTitle.get, contact.v3.jobTitle.get
+- contact.jobTitle.list -> GET ${this.domain}/open-apis/contact/v3/job_titles [custom_params_serializer] aliases: contact.jobTitle.list, contact.v3.jobTitle.list
+- contact.jobTitle.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_titles [custom_params_serializer, iterator_helper] aliases: contact.jobTitle.listWithIterator, contact.v3.jobTitle.listWithIterator
+- contact.scope.list -> GET ${this.domain}/open-apis/contact/v3/scopes [custom_params_serializer] aliases: contact.scope.list, contact.v3.scope.list
+- contact.scope.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/scopes [custom_params_serializer, iterator_helper] aliases: contact.scope.listWithIterator, contact.v3.scope.listWithIterator
+- contact.unit.bindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/bind_department [custom_params_serializer] aliases: contact.unit.bindDepartment, contact.v3.unit.bindDepartment
+- contact.unit.create -> POST ${this.domain}/open-apis/contact/v3/unit [custom_params_serializer] aliases: contact.unit.create, contact.v3.unit.create
+- contact.unit.delete -> DELETE ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.delete, contact.v3.unit.delete
+- contact.unit.get -> GET ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.get, contact.v3.unit.get
+- contact.unit.list -> GET ${this.domain}/open-apis/contact/v3/unit [custom_params_serializer] aliases: contact.unit.list, contact.v3.unit.list
+- contact.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer] aliases: contact.unit.listDepartment, contact.v3.unit.listDepartment
+- contact.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.patch, contact.v3.unit.patch
+- contact.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer] aliases: contact.unit.unbindDepartment, contact.v3.unit.unbindDepartment
+- contact.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer] aliases: contact.user.batch, contact.v3.user.batch
+- contact.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer] aliases: contact.user.batchGetId, contact.v3.user.batchGetId
+- contact.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer] aliases: contact.user.create, contact.v3.user.create
+- contact.user.delete -> DELETE ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.delete, contact.v3.user.delete
+- contact.user.findByDepartment -> GET ${this.domain}/open-apis/contact/v3/users/find_by_department [custom_params_serializer] aliases: contact.user.findByDepartment, contact.v3.user.findByDepartment
+- contact.user.findByDepartmentWithIterator -> GET ${this.domain}/open-apis/contact/v3/users/find_by_department [custom_params_serializer, iterator_helper] aliases: contact.user.findByDepartmentWithIterator, contact.v3.user.findByDepartmentWithIterator
+- contact.user.get -> GET ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.get, contact.v3.user.get
+- contact.user.list -> GET ${this.domain}/open-apis/contact/v3/users [custom_params_serializer] aliases: contact.user.list, contact.v3.user.list
+- contact.user.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/users [custom_params_serializer, iterator_helper] aliases: contact.user.listWithIterator, contact.v3.user.listWithIterator
+- contact.user.patch -> PATCH ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.patch, contact.v3.user.patch
+- contact.user.resurrect -> POST ${this.domain}/open-apis/contact/v3/users/:user_id/resurrect [custom_params_serializer] aliases: contact.user.resurrect, contact.v3.user.resurrect
+- contact.user.update -> PUT ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.update, contact.v3.user.update
+- contact.user.updateUserId -> PATCH ${this.domain}/open-apis/contact/v3/users/:user_id/update_user_id [custom_params_serializer] aliases: contact.user.updateUserId, contact.v3.user.updateUserId
+- contact.workCity.get -> GET ${this.domain}/open-apis/contact/v3/work_cities/:work_city_id [custom_params_serializer] aliases: contact.v3.workCity.get, contact.workCity.get
+- contact.workCity.list -> GET ${this.domain}/open-apis/contact/v3/work_cities [custom_params_serializer] aliases: contact.v3.workCity.list, contact.workCity.list
+- contact.workCity.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/work_cities [custom_params_serializer, iterator_helper] aliases: contact.v3.workCity.listWithIterator, contact.workCity.listWithIterator
+- corehr.approvalGroups.get -> GET ${this.domain}/open-apis/corehr/v2/approval_groups/:process_id [custom_params_serializer]
+- corehr.approvalGroups.openQueryDepartmentChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_department_change_list_by_ids [custom_params_serializer]
+- corehr.approvalGroups.openQueryJobChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_job_change_list_by_ids [custom_params_serializer]
+- corehr.approvalGroups.openQueryPositionChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_position_change_list_by_ids [custom_params_serializer]
+- corehr.approver.list -> GET ${this.domain}/open-apis/corehr/v2/approvers [custom_params_serializer]
+- corehr.approver.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/approvers [custom_params_serializer, iterator_helper]
+- corehr.assignedUser.search -> POST ${this.domain}/open-apis/corehr/v1/assigned_users/search [custom_params_serializer] aliases: corehr.assignedUser.search, corehr.v1.assignedUser.search
+- corehr.authorization.addRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/add_role_assign [custom_params_serializer] aliases: corehr.authorization.addRoleAssign, corehr.v1.authorization.addRoleAssign
+- corehr.authorization.getByParam -> GET ${this.domain}/open-apis/corehr/v1/authorizations/get_by_param [custom_params_serializer] aliases: corehr.authorization.getByParam, corehr.v1.authorization.getByParam
+- corehr.authorization.query -> GET ${this.domain}/open-apis/corehr/v1/authorizations/query [custom_params_serializer] aliases: corehr.authorization.query, corehr.v1.authorization.query
+- corehr.authorization.removeRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/remove_role_assign [custom_params_serializer] aliases: corehr.authorization.removeRoleAssign, corehr.v1.authorization.removeRoleAssign
+- corehr.authorization.updateRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/update_role_assign [custom_params_serializer] aliases: corehr.authorization.updateRoleAssign, corehr.v1.authorization.updateRoleAssign
+- corehr.basicInfoBank.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/banks/search [custom_params_serializer]
+- corehr.basicInfoBank.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/banks/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoBankBranch.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/bank_branchs/search [custom_params_serializer]
+- corehr.basicInfoBankBranch.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/bank_branchs/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCity.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/cities/search [custom_params_serializer]
+- corehr.basicInfoCity.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/cities/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCountryRegion.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_regions/search [custom_params_serializer]
+- corehr.basicInfoCountryRegion.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_regions/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCountryRegionSubdivision.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_region_subdivisions/search [custom_params_serializer]
+- corehr.basicInfoCountryRegionSubdivision.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_region_subdivisions/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCurrency.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/currencies/search [custom_params_serializer]
+- corehr.basicInfoCurrency.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/currencies/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoDistrict.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/districts/search [custom_params_serializer]
+- corehr.basicInfoDistrict.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/districts/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoLanguage.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/languages/search [custom_params_serializer]
+- corehr.basicInfoLanguage.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/languages/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoNationality.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/nationalities/search [custom_params_serializer]
+- corehr.basicInfoNationality.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/nationalities/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoTimeZone.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/time_zones/search [custom_params_serializer]
+- corehr.basicInfoTimeZone.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/time_zones/search [custom_params_serializer, iterator_helper]
+- corehr.bp.getByDepartment -> POST ${this.domain}/open-apis/corehr/v2/bps/get_by_department [custom_params_serializer]
+- corehr.bp.list -> GET ${this.domain}/open-apis/corehr/v2/bps [custom_params_serializer]
+- corehr.bp.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/bps [custom_params_serializer, iterator_helper]
+- corehr.commonDataId.convert -> POST ${this.domain}/open-apis/corehr/v1/common_data/id/convert [custom_params_serializer] aliases: corehr.commonDataId.convert, corehr.v1.commonDataId.convert
+- corehr.commonDataMetaData.addEnumOption -> POST ${this.domain}/open-apis/corehr/v1/common_data/meta_data/add_enum_option [custom_params_serializer] aliases: corehr.commonDataMetaData.addEnumOption, corehr.v1.commonDataMetaData.addEnumOption
+- corehr.commonDataMetaData.editEnumOption -> POST ${this.domain}/open-apis/corehr/v1/common_data/meta_data/edit_enum_option [custom_params_serializer] aliases: corehr.commonDataMetaData.editEnumOption, corehr.v1.commonDataMetaData.editEnumOption
+- corehr.company.active -> POST ${this.domain}/open-apis/corehr/v2/companies/active [custom_params_serializer]
+- corehr.company.batchGet -> POST ${this.domain}/open-apis/corehr/v2/companies/batch_get [custom_params_serializer]
+- corehr.company.create -> POST ${this.domain}/open-apis/corehr/v1/companies [custom_params_serializer] aliases: corehr.company.create, corehr.v1.company.create
+- corehr.company.delete -> DELETE ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.delete, corehr.v1.company.delete
+- corehr.company.get -> GET ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.get, corehr.v1.company.get
+- corehr.company.list -> GET ${this.domain}/open-apis/corehr/v1/companies [custom_params_serializer] aliases: corehr.company.list, corehr.v1.company.list
+- corehr.company.patch -> PATCH ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.patch, corehr.v1.company.patch
+- corehr.company.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer]
+- corehr.company.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.compensationStandard.match -> GET ${this.domain}/open-apis/corehr/v1/compensation_standards/match [custom_params_serializer] aliases: corehr.compensationStandard.match, corehr.v1.compensationStandard.match
+- corehr.contract.create -> POST ${this.domain}/open-apis/corehr/v1/contracts [custom_params_serializer] aliases: corehr.contract.create, corehr.v1.contract.create
+- corehr.contract.delete -> DELETE ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.delete, corehr.v1.contract.delete
+- corehr.contract.get -> GET ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.get, corehr.v1.contract.get
+- corehr.contract.list -> GET ${this.domain}/open-apis/corehr/v1/contracts [custom_params_serializer] aliases: corehr.contract.list, corehr.v1.contract.list
+- corehr.contract.patch -> PATCH ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.patch, corehr.v1.contract.patch
+- corehr.contract.search -> POST ${this.domain}/open-apis/corehr/v2/contracts/search [custom_params_serializer]
+- corehr.contract.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/contracts/search [custom_params_serializer, iterator_helper]
+- corehr.costAllocation.batchQuery -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/batch_query [custom_params_serializer]
+- corehr.costAllocation.createVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/create_version [custom_params_serializer]
+- corehr.costAllocation.removeVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/remove_version [custom_params_serializer]
+- corehr.costAllocation.updateVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/update_version [custom_params_serializer]
+- corehr.costCenter.create -> POST ${this.domain}/open-apis/corehr/v2/cost_centers [custom_params_serializer]
+- corehr.costCenter.delete -> DELETE ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id [custom_params_serializer]
+- corehr.costCenter.patch -> PATCH ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id [custom_params_serializer]
+- corehr.costCenter.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/cost_centers/query_recent_change [custom_params_serializer]
+- corehr.costCenter.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/cost_centers/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.costCenter.search -> POST ${this.domain}/open-apis/corehr/v2/cost_centers/search [custom_params_serializer]
+- corehr.costCenterVersion.create -> POST ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions [custom_params_serializer]
+- corehr.costCenterVersion.delete -> DELETE ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions/:version_id [custom_params_serializer]
+- corehr.costCenterVersion.patch -> PATCH ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions/:version_id [custom_params_serializer]
+- corehr.countryRegion.get -> GET ${this.domain}/open-apis/corehr/v1/country_regions/:country_region_id [custom_params_serializer] aliases: corehr.countryRegion.get, corehr.v1.countryRegion.get
+- corehr.countryRegion.list -> GET ${this.domain}/open-apis/corehr/v1/country_regions [custom_params_serializer] aliases: corehr.countryRegion.list, corehr.v1.countryRegion.list
+- corehr.currency.get -> GET ${this.domain}/open-apis/corehr/v1/currencies/:currency_id [custom_params_serializer] aliases: corehr.currency.get, corehr.v1.currency.get
+- corehr.currency.list -> GET ${this.domain}/open-apis/corehr/v1/currencies [custom_params_serializer] aliases: corehr.currency.list, corehr.v1.currency.list
+- corehr.customField.getByParam -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/get_by_param [custom_params_serializer] aliases: corehr.customField.getByParam, corehr.v1.customField.getByParam
+- corehr.customField.listObjectApiName -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/list_object_api_name [custom_params_serializer] aliases: corehr.customField.listObjectApiName, corehr.v1.customField.listObjectApiName
+- corehr.customField.query -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/query [custom_params_serializer] aliases: corehr.customField.query, corehr.v1.customField.query
+- corehr.customOrg.active -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/active [custom_params_serializer]
+- corehr.customOrg.create -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs [custom_params_serializer]
+- corehr.customOrg.deleteOrg -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/delete_org [custom_params_serializer]
+- corehr.customOrg.patch -> PATCH ${this.domain}/open-apis/corehr/v2/custom_orgs/:org_id [custom_params_serializer]
+- corehr.customOrg.query -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/query [custom_params_serializer]
+- corehr.customOrg.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/custom_orgs/query_recent_change [custom_params_serializer]
+- corehr.customOrg.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/custom_orgs/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.customOrg.updateRule -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/update_rule [custom_params_serializer]
+- corehr.defaultCostCenter.batchQuery -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/batch_query [custom_params_serializer]
+- corehr.defaultCostCenter.createVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/create_version [custom_params_serializer]
+- corehr.defaultCostCenter.removeVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/remove_version [custom_params_serializer]
+- corehr.defaultCostCenter.updateVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/update_version [custom_params_serializer]
+- corehr.department.batchGet -> POST ${this.domain}/open-apis/corehr/v2/departments/batch_get [custom_params_serializer]
+- corehr.department.create -> POST ${this.domain}/open-apis/corehr/v1/departments [custom_params_serializer] aliases: corehr.department.create, corehr.v1.department.create
+- corehr.department.delete -> DELETE ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.delete, corehr.v1.department.delete
+- corehr.department.delete -> DELETE ${this.domain}/open-apis/corehr/v2/departments/:department_id [custom_params_serializer]
+- corehr.department.get -> GET ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.get, corehr.v1.department.get
+- corehr.department.list -> GET ${this.domain}/open-apis/corehr/v1/departments [custom_params_serializer] aliases: corehr.department.list, corehr.v1.department.list
+- corehr.department.parents -> POST ${this.domain}/open-apis/corehr/v2/departments/parents [custom_params_serializer]
+- corehr.department.patch -> PATCH ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.patch, corehr.v1.department.patch
+- corehr.department.patch -> PATCH ${this.domain}/open-apis/corehr/v2/departments/:department_id [custom_params_serializer]
+- corehr.department.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/departments/query_multi_timeline [custom_params_serializer]
+- corehr.department.queryOperationLogs -> POST ${this.domain}/open-apis/corehr/v2/departments/query_operation_logs [custom_params_serializer]
+- corehr.department.queryOperationLogsWithIterator -> POST ${this.domain}/open-apis/corehr/v2/departments/query_operation_logs [custom_params_serializer, iterator_helper]
+- corehr.department.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/departments/query_recent_change [custom_params_serializer]
+- corehr.department.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/departments/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.department.queryTimeline -> POST ${this.domain}/open-apis/corehr/v2/departments/query_timeline [custom_params_serializer]
+- corehr.department.search -> POST ${this.domain}/open-apis/corehr/v2/departments/search [custom_params_serializer]
+- corehr.department.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/departments/search [custom_params_serializer, iterator_helper]
+- corehr.department.tree -> POST ${this.domain}/open-apis/corehr/v2/departments/tree [custom_params_serializer]
+- corehr.draft.get -> GET ${this.domain}/open-apis/corehr/v2/drafts/:draft_id [custom_params_serializer]
+- corehr.employee.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/batch_get [custom_params_serializer]
+- corehr.employee.create -> POST ${this.domain}/open-apis/corehr/v2/employees [custom_params_serializer]
+- corehr.employee.search -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer]
+- corehr.employee.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer, iterator_helper]
+- corehr.employeesAdditionalJob.batch -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/batch [custom_params_serializer]
+- corehr.employeesAdditionalJob.batchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/batch [custom_params_serializer, iterator_helper]
+- corehr.employeesAdditionalJob.create -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs [custom_params_serializer]
+- corehr.employeesAdditionalJob.delete -> DELETE ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/:additional_job_id [custom_params_serializer]
+- corehr.employeesAdditionalJob.patch -> PATCH ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/:additional_job_id [custom_params_serializer]
+- corehr.employeesBp.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/bps/batch_get [custom_params_serializer]
+- corehr.employeesInternationalAssignment.create -> POST ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer]
+- corehr.employeesInternationalAssignment.delete -> DELETE ${this.domain}/open-apis/corehr/v2/employees/international_assignments/:international_assignment_id [custom_params_serializer]
+- corehr.employeesInternationalAssignment.list -> GET ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer]
+- corehr.employeesInternationalAssignment.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer, iterator_helper]
+- corehr.employeesInternationalAssignment.patch -> PATCH ${this.domain}/open-apis/corehr/v2/employees/international_assignments/:international_assignment_id [custom_params_serializer]
+- corehr.employeesJobData.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/job_datas/batch_get [custom_params_serializer]
+- corehr.employeesJobData.query -> POST ${this.domain}/open-apis/corehr/v2/employees/job_datas/query [custom_params_serializer]
+- corehr.employeeType.create -> POST ${this.domain}/open-apis/corehr/v1/employee_types [custom_params_serializer] aliases: corehr.employeeType.create, corehr.v1.employeeType.create
+- corehr.employeeType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.delete, corehr.v1.employeeType.delete
+- corehr.employeeType.get -> GET ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.get, corehr.v1.employeeType.get
+- corehr.employeeType.list -> GET ${this.domain}/open-apis/corehr/v1/employee_types [custom_params_serializer] aliases: corehr.employeeType.list, corehr.v1.employeeType.list
+- corehr.employeeType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.patch, corehr.v1.employeeType.patch
+- corehr.employment.create -> POST ${this.domain}/open-apis/corehr/v1/employments [custom_params_serializer] aliases: corehr.employment.create, corehr.v1.employment.create
+- corehr.employment.delete -> DELETE ${this.domain}/open-apis/corehr/v1/employments/:employment_id [custom_params_serializer] aliases: corehr.employment.delete, corehr.v1.employment.delete
+- corehr.employment.patch -> PATCH ${this.domain}/open-apis/corehr/v1/employments/:employment_id [custom_params_serializer] aliases: corehr.employment.patch, corehr.v1.employment.patch
+- corehr.enum.search -> POST ${this.domain}/open-apis/corehr/v2/enums/search [custom_params_serializer]
+- corehr.file.get -> GET ${this.domain}/open-apis/corehr/v1/files/:id [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: corehr.file.get, corehr.v1.file.get
+- corehr.job.batchGet -> POST ${this.domain}/open-apis/corehr/v2/jobs/batch_get [custom_params_serializer]
+- corehr.job.create -> POST ${this.domain}/open-apis/corehr/v1/jobs [custom_params_serializer] aliases: corehr.job.create, corehr.v1.job.create
+- corehr.job.delete -> DELETE ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.delete, corehr.v1.job.delete
+- corehr.job.get -> GET ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.get, corehr.v1.job.get
+- corehr.job.get -> GET ${this.domain}/open-apis/corehr/v2/jobs/:job_id [custom_params_serializer]
+- corehr.job.list -> GET ${this.domain}/open-apis/corehr/v1/jobs [custom_params_serializer] aliases: corehr.job.list, corehr.v1.job.list
+- corehr.job.list -> GET ${this.domain}/open-apis/corehr/v2/jobs [custom_params_serializer]
+- corehr.job.patch -> PATCH ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.patch, corehr.v1.job.patch
+- corehr.job.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/jobs/query_multi_timeline [custom_params_serializer]
+- corehr.job.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/jobs/query_recent_change [custom_params_serializer]
+- corehr.job.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/jobs/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobChange.create -> POST ${this.domain}/open-apis/corehr/v1/job_changes [custom_params_serializer] aliases: corehr.jobChange.create, corehr.v1.jobChange.create
+- corehr.jobChange.create -> POST ${this.domain}/open-apis/corehr/v2/job_changes [custom_params_serializer]
+- corehr.jobChange.revoke -> POST ${this.domain}/open-apis/corehr/v2/job_changes/:job_change_id/revoke [custom_params_serializer]
+- corehr.jobChange.search -> POST ${this.domain}/open-apis/corehr/v2/job_changes/search [custom_params_serializer]
+- corehr.jobChange.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/job_changes/search [custom_params_serializer, iterator_helper]
+- corehr.jobData.create -> POST ${this.domain}/open-apis/corehr/v1/job_datas [custom_params_serializer] aliases: corehr.jobData.create, corehr.v1.jobData.create
+- corehr.jobData.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.delete, corehr.v1.jobData.delete
+- corehr.jobData.get -> GET ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.get, corehr.v1.jobData.get
+- corehr.jobData.list -> GET ${this.domain}/open-apis/corehr/v1/job_datas [custom_params_serializer] aliases: corehr.jobData.list, corehr.v1.jobData.list
+- corehr.jobData.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.patch, corehr.v1.jobData.patch
+- corehr.jobFamily.batchGet -> POST ${this.domain}/open-apis/corehr/v2/job_families/batch_get [custom_params_serializer]
+- corehr.jobFamily.create -> POST ${this.domain}/open-apis/corehr/v1/job_families [custom_params_serializer] aliases: corehr.jobFamily.create, corehr.v1.jobFamily.create
+- corehr.jobFamily.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.delete, corehr.v1.jobFamily.delete
+- corehr.jobFamily.get -> GET ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.get, corehr.v1.jobFamily.get
+- corehr.jobFamily.list -> GET ${this.domain}/open-apis/corehr/v1/job_families [custom_params_serializer] aliases: corehr.jobFamily.list, corehr.v1.jobFamily.list
+- corehr.jobFamily.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.patch, corehr.v1.jobFamily.patch
+- corehr.jobFamily.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/job_families/query_multi_timeline [custom_params_serializer]
+- corehr.jobFamily.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_families/query_recent_change [custom_params_serializer]
+- corehr.jobFamily.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_families/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobGrade.create -> POST ${this.domain}/open-apis/corehr/v2/job_grades [custom_params_serializer]
+- corehr.jobGrade.delete -> DELETE ${this.domain}/open-apis/corehr/v2/job_grades/:job_grade_id [custom_params_serializer]
+- corehr.jobGrade.patch -> PATCH ${this.domain}/open-apis/corehr/v2/job_grades/:job_grade_id [custom_params_serializer]
+- corehr.jobGrade.query -> POST ${this.domain}/open-apis/corehr/v2/job_grades/query [custom_params_serializer]
+- corehr.jobGrade.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_grades/query_recent_change [custom_params_serializer]
+- corehr.jobGrade.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_grades/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobLevel.batchGet -> POST ${this.domain}/open-apis/corehr/v2/job_levels/batch_get [custom_params_serializer]
+- corehr.jobLevel.create -> POST ${this.domain}/open-apis/corehr/v1/job_levels [custom_params_serializer] aliases: corehr.jobLevel.create, corehr.v1.jobLevel.create
+- corehr.jobLevel.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.delete, corehr.v1.jobLevel.delete
+- corehr.jobLevel.get -> GET ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.get, corehr.v1.jobLevel.get
+- corehr.jobLevel.list -> GET ${this.domain}/open-apis/corehr/v1/job_levels [custom_params_serializer] aliases: corehr.jobLevel.list, corehr.v1.jobLevel.list
+- corehr.jobLevel.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.patch, corehr.v1.jobLevel.patch
+- corehr.jobLevel.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_levels/query_recent_change [custom_params_serializer]
+- corehr.jobLevel.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_levels/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.leave.calendarByScope -> GET ${this.domain}/open-apis/corehr/v1/leaves/calendar_by_scope [custom_params_serializer] aliases: corehr.leave.calendarByScope, corehr.v1.leave.calendarByScope
+- corehr.leave.leaveBalances -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_balances [custom_params_serializer] aliases: corehr.leave.leaveBalances, corehr.v1.leave.leaveBalances
+- corehr.leave.leaveRequestHistory -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_request_history [custom_params_serializer] aliases: corehr.leave.leaveRequestHistory, corehr.v1.leave.leaveRequestHistory
+- corehr.leave.leaveTypes -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_types [custom_params_serializer] aliases: corehr.leave.leaveTypes, corehr.v1.leave.leaveTypes
+- corehr.leave.workCalendar -> POST ${this.domain}/open-apis/corehr/v1/leaves/work_calendar [custom_params_serializer] aliases: corehr.leave.workCalendar, corehr.v1.leave.workCalendar
+- corehr.leave.workCalendarDate -> POST ${this.domain}/open-apis/corehr/v1/leaves/work_calendar_date [custom_params_serializer] aliases: corehr.leave.workCalendarDate, corehr.v1.leave.workCalendarDate
+- corehr.leaveGrantingRecord.create -> POST ${this.domain}/open-apis/corehr/v1/leave_granting_records [custom_params_serializer] aliases: corehr.leaveGrantingRecord.create, corehr.v1.leaveGrantingRecord.create
+- corehr.leaveGrantingRecord.delete -> DELETE ${this.domain}/open-apis/corehr/v1/leave_granting_records/:leave_granting_record_id [custom_params_serializer] aliases: corehr.leaveGrantingRecord.delete, corehr.v1.leaveGrantingRecord.delete
+- corehr.location.active -> POST ${this.domain}/open-apis/corehr/v2/locations/active [custom_params_serializer]
+- corehr.location.batchGet -> POST ${this.domain}/open-apis/corehr/v2/locations/batch_get [custom_params_serializer]
+- corehr.location.create -> POST ${this.domain}/open-apis/corehr/v1/locations [custom_params_serializer] aliases: corehr.location.create, corehr.v1.location.create
+- corehr.location.delete -> DELETE ${this.domain}/open-apis/corehr/v1/locations/:location_id [custom_params_serializer] aliases: corehr.location.delete, corehr.v1.location.delete
+- corehr.location.get -> GET ${this.domain}/open-apis/corehr/v1/locations/:location_id [custom_params_serializer] aliases: corehr.location.get, corehr.v1.location.get
+- corehr.location.list -> GET ${this.domain}/open-apis/corehr/v1/locations [custom_params_serializer] aliases: corehr.location.list, corehr.v1.location.list
+- corehr.location.patch -> PATCH ${this.domain}/open-apis/corehr/v2/locations/:location_id [custom_params_serializer]
+- corehr.location.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer]
+- corehr.location.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.locationAddress.create -> POST ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses [custom_params_serializer]
+- corehr.locationAddress.delete -> DELETE ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses/:address_id [custom_params_serializer]
+- corehr.locationAddress.patch -> PATCH ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses/:address_id [custom_params_serializer]
+- corehr.nationalIdType.create -> POST ${this.domain}/open-apis/corehr/v1/national_id_types [custom_params_serializer] aliases: corehr.nationalIdType.create, corehr.v1.nationalIdType.create
+- corehr.nationalIdType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.delete, corehr.v1.nationalIdType.delete
+- corehr.nationalIdType.get -> GET ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.get, corehr.v1.nationalIdType.get
+- corehr.nationalIdType.list -> GET ${this.domain}/open-apis/corehr/v1/national_id_types [custom_params_serializer] aliases: corehr.nationalIdType.list, corehr.v1.nationalIdType.list
+- corehr.nationalIdType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.patch, corehr.v1.nationalIdType.patch
+- corehr.offboarding.edit -> POST ${this.domain}/open-apis/corehr/v2/offboardings/edit [custom_params_serializer]
+- corehr.offboarding.query -> POST ${this.domain}/open-apis/corehr/v1/offboardings/query [custom_params_serializer] aliases: corehr.offboarding.query, corehr.v1.offboarding.query
+- corehr.offboarding.revoke -> POST ${this.domain}/open-apis/corehr/v2/offboardings/revoke [custom_params_serializer]
+- corehr.offboarding.search -> POST ${this.domain}/open-apis/corehr/v1/offboardings/search [custom_params_serializer] aliases: corehr.offboarding.search, corehr.v1.offboarding.search
+- corehr.offboarding.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v1/offboardings/search [custom_params_serializer, iterator_helper] aliases: corehr.offboarding.searchWithIterator, corehr.v1.offboarding.searchWithIterator
+- corehr.offboarding.submit -> POST ${this.domain}/open-apis/corehr/v1/offboardings/submit [custom_params_serializer] aliases: corehr.offboarding.submit, corehr.v1.offboarding.submit
+- corehr.offboarding.submitV2 -> POST ${this.domain}/open-apis/corehr/v2/offboardings/submit_v2 [custom_params_serializer]
+- corehr.pathway.active -> POST ${this.domain}/open-apis/corehr/v2/pathways/active [custom_params_serializer]
+- corehr.pathway.batchGet -> POST ${this.domain}/open-apis/corehr/v2/pathways/batch_get [custom_params_serializer]
+- corehr.pathway.create -> POST ${this.domain}/open-apis/corehr/v2/pathways [custom_params_serializer]
+- corehr.pathway.delete -> DELETE ${this.domain}/open-apis/corehr/v2/pathways/:pathway_id [custom_params_serializer]
+- corehr.pathway.patch -> PATCH ${this.domain}/open-apis/corehr/v2/pathways/:pathway_id [custom_params_serializer]
+- corehr.person.create -> POST ${this.domain}/open-apis/corehr/v1/persons [custom_params_serializer] aliases: corehr.person.create, corehr.v1.person.create
+- corehr.person.create -> POST ${this.domain}/open-apis/corehr/v2/persons [custom_params_serializer]
+- corehr.person.delete -> DELETE ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.delete, corehr.v1.person.delete
+- corehr.person.get -> GET ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.get, corehr.v1.person.get
+- corehr.person.patch -> PATCH ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.patch, corehr.v1.person.patch
+- corehr.person.patch -> PATCH ${this.domain}/open-apis/corehr/v2/persons/:person_id [custom_params_serializer]
+- corehr.person.upload -> POST ${this.domain}/open-apis/corehr/v1/persons/upload [custom_params_serializer] aliases: corehr.person.upload, corehr.v1.person.upload
+- corehr.position.active -> POST ${this.domain}/open-apis/corehr/v2/positions/active [custom_params_serializer]
+- corehr.position.create -> POST ${this.domain}/open-apis/corehr/v2/positions [custom_params_serializer]
+- corehr.position.delPosition -> POST ${this.domain}/open-apis/corehr/v2/positions/del_position [custom_params_serializer]
+- corehr.position.patch -> PATCH ${this.domain}/open-apis/corehr/v2/positions/:position_id [custom_params_serializer]
+- corehr.position.query -> POST ${this.domain}/open-apis/corehr/v2/positions/query [custom_params_serializer]
+- corehr.position.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/positions/query_recent_change [custom_params_serializer]
+- corehr.position.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/positions/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.preHire.complete -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id/complete [custom_params_serializer]
+- corehr.preHire.create -> POST ${this.domain}/open-apis/corehr/v2/pre_hires [custom_params_serializer]
+- corehr.preHire.delete -> DELETE ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.delete, corehr.v1.preHire.delete
+- corehr.preHire.delete -> DELETE ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id [custom_params_serializer]
+- corehr.preHire.get -> GET ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.get, corehr.v1.preHire.get
+- corehr.preHire.list -> GET ${this.domain}/open-apis/corehr/v1/pre_hires [custom_params_serializer] aliases: corehr.preHire.list, corehr.v1.preHire.list
+- corehr.preHire.patch -> PATCH ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.patch, corehr.v1.preHire.patch
+- corehr.preHire.patch -> PATCH ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id [custom_params_serializer]
+- corehr.preHire.query -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/query [custom_params_serializer]
+- corehr.preHire.queryWithIterator -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/query [custom_params_serializer, iterator_helper]
+- corehr.preHire.restoreFlowInstance -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/restore_flow_instance [custom_params_serializer]
+- corehr.preHire.search -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/search [custom_params_serializer]
+- corehr.preHire.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/search [custom_params_serializer, iterator_helper]
+- corehr.preHire.transformOnboardingTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/transform_onboarding_task [custom_params_serializer]
+- corehr.preHire.transitTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id/transit_task [custom_params_serializer]
+- corehr.preHire.withdrawOnboarding -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/withdraw_onboarding [custom_params_serializer]
+- corehr.probation.enableDisableAssessment -> POST ${this.domain}/open-apis/corehr/v2/probation/enable_disable_assessment [custom_params_serializer]
+- corehr.probation.search -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer]
+- corehr.probation.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer, iterator_helper]
+- corehr.probation.submit -> POST ${this.domain}/open-apis/corehr/v2/probation/submit [custom_params_serializer]
+- corehr.probation.withdraw -> POST ${this.domain}/open-apis/corehr/v2/probation/withdraw [custom_params_serializer]
+- corehr.probationAssessment.create -> POST ${this.domain}/open-apis/corehr/v2/probation/assessments [custom_params_serializer]
+- corehr.probationAssessment.delete -> DELETE ${this.domain}/open-apis/corehr/v2/probation/assessments/:assessment_id [custom_params_serializer]
+- corehr.probationAssessment.patch -> PATCH ${this.domain}/open-apis/corehr/v2/probation/assessments/:assessment_id [custom_params_serializer]
+- corehr.process.flowVariableData -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id/flow_variable_data [custom_params_serializer]
+- corehr.process.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id [custom_params_serializer]
+- corehr.process.list -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer]
+- corehr.process.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer, iterator_helper]
+- corehr.processApprover.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/approvers/:approver_id [custom_params_serializer]
+- corehr.processExtra.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/extra [custom_params_serializer]
+- corehr.processFormVariableData.get -> GET ${this.domain}/open-apis/corehr/v1/processes/:process_id/form_variable_data [custom_params_serializer] aliases: corehr.processFormVariableData.get, corehr.v1.processFormVariableData.get
+- corehr.processFormVariableData.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id/form_variable_data [custom_params_serializer]
+- corehr.processRevoke.update -> PUT ${this.domain}/open-apis/corehr/v2/process_revoke/:process_id [custom_params_serializer]
+- corehr.processTransfer.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/transfer [custom_params_serializer]
+- corehr.processWithdraw.update -> PUT ${this.domain}/open-apis/corehr/v2/process_withdraw/:process_id [custom_params_serializer]
+- corehr.reportDetailRow.batchDelete -> POST ${this.domain}/open-apis/corehr/v2/report_detail_row/batchDelete [custom_params_serializer]
+- corehr.reportDetailRow.batchSave -> POST ${this.domain}/open-apis/corehr/v2/report_detail_row/batchSave [custom_params_serializer]
+- corehr.securityGroup.list -> GET ${this.domain}/open-apis/corehr/v1/security_groups [custom_params_serializer] aliases: corehr.securityGroup.list, corehr.v1.securityGroup.list
+- corehr.securityGroup.query -> POST ${this.domain}/open-apis/corehr/v1/security_groups/query [custom_params_serializer] aliases: corehr.securityGroup.query, corehr.v1.securityGroup.query
+- corehr.signatureFile.download -> POST ${this.domain}/open-apis/corehr/v2/signature_files/:signature_file_id/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper]
+- corehr.signatureFile.list -> GET ${this.domain}/open-apis/corehr/v2/signature_files [custom_params_serializer]
+- corehr.signatureFile.listByBizId -> GET ${this.domain}/open-apis/corehr/v2/signature_files/list_by_biz_id [custom_params_serializer]
+- corehr.signatureFile.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/signature_files [custom_params_serializer, iterator_helper]
+- corehr.signatureFile.query -> POST ${this.domain}/open-apis/corehr/v2/signature_files/query [custom_params_serializer]
+- corehr.signatureFile.queryWithIterator -> POST ${this.domain}/open-apis/corehr/v2/signature_files/query [custom_params_serializer, iterator_helper]
+- corehr.signatureFile.terminate -> POST ${this.domain}/open-apis/corehr/v2/signature_files/terminate [custom_params_serializer]
+- corehr.signatureNode.listByFileId -> GET ${this.domain}/open-apis/corehr/v2/signature_nodes/list_by_file_id [custom_params_serializer]
+- corehr.signatureTemplate.search -> GET ${this.domain}/open-apis/corehr/v2/signature_templates/search [custom_params_serializer]
+- corehr.signatureTemplateInfoWithThumbnail.list -> GET ${this.domain}/open-apis/corehr/v2/signature_template_info_with_thumbnails [custom_params_serializer]
+- corehr.signatureTemplateInfoWithThumbnail.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/signature_template_info_with_thumbnails [custom_params_serializer, iterator_helper]
+- corehr.subdivision.get -> GET ${this.domain}/open-apis/corehr/v1/subdivisions/:subdivision_id [custom_params_serializer] aliases: corehr.subdivision.get, corehr.v1.subdivision.get
+- corehr.subdivision.list -> GET ${this.domain}/open-apis/corehr/v1/subdivisions [custom_params_serializer] aliases: corehr.subdivision.list, corehr.v1.subdivision.list
+- corehr.subregion.get -> GET ${this.domain}/open-apis/corehr/v1/subregions/:subregion_id [custom_params_serializer] aliases: corehr.subregion.get, corehr.v1.subregion.get
+- corehr.subregion.list -> GET ${this.domain}/open-apis/corehr/v1/subregions [custom_params_serializer] aliases: corehr.subregion.list, corehr.v1.subregion.list
+- corehr.transferReason.query -> GET ${this.domain}/open-apis/corehr/v1/transfer_reasons/query [custom_params_serializer] aliases: corehr.transferReason.query, corehr.v1.transferReason.query
+- corehr.transferType.query -> GET ${this.domain}/open-apis/corehr/v1/transfer_types/query [custom_params_serializer] aliases: corehr.transferType.query, corehr.v1.transferType.query
+- corehr.workforcePlan.list -> GET ${this.domain}/open-apis/corehr/v2/workforce_plans [custom_params_serializer]
+- corehr.workforcePlan.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/workforce_plans [custom_params_serializer, iterator_helper]
+- corehr.workforcePlanDetail.batch -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_details/batch [custom_params_serializer]
+- corehr.workforcePlanDetail.batchV2 -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_details/batch_v2 [custom_params_serializer]
+- corehr.workforcePlanDetailRow.batchDelete -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_detail_row/batchDelete [custom_params_serializer]
+- corehr.workforcePlanDetailRow.batchSave -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_detail_row/batchSave [custom_params_serializer]
+- corehr.workingHoursType.create -> POST ${this.domain}/open-apis/corehr/v1/working_hours_types [custom_params_serializer] aliases: corehr.v1.workingHoursType.create, corehr.workingHoursType.create
+- corehr.workingHoursType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.delete, corehr.workingHoursType.delete
+- corehr.workingHoursType.get -> GET ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.get, corehr.workingHoursType.get
+- corehr.workingHoursType.list -> GET ${this.domain}/open-apis/corehr/v1/working_hours_types [custom_params_serializer] aliases: corehr.v1.workingHoursType.list, corehr.workingHoursType.list
+- corehr.workingHoursType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.patch, corehr.workingHoursType.patch
+- directory.collaborationRule.create -> POST ${this.domain}/open-apis/directory/v1/collaboration_rules [custom_params_serializer]
+- directory.collaborationRule.delete -> DELETE ${this.domain}/open-apis/directory/v1/collaboration_rules/:collaboration_rule_id [custom_params_serializer]
+- directory.collaborationRule.list -> GET ${this.domain}/open-apis/directory/v1/collaboration_rules [custom_params_serializer]
+- directory.collaborationRule.listWithIterator -> GET ${this.domain}/open-apis/directory/v1/collaboration_rules [custom_params_serializer, iterator_helper]
+- directory.collaborationRule.update -> PUT ${this.domain}/open-apis/directory/v1/collaboration_rules/:collaboration_rule_id [custom_params_serializer]
+- directory.collaborationTenant.list -> GET ${this.domain}/open-apis/directory/v1/collaboration_tenants [custom_params_serializer]
+- directory.collaborationTenant.listWithIterator -> GET ${this.domain}/open-apis/directory/v1/collaboration_tenants [custom_params_serializer, iterator_helper]
+- directory.collborationShareEntity.list -> GET ${this.domain}/open-apis/directory/v1/share_entities [custom_params_serializer]
+- directory.collborationShareEntity.listWithIterator -> GET ${this.domain}/open-apis/directory/v1/share_entities [custom_params_serializer, iterator_helper]
+- directory.department.create -> POST ${this.domain}/open-apis/directory/v1/departments [custom_params_serializer]
+- directory.department.delete -> DELETE ${this.domain}/open-apis/directory/v1/departments/:department_id [custom_params_serializer]
+- directory.department.filter -> POST ${this.domain}/open-apis/directory/v1/departments/filter [custom_params_serializer]
+- directory.department.idconvert -> POST ${this.domain}/open-apis/directory/v1/departments/idconvert [custom_params_serializer]
+- directory.department.mget -> POST ${this.domain}/open-apis/directory/v1/departments/mget [custom_params_serializer]
+- directory.department.patch -> PATCH ${this.domain}/open-apis/directory/v1/departments/:department_id [custom_params_serializer]
+- directory.department.search -> POST ${this.domain}/open-apis/directory/v1/departments/search [custom_params_serializer]
+- directory.employee.create -> POST ${this.domain}/open-apis/directory/v1/employees [custom_params_serializer]
+- directory.employee.delete -> DELETE ${this.domain}/open-apis/directory/v1/employees/:employee_id [custom_params_serializer]
+- directory.employee.filter -> POST ${this.domain}/open-apis/directory/v1/employees/filter [custom_params_serializer]
+- directory.employee.idconvert -> POST ${this.domain}/open-apis/directory/v1/employees/idconvert [custom_params_serializer]
+- directory.employee.mget -> POST ${this.domain}/open-apis/directory/v1/employees/mget [custom_params_serializer]
+- directory.employee.patch -> PATCH ${this.domain}/open-apis/directory/v1/employees/:employee_id [custom_params_serializer]
+- directory.employee.regular -> PATCH ${this.domain}/open-apis/directory/v1/employees/:employee_id/regular [custom_params_serializer]
+- directory.employee.resurrect -> POST ${this.domain}/open-apis/directory/v1/employees/:employee_id/resurrect [custom_params_serializer]
+- directory.employee.search -> POST ${this.domain}/open-apis/directory/v1/employees/search [custom_params_serializer]
+- directory.employee.toBeResigned -> PATCH ${this.domain}/open-apis/directory/v1/employees/:employee_id/to_be_resigned [custom_params_serializer]
+- docs.content.get -> GET ${this.domain}/open-apis/docs/v1/content [custom_params_serializer]
+- document_ai.bankCard.recognize -> POST ${this.domain}/open-apis/document_ai/v1/bank_card/recognize [custom_params_serializer]
+- document_ai.businessCard.recognize -> POST ${this.domain}/open-apis/document_ai/v1/business_card/recognize [custom_params_serializer]
+- document_ai.businessLicense.recognize -> POST ${this.domain}/open-apis/document_ai/v1/business_license/recognize [custom_params_serializer]
+- document_ai.chinesePassport.recognize -> POST ${this.domain}/open-apis/document_ai/v1/chinese_passport/recognize [custom_params_serializer]
+- document_ai.contract.fieldExtraction -> POST ${this.domain}/open-apis/document_ai/v1/contract/field_extraction [custom_params_serializer]
+- document_ai.drivingLicense.recognize -> POST ${this.domain}/open-apis/document_ai/v1/driving_license/recognize [custom_params_serializer]
+- document_ai.foodManageLicense.recognize -> POST ${this.domain}/open-apis/document_ai/v1/food_manage_license/recognize [custom_params_serializer]
+- document_ai.foodProduceLicense.recognize -> POST ${this.domain}/open-apis/document_ai/v1/food_produce_license/recognize [custom_params_serializer]
+- document_ai.healthCertificate.recognize -> POST ${this.domain}/open-apis/document_ai/v1/health_certificate/recognize [custom_params_serializer]
+- document_ai.hkmMainlandTravelPermit.recognize -> POST ${this.domain}/open-apis/document_ai/v1/hkm_mainland_travel_permit/recognize [custom_params_serializer]
+- document_ai.idCard.recognize -> POST ${this.domain}/open-apis/document_ai/v1/id_card/recognize [custom_params_serializer]
+- document_ai.resume.parse -> POST ${this.domain}/open-apis/document_ai/v1/resume/parse [custom_params_serializer]
+- document_ai.taxiInvoice.recognize -> POST ${this.domain}/open-apis/document_ai/v1/taxi_invoice/recognize [custom_params_serializer]
+- document_ai.trainInvoice.recognize -> POST ${this.domain}/open-apis/document_ai/v1/train_invoice/recognize [custom_params_serializer]
+- document_ai.twMainlandTravelPermit.recognize -> POST ${this.domain}/open-apis/document_ai/v1/tw_mainland_travel_permit/recognize [custom_params_serializer]
+- document_ai.vatInvoice.recognize -> POST ${this.domain}/open-apis/document_ai/v1/vat_invoice/recognize [custom_params_serializer]
+- document_ai.vehicleInvoice.recognize -> POST ${this.domain}/open-apis/document_ai/v1/vehicle_invoice/recognize [custom_params_serializer]
+- document_ai.vehicleLicense.recognize -> POST ${this.domain}/open-apis/document_ai/v1/vehicle_license/recognize [custom_params_serializer]
+- docx.chatAnnouncement.get -> GET ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement [custom_params_serializer] aliases: docx.chatAnnouncement.get, docx.v1.chatAnnouncement.get
+- docx.chatAnnouncementBlock.batchUpdate -> PATCH ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks/batch_update [custom_params_serializer] aliases: docx.chatAnnouncementBlock.batchUpdate, docx.v1.chatAnnouncementBlock.batchUpdate
+- docx.chatAnnouncementBlock.get -> GET ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks/:block_id [custom_params_serializer] aliases: docx.chatAnnouncementBlock.get, docx.v1.chatAnnouncementBlock.get
+- docx.chatAnnouncementBlock.list -> GET ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks [custom_params_serializer] aliases: docx.chatAnnouncementBlock.list, docx.v1.chatAnnouncementBlock.list
+- docx.chatAnnouncementBlock.listWithIterator -> GET ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks [custom_params_serializer, iterator_helper] aliases: docx.chatAnnouncementBlock.listWithIterator, docx.v1.chatAnnouncementBlock.listWithIterator
+- docx.chatAnnouncementBlockChildren.batchDelete -> DELETE ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks/:block_id/children/batch_delete [custom_params_serializer] aliases: docx.chatAnnouncementBlockChildren.batchDelete, docx.v1.chatAnnouncementBlockChildren.batchDelete
+- docx.chatAnnouncementBlockChildren.create -> POST ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks/:block_id/children [custom_params_serializer] aliases: docx.chatAnnouncementBlockChildren.create, docx.v1.chatAnnouncementBlockChildren.create
+- docx.chatAnnouncementBlockChildren.get -> GET ${this.domain}/open-apis/docx/v1/chats/:chat_id/announcement/blocks/:block_id/children [custom_params_serializer] aliases: docx.chatAnnouncementBlockChildren.get, docx.v1.chatAnnouncementBlockChildren.get
+- docx.document.convert -> POST ${this.domain}/open-apis/docx/v1/documents/blocks/convert [custom_params_serializer] aliases: docx.document.convert, docx.v1.document.convert
+- docx.document.create -> POST ${this.domain}/open-apis/docx/v1/documents [custom_params_serializer] aliases: docx.document.create, docx.v1.document.create
+- docx.document.get -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id [custom_params_serializer] aliases: docx.document.get, docx.v1.document.get
+- docx.document.rawContent -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/raw_content [custom_params_serializer] aliases: docx.document.rawContent, docx.v1.document.rawContent
+- docx.documentBlock.batchUpdate -> PATCH ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/batch_update [custom_params_serializer] aliases: docx.documentBlock.batchUpdate, docx.v1.documentBlock.batchUpdate
+- docx.documentBlock.get -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id [custom_params_serializer] aliases: docx.documentBlock.get, docx.v1.documentBlock.get
+- docx.documentBlock.list -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks [custom_params_serializer] aliases: docx.documentBlock.list, docx.v1.documentBlock.list
+- docx.documentBlock.listWithIterator -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks [custom_params_serializer, iterator_helper] aliases: docx.documentBlock.listWithIterator, docx.v1.documentBlock.listWithIterator
+- docx.documentBlock.patch -> PATCH ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id [custom_params_serializer] aliases: docx.documentBlock.patch, docx.v1.documentBlock.patch
+- docx.documentBlockChildren.batchDelete -> DELETE ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id/children/batch_delete [custom_params_serializer] aliases: docx.documentBlockChildren.batchDelete, docx.v1.documentBlockChildren.batchDelete
+- docx.documentBlockChildren.create -> POST ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id/children [custom_params_serializer] aliases: docx.documentBlockChildren.create, docx.v1.documentBlockChildren.create
+- docx.documentBlockChildren.get -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id/children [custom_params_serializer] aliases: docx.documentBlockChildren.get, docx.v1.documentBlockChildren.get
+- docx.documentBlockChildren.getWithIterator -> GET ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id/children [custom_params_serializer, iterator_helper] aliases: docx.documentBlockChildren.getWithIterator, docx.v1.documentBlockChildren.getWithIterator
+- docx.documentBlockDescendant.create -> POST ${this.domain}/open-apis/docx/v1/documents/:document_id/blocks/:block_id/descendant [custom_params_serializer] aliases: docx.documentBlockDescendant.create, docx.v1.documentBlockDescendant.create
+- drive.exportTask.create -> POST ${this.domain}/open-apis/drive/v1/export_tasks [custom_params_serializer] aliases: drive.exportTask.create, drive.v1.exportTask.create
+- drive.exportTask.download -> GET ${this.domain}/open-apis/drive/v1/export_tasks/file/:file_token/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: drive.exportTask.download, drive.v1.exportTask.download
+- drive.exportTask.get -> GET ${this.domain}/open-apis/drive/v1/export_tasks/:ticket [custom_params_serializer] aliases: drive.exportTask.get, drive.v1.exportTask.get
+- drive.file.copy -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/copy [custom_params_serializer] aliases: drive.file.copy, drive.v1.file.copy
+- drive.file.createFolder -> POST ${this.domain}/open-apis/drive/v1/files/create_folder [custom_params_serializer] aliases: drive.file.createFolder, drive.v1.file.createFolder
+- drive.file.createShortcut -> POST ${this.domain}/open-apis/drive/v1/files/create_shortcut [custom_params_serializer] aliases: drive.file.createShortcut, drive.v1.file.createShortcut
+- drive.file.delete -> DELETE ${this.domain}/open-apis/drive/v1/files/:file_token [custom_params_serializer] aliases: drive.file.delete, drive.v1.file.delete
+- drive.file.deleteSubscribe -> DELETE ${this.domain}/open-apis/drive/v1/files/:file_token/delete_subscribe [custom_params_serializer] aliases: drive.file.deleteSubscribe, drive.v1.file.deleteSubscribe
+- drive.file.download -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: drive.file.download, drive.v1.file.download
+- drive.file.getSubscribe -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/get_subscribe [custom_params_serializer] aliases: drive.file.getSubscribe, drive.v1.file.getSubscribe
+- drive.file.list -> GET ${this.domain}/open-apis/drive/v1/files [custom_params_serializer] aliases: drive.file.list, drive.v1.file.list
+- drive.file.listWithIterator -> GET ${this.domain}/open-apis/drive/v1/files [custom_params_serializer, iterator_helper] aliases: drive.file.listWithIterator, drive.v1.file.listWithIterator
+- drive.file.move -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/move [custom_params_serializer] aliases: drive.file.move, drive.v1.file.move
+- drive.file.subscribe -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/subscribe [custom_params_serializer] aliases: drive.file.subscribe, drive.v1.file.subscribe
+- drive.file.taskCheck -> GET ${this.domain}/open-apis/drive/v1/files/task_check [custom_params_serializer] aliases: drive.file.taskCheck, drive.v1.file.taskCheck
+- drive.file.uploadAll -> POST ${this.domain}/open-apis/drive/v1/files/upload_all [custom_params_serializer] aliases: drive.file.uploadAll, drive.v1.file.uploadAll
+- drive.file.uploadFinish -> POST ${this.domain}/open-apis/drive/v1/files/upload_finish [custom_params_serializer] aliases: drive.file.uploadFinish, drive.v1.file.uploadFinish
+- drive.file.uploadPart -> POST ${this.domain}/open-apis/drive/v1/files/upload_part [custom_params_serializer] aliases: drive.file.uploadPart, drive.v1.file.uploadPart
+- drive.file.uploadPrepare -> POST ${this.domain}/open-apis/drive/v1/files/upload_prepare [custom_params_serializer] aliases: drive.file.uploadPrepare, drive.v1.file.uploadPrepare
+- drive.fileComment.batchQuery -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/comments/batch_query [custom_params_serializer] aliases: drive.fileComment.batchQuery, drive.v1.fileComment.batchQuery
+- drive.fileComment.create -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/comments [custom_params_serializer] aliases: drive.fileComment.create, drive.v1.fileComment.create
+- drive.fileComment.get -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id [custom_params_serializer] aliases: drive.fileComment.get, drive.v1.fileComment.get
+- drive.fileComment.list -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/comments [custom_params_serializer] aliases: drive.fileComment.list, drive.v1.fileComment.list
+- drive.fileComment.listWithIterator -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/comments [custom_params_serializer, iterator_helper] aliases: drive.fileComment.listWithIterator, drive.v1.fileComment.listWithIterator
+- drive.fileComment.patch -> PATCH ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id [custom_params_serializer] aliases: drive.fileComment.patch, drive.v1.fileComment.patch
+- drive.fileCommentReply.delete -> DELETE ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id/replies/:reply_id [custom_params_serializer] aliases: drive.fileCommentReply.delete, drive.v1.fileCommentReply.delete
+- drive.fileCommentReply.list -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id/replies [custom_params_serializer] aliases: drive.fileCommentReply.list, drive.v1.fileCommentReply.list
+- drive.fileCommentReply.listWithIterator -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id/replies [custom_params_serializer, iterator_helper] aliases: drive.fileCommentReply.listWithIterator, drive.v1.fileCommentReply.listWithIterator
+- drive.fileCommentReply.update -> PUT ${this.domain}/open-apis/drive/v1/files/:file_token/comments/:comment_id/replies/:reply_id [custom_params_serializer] aliases: drive.fileCommentReply.update, drive.v1.fileCommentReply.update
+- drive.fileLike.list -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer]
+- drive.fileLike.listWithIterator -> GET ${this.domain}/open-apis/drive/v2/files/:file_token/likes [custom_params_serializer, iterator_helper]
+- drive.fileStatistics.get -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/statistics [custom_params_serializer] aliases: drive.fileStatistics.get, drive.v1.fileStatistics.get
+- drive.fileSubscription.create -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/subscriptions [custom_params_serializer] aliases: drive.fileSubscription.create, drive.v1.fileSubscription.create
+- drive.fileSubscription.get -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/subscriptions/:subscription_id [custom_params_serializer] aliases: drive.fileSubscription.get, drive.v1.fileSubscription.get
+- drive.fileSubscription.patch -> PATCH ${this.domain}/open-apis/drive/v1/files/:file_token/subscriptions/:subscription_id [custom_params_serializer] aliases: drive.fileSubscription.patch, drive.v1.fileSubscription.patch
+- drive.fileVersion.create -> POST ${this.domain}/open-apis/drive/v1/files/:file_token/versions [custom_params_serializer] aliases: drive.fileVersion.create, drive.v1.fileVersion.create
+- drive.fileVersion.delete -> DELETE ${this.domain}/open-apis/drive/v1/files/:file_token/versions/:version_id [custom_params_serializer] aliases: drive.fileVersion.delete, drive.v1.fileVersion.delete
+- drive.fileVersion.get -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/versions/:version_id [custom_params_serializer] aliases: drive.fileVersion.get, drive.v1.fileVersion.get
+- drive.fileVersion.list -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/versions [custom_params_serializer] aliases: drive.fileVersion.list, drive.v1.fileVersion.list
+- drive.fileVersion.listWithIterator -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/versions [custom_params_serializer, iterator_helper] aliases: drive.fileVersion.listWithIterator, drive.v1.fileVersion.listWithIterator
+- drive.fileViewRecord.list -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/view_records [custom_params_serializer] aliases: drive.fileViewRecord.list, drive.v1.fileViewRecord.list
+- drive.fileViewRecord.listWithIterator -> GET ${this.domain}/open-apis/drive/v1/files/:file_token/view_records [custom_params_serializer, iterator_helper] aliases: drive.fileViewRecord.listWithIterator, drive.v1.fileViewRecord.listWithIterator
+- drive.importTask.create -> POST ${this.domain}/open-apis/drive/v1/import_tasks [custom_params_serializer] aliases: drive.importTask.create, drive.v1.importTask.create
+- drive.importTask.get -> GET ${this.domain}/open-apis/drive/v1/import_tasks/:ticket [custom_params_serializer] aliases: drive.importTask.get, drive.v1.importTask.get
+- drive.media.batchGetTmpDownloadUrl -> GET ${this.domain}/open-apis/drive/v1/medias/batch_get_tmp_download_url [custom_params_serializer] aliases: drive.media.batchGetTmpDownloadUrl, drive.v1.media.batchGetTmpDownloadUrl
+- drive.media.download -> GET ${this.domain}/open-apis/drive/v1/medias/:file_token/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: drive.media.download, drive.v1.media.download
+- drive.media.uploadAll -> POST ${this.domain}/open-apis/drive/v1/medias/upload_all [custom_params_serializer] aliases: drive.media.uploadAll, drive.v1.media.uploadAll
+- drive.media.uploadFinish -> POST ${this.domain}/open-apis/drive/v1/medias/upload_finish [custom_params_serializer] aliases: drive.media.uploadFinish, drive.v1.media.uploadFinish
+- drive.media.uploadPart -> POST ${this.domain}/open-apis/drive/v1/medias/upload_part [custom_params_serializer] aliases: drive.media.uploadPart, drive.v1.media.uploadPart
+- drive.media.uploadPrepare -> POST ${this.domain}/open-apis/drive/v1/medias/upload_prepare [custom_params_serializer] aliases: drive.media.uploadPrepare, drive.v1.media.uploadPrepare
+- drive.meta.batchQuery -> POST ${this.domain}/open-apis/drive/v1/metas/batch_query [custom_params_serializer] aliases: drive.meta.batchQuery, drive.v1.meta.batchQuery
+- drive.permissionMember.auth -> GET ${this.domain}/open-apis/drive/v1/permissions/:token/members/auth [custom_params_serializer] aliases: drive.permissionMember.auth, drive.v1.permissionMember.auth
+- drive.permissionMember.batchCreate -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/members/batch_create [custom_params_serializer] aliases: drive.permissionMember.batchCreate, drive.v1.permissionMember.batchCreate
+- drive.permissionMember.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/members [custom_params_serializer] aliases: drive.permissionMember.create, drive.v1.permissionMember.create
+- drive.permissionMember.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/members/:member_id [custom_params_serializer] aliases: drive.permissionMember.delete, drive.v1.permissionMember.delete
+- drive.permissionMember.list -> GET ${this.domain}/open-apis/drive/v1/permissions/:token/members [custom_params_serializer] aliases: drive.permissionMember.list, drive.v1.permissionMember.list
+- drive.permissionMember.transferOwner -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/members/transfer_owner [custom_params_serializer] aliases: drive.permissionMember.transferOwner, drive.v1.permissionMember.transferOwner
+- drive.permissionMember.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/members/:member_id [custom_params_serializer] aliases: drive.permissionMember.update, drive.v1.permissionMember.update
+- drive.permissionPublic.get -> GET ${this.domain}/open-apis/drive/v1/permissions/:token/public [custom_params_serializer] aliases: drive.permissionPublic.get, drive.v1.permissionPublic.get
+- drive.permissionPublic.get -> GET ${this.domain}/open-apis/drive/v2/permissions/:token/public [custom_params_serializer]
+- drive.permissionPublic.patch -> PATCH ${this.domain}/open-apis/drive/v1/permissions/:token/public [custom_params_serializer] aliases: drive.permissionPublic.patch, drive.v1.permissionPublic.patch
+- drive.permissionPublic.patch -> PATCH ${this.domain}/open-apis/drive/v2/permissions/:token/public [custom_params_serializer]
+- drive.permissionPublicPassword.create -> POST ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.create, drive.v1.permissionPublicPassword.create
+- drive.permissionPublicPassword.delete -> DELETE ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.delete, drive.v1.permissionPublicPassword.delete
+- drive.permissionPublicPassword.update -> PUT ${this.domain}/open-apis/drive/v1/permissions/:token/public/password [custom_params_serializer] aliases: drive.permissionPublicPassword.update, drive.v1.permissionPublicPassword.update
+- ehr.attachment.get -> GET ${this.domain}/open-apis/ehr/v1/attachments/:token [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: ehr.attachment.get, ehr.v1.attachment.get
+- ehr.employee.list -> GET ${this.domain}/open-apis/ehr/v1/employees [custom_params_serializer] aliases: ehr.employee.list, ehr.v1.employee.list
+- ehr.employee.listWithIterator -> GET ${this.domain}/open-apis/ehr/v1/employees [custom_params_serializer, iterator_helper] aliases: ehr.employee.listWithIterator, ehr.v1.employee.listWithIterator
+- event.outboundIp.list -> GET ${this.domain}/open-apis/event/v1/outbound_ip [custom_params_serializer] aliases: event.outboundIp.list, event.v1.outboundIp.list
+- event.outboundIp.listWithIterator -> GET ${this.domain}/open-apis/event/v1/outbound_ip [custom_params_serializer, iterator_helper] aliases: event.outboundIp.listWithIterator, event.v1.outboundIp.listWithIterator
+- helpdesk.agent.agentEmail -> GET ${this.domain}/open-apis/helpdesk/v1/agent_emails [custom_params_serializer] aliases: helpdesk.agent.agentEmail, helpdesk.v1.agent.agentEmail
+- helpdesk.agent.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/agents/:agent_id [custom_params_serializer] aliases: helpdesk.agent.patch, helpdesk.v1.agent.patch
+- helpdesk.agentSchedule.create -> POST ${this.domain}/open-apis/helpdesk/v1/agent_schedules [custom_params_serializer] aliases: helpdesk.agentSchedule.create, helpdesk.v1.agentSchedule.create
+- helpdesk.agentSchedule.list -> GET ${this.domain}/open-apis/helpdesk/v1/agent_schedules [custom_params_serializer] aliases: helpdesk.agentSchedule.list, helpdesk.v1.agentSchedule.list
+- helpdesk.agentSchedules.delete -> DELETE ${this.domain}/open-apis/helpdesk/v1/agents/:agent_id/schedules [custom_params_serializer] aliases: helpdesk.agentSchedules.delete, helpdesk.v1.agentSchedules.delete
+- helpdesk.agentSchedules.get -> GET ${this.domain}/open-apis/helpdesk/v1/agents/:agent_id/schedules [custom_params_serializer] aliases: helpdesk.agentSchedules.get, helpdesk.v1.agentSchedules.get
+- helpdesk.agentSchedules.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/agents/:agent_id/schedules [custom_params_serializer] aliases: helpdesk.agentSchedules.patch, helpdesk.v1.agentSchedules.patch
+- helpdesk.agentSkill.create -> POST ${this.domain}/open-apis/helpdesk/v1/agent_skills [custom_params_serializer] aliases: helpdesk.agentSkill.create, helpdesk.v1.agentSkill.create
+- helpdesk.agentSkill.delete -> DELETE ${this.domain}/open-apis/helpdesk/v1/agent_skills/:agent_skill_id [custom_params_serializer] aliases: helpdesk.agentSkill.delete, helpdesk.v1.agentSkill.delete
+- helpdesk.agentSkill.get -> GET ${this.domain}/open-apis/helpdesk/v1/agent_skills/:agent_skill_id [custom_params_serializer] aliases: helpdesk.agentSkill.get, helpdesk.v1.agentSkill.get
+- helpdesk.agentSkill.list -> GET ${this.domain}/open-apis/helpdesk/v1/agent_skills [custom_params_serializer] aliases: helpdesk.agentSkill.list, helpdesk.v1.agentSkill.list
+- helpdesk.agentSkill.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/agent_skills/:agent_skill_id [custom_params_serializer] aliases: helpdesk.agentSkill.patch, helpdesk.v1.agentSkill.patch
+- helpdesk.agentSkillRule.list -> GET ${this.domain}/open-apis/helpdesk/v1/agent_skill_rules [custom_params_serializer] aliases: helpdesk.agentSkillRule.list, helpdesk.v1.agentSkillRule.list
+- helpdesk.botMessage.create -> POST ${this.domain}/open-apis/helpdesk/v1/message [custom_params_serializer] aliases: helpdesk.botMessage.create, helpdesk.v1.botMessage.create
+- helpdesk.category.create -> POST ${this.domain}/open-apis/helpdesk/v1/categories [custom_params_serializer] aliases: helpdesk.category.create, helpdesk.v1.category.create
+- helpdesk.category.delete -> DELETE ${this.domain}/open-apis/helpdesk/v1/categories/:id [custom_params_serializer] aliases: helpdesk.category.delete, helpdesk.v1.category.delete
+- helpdesk.category.get -> GET ${this.domain}/open-apis/helpdesk/v1/categories/:id [custom_params_serializer] aliases: helpdesk.category.get, helpdesk.v1.category.get
+- helpdesk.category.list -> GET ${this.domain}/open-apis/helpdesk/v1/categories [custom_params_serializer] aliases: helpdesk.category.list, helpdesk.v1.category.list
+- helpdesk.category.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/categories/:id [custom_params_serializer] aliases: helpdesk.category.patch, helpdesk.v1.category.patch
+- helpdesk.event.subscribe -> POST ${this.domain}/open-apis/helpdesk/v1/events/subscribe [custom_params_serializer] aliases: helpdesk.event.subscribe, helpdesk.v1.event.subscribe
+- helpdesk.event.unsubscribe -> POST ${this.domain}/open-apis/helpdesk/v1/events/unsubscribe [custom_params_serializer] aliases: helpdesk.event.unsubscribe, helpdesk.v1.event.unsubscribe
+- helpdesk.faq.create -> POST ${this.domain}/open-apis/helpdesk/v1/faqs [custom_params_serializer] aliases: helpdesk.faq.create, helpdesk.v1.faq.create
+- helpdesk.faq.delete -> DELETE ${this.domain}/open-apis/helpdesk/v1/faqs/:id [custom_params_serializer] aliases: helpdesk.faq.delete, helpdesk.v1.faq.delete
+- helpdesk.faq.faqImage -> GET ${this.domain}/open-apis/helpdesk/v1/faqs/:id/image/:image_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: helpdesk.faq.faqImage, helpdesk.v1.faq.faqImage
+- helpdesk.faq.get -> GET ${this.domain}/open-apis/helpdesk/v1/faqs/:id [custom_params_serializer] aliases: helpdesk.faq.get, helpdesk.v1.faq.get
+- helpdesk.faq.list -> GET ${this.domain}/open-apis/helpdesk/v1/faqs [custom_params_serializer] aliases: helpdesk.faq.list, helpdesk.v1.faq.list
+- helpdesk.faq.listWithIterator -> GET ${this.domain}/open-apis/helpdesk/v1/faqs [custom_params_serializer, iterator_helper] aliases: helpdesk.faq.listWithIterator, helpdesk.v1.faq.listWithIterator
+- helpdesk.faq.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/faqs/:id [custom_params_serializer] aliases: helpdesk.faq.patch, helpdesk.v1.faq.patch
+- helpdesk.faq.search -> GET ${this.domain}/open-apis/helpdesk/v1/faqs/search [custom_params_serializer] aliases: helpdesk.faq.search, helpdesk.v1.faq.search
+- helpdesk.faq.searchWithIterator -> GET ${this.domain}/open-apis/helpdesk/v1/faqs/search [custom_params_serializer, iterator_helper] aliases: helpdesk.faq.searchWithIterator, helpdesk.v1.faq.searchWithIterator
+- helpdesk.notification.cancelApprove -> POST ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id/cancel_approve [custom_params_serializer] aliases: helpdesk.notification.cancelApprove, helpdesk.v1.notification.cancelApprove
+- helpdesk.notification.cancelSend -> POST ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id/cancel_send [custom_params_serializer] aliases: helpdesk.notification.cancelSend, helpdesk.v1.notification.cancelSend
+- helpdesk.notification.create -> POST ${this.domain}/open-apis/helpdesk/v1/notifications [custom_params_serializer] aliases: helpdesk.notification.create, helpdesk.v1.notification.create
+- helpdesk.notification.executeSend -> POST ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id/execute_send [custom_params_serializer] aliases: helpdesk.notification.executeSend, helpdesk.v1.notification.executeSend
+- helpdesk.notification.get -> GET ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id [custom_params_serializer] aliases: helpdesk.notification.get, helpdesk.v1.notification.get
+- helpdesk.notification.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id [custom_params_serializer] aliases: helpdesk.notification.patch, helpdesk.v1.notification.patch
+- helpdesk.notification.preview -> POST ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id/preview [custom_params_serializer] aliases: helpdesk.notification.preview, helpdesk.v1.notification.preview
+- helpdesk.notification.submitApprove -> POST ${this.domain}/open-apis/helpdesk/v1/notifications/:notification_id/submit_approve [custom_params_serializer] aliases: helpdesk.notification.submitApprove, helpdesk.v1.notification.submitApprove
+- helpdesk.ticket.answerUserQuery -> POST ${this.domain}/open-apis/helpdesk/v1/tickets/:ticket_id/answer_user_query [custom_params_serializer] aliases: helpdesk.ticket.answerUserQuery, helpdesk.v1.ticket.answerUserQuery
+- helpdesk.ticket.customizedFields -> GET ${this.domain}/open-apis/helpdesk/v1/customized_fields [custom_params_serializer] aliases: helpdesk.ticket.customizedFields, helpdesk.v1.ticket.customizedFields
+- helpdesk.ticket.get -> GET ${this.domain}/open-apis/helpdesk/v1/tickets/:ticket_id [custom_params_serializer] aliases: helpdesk.ticket.get, helpdesk.v1.ticket.get
+- helpdesk.ticket.list -> GET ${this.domain}/open-apis/helpdesk/v1/tickets [custom_params_serializer] aliases: helpdesk.ticket.list, helpdesk.v1.ticket.list
+- helpdesk.ticket.startService -> POST ${this.domain}/open-apis/helpdesk/v1/start_service [custom_params_serializer] aliases: helpdesk.ticket.startService, helpdesk.v1.ticket.startService
+- helpdesk.ticket.ticketImage -> GET ${this.domain}/open-apis/helpdesk/v1/ticket_images [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: helpdesk.ticket.ticketImage, helpdesk.v1.ticket.ticketImage
+- helpdesk.ticket.update -> PUT ${this.domain}/open-apis/helpdesk/v1/tickets/:ticket_id [custom_params_serializer] aliases: helpdesk.ticket.update, helpdesk.v1.ticket.update
+- helpdesk.ticketCustomizedField.create -> POST ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields [custom_params_serializer] aliases: helpdesk.ticketCustomizedField.create, helpdesk.v1.ticketCustomizedField.create
+- helpdesk.ticketCustomizedField.delete -> DELETE ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields/:ticket_customized_field_id [custom_params_serializer] aliases: helpdesk.ticketCustomizedField.delete, helpdesk.v1.ticketCustomizedField.delete
+- helpdesk.ticketCustomizedField.get -> GET ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields/:ticket_customized_field_id [custom_params_serializer] aliases: helpdesk.ticketCustomizedField.get, helpdesk.v1.ticketCustomizedField.get
+- helpdesk.ticketCustomizedField.list -> GET ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields [custom_params_serializer] aliases: helpdesk.ticketCustomizedField.list, helpdesk.v1.ticketCustomizedField.list
+- helpdesk.ticketCustomizedField.listWithIterator -> GET ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields [custom_params_serializer, iterator_helper] aliases: helpdesk.ticketCustomizedField.listWithIterator, helpdesk.v1.ticketCustomizedField.listWithIterator
+- helpdesk.ticketCustomizedField.patch -> PATCH ${this.domain}/open-apis/helpdesk/v1/ticket_customized_fields/:ticket_customized_field_id [custom_params_serializer] aliases: helpdesk.ticketCustomizedField.patch, helpdesk.v1.ticketCustomizedField.patch
+- helpdesk.ticketMessage.create -> POST ${this.domain}/open-apis/helpdesk/v1/tickets/:ticket_id/messages [custom_params_serializer] aliases: helpdesk.ticketMessage.create, helpdesk.v1.ticketMessage.create
+- helpdesk.ticketMessage.list -> GET ${this.domain}/open-apis/helpdesk/v1/tickets/:ticket_id/messages [custom_params_serializer] aliases: helpdesk.ticketMessage.list, helpdesk.v1.ticketMessage.list
+- hire.advertisement.publish -> POST ${this.domain}/open-apis/hire/v1/advertisements/:advertisement_id/publish [custom_params_serializer] aliases: hire.advertisement.publish, hire.v1.advertisement.publish
+- hire.agency.batchQuery -> POST ${this.domain}/open-apis/hire/v1/agencies/batch_query [custom_params_serializer] aliases: hire.agency.batchQuery, hire.v1.agency.batchQuery
+- hire.agency.get -> GET ${this.domain}/open-apis/hire/v1/agencies/:agency_id [custom_params_serializer] aliases: hire.agency.get, hire.v1.agency.get
+- hire.agency.getAgencyAccount -> POST ${this.domain}/open-apis/hire/v1/agencies/get_agency_account [custom_params_serializer] aliases: hire.agency.getAgencyAccount, hire.v1.agency.getAgencyAccount
+- hire.agency.operateAgencyAccount -> POST ${this.domain}/open-apis/hire/v1/agencies/operate_agency_account [custom_params_serializer] aliases: hire.agency.operateAgencyAccount, hire.v1.agency.operateAgencyAccount
+- hire.agency.protect -> POST ${this.domain}/open-apis/hire/v1/agencies/protect [custom_params_serializer] aliases: hire.agency.protect, hire.v1.agency.protect
+- hire.agency.protectSearch -> POST ${this.domain}/open-apis/hire/v1/agencies/protection_period/search [custom_params_serializer] aliases: hire.agency.protectSearch, hire.v1.agency.protectSearch
+- hire.agency.query -> GET ${this.domain}/open-apis/hire/v1/agencies/query [custom_params_serializer] aliases: hire.agency.query, hire.v1.agency.query
+- hire.application.cancelOnboard -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/cancel_onboard [custom_params_serializer] aliases: hire.application.cancelOnboard, hire.v1.application.cancelOnboard
+- hire.application.create -> POST ${this.domain}/open-apis/hire/v1/applications [custom_params_serializer] aliases: hire.application.create, hire.v1.application.create
+- hire.application.get -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id [custom_params_serializer] aliases: hire.application.get, hire.v1.application.get
+- hire.application.getDetail -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/get_detail [custom_params_serializer] aliases: hire.application.getDetail, hire.v1.application.getDetail
+- hire.application.list -> GET ${this.domain}/open-apis/hire/v1/applications [custom_params_serializer] aliases: hire.application.list, hire.v1.application.list
+- hire.application.offer -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/offer [custom_params_serializer] aliases: hire.application.offer, hire.v1.application.offer
+- hire.application.recover -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/recover [custom_params_serializer] aliases: hire.application.recover, hire.v1.application.recover
+- hire.application.terminate -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/terminate [custom_params_serializer] aliases: hire.application.terminate, hire.v1.application.terminate
+- hire.application.transferOnboard -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/transfer_onboard [custom_params_serializer] aliases: hire.application.transferOnboard, hire.v1.application.transferOnboard
+- hire.application.transferStage -> POST ${this.domain}/open-apis/hire/v1/applications/:application_id/transfer_stage [custom_params_serializer] aliases: hire.application.transferStage, hire.v1.application.transferStage
+- hire.applicationInterview.list -> GET ${this.domain}/open-apis/hire/v1/applications/:application_id/interviews [custom_params_serializer] aliases: hire.applicationInterview.list, hire.v1.applicationInterview.list
+- hire.attachment.create -> POST ${this.domain}/open-apis/hire/v1/attachments [custom_params_serializer] aliases: hire.attachment.create, hire.v1.attachment.create
+- hire.attachment.get -> GET ${this.domain}/open-apis/hire/v1/attachments/:attachment_id [custom_params_serializer] aliases: hire.attachment.get, hire.v1.attachment.get
+- hire.attachment.preview -> GET ${this.domain}/open-apis/hire/v1/attachments/:attachment_id/preview [custom_params_serializer] aliases: hire.attachment.preview, hire.v1.attachment.preview
+- hire.backgroundCheckOrder.batchQuery -> POST ${this.domain}/open-apis/hire/v1/background_check_orders/batch_query [custom_params_serializer] aliases: hire.backgroundCheckOrder.batchQuery, hire.v1.backgroundCheckOrder.batchQuery
+- hire.backgroundCheckOrder.list -> GET ${this.domain}/open-apis/hire/v1/background_check_orders [custom_params_serializer] aliases: hire.backgroundCheckOrder.list, hire.v1.backgroundCheckOrder.list
+- hire.diversityInclusion.search -> POST ${this.domain}/open-apis/hire/v1/applications/diversity_inclusions/search [custom_params_serializer] aliases: hire.diversityInclusion.search, hire.v1.diversityInclusion.search
+- hire.ecoAccountCustomField.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_account_custom_fields/batch_delete [custom_params_serializer] aliases: hire.ecoAccountCustomField.batchDelete, hire.v1.ecoAccountCustomField.batchDelete
+- hire.ecoAccountCustomField.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_account_custom_fields/batch_update [custom_params_serializer] aliases: hire.ecoAccountCustomField.batchUpdate, hire.v1.ecoAccountCustomField.batchUpdate
+- hire.ecoAccountCustomField.create -> POST ${this.domain}/open-apis/hire/v1/eco_account_custom_fields [custom_params_serializer] aliases: hire.ecoAccountCustomField.create, hire.v1.ecoAccountCustomField.create
+- hire.ecoBackgroundCheck.cancel -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/cancel [custom_params_serializer] aliases: hire.ecoBackgroundCheck.cancel, hire.v1.ecoBackgroundCheck.cancel
+- hire.ecoBackgroundCheck.updateProgress -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/update_progress [custom_params_serializer] aliases: hire.ecoBackgroundCheck.updateProgress, hire.v1.ecoBackgroundCheck.updateProgress
+- hire.ecoBackgroundCheck.updateResult -> POST ${this.domain}/open-apis/hire/v1/eco_background_checks/update_result [custom_params_serializer] aliases: hire.ecoBackgroundCheck.updateResult, hire.v1.ecoBackgroundCheck.updateResult
+- hire.ecoBackgroundCheckCustomField.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields/batch_delete [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.batchDelete, hire.v1.ecoBackgroundCheckCustomField.batchDelete
+- hire.ecoBackgroundCheckCustomField.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields/batch_update [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.batchUpdate, hire.v1.ecoBackgroundCheckCustomField.batchUpdate
+- hire.ecoBackgroundCheckCustomField.create -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_custom_fields [custom_params_serializer] aliases: hire.ecoBackgroundCheckCustomField.create, hire.v1.ecoBackgroundCheckCustomField.create
+- hire.ecoBackgroundCheckPackage.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_packages/batch_delete [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.batchDelete, hire.v1.ecoBackgroundCheckPackage.batchDelete
+- hire.ecoBackgroundCheckPackage.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_background_check_packages/batch_update [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.batchUpdate, hire.v1.ecoBackgroundCheckPackage.batchUpdate
+- hire.ecoBackgroundCheckPackage.create -> POST ${this.domain}/open-apis/hire/v1/eco_background_check_packages [custom_params_serializer] aliases: hire.ecoBackgroundCheckPackage.create, hire.v1.ecoBackgroundCheckPackage.create
+- hire.ecoExam.loginInfo -> POST ${this.domain}/open-apis/hire/v1/eco_exams/:exam_id/login_info [custom_params_serializer] aliases: hire.ecoExam.loginInfo, hire.v1.ecoExam.loginInfo
+- hire.ecoExam.updateResult -> POST ${this.domain}/open-apis/hire/v1/eco_exams/:exam_id/update_result [custom_params_serializer] aliases: hire.ecoExam.updateResult, hire.v1.ecoExam.updateResult
+- hire.ecoExamPaper.batchDelete -> POST ${this.domain}/open-apis/hire/v1/eco_exam_papers/batch_delete [custom_params_serializer] aliases: hire.ecoExamPaper.batchDelete, hire.v1.ecoExamPaper.batchDelete
+- hire.ecoExamPaper.batchUpdate -> PATCH ${this.domain}/open-apis/hire/v1/eco_exam_papers/batch_update [custom_params_serializer] aliases: hire.ecoExamPaper.batchUpdate, hire.v1.ecoExamPaper.batchUpdate
+- hire.ecoExamPaper.create -> POST ${this.domain}/open-apis/hire/v1/eco_exam_papers [custom_params_serializer] aliases: hire.ecoExamPaper.create, hire.v1.ecoExamPaper.create
+- hire.ehrImportTask.patch -> PATCH ${this.domain}/open-apis/hire/v1/ehr_import_tasks/:ehr_import_task_id [custom_params_serializer] aliases: hire.ehrImportTask.patch, hire.v1.ehrImportTask.patch
+- hire.employee.get -> GET ${this.domain}/open-apis/hire/v1/employees/:employee_id [custom_params_serializer] aliases: hire.employee.get, hire.v1.employee.get
+- hire.employee.getByApplication -> GET ${this.domain}/open-apis/hire/v1/employees/get_by_application [custom_params_serializer] aliases: hire.employee.getByApplication, hire.v1.employee.getByApplication
+- hire.employee.patch -> PATCH ${this.domain}/open-apis/hire/v1/employees/:employee_id [custom_params_serializer] aliases: hire.employee.patch, hire.v1.employee.patch
+- hire.evaluation.list -> GET ${this.domain}/open-apis/hire/v1/evaluations [custom_params_serializer] aliases: hire.evaluation.list, hire.v1.evaluation.list
+- hire.evaluation.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/evaluations [custom_params_serializer, iterator_helper] aliases: hire.evaluation.listWithIterator, hire.v1.evaluation.listWithIterator
+- hire.evaluationTask.list -> GET ${this.domain}/open-apis/hire/v1/evaluation_tasks [custom_params_serializer] aliases: hire.evaluationTask.list, hire.v1.evaluationTask.list
+- hire.evaluationTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/evaluation_tasks [custom_params_serializer, iterator_helper] aliases: hire.evaluationTask.listWithIterator, hire.v1.evaluationTask.listWithIterator
+- hire.exam.create -> POST ${this.domain}/open-apis/hire/v1/exams [custom_params_serializer] aliases: hire.exam.create, hire.v1.exam.create
+- hire.examMarkingTask.list -> GET ${this.domain}/open-apis/hire/v1/exam_marking_tasks [custom_params_serializer] aliases: hire.examMarkingTask.list, hire.v1.examMarkingTask.list
+- hire.examMarkingTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/exam_marking_tasks [custom_params_serializer, iterator_helper] aliases: hire.examMarkingTask.listWithIterator, hire.v1.examMarkingTask.listWithIterator
+- hire.externalApplication.create -> POST ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer] aliases: hire.externalApplication.create, hire.v1.externalApplication.create
+- hire.externalApplication.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_applications/:external_application_id [custom_params_serializer] aliases: hire.externalApplication.delete, hire.v1.externalApplication.delete
+- hire.externalApplication.list -> GET ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer] aliases: hire.externalApplication.list, hire.v1.externalApplication.list
+- hire.externalApplication.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/external_applications [custom_params_serializer, iterator_helper] aliases: hire.externalApplication.listWithIterator, hire.v1.externalApplication.listWithIterator
+- hire.externalApplication.update -> PUT ${this.domain}/open-apis/hire/v1/external_applications/:external_application_id [custom_params_serializer] aliases: hire.externalApplication.update, hire.v1.externalApplication.update
+- hire.externalBackgroundCheck.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_background_checks/batch_query [custom_params_serializer] aliases: hire.externalBackgroundCheck.batchQuery, hire.v1.externalBackgroundCheck.batchQuery
+- hire.externalBackgroundCheck.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_background_checks/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalBackgroundCheck.batchQueryWithIterator, hire.v1.externalBackgroundCheck.batchQueryWithIterator
+- hire.externalBackgroundCheck.create -> POST ${this.domain}/open-apis/hire/v1/external_background_checks [custom_params_serializer] aliases: hire.externalBackgroundCheck.create, hire.v1.externalBackgroundCheck.create
+- hire.externalBackgroundCheck.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_background_checks/:external_background_check_id [custom_params_serializer] aliases: hire.externalBackgroundCheck.delete, hire.v1.externalBackgroundCheck.delete
+- hire.externalBackgroundCheck.update -> PUT ${this.domain}/open-apis/hire/v1/external_background_checks/:external_background_check_id [custom_params_serializer] aliases: hire.externalBackgroundCheck.update, hire.v1.externalBackgroundCheck.update
+- hire.externalInterview.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_interviews/batch_query [custom_params_serializer] aliases: hire.externalInterview.batchQuery, hire.v1.externalInterview.batchQuery
+- hire.externalInterview.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_interviews/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalInterview.batchQueryWithIterator, hire.v1.externalInterview.batchQueryWithIterator
+- hire.externalInterview.create -> POST ${this.domain}/open-apis/hire/v1/external_interviews [custom_params_serializer] aliases: hire.externalInterview.create, hire.v1.externalInterview.create
+- hire.externalInterview.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_interviews/:external_interview_id [custom_params_serializer] aliases: hire.externalInterview.delete, hire.v1.externalInterview.delete
+- hire.externalInterview.update -> PUT ${this.domain}/open-apis/hire/v1/external_interviews/:external_interview_id [custom_params_serializer] aliases: hire.externalInterview.update, hire.v1.externalInterview.update
+- hire.externalInterviewAssessment.create -> POST ${this.domain}/open-apis/hire/v1/external_interview_assessments [custom_params_serializer] aliases: hire.externalInterviewAssessment.create, hire.v1.externalInterviewAssessment.create
+- hire.externalInterviewAssessment.patch -> PATCH ${this.domain}/open-apis/hire/v1/external_interview_assessments/:external_interview_assessment_id [custom_params_serializer] aliases: hire.externalInterviewAssessment.patch, hire.v1.externalInterviewAssessment.patch
+- hire.externalOffer.batchQuery -> POST ${this.domain}/open-apis/hire/v1/external_offers/batch_query [custom_params_serializer] aliases: hire.externalOffer.batchQuery, hire.v1.externalOffer.batchQuery
+- hire.externalOffer.batchQueryWithIterator -> POST ${this.domain}/open-apis/hire/v1/external_offers/batch_query [custom_params_serializer, iterator_helper] aliases: hire.externalOffer.batchQueryWithIterator, hire.v1.externalOffer.batchQueryWithIterator
+- hire.externalOffer.create -> POST ${this.domain}/open-apis/hire/v1/external_offers [custom_params_serializer] aliases: hire.externalOffer.create, hire.v1.externalOffer.create
+- hire.externalOffer.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_offers/:external_offer_id [custom_params_serializer] aliases: hire.externalOffer.delete, hire.v1.externalOffer.delete
+- hire.externalOffer.update -> PUT ${this.domain}/open-apis/hire/v1/external_offers/:external_offer_id [custom_params_serializer] aliases: hire.externalOffer.update, hire.v1.externalOffer.update
+- hire.externalReferralReward.create -> POST ${this.domain}/open-apis/hire/v1/external_referral_rewards [custom_params_serializer] aliases: hire.externalReferralReward.create, hire.v1.externalReferralReward.create
+- hire.externalReferralReward.delete -> DELETE ${this.domain}/open-apis/hire/v1/external_referral_rewards/:external_referral_reward_id [custom_params_serializer] aliases: hire.externalReferralReward.delete, hire.v1.externalReferralReward.delete
+- hire.interview.getByTalent -> GET ${this.domain}/open-apis/hire/v1/interviews/get_by_talent [custom_params_serializer] aliases: hire.interview.getByTalent, hire.v1.interview.getByTalent
+- hire.interview.list -> GET ${this.domain}/open-apis/hire/v1/interviews [custom_params_serializer] aliases: hire.interview.list, hire.v1.interview.list
+- hire.interviewer.list -> GET ${this.domain}/open-apis/hire/v1/interviewers [custom_params_serializer] aliases: hire.interviewer.list, hire.v1.interviewer.list
+- hire.interviewer.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interviewers [custom_params_serializer, iterator_helper] aliases: hire.interviewer.listWithIterator, hire.v1.interviewer.listWithIterator
+- hire.interviewer.patch -> PATCH ${this.domain}/open-apis/hire/v1/interviewers/:interviewer_id [custom_params_serializer] aliases: hire.interviewer.patch, hire.v1.interviewer.patch
+- hire.interviewFeedbackForm.list -> GET ${this.domain}/open-apis/hire/v1/interview_feedback_forms [custom_params_serializer] aliases: hire.interviewFeedbackForm.list, hire.v1.interviewFeedbackForm.list
+- hire.interviewFeedbackForm.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_feedback_forms [custom_params_serializer, iterator_helper] aliases: hire.interviewFeedbackForm.listWithIterator, hire.v1.interviewFeedbackForm.listWithIterator
+- hire.interviewRecord.get -> GET ${this.domain}/open-apis/hire/v1/interview_records/:interview_record_id [custom_params_serializer] aliases: hire.interviewRecord.get, hire.v1.interviewRecord.get
+- hire.interviewRecord.get -> GET ${this.domain}/open-apis/hire/v2/interview_records/:interview_record_id [custom_params_serializer]
+- hire.interviewRecord.list -> GET ${this.domain}/open-apis/hire/v1/interview_records [custom_params_serializer] aliases: hire.interviewRecord.list, hire.v1.interviewRecord.list
+- hire.interviewRecord.list -> GET ${this.domain}/open-apis/hire/v2/interview_records [custom_params_serializer]
+- hire.interviewRecord.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_records [custom_params_serializer, iterator_helper] aliases: hire.interviewRecord.listWithIterator, hire.v1.interviewRecord.listWithIterator
+- hire.interviewRecord.listWithIterator -> GET ${this.domain}/open-apis/hire/v2/interview_records [custom_params_serializer, iterator_helper]
+- hire.interviewRecordAttachment.get -> GET ${this.domain}/open-apis/hire/v1/interview_records/attachments [custom_params_serializer] aliases: hire.interviewRecordAttachment.get, hire.v1.interviewRecordAttachment.get
+- hire.interviewRegistrationSchema.list -> GET ${this.domain}/open-apis/hire/v1/interview_registration_schemas [custom_params_serializer] aliases: hire.interviewRegistrationSchema.list, hire.v1.interviewRegistrationSchema.list
+- hire.interviewRegistrationSchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_registration_schemas [custom_params_serializer, iterator_helper] aliases: hire.interviewRegistrationSchema.listWithIterator, hire.v1.interviewRegistrationSchema.listWithIterator
+- hire.interviewRoundType.list -> GET ${this.domain}/open-apis/hire/v1/interview_round_types [custom_params_serializer] aliases: hire.interviewRoundType.list, hire.v1.interviewRoundType.list
+- hire.interviewTask.list -> GET ${this.domain}/open-apis/hire/v1/interview_tasks [custom_params_serializer] aliases: hire.interviewTask.list, hire.v1.interviewTask.list
+- hire.interviewTask.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/interview_tasks [custom_params_serializer, iterator_helper] aliases: hire.interviewTask.listWithIterator, hire.v1.interviewTask.listWithIterator
+- hire.job.close -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/close [custom_params_serializer] aliases: hire.job.close, hire.v1.job.close
+- hire.job.combinedCreate -> POST ${this.domain}/open-apis/hire/v1/jobs/combined_create [custom_params_serializer] aliases: hire.job.combinedCreate, hire.v1.job.combinedCreate
+- hire.job.combinedUpdate -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/combined_update [custom_params_serializer] aliases: hire.job.combinedUpdate, hire.v1.job.combinedUpdate
+- hire.job.config -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/config [custom_params_serializer] aliases: hire.job.config, hire.v1.job.config
+- hire.job.get -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id [custom_params_serializer] aliases: hire.job.get, hire.v1.job.get
+- hire.job.getDetail -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/get_detail [custom_params_serializer] aliases: hire.job.getDetail, hire.v1.job.getDetail
+- hire.job.list -> GET ${this.domain}/open-apis/hire/v1/jobs [custom_params_serializer] aliases: hire.job.list, hire.v1.job.list
+- hire.job.open -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/open [custom_params_serializer] aliases: hire.job.open, hire.v1.job.open
+- hire.job.recruiter -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/recruiter [custom_params_serializer] aliases: hire.job.recruiter, hire.v1.job.recruiter
+- hire.job.updateConfig -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/update_config [custom_params_serializer] aliases: hire.job.updateConfig, hire.v1.job.updateConfig
+- hire.jobFunction.list -> GET ${this.domain}/open-apis/hire/v1/job_functions [custom_params_serializer] aliases: hire.jobFunction.list, hire.v1.jobFunction.list
+- hire.jobFunction.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/job_functions [custom_params_serializer, iterator_helper] aliases: hire.jobFunction.listWithIterator, hire.v1.jobFunction.listWithIterator
+- hire.jobManager.batchUpdate -> POST ${this.domain}/open-apis/hire/v1/jobs/:job_id/managers/batch_update [custom_params_serializer] aliases: hire.jobManager.batchUpdate, hire.v1.jobManager.batchUpdate
+- hire.jobManager.get -> GET ${this.domain}/open-apis/hire/v1/jobs/:job_id/managers/:manager_id [custom_params_serializer] aliases: hire.jobManager.get, hire.v1.jobManager.get
+- hire.jobProcess.list -> GET ${this.domain}/open-apis/hire/v1/job_processes [custom_params_serializer] aliases: hire.jobProcess.list, hire.v1.jobProcess.list
+- hire.jobPublishRecord.search -> POST ${this.domain}/open-apis/hire/v1/job_publish_records/search [custom_params_serializer] aliases: hire.jobPublishRecord.search, hire.v1.jobPublishRecord.search
+- hire.jobRequirement.create -> POST ${this.domain}/open-apis/hire/v1/job_requirements [custom_params_serializer] aliases: hire.jobRequirement.create, hire.v1.jobRequirement.create
+- hire.jobRequirement.delete -> DELETE ${this.domain}/open-apis/hire/v1/job_requirements/:job_requirement_id [custom_params_serializer] aliases: hire.jobRequirement.delete, hire.v1.jobRequirement.delete
+- hire.jobRequirement.list -> GET ${this.domain}/open-apis/hire/v1/job_requirements [custom_params_serializer] aliases: hire.jobRequirement.list, hire.v1.jobRequirement.list
+- hire.jobRequirement.listById -> POST ${this.domain}/open-apis/hire/v1/job_requirements/search [custom_params_serializer] aliases: hire.jobRequirement.listById, hire.v1.jobRequirement.listById
+- hire.jobRequirement.update -> PUT ${this.domain}/open-apis/hire/v1/job_requirements/:job_requirement_id [custom_params_serializer] aliases: hire.jobRequirement.update, hire.v1.jobRequirement.update
+- hire.jobRequirementSchema.list -> GET ${this.domain}/open-apis/hire/v1/job_requirement_schemas [custom_params_serializer] aliases: hire.jobRequirementSchema.list, hire.v1.jobRequirementSchema.list
+- hire.jobSchema.list -> GET ${this.domain}/open-apis/hire/v1/job_schemas [custom_params_serializer] aliases: hire.jobSchema.list, hire.v1.jobSchema.list
+- hire.jobType.list -> GET ${this.domain}/open-apis/hire/v1/job_types [custom_params_serializer] aliases: hire.jobType.list, hire.v1.jobType.list
+- hire.jobType.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/job_types [custom_params_serializer, iterator_helper] aliases: hire.jobType.listWithIterator, hire.v1.jobType.listWithIterator
+- hire.location.list -> GET ${this.domain}/open-apis/hire/v1/locations [custom_params_serializer] aliases: hire.location.list, hire.v1.location.list
+- hire.location.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/locations [custom_params_serializer, iterator_helper] aliases: hire.location.listWithIterator, hire.v1.location.listWithIterator
+- hire.location.query -> POST ${this.domain}/open-apis/hire/v1/locations/query [custom_params_serializer] aliases: hire.location.query, hire.v1.location.query
+- hire.minutes.get -> GET ${this.domain}/open-apis/hire/v1/minutes [custom_params_serializer] aliases: hire.minutes.get, hire.v1.minutes.get
+- hire.note.create -> POST ${this.domain}/open-apis/hire/v1/notes [custom_params_serializer] aliases: hire.note.create, hire.v1.note.create
+- hire.note.delete -> DELETE ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.delete, hire.v1.note.delete
+- hire.note.get -> GET ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.get, hire.v1.note.get
+- hire.note.list -> GET ${this.domain}/open-apis/hire/v1/notes [custom_params_serializer] aliases: hire.note.list, hire.v1.note.list
+- hire.note.patch -> PATCH ${this.domain}/open-apis/hire/v1/notes/:note_id [custom_params_serializer] aliases: hire.note.patch, hire.v1.note.patch
+- hire.offer.create -> POST ${this.domain}/open-apis/hire/v1/offers [custom_params_serializer] aliases: hire.offer.create, hire.v1.offer.create
+- hire.offer.get -> GET ${this.domain}/open-apis/hire/v1/offers/:offer_id [custom_params_serializer] aliases: hire.offer.get, hire.v1.offer.get
+- hire.offer.internOfferStatus -> POST ${this.domain}/open-apis/hire/v1/offers/:offer_id/intern_offer_status [custom_params_serializer] aliases: hire.offer.internOfferStatus, hire.v1.offer.internOfferStatus
+- hire.offer.list -> GET ${this.domain}/open-apis/hire/v1/offers [custom_params_serializer] aliases: hire.offer.list, hire.v1.offer.list
+- hire.offer.offerStatus -> PATCH ${this.domain}/open-apis/hire/v1/offers/:offer_id/offer_status [custom_params_serializer] aliases: hire.offer.offerStatus, hire.v1.offer.offerStatus
+- hire.offer.update -> PUT ${this.domain}/open-apis/hire/v1/offers/:offer_id [custom_params_serializer] aliases: hire.offer.update, hire.v1.offer.update
+- hire.offerApplicationForm.get -> GET ${this.domain}/open-apis/hire/v1/offer_application_forms/:offer_application_form_id [custom_params_serializer] aliases: hire.offerApplicationForm.get, hire.v1.offerApplicationForm.get
+- hire.offerApplicationForm.list -> GET ${this.domain}/open-apis/hire/v1/offer_application_forms [custom_params_serializer] aliases: hire.offerApplicationForm.list, hire.v1.offerApplicationForm.list
+- hire.offerApprovalTemplate.list -> GET ${this.domain}/open-apis/hire/v1/offer_approval_templates [custom_params_serializer] aliases: hire.offerApprovalTemplate.list, hire.v1.offerApprovalTemplate.list
+- hire.offerCustomField.update -> PUT ${this.domain}/open-apis/hire/v1/offer_custom_fields/:offer_custom_field_id [custom_params_serializer] aliases: hire.offerCustomField.update, hire.v1.offerCustomField.update
+- hire.offerSchema.get -> GET ${this.domain}/open-apis/hire/v1/offer_schemas/:offer_schema_id [custom_params_serializer] aliases: hire.offerSchema.get, hire.v1.offerSchema.get
+- hire.portalApplySchema.list -> GET ${this.domain}/open-apis/hire/v1/portal_apply_schemas [custom_params_serializer] aliases: hire.portalApplySchema.list, hire.v1.portalApplySchema.list
+- hire.portalApplySchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/portal_apply_schemas [custom_params_serializer, iterator_helper] aliases: hire.portalApplySchema.listWithIterator, hire.v1.portalApplySchema.listWithIterator
+- hire.questionnaire.list -> GET ${this.domain}/open-apis/hire/v1/questionnaires [custom_params_serializer] aliases: hire.questionnaire.list, hire.v1.questionnaire.list
+- hire.referral.getByApplication -> GET ${this.domain}/open-apis/hire/v1/referrals/get_by_application [custom_params_serializer] aliases: hire.referral.getByApplication, hire.v1.referral.getByApplication
+- hire.referral.search -> POST ${this.domain}/open-apis/hire/v1/referrals/search [custom_params_serializer] aliases: hire.referral.search, hire.v1.referral.search
+- hire.referralAccount.create -> POST ${this.domain}/open-apis/hire/v1/referral_account [custom_params_serializer] aliases: hire.referralAccount.create, hire.v1.referralAccount.create
+- hire.referralAccount.deactivate -> POST ${this.domain}/open-apis/hire/v1/referral_account/:referral_account_id/deactivate [custom_params_serializer] aliases: hire.referralAccount.deactivate, hire.v1.referralAccount.deactivate
+- hire.referralAccount.enable -> POST ${this.domain}/open-apis/hire/v1/referral_account/enable [custom_params_serializer] aliases: hire.referralAccount.enable, hire.v1.referralAccount.enable
+- hire.referralAccount.getAccountAssets -> GET ${this.domain}/open-apis/hire/v1/referral_account/get_account_assets [custom_params_serializer] aliases: hire.referralAccount.getAccountAssets, hire.v1.referralAccount.getAccountAssets
+- hire.referralAccount.reconciliation -> POST ${this.domain}/open-apis/hire/v1/referral_account/reconciliation [custom_params_serializer] aliases: hire.referralAccount.reconciliation, hire.v1.referralAccount.reconciliation
+- hire.referralAccount.withdraw -> POST ${this.domain}/open-apis/hire/v1/referral_account/:referral_account_id/withdraw [custom_params_serializer] aliases: hire.referralAccount.withdraw, hire.v1.referralAccount.withdraw
+- hire.referralWebsiteJobPost.get -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts/:job_post_id [custom_params_serializer] aliases: hire.referralWebsiteJobPost.get, hire.v1.referralWebsiteJobPost.get
+- hire.referralWebsiteJobPost.list -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts [custom_params_serializer] aliases: hire.referralWebsiteJobPost.list, hire.v1.referralWebsiteJobPost.list
+- hire.referralWebsiteJobPost.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/referral_websites/job_posts [custom_params_serializer, iterator_helper] aliases: hire.referralWebsiteJobPost.listWithIterator, hire.v1.referralWebsiteJobPost.listWithIterator
+- hire.registrationSchema.list -> GET ${this.domain}/open-apis/hire/v1/registration_schemas [custom_params_serializer] aliases: hire.registrationSchema.list, hire.v1.registrationSchema.list
+- hire.registrationSchema.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/registration_schemas [custom_params_serializer, iterator_helper] aliases: hire.registrationSchema.listWithIterator, hire.v1.registrationSchema.listWithIterator
+- hire.resumeSource.list -> GET ${this.domain}/open-apis/hire/v1/resume_sources [custom_params_serializer] aliases: hire.resumeSource.list, hire.v1.resumeSource.list
+- hire.resumeSource.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/resume_sources [custom_params_serializer, iterator_helper] aliases: hire.resumeSource.listWithIterator, hire.v1.resumeSource.listWithIterator
+- hire.role.get -> GET ${this.domain}/open-apis/hire/v1/roles/:role_id [custom_params_serializer] aliases: hire.role.get, hire.v1.role.get
+- hire.role.list -> GET ${this.domain}/open-apis/hire/v1/roles [custom_params_serializer] aliases: hire.role.list, hire.v1.role.list
+- hire.role.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/roles [custom_params_serializer, iterator_helper] aliases: hire.role.listWithIterator, hire.v1.role.listWithIterator
+- hire.subject.list -> GET ${this.domain}/open-apis/hire/v1/subjects [custom_params_serializer] aliases: hire.subject.list, hire.v1.subject.list
+- hire.talent.addToFolder -> POST ${this.domain}/open-apis/hire/v1/talents/add_to_folder [custom_params_serializer] aliases: hire.talent.addToFolder, hire.v1.talent.addToFolder
+- hire.talent.batchGetId -> POST ${this.domain}/open-apis/hire/v1/talents/batch_get_id [custom_params_serializer] aliases: hire.talent.batchGetId, hire.v1.talent.batchGetId
+- hire.talent.combinedCreate -> POST ${this.domain}/open-apis/hire/v1/talents/combined_create [custom_params_serializer] aliases: hire.talent.combinedCreate, hire.v1.talent.combinedCreate
+- hire.talent.combinedUpdate -> POST ${this.domain}/open-apis/hire/v1/talents/combined_update [custom_params_serializer] aliases: hire.talent.combinedUpdate, hire.v1.talent.combinedUpdate
+- hire.talent.get -> GET ${this.domain}/open-apis/hire/v1/talents/:talent_id [custom_params_serializer] aliases: hire.talent.get, hire.v1.talent.get
+- hire.talent.get -> GET ${this.domain}/open-apis/hire/v2/talents/:talent_id [custom_params_serializer]
+- hire.talent.list -> GET ${this.domain}/open-apis/hire/v1/talents [custom_params_serializer] aliases: hire.talent.list, hire.v1.talent.list
+- hire.talent.onboardStatus -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/onboard_status [custom_params_serializer] aliases: hire.talent.onboardStatus, hire.v1.talent.onboardStatus
+- hire.talent.removeToFolder -> POST ${this.domain}/open-apis/hire/v1/talents/remove_to_folder [custom_params_serializer] aliases: hire.talent.removeToFolder, hire.v1.talent.removeToFolder
+- hire.talent.tag -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/tag [custom_params_serializer] aliases: hire.talent.tag, hire.v1.talent.tag
+- hire.talentBlocklist.changeTalentBlock -> POST ${this.domain}/open-apis/hire/v1/talent_blocklist/change_talent_block [custom_params_serializer] aliases: hire.talentBlocklist.changeTalentBlock, hire.v1.talentBlocklist.changeTalentBlock
+- hire.talentExternalInfo.create -> POST ${this.domain}/open-apis/hire/v1/talents/:talent_id/external_info [custom_params_serializer] aliases: hire.talentExternalInfo.create, hire.v1.talentExternalInfo.create
+- hire.talentExternalInfo.update -> PUT ${this.domain}/open-apis/hire/v1/talents/:talent_id/external_info [custom_params_serializer] aliases: hire.talentExternalInfo.update, hire.v1.talentExternalInfo.update
+- hire.talentFolder.list -> GET ${this.domain}/open-apis/hire/v1/talent_folders [custom_params_serializer] aliases: hire.talentFolder.list, hire.v1.talentFolder.list
+- hire.talentFolder.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_folders [custom_params_serializer, iterator_helper] aliases: hire.talentFolder.listWithIterator, hire.v1.talentFolder.listWithIterator
+- hire.talentObject.query -> GET ${this.domain}/open-apis/hire/v1/talent_objects/query [custom_params_serializer] aliases: hire.talentObject.query, hire.v1.talentObject.query
+- hire.talentOperationLog.search -> POST ${this.domain}/open-apis/hire/v1/talent_operation_logs/search [custom_params_serializer] aliases: hire.talentOperationLog.search, hire.v1.talentOperationLog.search
+- hire.talentPool.batchChangeTalentPool -> POST ${this.domain}/open-apis/hire/v1/talent_pools/:talent_pool_id/batch_change_talent_pool [custom_params_serializer] aliases: hire.talentPool.batchChangeTalentPool, hire.v1.talentPool.batchChangeTalentPool
+- hire.talentPool.moveTalent -> POST ${this.domain}/open-apis/hire/v1/talent_pools/:talent_pool_id/talent_relationship [custom_params_serializer] aliases: hire.talentPool.moveTalent, hire.v1.talentPool.moveTalent
+- hire.talentPool.search -> GET ${this.domain}/open-apis/hire/v1/talent_pools/ [custom_params_serializer] aliases: hire.talentPool.search, hire.v1.talentPool.search
+- hire.talentPool.searchWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_pools/ [custom_params_serializer, iterator_helper] aliases: hire.talentPool.searchWithIterator, hire.v1.talentPool.searchWithIterator
+- hire.talentTag.list -> GET ${this.domain}/open-apis/hire/v1/talent_tags [custom_params_serializer] aliases: hire.talentTag.list, hire.v1.talentTag.list
+- hire.talentTag.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/talent_tags [custom_params_serializer, iterator_helper] aliases: hire.talentTag.listWithIterator, hire.v1.talentTag.listWithIterator
+- hire.terminationReason.list -> GET ${this.domain}/open-apis/hire/v1/termination_reasons [custom_params_serializer] aliases: hire.terminationReason.list, hire.v1.terminationReason.list
+- hire.terminationReason.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/termination_reasons [custom_params_serializer, iterator_helper] aliases: hire.terminationReason.listWithIterator, hire.v1.terminationReason.listWithIterator
+- hire.test.search -> POST ${this.domain}/open-apis/hire/v1/tests/search [custom_params_serializer] aliases: hire.test.search, hire.v1.test.search
+- hire.test.searchWithIterator -> POST ${this.domain}/open-apis/hire/v1/tests/search [custom_params_serializer, iterator_helper] aliases: hire.test.searchWithIterator, hire.v1.test.searchWithIterator
+- hire.todo.list -> GET ${this.domain}/open-apis/hire/v1/todos [custom_params_serializer] aliases: hire.todo.list, hire.v1.todo.list
+- hire.todo.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/todos [custom_params_serializer, iterator_helper] aliases: hire.todo.listWithIterator, hire.v1.todo.listWithIterator
+- hire.tripartiteAgreement.create -> POST ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer] aliases: hire.tripartiteAgreement.create, hire.v1.tripartiteAgreement.create
+- hire.tripartiteAgreement.delete -> DELETE ${this.domain}/open-apis/hire/v1/tripartite_agreements/:tripartite_agreement_id [custom_params_serializer] aliases: hire.tripartiteAgreement.delete, hire.v1.tripartiteAgreement.delete
+- hire.tripartiteAgreement.list -> GET ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer] aliases: hire.tripartiteAgreement.list, hire.v1.tripartiteAgreement.list
+- hire.tripartiteAgreement.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/tripartite_agreements [custom_params_serializer, iterator_helper] aliases: hire.tripartiteAgreement.listWithIterator, hire.v1.tripartiteAgreement.listWithIterator
+- hire.tripartiteAgreement.update -> PUT ${this.domain}/open-apis/hire/v1/tripartite_agreements/:tripartite_agreement_id [custom_params_serializer] aliases: hire.tripartiteAgreement.update, hire.v1.tripartiteAgreement.update
+- hire.userRole.list -> GET ${this.domain}/open-apis/hire/v1/user_roles [custom_params_serializer] aliases: hire.userRole.list, hire.v1.userRole.list
+- hire.userRole.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/user_roles [custom_params_serializer, iterator_helper] aliases: hire.userRole.listWithIterator, hire.v1.userRole.listWithIterator
+- hire.website.list -> GET ${this.domain}/open-apis/hire/v1/websites [custom_params_serializer] aliases: hire.v1.website.list, hire.website.list
+- hire.website.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/websites [custom_params_serializer, iterator_helper] aliases: hire.v1.website.listWithIterator, hire.website.listWithIterator
+- hire.websiteChannel.create -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/channels [custom_params_serializer] aliases: hire.v1.websiteChannel.create, hire.websiteChannel.create
+- hire.websiteChannel.delete -> DELETE ${this.domain}/open-apis/hire/v1/websites/:website_id/channels/:channel_id [custom_params_serializer] aliases: hire.v1.websiteChannel.delete, hire.websiteChannel.delete
+- hire.websiteChannel.list -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/channels [custom_params_serializer] aliases: hire.v1.websiteChannel.list, hire.websiteChannel.list
+- hire.websiteChannel.update -> PUT ${this.domain}/open-apis/hire/v1/websites/:website_id/channels/:channel_id [custom_params_serializer] aliases: hire.v1.websiteChannel.update, hire.websiteChannel.update
+- hire.websiteDelivery.createByAttachment -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/deliveries/create_by_attachment [custom_params_serializer] aliases: hire.v1.websiteDelivery.createByAttachment, hire.websiteDelivery.createByAttachment
+- hire.websiteDelivery.createByResume -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/deliveries/create_by_resume [custom_params_serializer] aliases: hire.v1.websiteDelivery.createByResume, hire.websiteDelivery.createByResume
+- hire.websiteDeliveryTask.get -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/delivery_tasks/:delivery_task_id [custom_params_serializer] aliases: hire.v1.websiteDeliveryTask.get, hire.websiteDeliveryTask.get
+- hire.websiteJobPost.get -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/:job_post_id [custom_params_serializer] aliases: hire.v1.websiteJobPost.get, hire.websiteJobPost.get
+- hire.websiteJobPost.list -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts [custom_params_serializer] aliases: hire.v1.websiteJobPost.list, hire.websiteJobPost.list
+- hire.websiteJobPost.listWithIterator -> GET ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts [custom_params_serializer, iterator_helper] aliases: hire.v1.websiteJobPost.listWithIterator, hire.websiteJobPost.listWithIterator
+- hire.websiteJobPost.search -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/search [custom_params_serializer] aliases: hire.v1.websiteJobPost.search, hire.websiteJobPost.search
+- hire.websiteJobPost.searchWithIterator -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/job_posts/search [custom_params_serializer, iterator_helper] aliases: hire.v1.websiteJobPost.searchWithIterator, hire.websiteJobPost.searchWithIterator
+- hire.websiteSiteUser.create -> POST ${this.domain}/open-apis/hire/v1/websites/:website_id/site_users [custom_params_serializer] aliases: hire.v1.websiteSiteUser.create, hire.websiteSiteUser.create
+- human_authentication.identity.create -> POST ${this.domain}/open-apis/human_authentication/v1/identities [custom_params_serializer] aliases: human_authentication.identity.create, human_authentication.v1.identity.create
+- im.appFeedCard.create -> POST ${this.domain}/open-apis/im/v2/app_feed_card [custom_params_serializer]
+- im.appFeedCardBatch.delete -> DELETE ${this.domain}/open-apis/im/v2/app_feed_card/batch [custom_params_serializer]
+- im.appFeedCardBatch.update -> PUT ${this.domain}/open-apis/im/v2/app_feed_card/batch [custom_params_serializer]
+- im.batchMessage.delete -> DELETE ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id [custom_params_serializer] aliases: im.batchMessage.delete, im.v1.batchMessage.delete
+- im.batchMessage.getProgress -> GET ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id/get_progress [custom_params_serializer] aliases: im.batchMessage.getProgress, im.v1.batchMessage.getProgress
+- im.batchMessage.readUser -> GET ${this.domain}/open-apis/im/v1/batch_messages/:batch_message_id/read_user [custom_params_serializer] aliases: im.batchMessage.readUser, im.v1.batchMessage.readUser
+- im.bizEntityTagRelation.create -> POST ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.bizEntityTagRelation.get -> GET ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.bizEntityTagRelation.update -> PUT ${this.domain}/open-apis/im/v2/biz_entity_tag_relation [custom_params_serializer]
+- im.chat.create -> POST ${this.domain}/open-apis/im/v1/chats [custom_params_serializer] aliases: im.chat.create, im.v1.chat.create
+- im.chat.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.delete, im.v1.chat.delete
+- im.chat.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.get, im.v1.chat.get
+- im.chat.link -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/link [custom_params_serializer] aliases: im.chat.link, im.v1.chat.link
+- im.chat.list -> GET ${this.domain}/open-apis/im/v1/chats [custom_params_serializer] aliases: im.chat.list, im.v1.chat.list
+- im.chat.listWithIterator -> GET ${this.domain}/open-apis/im/v1/chats [custom_params_serializer, iterator_helper] aliases: im.chat.listWithIterator, im.v1.chat.listWithIterator
+- im.chat.search -> GET ${this.domain}/open-apis/im/v1/chats/search [custom_params_serializer] aliases: im.chat.search, im.v1.chat.search
+- im.chat.searchWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/search [custom_params_serializer, iterator_helper] aliases: im.chat.searchWithIterator, im.v1.chat.searchWithIterator
+- im.chat.update -> PUT ${this.domain}/open-apis/im/v1/chats/:chat_id [custom_params_serializer] aliases: im.chat.update, im.v1.chat.update
+- im.chatAnnouncement.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/announcement [custom_params_serializer] aliases: im.chatAnnouncement.get, im.v1.chatAnnouncement.get
+- im.chatAnnouncement.patch -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/announcement [custom_params_serializer] aliases: im.chatAnnouncement.patch, im.v1.chatAnnouncement.patch
+- im.chatButton.update -> PUT ${this.domain}/open-apis/im/v2/chat_button [custom_params_serializer]
+- im.chatManagers.addManagers -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/managers/add_managers [custom_params_serializer] aliases: im.chatManagers.addManagers, im.v1.chatManagers.addManagers
+- im.chatManagers.deleteManagers -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/managers/delete_managers [custom_params_serializer] aliases: im.chatManagers.deleteManagers, im.v1.chatManagers.deleteManagers
+- im.chatMembers.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.create, im.v1.chatMembers.create
+- im.chatMembers.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.delete, im.v1.chatMembers.delete
+- im.chatMembers.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer] aliases: im.chatMembers.get, im.v1.chatMembers.get
+- im.chatMembers.getWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members [custom_params_serializer, iterator_helper] aliases: im.chatMembers.getWithIterator, im.v1.chatMembers.getWithIterator
+- im.chatMembers.isInChat -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/members/is_in_chat [custom_params_serializer] aliases: im.chatMembers.isInChat, im.v1.chatMembers.isInChat
+- im.chatMembers.meJoin -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/members/me_join [custom_params_serializer] aliases: im.chatMembers.meJoin, im.v1.chatMembers.meJoin
+- im.chatMenuItem.patch -> PATCH ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_items/:menu_item_id [custom_params_serializer] aliases: im.chatMenuItem.patch, im.v1.chatMenuItem.patch
+- im.chatMenuTree.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.create, im.v1.chatMenuTree.create
+- im.chatMenuTree.delete -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.delete, im.v1.chatMenuTree.delete
+- im.chatMenuTree.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree [custom_params_serializer] aliases: im.chatMenuTree.get, im.v1.chatMenuTree.get
+- im.chatMenuTree.sort -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/menu_tree/sort [custom_params_serializer] aliases: im.chatMenuTree.sort, im.v1.chatMenuTree.sort
+- im.chatModeration.get -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer] aliases: im.chatModeration.get, im.v1.chatModeration.get
+- im.chatModeration.getWithIterator -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer, iterator_helper] aliases: im.chatModeration.getWithIterator, im.v1.chatModeration.getWithIterator
+- im.chatModeration.update -> PUT ${this.domain}/open-apis/im/v1/chats/:chat_id/moderation [custom_params_serializer] aliases: im.chatModeration.update, im.v1.chatModeration.update
+- im.chatTab.create -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs [custom_params_serializer] aliases: im.chatTab.create, im.v1.chatTab.create
+- im.chatTab.deleteTabs -> DELETE ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/delete_tabs [custom_params_serializer] aliases: im.chatTab.deleteTabs, im.v1.chatTab.deleteTabs
+- im.chatTab.listTabs -> GET ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/list_tabs [custom_params_serializer] aliases: im.chatTab.listTabs, im.v1.chatTab.listTabs
+- im.chatTab.sortTabs -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/sort_tabs [custom_params_serializer] aliases: im.chatTab.sortTabs, im.v1.chatTab.sortTabs
+- im.chatTab.updateTabs -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/chat_tabs/update_tabs [custom_params_serializer] aliases: im.chatTab.updateTabs, im.v1.chatTab.updateTabs
+- im.chatTopNotice.deleteTopNotice -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/top_notice/delete_top_notice [custom_params_serializer] aliases: im.chatTopNotice.deleteTopNotice, im.v1.chatTopNotice.deleteTopNotice
+- im.chatTopNotice.putTopNotice -> POST ${this.domain}/open-apis/im/v1/chats/:chat_id/top_notice/put_top_notice [custom_params_serializer] aliases: im.chatTopNotice.putTopNotice, im.v1.chatTopNotice.putTopNotice
+- im.feedCard.botTimeSentive -> PATCH ${this.domain}/open-apis/im/v2/feed_cards/bot_time_sentive [custom_params_serializer]
+- im.feedCard.patch -> PATCH ${this.domain}/open-apis/im/v2/feed_cards/:feed_card_id [custom_params_serializer]
+- im.file.create -> POST ${this.domain}/open-apis/im/v1/files [custom_params_serializer] aliases: im.file.create, im.v1.file.create
+- im.file.get -> GET ${this.domain}/open-apis/im/v1/files/:file_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.file.get, im.v1.file.get
+- im.image.create -> POST ${this.domain}/open-apis/im/v1/images [custom_params_serializer] aliases: im.image.create, im.v1.image.create
+- im.image.get -> GET ${this.domain}/open-apis/im/v1/images/:image_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.image.get, im.v1.image.get
+- im.message.create -> POST ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.create, im.v1.message.create
+- im.message.createByCard -> POST ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.createByCard, im.v1.message.createByCard
+- im.message.delete -> DELETE ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.delete, im.v1.message.delete
+- im.message.forward -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/forward [custom_params_serializer] aliases: im.message.forward, im.v1.message.forward
+- im.message.get -> GET ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.get, im.v1.message.get
+- im.message.list -> GET ${this.domain}/open-apis/im/v1/messages [custom_params_serializer] aliases: im.message.list, im.v1.message.list
+- im.message.listWithIterator -> GET ${this.domain}/open-apis/im/v1/messages [custom_params_serializer, iterator_helper] aliases: im.message.listWithIterator, im.v1.message.listWithIterator
+- im.message.mergeForward -> POST ${this.domain}/open-apis/im/v1/messages/merge_forward [custom_params_serializer] aliases: im.message.mergeForward, im.v1.message.mergeForward
+- im.message.patch -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.patch, im.v1.message.patch
+- im.message.pushFollowUp -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/push_follow_up [custom_params_serializer] aliases: im.message.pushFollowUp, im.v1.message.pushFollowUp
+- im.message.readUsers -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/read_users [custom_params_serializer] aliases: im.message.readUsers, im.v1.message.readUsers
+- im.message.reply -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reply [custom_params_serializer] aliases: im.message.reply, im.v1.message.reply
+- im.message.replyByCard -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reply [custom_params_serializer] aliases: im.message.replyByCard, im.v1.message.replyByCard
+- im.message.update -> PUT ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.update, im.v1.message.update
+- im.message.updateByCard -> PUT ${this.domain}/open-apis/im/v1/messages/:message_id [custom_params_serializer] aliases: im.message.updateByCard, im.v1.message.updateByCard
+- im.message.urgentApp -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_app [custom_params_serializer] aliases: im.message.urgentApp, im.v1.message.urgentApp
+- im.message.urgentPhone -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_phone [custom_params_serializer] aliases: im.message.urgentPhone, im.v1.message.urgentPhone
+- im.message.urgentSms -> PATCH ${this.domain}/open-apis/im/v1/messages/:message_id/urgent_sms [custom_params_serializer] aliases: im.message.urgentSms, im.v1.message.urgentSms
+- im.messageReaction.create -> POST ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer] aliases: im.messageReaction.create, im.v1.messageReaction.create
+- im.messageReaction.delete -> DELETE ${this.domain}/open-apis/im/v1/messages/:message_id/reactions/:reaction_id [custom_params_serializer] aliases: im.messageReaction.delete, im.v1.messageReaction.delete
+- im.messageReaction.list -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer] aliases: im.messageReaction.list, im.v1.messageReaction.list
+- im.messageReaction.listWithIterator -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/reactions [custom_params_serializer, iterator_helper] aliases: im.messageReaction.listWithIterator, im.v1.messageReaction.listWithIterator
+- im.messageResource.get -> GET ${this.domain}/open-apis/im/v1/messages/:message_id/resources/:file_key [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: im.messageResource.get, im.v1.messageResource.get
+- im.pin.create -> POST ${this.domain}/open-apis/im/v1/pins [custom_params_serializer] aliases: im.pin.create, im.v1.pin.create
+- im.pin.delete -> DELETE ${this.domain}/open-apis/im/v1/pins/:message_id [custom_params_serializer] aliases: im.pin.delete, im.v1.pin.delete
+- im.pin.list -> GET ${this.domain}/open-apis/im/v1/pins [custom_params_serializer] aliases: im.pin.list, im.v1.pin.list
+- im.pin.listWithIterator -> GET ${this.domain}/open-apis/im/v1/pins [custom_params_serializer, iterator_helper] aliases: im.pin.listWithIterator, im.v1.pin.listWithIterator
+- im.tag.create -> POST ${this.domain}/open-apis/im/v2/tags [custom_params_serializer]
+- im.tag.patch -> PATCH ${this.domain}/open-apis/im/v2/tags/:tag_id [custom_params_serializer]
+- im.thread.forward -> POST ${this.domain}/open-apis/im/v1/threads/:thread_id/forward [custom_params_serializer] aliases: im.thread.forward, im.v1.thread.forward
+- im.urlPreview.batchUpdate -> POST ${this.domain}/open-apis/im/v2/url_previews/batch_update [custom_params_serializer]
+- lingo.classification.list -> GET ${this.domain}/open-apis/lingo/v1/classifications [custom_params_serializer]
+- lingo.classification.listWithIterator -> GET ${this.domain}/open-apis/lingo/v1/classifications [custom_params_serializer, iterator_helper]
+- lingo.draft.create -> POST ${this.domain}/open-apis/lingo/v1/drafts [custom_params_serializer]
+- lingo.draft.update -> PUT ${this.domain}/open-apis/lingo/v1/drafts/:draft_id [custom_params_serializer]
+- lingo.entity.create -> POST ${this.domain}/open-apis/lingo/v1/entities [custom_params_serializer]
+- lingo.entity.delete -> DELETE ${this.domain}/open-apis/lingo/v1/entities/:entity_id [custom_params_serializer]
+- lingo.entity.get -> GET ${this.domain}/open-apis/lingo/v1/entities/:entity_id [custom_params_serializer]
+- lingo.entity.highlight -> POST ${this.domain}/open-apis/lingo/v1/entities/highlight [custom_params_serializer]
+- lingo.entity.list -> GET ${this.domain}/open-apis/lingo/v1/entities [custom_params_serializer]
+- lingo.entity.listWithIterator -> GET ${this.domain}/open-apis/lingo/v1/entities [custom_params_serializer, iterator_helper]
+- lingo.entity.match -> POST ${this.domain}/open-apis/lingo/v1/entities/match [custom_params_serializer]
+- lingo.entity.search -> POST ${this.domain}/open-apis/lingo/v1/entities/search [custom_params_serializer]
+- lingo.entity.searchWithIterator -> POST ${this.domain}/open-apis/lingo/v1/entities/search [custom_params_serializer, iterator_helper]
+- lingo.entity.update -> PUT ${this.domain}/open-apis/lingo/v1/entities/:entity_id [custom_params_serializer]
+- lingo.file.download -> GET ${this.domain}/open-apis/lingo/v1/files/:file_token/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper]
+- lingo.file.upload -> POST ${this.domain}/open-apis/lingo/v1/files/upload [custom_params_serializer]
+- lingo.repo.list -> GET ${this.domain}/open-apis/lingo/v1/repos [custom_params_serializer]
+- mail.mailgroup.create -> POST ${this.domain}/open-apis/mail/v1/mailgroups [custom_params_serializer] aliases: mail.mailgroup.create, mail.v1.mailgroup.create
+- mail.mailgroup.delete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id [custom_params_serializer] aliases: mail.mailgroup.delete, mail.v1.mailgroup.delete
+- mail.mailgroup.get -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id [custom_params_serializer] aliases: mail.mailgroup.get, mail.v1.mailgroup.get
+- mail.mailgroup.list -> GET ${this.domain}/open-apis/mail/v1/mailgroups [custom_params_serializer] aliases: mail.mailgroup.list, mail.v1.mailgroup.list
+- mail.mailgroup.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/mailgroups [custom_params_serializer, iterator_helper] aliases: mail.mailgroup.listWithIterator, mail.v1.mailgroup.listWithIterator
+- mail.mailgroup.patch -> PATCH ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id [custom_params_serializer] aliases: mail.mailgroup.patch, mail.v1.mailgroup.patch
+- mail.mailgroup.update -> PUT ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id [custom_params_serializer] aliases: mail.mailgroup.update, mail.v1.mailgroup.update
+- mail.mailgroupAlias.create -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/aliases [custom_params_serializer] aliases: mail.mailgroupAlias.create, mail.v1.mailgroupAlias.create
+- mail.mailgroupAlias.delete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/aliases/:alias_id [custom_params_serializer] aliases: mail.mailgroupAlias.delete, mail.v1.mailgroupAlias.delete
+- mail.mailgroupAlias.list -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/aliases [custom_params_serializer] aliases: mail.mailgroupAlias.list, mail.v1.mailgroupAlias.list
+- mail.mailgroupManager.batchCreate -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/managers/batch_create [custom_params_serializer] aliases: mail.mailgroupManager.batchCreate, mail.v1.mailgroupManager.batchCreate
+- mail.mailgroupManager.batchDelete -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/managers/batch_delete [custom_params_serializer] aliases: mail.mailgroupManager.batchDelete, mail.v1.mailgroupManager.batchDelete
+- mail.mailgroupManager.list -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/managers [custom_params_serializer] aliases: mail.mailgroupManager.list, mail.v1.mailgroupManager.list
+- mail.mailgroupManager.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/managers [custom_params_serializer, iterator_helper] aliases: mail.mailgroupManager.listWithIterator, mail.v1.mailgroupManager.listWithIterator
+- mail.mailgroupMember.batchCreate -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members/batch_create [custom_params_serializer] aliases: mail.mailgroupMember.batchCreate, mail.v1.mailgroupMember.batchCreate
+- mail.mailgroupMember.batchDelete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members/batch_delete [custom_params_serializer] aliases: mail.mailgroupMember.batchDelete, mail.v1.mailgroupMember.batchDelete
+- mail.mailgroupMember.create -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members [custom_params_serializer] aliases: mail.mailgroupMember.create, mail.v1.mailgroupMember.create
+- mail.mailgroupMember.delete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members/:member_id [custom_params_serializer] aliases: mail.mailgroupMember.delete, mail.v1.mailgroupMember.delete
+- mail.mailgroupMember.get -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members/:member_id [custom_params_serializer] aliases: mail.mailgroupMember.get, mail.v1.mailgroupMember.get
+- mail.mailgroupMember.list -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members [custom_params_serializer] aliases: mail.mailgroupMember.list, mail.v1.mailgroupMember.list
+- mail.mailgroupMember.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/members [custom_params_serializer, iterator_helper] aliases: mail.mailgroupMember.listWithIterator, mail.v1.mailgroupMember.listWithIterator
+- mail.mailgroupPermissionMember.batchCreate -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members/batch_create [custom_params_serializer] aliases: mail.mailgroupPermissionMember.batchCreate, mail.v1.mailgroupPermissionMember.batchCreate
+- mail.mailgroupPermissionMember.batchDelete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members/batch_delete [custom_params_serializer] aliases: mail.mailgroupPermissionMember.batchDelete, mail.v1.mailgroupPermissionMember.batchDelete
+- mail.mailgroupPermissionMember.create -> POST ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members [custom_params_serializer] aliases: mail.mailgroupPermissionMember.create, mail.v1.mailgroupPermissionMember.create
+- mail.mailgroupPermissionMember.delete -> DELETE ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members/:permission_member_id [custom_params_serializer] aliases: mail.mailgroupPermissionMember.delete, mail.v1.mailgroupPermissionMember.delete
+- mail.mailgroupPermissionMember.get -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members/:permission_member_id [custom_params_serializer] aliases: mail.mailgroupPermissionMember.get, mail.v1.mailgroupPermissionMember.get
+- mail.mailgroupPermissionMember.list -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members [custom_params_serializer] aliases: mail.mailgroupPermissionMember.list, mail.v1.mailgroupPermissionMember.list
+- mail.mailgroupPermissionMember.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/mailgroups/:mailgroup_id/permission_members [custom_params_serializer, iterator_helper] aliases: mail.mailgroupPermissionMember.listWithIterator, mail.v1.mailgroupPermissionMember.listWithIterator
+- mail.publicMailbox.create -> POST ${this.domain}/open-apis/mail/v1/public_mailboxes [custom_params_serializer] aliases: mail.publicMailbox.create, mail.v1.publicMailbox.create
+- mail.publicMailbox.delete -> DELETE ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id [custom_params_serializer] aliases: mail.publicMailbox.delete, mail.v1.publicMailbox.delete
+- mail.publicMailbox.get -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id [custom_params_serializer] aliases: mail.publicMailbox.get, mail.v1.publicMailbox.get
+- mail.publicMailbox.list -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes [custom_params_serializer] aliases: mail.publicMailbox.list, mail.v1.publicMailbox.list
+- mail.publicMailbox.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes [custom_params_serializer, iterator_helper] aliases: mail.publicMailbox.listWithIterator, mail.v1.publicMailbox.listWithIterator
+- mail.publicMailbox.patch -> PATCH ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id [custom_params_serializer] aliases: mail.publicMailbox.patch, mail.v1.publicMailbox.patch
+- mail.publicMailbox.removeToRecycleBin -> DELETE ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/remove_to_recycle_bin [custom_params_serializer] aliases: mail.publicMailbox.removeToRecycleBin, mail.v1.publicMailbox.removeToRecycleBin
+- mail.publicMailbox.update -> PUT ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id [custom_params_serializer] aliases: mail.publicMailbox.update, mail.v1.publicMailbox.update
+- mail.publicMailboxAlias.create -> POST ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/aliases [custom_params_serializer] aliases: mail.publicMailboxAlias.create, mail.v1.publicMailboxAlias.create
+- mail.publicMailboxAlias.delete -> DELETE ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/aliases/:alias_id [custom_params_serializer] aliases: mail.publicMailboxAlias.delete, mail.v1.publicMailboxAlias.delete
+- mail.publicMailboxAlias.list -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/aliases [custom_params_serializer] aliases: mail.publicMailboxAlias.list, mail.v1.publicMailboxAlias.list
+- mail.publicMailboxMember.batchCreate -> POST ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members/batch_create [custom_params_serializer] aliases: mail.publicMailboxMember.batchCreate, mail.v1.publicMailboxMember.batchCreate
+- mail.publicMailboxMember.batchDelete -> DELETE ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members/batch_delete [custom_params_serializer] aliases: mail.publicMailboxMember.batchDelete, mail.v1.publicMailboxMember.batchDelete
+- mail.publicMailboxMember.clear -> POST ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members/clear [custom_params_serializer] aliases: mail.publicMailboxMember.clear, mail.v1.publicMailboxMember.clear
+- mail.publicMailboxMember.create -> POST ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members [custom_params_serializer] aliases: mail.publicMailboxMember.create, mail.v1.publicMailboxMember.create
+- mail.publicMailboxMember.delete -> DELETE ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members/:member_id [custom_params_serializer] aliases: mail.publicMailboxMember.delete, mail.v1.publicMailboxMember.delete
+- mail.publicMailboxMember.get -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members/:member_id [custom_params_serializer] aliases: mail.publicMailboxMember.get, mail.v1.publicMailboxMember.get
+- mail.publicMailboxMember.list -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members [custom_params_serializer] aliases: mail.publicMailboxMember.list, mail.v1.publicMailboxMember.list
+- mail.publicMailboxMember.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/public_mailboxes/:public_mailbox_id/members [custom_params_serializer, iterator_helper] aliases: mail.publicMailboxMember.listWithIterator, mail.v1.publicMailboxMember.listWithIterator
+- mail.user.query -> POST ${this.domain}/open-apis/mail/v1/users/query [custom_params_serializer] aliases: mail.user.query, mail.v1.user.query
+- mail.userMailbox.delete -> DELETE ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id [custom_params_serializer] aliases: mail.userMailbox.delete, mail.v1.userMailbox.delete
+- mail.userMailboxAlias.create -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/aliases [custom_params_serializer] aliases: mail.userMailboxAlias.create, mail.v1.userMailboxAlias.create
+- mail.userMailboxAlias.delete -> DELETE ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/aliases/:alias_id [custom_params_serializer] aliases: mail.userMailboxAlias.delete, mail.v1.userMailboxAlias.delete
+- mail.userMailboxAlias.list -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/aliases [custom_params_serializer] aliases: mail.userMailboxAlias.list, mail.v1.userMailboxAlias.list
+- mail.userMailboxAlias.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/aliases [custom_params_serializer, iterator_helper] aliases: mail.userMailboxAlias.listWithIterator, mail.v1.userMailboxAlias.listWithIterator
+- mail.userMailboxEvent.subscribe -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/event/subscribe [custom_params_serializer] aliases: mail.userMailboxEvent.subscribe, mail.v1.userMailboxEvent.subscribe
+- mail.userMailboxEvent.subscription -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/event/subscription [custom_params_serializer] aliases: mail.userMailboxEvent.subscription, mail.v1.userMailboxEvent.subscription
+- mail.userMailboxEvent.unsubscribe -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/event/unsubscribe [custom_params_serializer] aliases: mail.userMailboxEvent.unsubscribe, mail.v1.userMailboxEvent.unsubscribe
+- mail.userMailboxFolder.create -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/folders [custom_params_serializer] aliases: mail.userMailboxFolder.create, mail.v1.userMailboxFolder.create
+- mail.userMailboxFolder.delete -> DELETE ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/folders/:folder_id [custom_params_serializer] aliases: mail.userMailboxFolder.delete, mail.v1.userMailboxFolder.delete
+- mail.userMailboxFolder.list -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/folders [custom_params_serializer] aliases: mail.userMailboxFolder.list, mail.v1.userMailboxFolder.list
+- mail.userMailboxFolder.patch -> PATCH ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/folders/:folder_id [custom_params_serializer] aliases: mail.userMailboxFolder.patch, mail.v1.userMailboxFolder.patch
+- mail.userMailboxMailContact.create -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/mail_contacts [custom_params_serializer] aliases: mail.userMailboxMailContact.create, mail.v1.userMailboxMailContact.create
+- mail.userMailboxMailContact.delete -> DELETE ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/mail_contacts/:mail_contact_id [custom_params_serializer] aliases: mail.userMailboxMailContact.delete, mail.v1.userMailboxMailContact.delete
+- mail.userMailboxMailContact.list -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/mail_contacts [custom_params_serializer] aliases: mail.userMailboxMailContact.list, mail.v1.userMailboxMailContact.list
+- mail.userMailboxMailContact.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/mail_contacts [custom_params_serializer, iterator_helper] aliases: mail.userMailboxMailContact.listWithIterator, mail.v1.userMailboxMailContact.listWithIterator
+- mail.userMailboxMailContact.patch -> PATCH ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/mail_contacts/:mail_contact_id [custom_params_serializer] aliases: mail.userMailboxMailContact.patch, mail.v1.userMailboxMailContact.patch
+- mail.userMailboxMessage.get -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages/:message_id [custom_params_serializer] aliases: mail.userMailboxMessage.get, mail.v1.userMailboxMessage.get
+- mail.userMailboxMessage.getByCard -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages/get_by_card [custom_params_serializer] aliases: mail.userMailboxMessage.getByCard, mail.v1.userMailboxMessage.getByCard
+- mail.userMailboxMessage.list -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages [custom_params_serializer] aliases: mail.userMailboxMessage.list, mail.v1.userMailboxMessage.list
+- mail.userMailboxMessage.listWithIterator -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages [custom_params_serializer, iterator_helper] aliases: mail.userMailboxMessage.listWithIterator, mail.v1.userMailboxMessage.listWithIterator
+- mail.userMailboxMessage.send -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages/send [custom_params_serializer] aliases: mail.userMailboxMessage.send, mail.v1.userMailboxMessage.send
+- mail.userMailboxMessageAttachment.downloadUrl -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/messages/:message_id/attachments/download_url [custom_params_serializer] aliases: mail.userMailboxMessageAttachment.downloadUrl, mail.v1.userMailboxMessageAttachment.downloadUrl
+- mail.userMailboxRule.create -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/rules [custom_params_serializer] aliases: mail.userMailboxRule.create, mail.v1.userMailboxRule.create
+- mail.userMailboxRule.delete -> DELETE ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/rules/:rule_id [custom_params_serializer] aliases: mail.userMailboxRule.delete, mail.v1.userMailboxRule.delete
+- mail.userMailboxRule.list -> GET ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/rules [custom_params_serializer] aliases: mail.userMailboxRule.list, mail.v1.userMailboxRule.list
+- mail.userMailboxRule.reorder -> POST ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/rules/reorder [custom_params_serializer] aliases: mail.userMailboxRule.reorder, mail.v1.userMailboxRule.reorder
+- mail.userMailboxRule.update -> PUT ${this.domain}/open-apis/mail/v1/user_mailboxes/:user_mailbox_id/rules/:rule_id [custom_params_serializer] aliases: mail.userMailboxRule.update, mail.v1.userMailboxRule.update
+- mdm.batchCountryRegion.get -> GET ${this.domain}/open-apis/mdm/v3/batch_country_region [custom_params_serializer]
+- mdm.countryRegion.list -> GET ${this.domain}/open-apis/mdm/v3/country_regions [custom_params_serializer]
+- mdm.userAuthDataRelation.bind -> POST ${this.domain}/open-apis/mdm/v1/user_auth_data_relations/bind [custom_params_serializer] aliases: mdm.userAuthDataRelation.bind, mdm.v1.userAuthDataRelation.bind
+- mdm.userAuthDataRelation.unbind -> POST ${this.domain}/open-apis/mdm/v1/user_auth_data_relations/unbind [custom_params_serializer] aliases: mdm.userAuthDataRelation.unbind, mdm.v1.userAuthDataRelation.unbind
+- minutes.minute.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token [custom_params_serializer]
+- minutes.minuteMedia.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/media [custom_params_serializer]
+- minutes.minuteStatistics.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/statistics [custom_params_serializer]
+- minutes.minuteTranscript.get -> GET ${this.domain}/open-apis/minutes/v1/minutes/:minute_token/transcript [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper]
+- moments.post.get -> GET ${this.domain}/open-apis/moments/v1/posts/:post_id [custom_params_serializer] aliases: moments.post.get, moments.v1.post.get
+- okr.image.upload -> POST ${this.domain}/open-apis/okr/v1/images/upload [custom_params_serializer] aliases: okr.image.upload, okr.v1.image.upload
+- okr.okr.batchGet -> GET ${this.domain}/open-apis/okr/v1/okrs/batch_get [custom_params_serializer] aliases: okr.okr.batchGet, okr.v1.okr.batchGet
+- okr.period.create -> POST ${this.domain}/open-apis/okr/v1/periods [custom_params_serializer] aliases: okr.period.create, okr.v1.period.create
+- okr.period.list -> GET ${this.domain}/open-apis/okr/v1/periods [custom_params_serializer] aliases: okr.period.list, okr.v1.period.list
+- okr.period.patch -> PATCH ${this.domain}/open-apis/okr/v1/periods/:period_id [custom_params_serializer] aliases: okr.period.patch, okr.v1.period.patch
+- okr.periodRule.list -> GET ${this.domain}/open-apis/okr/v1/period_rules [custom_params_serializer] aliases: okr.periodRule.list, okr.v1.periodRule.list
+- okr.progressRecord.create -> POST ${this.domain}/open-apis/okr/v1/progress_records [custom_params_serializer] aliases: okr.progressRecord.create, okr.v1.progressRecord.create
+- okr.progressRecord.delete -> DELETE ${this.domain}/open-apis/okr/v1/progress_records/:progress_id [custom_params_serializer] aliases: okr.progressRecord.delete, okr.v1.progressRecord.delete
+- okr.progressRecord.get -> GET ${this.domain}/open-apis/okr/v1/progress_records/:progress_id [custom_params_serializer] aliases: okr.progressRecord.get, okr.v1.progressRecord.get
+- okr.progressRecord.update -> PUT ${this.domain}/open-apis/okr/v1/progress_records/:progress_id [custom_params_serializer] aliases: okr.progressRecord.update, okr.v1.progressRecord.update
+- okr.review.query -> GET ${this.domain}/open-apis/okr/v1/reviews/query [custom_params_serializer] aliases: okr.review.query, okr.v1.review.query
+- okr.userOkr.list -> GET ${this.domain}/open-apis/okr/v1/users/:user_id/okrs [custom_params_serializer] aliases: okr.userOkr.list, okr.v1.userOkr.list
+- optical_char_recognition.image.basicRecognize -> POST ${this.domain}/open-apis/optical_char_recognition/v1/image/basic_recognize [custom_params_serializer] aliases: optical_char_recognition.image.basicRecognize, optical_char_recognition.v1.image.basicRecognize
+- passport.session.logout -> POST ${this.domain}/open-apis/passport/v1/sessions/logout [custom_params_serializer] aliases: passport.session.logout, passport.v1.session.logout
+- passport.session.query -> POST ${this.domain}/open-apis/passport/v1/sessions/query [custom_params_serializer] aliases: passport.session.query, passport.v1.session.query
+- payroll.acctItem.list -> GET ${this.domain}/open-apis/payroll/v1/acct_items [custom_params_serializer]
+- payroll.acctItem.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/acct_items [custom_params_serializer, iterator_helper]
+- payroll.costAllocationDetail.list -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_details [custom_params_serializer]
+- payroll.costAllocationDetail.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_details [custom_params_serializer, iterator_helper]
+- payroll.costAllocationPlan.list -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_plans [custom_params_serializer]
+- payroll.costAllocationPlan.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_plans [custom_params_serializer, iterator_helper]
+- payroll.costAllocationReport.list -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_reports [custom_params_serializer]
+- payroll.costAllocationReport.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/cost_allocation_reports [custom_params_serializer, iterator_helper]
+- payroll.datasource.list -> GET ${this.domain}/open-apis/payroll/v1/datasources [custom_params_serializer]
+- payroll.datasource.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/datasources [custom_params_serializer, iterator_helper]
+- payroll.datasourceRecord.query -> POST ${this.domain}/open-apis/payroll/v1/datasource_records/query [custom_params_serializer]
+- payroll.datasourceRecord.queryWithIterator -> POST ${this.domain}/open-apis/payroll/v1/datasource_records/query [custom_params_serializer, iterator_helper]
+- payroll.datasourceRecord.save -> POST ${this.domain}/open-apis/payroll/v1/datasource_records/save [custom_params_serializer]
+- payroll.paygroup.list -> GET ${this.domain}/open-apis/payroll/v1/paygroups [custom_params_serializer]
+- payroll.paygroup.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/paygroups [custom_params_serializer, iterator_helper]
+- payroll.paymentActivity.archive -> POST ${this.domain}/open-apis/payroll/v1/payment_activitys/archive [custom_params_serializer]
+- payroll.paymentActivity.list -> GET ${this.domain}/open-apis/payroll/v1/payment_activitys [custom_params_serializer]
+- payroll.paymentActivity.listWithIterator -> GET ${this.domain}/open-apis/payroll/v1/payment_activitys [custom_params_serializer, iterator_helper]
+- payroll.paymentActivityDetail.list -> GET ${this.domain}/open-apis/payroll/v1/payment_activity_details [custom_params_serializer]
+- payroll.paymentDetail.query -> POST ${this.domain}/open-apis/payroll/v1/payment_detail/query [custom_params_serializer]
+- performance.activity.query -> POST ${this.domain}/open-apis/performance/v2/activity/query [custom_params_serializer]
+- performance.additionalInformation.import -> POST ${this.domain}/open-apis/performance/v2/additional_informations/import [custom_params_serializer]
+- performance.additionalInformation.query -> POST ${this.domain}/open-apis/performance/v2/additional_informations/query [custom_params_serializer]
+- performance.additionalInformation.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/additional_informations/query [custom_params_serializer, iterator_helper]
+- performance.additionalInformationsBatch.delete -> DELETE ${this.domain}/open-apis/performance/v2/additional_informations/batch [custom_params_serializer]
+- performance.indicator.query -> POST ${this.domain}/open-apis/performance/v2/indicators/query [custom_params_serializer]
+- performance.indicator.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/indicators/query [custom_params_serializer, iterator_helper]
+- performance.metricDetail.import -> POST ${this.domain}/open-apis/performance/v2/metric_details/import [custom_params_serializer]
+- performance.metricDetail.query -> POST ${this.domain}/open-apis/performance/v2/metric_details/query [custom_params_serializer]
+- performance.metricField.query -> POST ${this.domain}/open-apis/performance/v2/metric_fields/query [custom_params_serializer]
+- performance.metricLib.query -> POST ${this.domain}/open-apis/performance/v2/metric_libs/query [custom_params_serializer]
+- performance.metricTag.list -> GET ${this.domain}/open-apis/performance/v2/metric_tags [custom_params_serializer]
+- performance.metricTag.listWithIterator -> GET ${this.domain}/open-apis/performance/v2/metric_tags [custom_params_serializer, iterator_helper]
+- performance.metricTemplate.query -> POST ${this.domain}/open-apis/performance/v2/metric_templates/query [custom_params_serializer]
+- performance.question.query -> POST ${this.domain}/open-apis/performance/v2/questions/query [custom_params_serializer]
+- performance.question.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/questions/query [custom_params_serializer, iterator_helper]
+- performance.reviewData.query -> POST ${this.domain}/open-apis/performance/v2/review_datas/query [custom_params_serializer]
+- performance.reviewee.query -> POST ${this.domain}/open-apis/performance/v2/reviewees/query [custom_params_serializer]
+- performance.reviewTemplate.query -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer]
+- performance.reviewTemplate.queryWithIterator -> POST ${this.domain}/open-apis/performance/v2/review_templates/query [custom_params_serializer, iterator_helper]
+- performance.userGroupUserRel.write -> POST ${this.domain}/open-apis/performance/v2/user_group_user_rels/write [custom_params_serializer]
+- personal_settings.systemStatus.batchClose -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id/batch_close [custom_params_serializer] aliases: personal_settings.systemStatus.batchClose, personal_settings.v1.systemStatus.batchClose
+- personal_settings.systemStatus.batchOpen -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id/batch_open [custom_params_serializer] aliases: personal_settings.systemStatus.batchOpen, personal_settings.v1.systemStatus.batchOpen
+- personal_settings.systemStatus.create -> POST ${this.domain}/open-apis/personal_settings/v1/system_statuses [custom_params_serializer] aliases: personal_settings.systemStatus.create, personal_settings.v1.systemStatus.create
+- personal_settings.systemStatus.delete -> DELETE ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id [custom_params_serializer] aliases: personal_settings.systemStatus.delete, personal_settings.v1.systemStatus.delete
+- personal_settings.systemStatus.list -> GET ${this.domain}/open-apis/personal_settings/v1/system_statuses [custom_params_serializer] aliases: personal_settings.systemStatus.list, personal_settings.v1.systemStatus.list
+- personal_settings.systemStatus.listWithIterator -> GET ${this.domain}/open-apis/personal_settings/v1/system_statuses [custom_params_serializer, iterator_helper] aliases: personal_settings.systemStatus.listWithIterator, personal_settings.v1.systemStatus.listWithIterator
+- personal_settings.systemStatus.patch -> PATCH ${this.domain}/open-apis/personal_settings/v1/system_statuses/:system_status_id [custom_params_serializer] aliases: personal_settings.systemStatus.patch, personal_settings.v1.systemStatus.patch
+- report.rule.query -> GET ${this.domain}/open-apis/report/v1/rules/query [custom_params_serializer] aliases: report.rule.query, report.v1.rule.query
+- report.ruleView.remove -> POST ${this.domain}/open-apis/report/v1/rules/:rule_id/views/remove [custom_params_serializer] aliases: report.ruleView.remove, report.v1.ruleView.remove
+- report.task.query -> POST ${this.domain}/open-apis/report/v1/tasks/query [custom_params_serializer] aliases: report.task.query, report.v1.task.query
+- search.app.create -> POST ${this.domain}/open-apis/search/v2/app [custom_params_serializer] aliases: search.app.create, search.v2.app.create
+- search.dataSource.create -> POST ${this.domain}/open-apis/search/v2/data_sources [custom_params_serializer] aliases: search.dataSource.create, search.v2.dataSource.create
+- search.dataSource.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id [custom_params_serializer] aliases: search.dataSource.delete, search.v2.dataSource.delete
+- search.dataSource.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id [custom_params_serializer] aliases: search.dataSource.get, search.v2.dataSource.get
+- search.dataSource.list -> GET ${this.domain}/open-apis/search/v2/data_sources [custom_params_serializer] aliases: search.dataSource.list, search.v2.dataSource.list
+- search.dataSource.listWithIterator -> GET ${this.domain}/open-apis/search/v2/data_sources [custom_params_serializer, iterator_helper] aliases: search.dataSource.listWithIterator, search.v2.dataSource.listWithIterator
+- search.dataSource.patch -> PATCH ${this.domain}/open-apis/search/v2/data_sources/:data_source_id [custom_params_serializer] aliases: search.dataSource.patch, search.v2.dataSource.patch
+- search.dataSourceItem.create -> POST ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items [custom_params_serializer] aliases: search.dataSourceItem.create, search.v2.dataSourceItem.create
+- search.dataSourceItem.delete -> DELETE ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer] aliases: search.dataSourceItem.delete, search.v2.dataSourceItem.delete
+- search.dataSourceItem.get -> GET ${this.domain}/open-apis/search/v2/data_sources/:data_source_id/items/:item_id [custom_params_serializer] aliases: search.dataSourceItem.get, search.v2.dataSourceItem.get
+- search.message.create -> POST ${this.domain}/open-apis/search/v2/message [custom_params_serializer] aliases: search.message.create, search.v2.message.create
+- search.schema.create -> POST ${this.domain}/open-apis/search/v2/schemas [custom_params_serializer] aliases: search.schema.create, search.v2.schema.create
+- search.schema.delete -> DELETE ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer] aliases: search.schema.delete, search.v2.schema.delete
+- search.schema.get -> GET ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer] aliases: search.schema.get, search.v2.schema.get
+- search.schema.patch -> PATCH ${this.domain}/open-apis/search/v2/schemas/:schema_id [custom_params_serializer] aliases: search.schema.patch, search.v2.schema.patch
+- security_and_compliance.deviceApplyRecord.update -> PUT ${this.domain}/open-apis/security_and_compliance/v2/device_apply_records/:device_apply_record_id [custom_params_serializer]
+- security_and_compliance.deviceRecord.create -> POST ${this.domain}/open-apis/security_and_compliance/v2/device_records [custom_params_serializer]
+- security_and_compliance.deviceRecord.delete -> DELETE ${this.domain}/open-apis/security_and_compliance/v2/device_records/:device_record_id [custom_params_serializer]
+- security_and_compliance.deviceRecord.get -> GET ${this.domain}/open-apis/security_and_compliance/v2/device_records/:device_record_id [custom_params_serializer]
+- security_and_compliance.deviceRecord.list -> GET ${this.domain}/open-apis/security_and_compliance/v2/device_records [custom_params_serializer]
+- security_and_compliance.deviceRecord.listWithIterator -> GET ${this.domain}/open-apis/security_and_compliance/v2/device_records [custom_params_serializer, iterator_helper]
+- security_and_compliance.deviceRecord.mine -> GET ${this.domain}/open-apis/security_and_compliance/v2/device_records/mine [custom_params_serializer]
+- security_and_compliance.deviceRecord.update -> PUT ${this.domain}/open-apis/security_and_compliance/v2/device_records/:device_record_id [custom_params_serializer]
+- security_and_compliance.openapiLog.listData -> POST ${this.domain}/open-apis/security_and_compliance/v1/openapi_logs/list_data [custom_params_serializer] aliases: security_and_compliance.openapiLog.listData, security_and_compliance.v1.openapiLog.listData
+- sheets.spreadsheet.create -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets [custom_params_serializer] aliases: sheets.spreadsheet.create, sheets.v3.spreadsheet.create
+- sheets.spreadsheet.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token [custom_params_serializer] aliases: sheets.spreadsheet.get, sheets.v3.spreadsheet.get
+- sheets.spreadsheet.patch -> PATCH ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token [custom_params_serializer] aliases: sheets.spreadsheet.patch, sheets.v3.spreadsheet.patch
+- sheets.spreadsheetSheet.find -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/find [custom_params_serializer] aliases: sheets.spreadsheetSheet.find, sheets.v3.spreadsheetSheet.find
+- sheets.spreadsheetSheet.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id [custom_params_serializer] aliases: sheets.spreadsheetSheet.get, sheets.v3.spreadsheetSheet.get
+- sheets.spreadsheetSheet.moveDimension -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/move_dimension [custom_params_serializer] aliases: sheets.spreadsheetSheet.moveDimension, sheets.v3.spreadsheetSheet.moveDimension
+- sheets.spreadsheetSheet.query -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/query [custom_params_serializer] aliases: sheets.spreadsheetSheet.query, sheets.v3.spreadsheetSheet.query
+- sheets.spreadsheetSheet.replace -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/replace [custom_params_serializer] aliases: sheets.spreadsheetSheet.replace, sheets.v3.spreadsheetSheet.replace
+- sheets.spreadsheetSheetFilter.create -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter [custom_params_serializer] aliases: sheets.spreadsheetSheetFilter.create, sheets.v3.spreadsheetSheetFilter.create
+- sheets.spreadsheetSheetFilter.delete -> DELETE ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter [custom_params_serializer] aliases: sheets.spreadsheetSheetFilter.delete, sheets.v3.spreadsheetSheetFilter.delete
+- sheets.spreadsheetSheetFilter.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter [custom_params_serializer] aliases: sheets.spreadsheetSheetFilter.get, sheets.v3.spreadsheetSheetFilter.get
+- sheets.spreadsheetSheetFilter.update -> PUT ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter [custom_params_serializer] aliases: sheets.spreadsheetSheetFilter.update, sheets.v3.spreadsheetSheetFilter.update
+- sheets.spreadsheetSheetFilterView.create -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterView.create, sheets.v3.spreadsheetSheetFilterView.create
+- sheets.spreadsheetSheetFilterView.delete -> DELETE ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterView.delete, sheets.v3.spreadsheetSheetFilterView.delete
+- sheets.spreadsheetSheetFilterView.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterView.get, sheets.v3.spreadsheetSheetFilterView.get
+- sheets.spreadsheetSheetFilterView.patch -> PATCH ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterView.patch, sheets.v3.spreadsheetSheetFilterView.patch
+- sheets.spreadsheetSheetFilterView.query -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/query [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterView.query, sheets.v3.spreadsheetSheetFilterView.query
+- sheets.spreadsheetSheetFilterViewCondition.create -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id/conditions [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterViewCondition.create, sheets.v3.spreadsheetSheetFilterViewCondition.create
+- sheets.spreadsheetSheetFilterViewCondition.delete -> DELETE ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id/conditions/:condition_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterViewCondition.delete, sheets.v3.spreadsheetSheetFilterViewCondition.delete
+- sheets.spreadsheetSheetFilterViewCondition.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id/conditions/:condition_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterViewCondition.get, sheets.v3.spreadsheetSheetFilterViewCondition.get
+- sheets.spreadsheetSheetFilterViewCondition.query -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id/conditions/query [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterViewCondition.query, sheets.v3.spreadsheetSheetFilterViewCondition.query
+- sheets.spreadsheetSheetFilterViewCondition.update -> PUT ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/filter_views/:filter_view_id/conditions/:condition_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFilterViewCondition.update, sheets.v3.spreadsheetSheetFilterViewCondition.update
+- sheets.spreadsheetSheetFloatImage.create -> POST ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/float_images [custom_params_serializer] aliases: sheets.spreadsheetSheetFloatImage.create, sheets.v3.spreadsheetSheetFloatImage.create
+- sheets.spreadsheetSheetFloatImage.delete -> DELETE ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/float_images/:float_image_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFloatImage.delete, sheets.v3.spreadsheetSheetFloatImage.delete
+- sheets.spreadsheetSheetFloatImage.get -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/float_images/:float_image_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFloatImage.get, sheets.v3.spreadsheetSheetFloatImage.get
+- sheets.spreadsheetSheetFloatImage.patch -> PATCH ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/float_images/:float_image_id [custom_params_serializer] aliases: sheets.spreadsheetSheetFloatImage.patch, sheets.v3.spreadsheetSheetFloatImage.patch
+- sheets.spreadsheetSheetFloatImage.query -> GET ${this.domain}/open-apis/sheets/v3/spreadsheets/:spreadsheet_token/sheets/:sheet_id/float_images/query [custom_params_serializer] aliases: sheets.spreadsheetSheetFloatImage.query, sheets.v3.spreadsheetSheetFloatImage.query
+- speech_to_text.speech.fileRecognize -> POST ${this.domain}/open-apis/speech_to_text/v1/speech/file_recognize [custom_params_serializer] aliases: speech_to_text.speech.fileRecognize, speech_to_text.v1.speech.fileRecognize
+- speech_to_text.speech.streamRecognize -> POST ${this.domain}/open-apis/speech_to_text/v1/speech/stream_recognize [custom_params_serializer] aliases: speech_to_text.speech.streamRecognize, speech_to_text.v1.speech.streamRecognize
+- task.attachment.delete -> DELETE ${this.domain}/open-apis/task/v2/attachments/:attachment_guid [custom_params_serializer]
+- task.attachment.get -> GET ${this.domain}/open-apis/task/v2/attachments/:attachment_guid [custom_params_serializer]
+- task.attachment.list -> GET ${this.domain}/open-apis/task/v2/attachments [custom_params_serializer]
+- task.attachment.listWithIterator -> GET ${this.domain}/open-apis/task/v2/attachments [custom_params_serializer, iterator_helper]
+- task.attachment.upload -> POST ${this.domain}/open-apis/task/v2/attachments/upload [custom_params_serializer]
+- task.comment.create -> POST ${this.domain}/open-apis/task/v2/comments [custom_params_serializer]
+- task.comment.delete -> DELETE ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.comment.get -> GET ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.comment.list -> GET ${this.domain}/open-apis/task/v2/comments [custom_params_serializer]
+- task.comment.listWithIterator -> GET ${this.domain}/open-apis/task/v2/comments [custom_params_serializer, iterator_helper]
+- task.comment.patch -> PATCH ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.customField.add -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/add [custom_params_serializer]
+- task.customField.create -> POST ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer]
+- task.customField.get -> GET ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid [custom_params_serializer]
+- task.customField.list -> GET ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer]
+- task.customField.listWithIterator -> GET ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer, iterator_helper]
+- task.customField.patch -> PATCH ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid [custom_params_serializer]
+- task.customField.remove -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/remove [custom_params_serializer]
+- task.customFieldOption.create -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/options [custom_params_serializer]
+- task.customFieldOption.patch -> PATCH ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/options/:option_guid [custom_params_serializer]
+- task.section.create -> POST ${this.domain}/open-apis/task/v2/sections [custom_params_serializer]
+- task.section.delete -> DELETE ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.get -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.list -> GET ${this.domain}/open-apis/task/v2/sections [custom_params_serializer]
+- task.section.listWithIterator -> GET ${this.domain}/open-apis/task/v2/sections [custom_params_serializer, iterator_helper]
+- task.section.patch -> PATCH ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.tasks -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid/tasks [custom_params_serializer]
+- task.section.tasksWithIterator -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid/tasks [custom_params_serializer, iterator_helper]
+- task.task.addDependencies -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_dependencies [custom_params_serializer]
+- task.task.addMembers -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_members [custom_params_serializer]
+- task.task.addReminders -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_reminders [custom_params_serializer]
+- task.task.addTasklist -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_tasklist [custom_params_serializer]
+- task.task.batchDeleteCollaborator -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/batch_delete_collaborator [custom_params_serializer] aliases: task.task.batchDeleteCollaborator, task.v1.task.batchDeleteCollaborator
+- task.task.batchDeleteFollower -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/batch_delete_follower [custom_params_serializer] aliases: task.task.batchDeleteFollower, task.v1.task.batchDeleteFollower
+- task.task.complete -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/complete [custom_params_serializer] aliases: task.task.complete, task.v1.task.complete
+- task.task.create -> POST ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer] aliases: task.task.create, task.v1.task.create
+- task.task.create -> POST ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer]
+- task.task.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.delete, task.v1.task.delete
+- task.task.delete -> DELETE ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.get -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.get, task.v1.task.get
+- task.task.get -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.list -> GET ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer] aliases: task.task.list, task.v1.task.list
+- task.task.list -> GET ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer]
+- task.task.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer, iterator_helper] aliases: task.task.listWithIterator, task.v1.task.listWithIterator
+- task.task.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer, iterator_helper]
+- task.task.patch -> PATCH ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.patch, task.v1.task.patch
+- task.task.patch -> PATCH ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.removeDependencies -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_dependencies [custom_params_serializer]
+- task.task.removeMembers -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_members [custom_params_serializer]
+- task.task.removeReminders -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_reminders [custom_params_serializer]
+- task.task.removeTasklist -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_tasklist [custom_params_serializer]
+- task.task.tasklists -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/tasklists [custom_params_serializer]
+- task.task.uncomplete -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/uncomplete [custom_params_serializer] aliases: task.task.uncomplete, task.v1.task.uncomplete
+- task.taskCollaborator.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer] aliases: task.taskCollaborator.create, task.v1.taskCollaborator.create
+- task.taskCollaborator.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators/:collaborator_id [custom_params_serializer] aliases: task.taskCollaborator.delete, task.v1.taskCollaborator.delete
+- task.taskCollaborator.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer] aliases: task.taskCollaborator.list, task.v1.taskCollaborator.list
+- task.taskCollaborator.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer, iterator_helper] aliases: task.taskCollaborator.listWithIterator, task.v1.taskCollaborator.listWithIterator
+- task.taskComment.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer] aliases: task.taskComment.create, task.v1.taskComment.create
+- task.taskComment.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.delete, task.v1.taskComment.delete
+- task.taskComment.get -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.get, task.v1.taskComment.get
+- task.taskComment.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer] aliases: task.taskComment.list, task.v1.taskComment.list
+- task.taskComment.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer, iterator_helper] aliases: task.taskComment.listWithIterator, task.v1.taskComment.listWithIterator
+- task.taskComment.update -> PUT ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.update, task.v1.taskComment.update
+- task.taskFollower.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer] aliases: task.taskFollower.create, task.v1.taskFollower.create
+- task.taskFollower.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/followers/:follower_id [custom_params_serializer] aliases: task.taskFollower.delete, task.v1.taskFollower.delete
+- task.taskFollower.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer] aliases: task.taskFollower.list, task.v1.taskFollower.list
+- task.taskFollower.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer, iterator_helper] aliases: task.taskFollower.listWithIterator, task.v1.taskFollower.listWithIterator
+- task.tasklist.addMembers -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/add_members [custom_params_serializer]
+- task.tasklist.create -> POST ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer]
+- task.tasklist.delete -> DELETE ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.get -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.list -> GET ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer]
+- task.tasklist.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer, iterator_helper]
+- task.tasklist.patch -> PATCH ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.removeMembers -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/remove_members [custom_params_serializer]
+- task.tasklist.tasks -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/tasks [custom_params_serializer]
+- task.tasklistActivitySubscription.create -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions [custom_params_serializer]
+- task.tasklistActivitySubscription.delete -> DELETE ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.tasklistActivitySubscription.get -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.tasklistActivitySubscription.list -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions [custom_params_serializer]
+- task.tasklistActivitySubscription.patch -> PATCH ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.taskReminder.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer] aliases: task.taskReminder.create, task.v1.taskReminder.create
+- task.taskReminder.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders/:reminder_id [custom_params_serializer] aliases: task.taskReminder.delete, task.v1.taskReminder.delete
+- task.taskReminder.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer] aliases: task.taskReminder.list, task.v1.taskReminder.list
+- task.taskReminder.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer, iterator_helper] aliases: task.taskReminder.listWithIterator, task.v1.taskReminder.listWithIterator
+- task.taskSubtask.create -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer]
+- task.taskSubtask.list -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer]
+- task.taskSubtask.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer, iterator_helper]
+- tenant.tenant.query -> GET ${this.domain}/open-apis/tenant/v2/tenant/query [custom_params_serializer] aliases: tenant.tenant.query, tenant.v2.tenant.query
+- tenant.tenantProductAssignInfo.query -> GET ${this.domain}/open-apis/tenant/v2/tenant/assign_info_list/query [custom_params_serializer] aliases: tenant.tenantProductAssignInfo.query, tenant.v2.tenantProductAssignInfo.query
+- translation.text.detect -> POST ${this.domain}/open-apis/translation/v1/text/detect [custom_params_serializer] aliases: translation.text.detect, translation.v1.text.detect
+- translation.text.translate -> POST ${this.domain}/open-apis/translation/v1/text/translate [custom_params_serializer] aliases: translation.text.translate, translation.v1.text.translate
+- vc.alert.list -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer] aliases: vc.alert.list, vc.v1.alert.list
+- vc.alert.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/alerts [custom_params_serializer, iterator_helper] aliases: vc.alert.listWithIterator, vc.v1.alert.listWithIterator
+- vc.export.download -> GET ${this.domain}/open-apis/vc/v1/exports/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: vc.export.download, vc.v1.export.download
+- vc.export.get -> GET ${this.domain}/open-apis/vc/v1/exports/:task_id [custom_params_serializer] aliases: vc.export.get, vc.v1.export.get
+- vc.export.meetingList -> POST ${this.domain}/open-apis/vc/v1/exports/meeting_list [custom_params_serializer] aliases: vc.export.meetingList, vc.v1.export.meetingList
+- vc.export.participantList -> POST ${this.domain}/open-apis/vc/v1/exports/participant_list [custom_params_serializer] aliases: vc.export.participantList, vc.v1.export.participantList
+- vc.export.participantQualityList -> POST ${this.domain}/open-apis/vc/v1/exports/participant_quality_list [custom_params_serializer] aliases: vc.export.participantQualityList, vc.v1.export.participantQualityList
+- vc.export.resourceReservationList -> POST ${this.domain}/open-apis/vc/v1/exports/resource_reservation_list [custom_params_serializer] aliases: vc.export.resourceReservationList, vc.v1.export.resourceReservationList
+- vc.meeting.end -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/end [custom_params_serializer] aliases: vc.meeting.end, vc.v1.meeting.end
+- vc.meeting.get -> GET ${this.domain}/open-apis/vc/v1/meetings/:meeting_id [custom_params_serializer] aliases: vc.meeting.get, vc.v1.meeting.get
+- vc.meeting.invite -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/invite [custom_params_serializer] aliases: vc.meeting.invite, vc.v1.meeting.invite
+- vc.meeting.kickout -> POST ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/kickout [custom_params_serializer] aliases: vc.meeting.kickout, vc.v1.meeting.kickout
+- vc.meeting.listByNo -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer] aliases: vc.meeting.listByNo, vc.v1.meeting.listByNo
+- vc.meeting.listByNoWithIterator -> GET ${this.domain}/open-apis/vc/v1/meetings/list_by_no [custom_params_serializer, iterator_helper] aliases: vc.meeting.listByNoWithIterator, vc.v1.meeting.listByNoWithIterator
+- vc.meeting.setHost -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/set_host [custom_params_serializer] aliases: vc.meeting.setHost, vc.v1.meeting.setHost
+- vc.meetingList.get -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer] aliases: vc.meetingList.get, vc.v1.meetingList.get
+- vc.meetingList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/meeting_list [custom_params_serializer, iterator_helper] aliases: vc.meetingList.getWithIterator, vc.v1.meetingList.getWithIterator
+- vc.meetingRecording.get -> GET ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording [custom_params_serializer] aliases: vc.meetingRecording.get, vc.v1.meetingRecording.get
+- vc.meetingRecording.setPermission -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission [custom_params_serializer] aliases: vc.meetingRecording.setPermission, vc.v1.meetingRecording.setPermission
+- vc.meetingRecording.start -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/start [custom_params_serializer] aliases: vc.meetingRecording.start, vc.v1.meetingRecording.start
+- vc.meetingRecording.stop -> PATCH ${this.domain}/open-apis/vc/v1/meetings/:meeting_id/recording/stop [custom_params_serializer] aliases: vc.meetingRecording.stop, vc.v1.meetingRecording.stop
+- vc.participantList.get -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer] aliases: vc.participantList.get, vc.v1.participantList.get
+- vc.participantList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_list [custom_params_serializer, iterator_helper] aliases: vc.participantList.getWithIterator, vc.v1.participantList.getWithIterator
+- vc.participantQualityList.get -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer] aliases: vc.participantQualityList.get, vc.v1.participantQualityList.get
+- vc.participantQualityList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/participant_quality_list [custom_params_serializer, iterator_helper] aliases: vc.participantQualityList.getWithIterator, vc.v1.participantQualityList.getWithIterator
+- vc.report.getDaily -> GET ${this.domain}/open-apis/vc/v1/reports/get_daily [custom_params_serializer] aliases: vc.report.getDaily, vc.v1.report.getDaily
+- vc.report.getTopUser -> GET ${this.domain}/open-apis/vc/v1/reports/get_top_user [custom_params_serializer] aliases: vc.report.getTopUser, vc.v1.report.getTopUser
+- vc.reserve.apply -> POST ${this.domain}/open-apis/vc/v1/reserves/apply [custom_params_serializer] aliases: vc.reserve.apply, vc.v1.reserve.apply
+- vc.reserve.delete -> DELETE ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.delete, vc.v1.reserve.delete
+- vc.reserve.get -> GET ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.get, vc.v1.reserve.get
+- vc.reserve.getActiveMeeting -> GET ${this.domain}/open-apis/vc/v1/reserves/:reserve_id/get_active_meeting [custom_params_serializer] aliases: vc.reserve.getActiveMeeting, vc.v1.reserve.getActiveMeeting
+- vc.reserve.update -> PUT ${this.domain}/open-apis/vc/v1/reserves/:reserve_id [custom_params_serializer] aliases: vc.reserve.update, vc.v1.reserve.update
+- vc.reserveConfig.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id [custom_params_serializer] aliases: vc.reserveConfig.patch, vc.v1.reserveConfig.patch
+- vc.reserveConfig.reserveScope -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/reserve_scope [custom_params_serializer] aliases: vc.reserveConfig.reserveScope, vc.v1.reserveConfig.reserveScope
+- vc.reserveConfigAdmin.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/admin [custom_params_serializer] aliases: vc.reserveConfigAdmin.get, vc.v1.reserveConfigAdmin.get
+- vc.reserveConfigAdmin.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/admin [custom_params_serializer] aliases: vc.reserveConfigAdmin.patch, vc.v1.reserveConfigAdmin.patch
+- vc.reserveConfigDisableInform.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/disable_inform [custom_params_serializer] aliases: vc.reserveConfigDisableInform.get, vc.v1.reserveConfigDisableInform.get
+- vc.reserveConfigDisableInform.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/disable_inform [custom_params_serializer] aliases: vc.reserveConfigDisableInform.patch, vc.v1.reserveConfigDisableInform.patch
+- vc.reserveConfigForm.get -> GET ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/form [custom_params_serializer] aliases: vc.reserveConfigForm.get, vc.v1.reserveConfigForm.get
+- vc.reserveConfigForm.patch -> PATCH ${this.domain}/open-apis/vc/v1/reserve_configs/:reserve_config_id/form [custom_params_serializer] aliases: vc.reserveConfigForm.patch, vc.v1.reserveConfigForm.patch
+- vc.resourceReservationList.get -> GET ${this.domain}/open-apis/vc/v1/resource_reservation_list [custom_params_serializer] aliases: vc.resourceReservationList.get, vc.v1.resourceReservationList.get
+- vc.resourceReservationList.getWithIterator -> GET ${this.domain}/open-apis/vc/v1/resource_reservation_list [custom_params_serializer, iterator_helper] aliases: vc.resourceReservationList.getWithIterator, vc.v1.resourceReservationList.getWithIterator
+- vc.room.create -> POST ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer] aliases: vc.room.create, vc.v1.room.create
+- vc.room.delete -> DELETE ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.delete, vc.v1.room.delete
+- vc.room.get -> GET ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.get, vc.v1.room.get
+- vc.room.list -> GET ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer] aliases: vc.room.list, vc.v1.room.list
+- vc.room.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/rooms [custom_params_serializer, iterator_helper] aliases: vc.room.listWithIterator, vc.v1.room.listWithIterator
+- vc.room.mget -> POST ${this.domain}/open-apis/vc/v1/rooms/mget [custom_params_serializer] aliases: vc.room.mget, vc.v1.room.mget
+- vc.room.patch -> PATCH ${this.domain}/open-apis/vc/v1/rooms/:room_id [custom_params_serializer] aliases: vc.room.patch, vc.v1.room.patch
+- vc.room.search -> POST ${this.domain}/open-apis/vc/v1/rooms/search [custom_params_serializer] aliases: vc.room.search, vc.v1.room.search
+- vc.roomConfig.query -> GET ${this.domain}/open-apis/vc/v1/room_configs/query [custom_params_serializer] aliases: vc.roomConfig.query, vc.v1.roomConfig.query
+- vc.roomConfig.set -> POST ${this.domain}/open-apis/vc/v1/room_configs/set [custom_params_serializer] aliases: vc.roomConfig.set, vc.v1.roomConfig.set
+- vc.roomConfig.setCheckboardAccessCode -> POST ${this.domain}/open-apis/vc/v1/room_configs/set_checkboard_access_code [custom_params_serializer] aliases: vc.roomConfig.setCheckboardAccessCode, vc.v1.roomConfig.setCheckboardAccessCode
+- vc.roomConfig.setRoomAccessCode -> POST ${this.domain}/open-apis/vc/v1/room_configs/set_room_access_code [custom_params_serializer] aliases: vc.roomConfig.setRoomAccessCode, vc.v1.roomConfig.setRoomAccessCode
+- vc.roomLevel.create -> POST ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer] aliases: vc.roomLevel.create, vc.v1.roomLevel.create
+- vc.roomLevel.del -> POST ${this.domain}/open-apis/vc/v1/room_levels/del [custom_params_serializer] aliases: vc.roomLevel.del, vc.v1.roomLevel.del
+- vc.roomLevel.get -> GET ${this.domain}/open-apis/vc/v1/room_levels/:room_level_id [custom_params_serializer] aliases: vc.roomLevel.get, vc.v1.roomLevel.get
+- vc.roomLevel.list -> GET ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer] aliases: vc.roomLevel.list, vc.v1.roomLevel.list
+- vc.roomLevel.listWithIterator -> GET ${this.domain}/open-apis/vc/v1/room_levels [custom_params_serializer, iterator_helper] aliases: vc.roomLevel.listWithIterator, vc.v1.roomLevel.listWithIterator
+- vc.roomLevel.mget -> POST ${this.domain}/open-apis/vc/v1/room_levels/mget [custom_params_serializer] aliases: vc.roomLevel.mget, vc.v1.roomLevel.mget
+- vc.roomLevel.patch -> PATCH ${this.domain}/open-apis/vc/v1/room_levels/:room_level_id [custom_params_serializer] aliases: vc.roomLevel.patch, vc.v1.roomLevel.patch
+- vc.roomLevel.search -> GET ${this.domain}/open-apis/vc/v1/room_levels/search [custom_params_serializer] aliases: vc.roomLevel.search, vc.v1.roomLevel.search
+- vc.scopeConfig.create -> POST ${this.domain}/open-apis/vc/v1/scope_config [custom_params_serializer] aliases: vc.scopeConfig.create, vc.v1.scopeConfig.create
+- vc.scopeConfig.get -> GET ${this.domain}/open-apis/vc/v1/scope_config [custom_params_serializer] aliases: vc.scopeConfig.get, vc.v1.scopeConfig.get
+- verification.verification.get -> GET ${this.domain}/open-apis/verification/v1/verification [custom_params_serializer]
+- wiki.node.search -> POST ${this.domain}/open-apis/wiki/v1/nodes/search [custom_params_serializer]
+- wiki.node.searchWithIterator -> POST ${this.domain}/open-apis/wiki/v1/nodes/search [custom_params_serializer, iterator_helper]
+- wiki.space.create -> POST ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer] aliases: wiki.space.create, wiki.v2.space.create
+- wiki.space.get -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id [custom_params_serializer] aliases: wiki.space.get, wiki.v2.space.get
+- wiki.space.getNode -> GET ${this.domain}/open-apis/wiki/v2/spaces/get_node [custom_params_serializer] aliases: wiki.space.getNode, wiki.v2.space.getNode
+- wiki.space.list -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer] aliases: wiki.space.list, wiki.v2.space.list
+- wiki.space.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer, iterator_helper] aliases: wiki.space.listWithIterator, wiki.v2.space.listWithIterator
+- wiki.spaceMember.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer] aliases: wiki.spaceMember.create, wiki.v2.spaceMember.create
+- wiki.spaceMember.delete -> DELETE ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members/:member_id [custom_params_serializer] aliases: wiki.spaceMember.delete, wiki.v2.spaceMember.delete
+- wiki.spaceMember.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer] aliases: wiki.spaceMember.list, wiki.v2.spaceMember.list
+- wiki.spaceNode.copy -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/copy [custom_params_serializer] aliases: wiki.spaceNode.copy, wiki.v2.spaceNode.copy
+- wiki.spaceNode.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer] aliases: wiki.spaceNode.create, wiki.v2.spaceNode.create
+- wiki.spaceNode.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer] aliases: wiki.spaceNode.list, wiki.v2.spaceNode.list
+- wiki.spaceNode.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer, iterator_helper] aliases: wiki.spaceNode.listWithIterator, wiki.v2.spaceNode.listWithIterator
+- wiki.spaceNode.move -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/move [custom_params_serializer] aliases: wiki.spaceNode.move, wiki.v2.spaceNode.move
+- wiki.spaceNode.moveDocsToWiki -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/move_docs_to_wiki [custom_params_serializer] aliases: wiki.spaceNode.moveDocsToWiki, wiki.v2.spaceNode.moveDocsToWiki
+- wiki.spaceNode.updateTitle -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title [custom_params_serializer] aliases: wiki.spaceNode.updateTitle, wiki.v2.spaceNode.updateTitle
+- wiki.spaceSetting.update -> PUT ${this.domain}/open-apis/wiki/v2/spaces/:space_id/setting [custom_params_serializer] aliases: wiki.spaceSetting.update, wiki.v2.spaceSetting.update
+- wiki.task.get -> GET ${this.domain}/open-apis/wiki/v2/tasks/:task_id [custom_params_serializer] aliases: wiki.task.get, wiki.v2.task.get
+
+## Event Handles
+
+- acs.access_record.created_v1
+- acs.user.updated_v1
+- application.application.app_version.audit_v6
+- application.application.app_version.publish_apply_v6
+- application.application.app_version.publish_revoke_v6
+- application.application.created_v6
+- application.application.feedback.created_v6
+- application.application.feedback.updated_v6
+- application.application.visibility.added_v6
+- application.bot.menu_v6
+- approval.approval.updated_v4
+- calendar.calendar.acl.created_v4
+- calendar.calendar.acl.deleted_v4
+- calendar.calendar.changed_v4
+- calendar.calendar.event.changed_v4
+- compensation.archive.changed_v1
+- contact.custom_attr_event.updated_v3
+- contact.department.created_v3
+- contact.department.deleted_v3
+- contact.department.updated_v3
+- contact.employee_type_enum.actived_v3
+- contact.employee_type_enum.created_v3
+- contact.employee_type_enum.deactivated_v3
+- contact.employee_type_enum.deleted_v3
+- contact.employee_type_enum.updated_v3
+- contact.scope.updated_v3
+- contact.user.created_v3
+- contact.user.deleted_v3
+- contact.user.updated_v3
+- corehr.approval_groups.updated_v2
+- corehr.common_data.id.user_mapping_changed_v1
+- corehr.common_data.meta_data.updated_v1
+- corehr.company.created_v2
+- corehr.company.deleted_v2
+- corehr.company.updated_v2
+- corehr.contract.created_v1
+- corehr.contract.deleted_v1
+- corehr.contract.updated_v1
+- corehr.cost_center.created_v2
+- corehr.cost_center.deleted_v2
+- corehr.cost_center.updated_v2
+- corehr.custom_org.created_v2
+- corehr.custom_org.deleted_v2
+- corehr.custom_org.updated_v2
+- corehr.department.created_v1
+- corehr.department.created_v2
+- corehr.department.deleted_v1
+- corehr.department.updated_v1
+- corehr.department.updated_v2
+- corehr.employee.domain_event_v2
+- corehr.employment.converted_v1
+- corehr.employment.created_v1
+- corehr.employment.deleted_v1
+- corehr.employment.resigned_v1
+- corehr.employment.updated_v1
+- corehr.job.created_v1
+- corehr.job.deleted_v1
+- corehr.job.updated_v1
+- corehr.job_change.status_updated_v2
+- corehr.job_change.updated_v1
+- corehr.job_change.updated_v2
+- corehr.job_data.changed_v1
+- corehr.job_data.created_v1
+- corehr.job_data.deleted_v1
+- corehr.job_data.employed_v1
+- corehr.job_data.updated_v1
+- corehr.job_family.created_v2
+- corehr.job_family.deleted_v2
+- corehr.job_family.updated_v2
+- corehr.job_grade.created_v2
+- corehr.job_grade.deleted_v2
+- corehr.job_grade.updated_v2
+- corehr.job_level.created_v2
+- corehr.job_level.deleted_v2
+- corehr.job_level.updated_v2
+- corehr.location.created_v2
+- corehr.location.deleted_v2
+- corehr.location.updated_v2
+- corehr.offboarding.checklist_updated_v2
+- corehr.offboarding.status_updated_v2
+- corehr.offboarding.updated_v1
+- corehr.offboarding.updated_v2
+- corehr.org_role_authorization.updated_v1
+- corehr.pathway.created_v2
+- corehr.pathway.deleted_v2
+- corehr.pathway.updated_v2
+- corehr.person.created_v1
+- corehr.person.deleted_v1
+- corehr.person.updated_v1
+- corehr.position.created_v2
+- corehr.position.deleted_v2
+- corehr.position.updated_v2
+- corehr.pre_hire.onboarding_task_changed_v2
+- corehr.pre_hire.updated_v1
+- corehr.probation.updated_v2
+- corehr.process.approver.updated_v2
+- corehr.process.cc.updated_v2
+- corehr.process.node.updated_v2
+- corehr.process.status.update_v2
+- corehr.process.updated_v2
+- corehr.process_comment_info.updated_v2
+- corehr.signature_file.status_updated_v2
+- directory.department.created_v1
+- directory.department.deleted_v1
+- directory.department.updated_v1
+- directory.employee.created_v1
+- directory.employee.regular_v1
+- directory.employee.resigned_v1
+- directory.employee.resurrect_v1
+- directory.employee.to_be_resigned_v1
+- directory.employee.updated_v1
+- drive.file.bitable_field_changed_v1
+- drive.file.bitable_record_changed_v1
+- drive.file.created_in_folder_v1
+- drive.file.deleted_v1
+- drive.file.edit_v1
+- drive.file.permission_member_added_v1
+- drive.file.permission_member_applied_v1
+- drive.file.permission_member_removed_v1
+- drive.file.read_v1
+- drive.file.title_updated_v1
+- drive.file.trashed_v1
+- helpdesk.notification.approve_v1
+- helpdesk.ticket.created_v1
+- helpdesk.ticket.updated_v1
+- helpdesk.ticket_message.created_v1
+- hire.application.deleted_v1
+- hire.application.stage_changed_v1
+- hire.eco_account.created_v1
+- hire.eco_background_check.canceled_v1
+- hire.eco_background_check.created_v1
+- hire.eco_exam.created_v1
+- hire.ehr_import_task.imported_v1
+- hire.ehr_import_task_for_internship_offer.imported_v1
+- hire.offer.status_changed_v1
+- hire.referral_account.assets_update_v1
+- hire.talent.deleted_v1
+- hire.talent.tag_subscription_v1
+- im.chat.access_event.bot_p2p_chat_entered_v1
+- im.chat.disbanded_v1
+- im.chat.member.bot.added_v1
+- im.chat.member.bot.deleted_v1
+- im.chat.member.user.added_v1
+- im.chat.member.user.deleted_v1
+- im.chat.member.user.withdrawn_v1
+- im.chat.updated_v1
+- im.message.message_read_v1
+- im.message.reaction.created_v1
+- im.message.reaction.deleted_v1
+- im.message.recalled_v1
+- im.message.receive_v1
+- mail.user_mailbox.event.message_received_v1
+- meeting_room.meeting_room.created_v1
+- meeting_room.meeting_room.deleted_v1
+- meeting_room.meeting_room.status_changed_v1
+- meeting_room.meeting_room.updated_v1
+- moments.comment.created_v1
+- moments.comment.deleted_v1
+- moments.post.created_v1
+- moments.post.deleted_v1
+- moments.post_statistics.updated_v1
+- moments.reaction.created_v1
+- moments.reaction.deleted_v1
+- payroll.payment_activity.approved_v1
+- payroll.payment_activity.status_changed_v1
+- performance.review_data.changed_v2
+- performance.stage_task.open_result_v2
+- security_and_compliance.device_apply_record.device_apply_event_v2
+- security_and_compliance.device_record.device_change_event_v2
+- task.task.comment.updated_v1
+- task.task.update_tenant_v1
+- task.task.updated_v1
+- vc.meeting.all_meeting_ended_v1
+- vc.meeting.all_meeting_started_v1
+- vc.meeting.join_meeting_v1
+- vc.meeting.leave_meeting_v1
+- vc.meeting.meeting_ended_v1
+- vc.meeting.meeting_started_v1
+- vc.meeting.recording_ended_v1
+- vc.meeting.recording_ready_v1
+- vc.meeting.recording_started_v1
+- vc.meeting.share_ended_v1
+- vc.meeting.share_started_v1
+- vc.reserve_config.updated_v1
+- vc.room.created_v1
+- vc.room.deleted_v1
+- vc.room.updated_v1
+- vc.room_level.created_v1
+- vc.room_level.deleted_v1
+- vc.room_level.updated_v1

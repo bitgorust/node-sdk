@@ -1,0 +1,109 @@
+# contact API Inventory
+
+- Canonical methods: 85
+- Event handles: 13
+
+## Canonical Methods
+
+- contact.customAttr.list -> GET ${this.domain}/open-apis/contact/v3/custom_attrs [custom_params_serializer] aliases: contact.customAttr.list, contact.v3.customAttr.list
+- contact.customAttr.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/custom_attrs [custom_params_serializer, iterator_helper] aliases: contact.customAttr.listWithIterator, contact.v3.customAttr.listWithIterator
+- contact.department.batch -> GET ${this.domain}/open-apis/contact/v3/departments/batch [custom_params_serializer] aliases: contact.department.batch, contact.v3.department.batch
+- contact.department.children -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id/children [custom_params_serializer] aliases: contact.department.children, contact.v3.department.children
+- contact.department.childrenWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id/children [custom_params_serializer, iterator_helper] aliases: contact.department.childrenWithIterator, contact.v3.department.childrenWithIterator
+- contact.department.create -> POST ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer] aliases: contact.department.create, contact.v3.department.create
+- contact.department.delete -> DELETE ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.delete, contact.v3.department.delete
+- contact.department.get -> GET ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.get, contact.v3.department.get
+- contact.department.list -> GET ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer] aliases: contact.department.list, contact.v3.department.list
+- contact.department.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments [custom_params_serializer, iterator_helper] aliases: contact.department.listWithIterator, contact.v3.department.listWithIterator
+- contact.department.parent -> GET ${this.domain}/open-apis/contact/v3/departments/parent [custom_params_serializer] aliases: contact.department.parent, contact.v3.department.parent
+- contact.department.parentWithIterator -> GET ${this.domain}/open-apis/contact/v3/departments/parent [custom_params_serializer, iterator_helper] aliases: contact.department.parentWithIterator, contact.v3.department.parentWithIterator
+- contact.department.patch -> PATCH ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.patch, contact.v3.department.patch
+- contact.department.search -> POST ${this.domain}/open-apis/contact/v3/departments/search [custom_params_serializer] aliases: contact.department.search, contact.v3.department.search
+- contact.department.searchWithIterator -> POST ${this.domain}/open-apis/contact/v3/departments/search [custom_params_serializer, iterator_helper] aliases: contact.department.searchWithIterator, contact.v3.department.searchWithIterator
+- contact.department.unbindDepartmentChat -> POST ${this.domain}/open-apis/contact/v3/departments/unbind_department_chat [custom_params_serializer] aliases: contact.department.unbindDepartmentChat, contact.v3.department.unbindDepartmentChat
+- contact.department.update -> PUT ${this.domain}/open-apis/contact/v3/departments/:department_id [custom_params_serializer] aliases: contact.department.update, contact.v3.department.update
+- contact.department.updateDepartmentId -> PATCH ${this.domain}/open-apis/contact/v3/departments/:department_id/update_department_id [custom_params_serializer] aliases: contact.department.updateDepartmentId, contact.v3.department.updateDepartmentId
+- contact.employeeTypeEnum.create -> POST ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer] aliases: contact.employeeTypeEnum.create, contact.v3.employeeTypeEnum.create
+- contact.employeeTypeEnum.delete -> DELETE ${this.domain}/open-apis/contact/v3/employee_type_enums/:enum_id [custom_params_serializer] aliases: contact.employeeTypeEnum.delete, contact.v3.employeeTypeEnum.delete
+- contact.employeeTypeEnum.list -> GET ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer] aliases: contact.employeeTypeEnum.list, contact.v3.employeeTypeEnum.list
+- contact.employeeTypeEnum.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/employee_type_enums [custom_params_serializer, iterator_helper] aliases: contact.employeeTypeEnum.listWithIterator, contact.v3.employeeTypeEnum.listWithIterator
+- contact.employeeTypeEnum.update -> PUT ${this.domain}/open-apis/contact/v3/employee_type_enums/:enum_id [custom_params_serializer] aliases: contact.employeeTypeEnum.update, contact.v3.employeeTypeEnum.update
+- contact.functionalRole.create -> POST ${this.domain}/open-apis/contact/v3/functional_roles [custom_params_serializer] aliases: contact.functionalRole.create, contact.v3.functionalRole.create
+- contact.functionalRole.delete -> DELETE ${this.domain}/open-apis/contact/v3/functional_roles/:role_id [custom_params_serializer] aliases: contact.functionalRole.delete, contact.v3.functionalRole.delete
+- contact.functionalRole.update -> PUT ${this.domain}/open-apis/contact/v3/functional_roles/:role_id [custom_params_serializer] aliases: contact.functionalRole.update, contact.v3.functionalRole.update
+- contact.functionalRoleMember.batchCreate -> POST ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/batch_create [custom_params_serializer] aliases: contact.functionalRoleMember.batchCreate, contact.v3.functionalRoleMember.batchCreate
+- contact.functionalRoleMember.batchDelete -> PATCH ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/batch_delete [custom_params_serializer] aliases: contact.functionalRoleMember.batchDelete, contact.v3.functionalRoleMember.batchDelete
+- contact.functionalRoleMember.get -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/:member_id [custom_params_serializer] aliases: contact.functionalRoleMember.get, contact.v3.functionalRoleMember.get
+- contact.functionalRoleMember.list -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members [custom_params_serializer] aliases: contact.functionalRoleMember.list, contact.v3.functionalRoleMember.list
+- contact.functionalRoleMember.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members [custom_params_serializer, iterator_helper] aliases: contact.functionalRoleMember.listWithIterator, contact.v3.functionalRoleMember.listWithIterator
+- contact.functionalRoleMember.scopes -> PATCH ${this.domain}/open-apis/contact/v3/functional_roles/:role_id/members/scopes [custom_params_serializer] aliases: contact.functionalRoleMember.scopes, contact.v3.functionalRoleMember.scopes
+- contact.group.create -> POST ${this.domain}/open-apis/contact/v3/group [custom_params_serializer] aliases: contact.group.create, contact.v3.group.create
+- contact.group.delete -> DELETE ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.delete, contact.v3.group.delete
+- contact.group.get -> GET ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.get, contact.v3.group.get
+- contact.group.memberBelong -> GET ${this.domain}/open-apis/contact/v3/group/member_belong [custom_params_serializer] aliases: contact.group.memberBelong, contact.v3.group.memberBelong
+- contact.group.patch -> PATCH ${this.domain}/open-apis/contact/v3/group/:group_id [custom_params_serializer] aliases: contact.group.patch, contact.v3.group.patch
+- contact.group.simplelist -> GET ${this.domain}/open-apis/contact/v3/group/simplelist [custom_params_serializer] aliases: contact.group.simplelist, contact.v3.group.simplelist
+- contact.group.simplelistWithIterator -> GET ${this.domain}/open-apis/contact/v3/group/simplelist [custom_params_serializer, iterator_helper] aliases: contact.group.simplelistWithIterator, contact.v3.group.simplelistWithIterator
+- contact.groupMember.add -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/add [custom_params_serializer] aliases: contact.groupMember.add, contact.v3.groupMember.add
+- contact.groupMember.batchAdd -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/batch_add [custom_params_serializer] aliases: contact.groupMember.batchAdd, contact.v3.groupMember.batchAdd
+- contact.groupMember.batchRemove -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/batch_remove [custom_params_serializer] aliases: contact.groupMember.batchRemove, contact.v3.groupMember.batchRemove
+- contact.groupMember.remove -> POST ${this.domain}/open-apis/contact/v3/group/:group_id/member/remove [custom_params_serializer] aliases: contact.groupMember.remove, contact.v3.groupMember.remove
+- contact.groupMember.simplelist -> GET ${this.domain}/open-apis/contact/v3/group/:group_id/member/simplelist [custom_params_serializer] aliases: contact.groupMember.simplelist, contact.v3.groupMember.simplelist
+- contact.jobFamily.create -> POST ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer] aliases: contact.jobFamily.create, contact.v3.jobFamily.create
+- contact.jobFamily.delete -> DELETE ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.delete, contact.v3.jobFamily.delete
+- contact.jobFamily.get -> GET ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.get, contact.v3.jobFamily.get
+- contact.jobFamily.list -> GET ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer] aliases: contact.jobFamily.list, contact.v3.jobFamily.list
+- contact.jobFamily.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_families [custom_params_serializer, iterator_helper] aliases: contact.jobFamily.listWithIterator, contact.v3.jobFamily.listWithIterator
+- contact.jobFamily.update -> PUT ${this.domain}/open-apis/contact/v3/job_families/:job_family_id [custom_params_serializer] aliases: contact.jobFamily.update, contact.v3.jobFamily.update
+- contact.jobLevel.create -> POST ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer] aliases: contact.jobLevel.create, contact.v3.jobLevel.create
+- contact.jobLevel.delete -> DELETE ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.delete, contact.v3.jobLevel.delete
+- contact.jobLevel.get -> GET ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.get, contact.v3.jobLevel.get
+- contact.jobLevel.list -> GET ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer] aliases: contact.jobLevel.list, contact.v3.jobLevel.list
+- contact.jobLevel.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_levels [custom_params_serializer, iterator_helper] aliases: contact.jobLevel.listWithIterator, contact.v3.jobLevel.listWithIterator
+- contact.jobLevel.update -> PUT ${this.domain}/open-apis/contact/v3/job_levels/:job_level_id [custom_params_serializer] aliases: contact.jobLevel.update, contact.v3.jobLevel.update
+- contact.jobTitle.get -> GET ${this.domain}/open-apis/contact/v3/job_titles/:job_title_id [custom_params_serializer] aliases: contact.jobTitle.get, contact.v3.jobTitle.get
+- contact.jobTitle.list -> GET ${this.domain}/open-apis/contact/v3/job_titles [custom_params_serializer] aliases: contact.jobTitle.list, contact.v3.jobTitle.list
+- contact.jobTitle.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/job_titles [custom_params_serializer, iterator_helper] aliases: contact.jobTitle.listWithIterator, contact.v3.jobTitle.listWithIterator
+- contact.scope.list -> GET ${this.domain}/open-apis/contact/v3/scopes [custom_params_serializer] aliases: contact.scope.list, contact.v3.scope.list
+- contact.scope.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/scopes [custom_params_serializer, iterator_helper] aliases: contact.scope.listWithIterator, contact.v3.scope.listWithIterator
+- contact.unit.bindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/bind_department [custom_params_serializer] aliases: contact.unit.bindDepartment, contact.v3.unit.bindDepartment
+- contact.unit.create -> POST ${this.domain}/open-apis/contact/v3/unit [custom_params_serializer] aliases: contact.unit.create, contact.v3.unit.create
+- contact.unit.delete -> DELETE ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.delete, contact.v3.unit.delete
+- contact.unit.get -> GET ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.get, contact.v3.unit.get
+- contact.unit.list -> GET ${this.domain}/open-apis/contact/v3/unit [custom_params_serializer] aliases: contact.unit.list, contact.v3.unit.list
+- contact.unit.listDepartment -> GET ${this.domain}/open-apis/contact/v3/unit/list_department [custom_params_serializer] aliases: contact.unit.listDepartment, contact.v3.unit.listDepartment
+- contact.unit.patch -> PATCH ${this.domain}/open-apis/contact/v3/unit/:unit_id [custom_params_serializer] aliases: contact.unit.patch, contact.v3.unit.patch
+- contact.unit.unbindDepartment -> POST ${this.domain}/open-apis/contact/v3/unit/unbind_department [custom_params_serializer] aliases: contact.unit.unbindDepartment, contact.v3.unit.unbindDepartment
+- contact.user.batch -> GET ${this.domain}/open-apis/contact/v3/users/batch [custom_params_serializer] aliases: contact.user.batch, contact.v3.user.batch
+- contact.user.batchGetId -> POST ${this.domain}/open-apis/contact/v3/users/batch_get_id [custom_params_serializer] aliases: contact.user.batchGetId, contact.v3.user.batchGetId
+- contact.user.create -> POST ${this.domain}/open-apis/contact/v3/users [custom_params_serializer] aliases: contact.user.create, contact.v3.user.create
+- contact.user.delete -> DELETE ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.delete, contact.v3.user.delete
+- contact.user.findByDepartment -> GET ${this.domain}/open-apis/contact/v3/users/find_by_department [custom_params_serializer] aliases: contact.user.findByDepartment, contact.v3.user.findByDepartment
+- contact.user.findByDepartmentWithIterator -> GET ${this.domain}/open-apis/contact/v3/users/find_by_department [custom_params_serializer, iterator_helper] aliases: contact.user.findByDepartmentWithIterator, contact.v3.user.findByDepartmentWithIterator
+- contact.user.get -> GET ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.get, contact.v3.user.get
+- contact.user.list -> GET ${this.domain}/open-apis/contact/v3/users [custom_params_serializer] aliases: contact.user.list, contact.v3.user.list
+- contact.user.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/users [custom_params_serializer, iterator_helper] aliases: contact.user.listWithIterator, contact.v3.user.listWithIterator
+- contact.user.patch -> PATCH ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.patch, contact.v3.user.patch
+- contact.user.resurrect -> POST ${this.domain}/open-apis/contact/v3/users/:user_id/resurrect [custom_params_serializer] aliases: contact.user.resurrect, contact.v3.user.resurrect
+- contact.user.update -> PUT ${this.domain}/open-apis/contact/v3/users/:user_id [custom_params_serializer] aliases: contact.user.update, contact.v3.user.update
+- contact.user.updateUserId -> PATCH ${this.domain}/open-apis/contact/v3/users/:user_id/update_user_id [custom_params_serializer] aliases: contact.user.updateUserId, contact.v3.user.updateUserId
+- contact.workCity.get -> GET ${this.domain}/open-apis/contact/v3/work_cities/:work_city_id [custom_params_serializer] aliases: contact.v3.workCity.get, contact.workCity.get
+- contact.workCity.list -> GET ${this.domain}/open-apis/contact/v3/work_cities [custom_params_serializer] aliases: contact.v3.workCity.list, contact.workCity.list
+- contact.workCity.listWithIterator -> GET ${this.domain}/open-apis/contact/v3/work_cities [custom_params_serializer, iterator_helper] aliases: contact.v3.workCity.listWithIterator, contact.workCity.listWithIterator
+
+## Event Handles
+
+- contact.custom_attr_event.updated_v3
+- contact.department.created_v3
+- contact.department.deleted_v3
+- contact.department.updated_v3
+- contact.employee_type_enum.actived_v3
+- contact.employee_type_enum.created_v3
+- contact.employee_type_enum.deactivated_v3
+- contact.employee_type_enum.deleted_v3
+- contact.employee_type_enum.updated_v3
+- contact.scope.updated_v3
+- contact.user.created_v3
+- contact.user.deleted_v3
+- contact.user.updated_v3
+

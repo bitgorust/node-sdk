@@ -1,0 +1,379 @@
+# corehr API Inventory
+
+- Canonical methods: 295
+- Event handles: 73
+
+## Canonical Methods
+
+- corehr.approvalGroups.get -> GET ${this.domain}/open-apis/corehr/v2/approval_groups/:process_id [custom_params_serializer]
+- corehr.approvalGroups.openQueryDepartmentChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_department_change_list_by_ids [custom_params_serializer]
+- corehr.approvalGroups.openQueryJobChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_job_change_list_by_ids [custom_params_serializer]
+- corehr.approvalGroups.openQueryPositionChangeListByIds -> POST ${this.domain}/open-apis/corehr/v2/approval_groups/open_query_position_change_list_by_ids [custom_params_serializer]
+- corehr.approver.list -> GET ${this.domain}/open-apis/corehr/v2/approvers [custom_params_serializer]
+- corehr.approver.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/approvers [custom_params_serializer, iterator_helper]
+- corehr.assignedUser.search -> POST ${this.domain}/open-apis/corehr/v1/assigned_users/search [custom_params_serializer] aliases: corehr.assignedUser.search, corehr.v1.assignedUser.search
+- corehr.authorization.addRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/add_role_assign [custom_params_serializer] aliases: corehr.authorization.addRoleAssign, corehr.v1.authorization.addRoleAssign
+- corehr.authorization.getByParam -> GET ${this.domain}/open-apis/corehr/v1/authorizations/get_by_param [custom_params_serializer] aliases: corehr.authorization.getByParam, corehr.v1.authorization.getByParam
+- corehr.authorization.query -> GET ${this.domain}/open-apis/corehr/v1/authorizations/query [custom_params_serializer] aliases: corehr.authorization.query, corehr.v1.authorization.query
+- corehr.authorization.removeRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/remove_role_assign [custom_params_serializer] aliases: corehr.authorization.removeRoleAssign, corehr.v1.authorization.removeRoleAssign
+- corehr.authorization.updateRoleAssign -> POST ${this.domain}/open-apis/corehr/v1/authorizations/update_role_assign [custom_params_serializer] aliases: corehr.authorization.updateRoleAssign, corehr.v1.authorization.updateRoleAssign
+- corehr.basicInfoBank.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/banks/search [custom_params_serializer]
+- corehr.basicInfoBank.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/banks/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoBankBranch.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/bank_branchs/search [custom_params_serializer]
+- corehr.basicInfoBankBranch.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/bank_branchs/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCity.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/cities/search [custom_params_serializer]
+- corehr.basicInfoCity.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/cities/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCountryRegion.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_regions/search [custom_params_serializer]
+- corehr.basicInfoCountryRegion.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_regions/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCountryRegionSubdivision.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_region_subdivisions/search [custom_params_serializer]
+- corehr.basicInfoCountryRegionSubdivision.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/country_region_subdivisions/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoCurrency.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/currencies/search [custom_params_serializer]
+- corehr.basicInfoCurrency.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/currencies/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoDistrict.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/districts/search [custom_params_serializer]
+- corehr.basicInfoDistrict.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/districts/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoLanguage.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/languages/search [custom_params_serializer]
+- corehr.basicInfoLanguage.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/languages/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoNationality.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/nationalities/search [custom_params_serializer]
+- corehr.basicInfoNationality.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/nationalities/search [custom_params_serializer, iterator_helper]
+- corehr.basicInfoTimeZone.search -> POST ${this.domain}/open-apis/corehr/v2/basic_info/time_zones/search [custom_params_serializer]
+- corehr.basicInfoTimeZone.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/basic_info/time_zones/search [custom_params_serializer, iterator_helper]
+- corehr.bp.getByDepartment -> POST ${this.domain}/open-apis/corehr/v2/bps/get_by_department [custom_params_serializer]
+- corehr.bp.list -> GET ${this.domain}/open-apis/corehr/v2/bps [custom_params_serializer]
+- corehr.bp.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/bps [custom_params_serializer, iterator_helper]
+- corehr.commonDataId.convert -> POST ${this.domain}/open-apis/corehr/v1/common_data/id/convert [custom_params_serializer] aliases: corehr.commonDataId.convert, corehr.v1.commonDataId.convert
+- corehr.commonDataMetaData.addEnumOption -> POST ${this.domain}/open-apis/corehr/v1/common_data/meta_data/add_enum_option [custom_params_serializer] aliases: corehr.commonDataMetaData.addEnumOption, corehr.v1.commonDataMetaData.addEnumOption
+- corehr.commonDataMetaData.editEnumOption -> POST ${this.domain}/open-apis/corehr/v1/common_data/meta_data/edit_enum_option [custom_params_serializer] aliases: corehr.commonDataMetaData.editEnumOption, corehr.v1.commonDataMetaData.editEnumOption
+- corehr.company.active -> POST ${this.domain}/open-apis/corehr/v2/companies/active [custom_params_serializer]
+- corehr.company.batchGet -> POST ${this.domain}/open-apis/corehr/v2/companies/batch_get [custom_params_serializer]
+- corehr.company.create -> POST ${this.domain}/open-apis/corehr/v1/companies [custom_params_serializer] aliases: corehr.company.create, corehr.v1.company.create
+- corehr.company.delete -> DELETE ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.delete, corehr.v1.company.delete
+- corehr.company.get -> GET ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.get, corehr.v1.company.get
+- corehr.company.list -> GET ${this.domain}/open-apis/corehr/v1/companies [custom_params_serializer] aliases: corehr.company.list, corehr.v1.company.list
+- corehr.company.patch -> PATCH ${this.domain}/open-apis/corehr/v1/companies/:company_id [custom_params_serializer] aliases: corehr.company.patch, corehr.v1.company.patch
+- corehr.company.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer]
+- corehr.company.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/companies/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.compensationStandard.match -> GET ${this.domain}/open-apis/corehr/v1/compensation_standards/match [custom_params_serializer] aliases: corehr.compensationStandard.match, corehr.v1.compensationStandard.match
+- corehr.contract.create -> POST ${this.domain}/open-apis/corehr/v1/contracts [custom_params_serializer] aliases: corehr.contract.create, corehr.v1.contract.create
+- corehr.contract.delete -> DELETE ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.delete, corehr.v1.contract.delete
+- corehr.contract.get -> GET ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.get, corehr.v1.contract.get
+- corehr.contract.list -> GET ${this.domain}/open-apis/corehr/v1/contracts [custom_params_serializer] aliases: corehr.contract.list, corehr.v1.contract.list
+- corehr.contract.patch -> PATCH ${this.domain}/open-apis/corehr/v1/contracts/:contract_id [custom_params_serializer] aliases: corehr.contract.patch, corehr.v1.contract.patch
+- corehr.contract.search -> POST ${this.domain}/open-apis/corehr/v2/contracts/search [custom_params_serializer]
+- corehr.contract.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/contracts/search [custom_params_serializer, iterator_helper]
+- corehr.costAllocation.batchQuery -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/batch_query [custom_params_serializer]
+- corehr.costAllocation.createVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/create_version [custom_params_serializer]
+- corehr.costAllocation.removeVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/remove_version [custom_params_serializer]
+- corehr.costAllocation.updateVersion -> POST ${this.domain}/open-apis/corehr/v2/cost_allocations/update_version [custom_params_serializer]
+- corehr.costCenter.create -> POST ${this.domain}/open-apis/corehr/v2/cost_centers [custom_params_serializer]
+- corehr.costCenter.delete -> DELETE ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id [custom_params_serializer]
+- corehr.costCenter.patch -> PATCH ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id [custom_params_serializer]
+- corehr.costCenter.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/cost_centers/query_recent_change [custom_params_serializer]
+- corehr.costCenter.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/cost_centers/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.costCenter.search -> POST ${this.domain}/open-apis/corehr/v2/cost_centers/search [custom_params_serializer]
+- corehr.costCenterVersion.create -> POST ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions [custom_params_serializer]
+- corehr.costCenterVersion.delete -> DELETE ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions/:version_id [custom_params_serializer]
+- corehr.costCenterVersion.patch -> PATCH ${this.domain}/open-apis/corehr/v2/cost_centers/:cost_center_id/versions/:version_id [custom_params_serializer]
+- corehr.countryRegion.get -> GET ${this.domain}/open-apis/corehr/v1/country_regions/:country_region_id [custom_params_serializer] aliases: corehr.countryRegion.get, corehr.v1.countryRegion.get
+- corehr.countryRegion.list -> GET ${this.domain}/open-apis/corehr/v1/country_regions [custom_params_serializer] aliases: corehr.countryRegion.list, corehr.v1.countryRegion.list
+- corehr.currency.get -> GET ${this.domain}/open-apis/corehr/v1/currencies/:currency_id [custom_params_serializer] aliases: corehr.currency.get, corehr.v1.currency.get
+- corehr.currency.list -> GET ${this.domain}/open-apis/corehr/v1/currencies [custom_params_serializer] aliases: corehr.currency.list, corehr.v1.currency.list
+- corehr.customField.getByParam -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/get_by_param [custom_params_serializer] aliases: corehr.customField.getByParam, corehr.v1.customField.getByParam
+- corehr.customField.listObjectApiName -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/list_object_api_name [custom_params_serializer] aliases: corehr.customField.listObjectApiName, corehr.v1.customField.listObjectApiName
+- corehr.customField.query -> GET ${this.domain}/open-apis/corehr/v1/custom_fields/query [custom_params_serializer] aliases: corehr.customField.query, corehr.v1.customField.query
+- corehr.customOrg.active -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/active [custom_params_serializer]
+- corehr.customOrg.create -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs [custom_params_serializer]
+- corehr.customOrg.deleteOrg -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/delete_org [custom_params_serializer]
+- corehr.customOrg.patch -> PATCH ${this.domain}/open-apis/corehr/v2/custom_orgs/:org_id [custom_params_serializer]
+- corehr.customOrg.query -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/query [custom_params_serializer]
+- corehr.customOrg.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/custom_orgs/query_recent_change [custom_params_serializer]
+- corehr.customOrg.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/custom_orgs/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.customOrg.updateRule -> POST ${this.domain}/open-apis/corehr/v2/custom_orgs/update_rule [custom_params_serializer]
+- corehr.defaultCostCenter.batchQuery -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/batch_query [custom_params_serializer]
+- corehr.defaultCostCenter.createVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/create_version [custom_params_serializer]
+- corehr.defaultCostCenter.removeVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/remove_version [custom_params_serializer]
+- corehr.defaultCostCenter.updateVersion -> POST ${this.domain}/open-apis/corehr/v2/default_cost_centers/update_version [custom_params_serializer]
+- corehr.department.batchGet -> POST ${this.domain}/open-apis/corehr/v2/departments/batch_get [custom_params_serializer]
+- corehr.department.create -> POST ${this.domain}/open-apis/corehr/v1/departments [custom_params_serializer] aliases: corehr.department.create, corehr.v1.department.create
+- corehr.department.delete -> DELETE ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.delete, corehr.v1.department.delete
+- corehr.department.delete -> DELETE ${this.domain}/open-apis/corehr/v2/departments/:department_id [custom_params_serializer]
+- corehr.department.get -> GET ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.get, corehr.v1.department.get
+- corehr.department.list -> GET ${this.domain}/open-apis/corehr/v1/departments [custom_params_serializer] aliases: corehr.department.list, corehr.v1.department.list
+- corehr.department.parents -> POST ${this.domain}/open-apis/corehr/v2/departments/parents [custom_params_serializer]
+- corehr.department.patch -> PATCH ${this.domain}/open-apis/corehr/v1/departments/:department_id [custom_params_serializer] aliases: corehr.department.patch, corehr.v1.department.patch
+- corehr.department.patch -> PATCH ${this.domain}/open-apis/corehr/v2/departments/:department_id [custom_params_serializer]
+- corehr.department.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/departments/query_multi_timeline [custom_params_serializer]
+- corehr.department.queryOperationLogs -> POST ${this.domain}/open-apis/corehr/v2/departments/query_operation_logs [custom_params_serializer]
+- corehr.department.queryOperationLogsWithIterator -> POST ${this.domain}/open-apis/corehr/v2/departments/query_operation_logs [custom_params_serializer, iterator_helper]
+- corehr.department.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/departments/query_recent_change [custom_params_serializer]
+- corehr.department.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/departments/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.department.queryTimeline -> POST ${this.domain}/open-apis/corehr/v2/departments/query_timeline [custom_params_serializer]
+- corehr.department.search -> POST ${this.domain}/open-apis/corehr/v2/departments/search [custom_params_serializer]
+- corehr.department.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/departments/search [custom_params_serializer, iterator_helper]
+- corehr.department.tree -> POST ${this.domain}/open-apis/corehr/v2/departments/tree [custom_params_serializer]
+- corehr.draft.get -> GET ${this.domain}/open-apis/corehr/v2/drafts/:draft_id [custom_params_serializer]
+- corehr.employee.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/batch_get [custom_params_serializer]
+- corehr.employee.create -> POST ${this.domain}/open-apis/corehr/v2/employees [custom_params_serializer]
+- corehr.employee.search -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer]
+- corehr.employee.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/employees/search [custom_params_serializer, iterator_helper]
+- corehr.employeesAdditionalJob.batch -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/batch [custom_params_serializer]
+- corehr.employeesAdditionalJob.batchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/batch [custom_params_serializer, iterator_helper]
+- corehr.employeesAdditionalJob.create -> POST ${this.domain}/open-apis/corehr/v2/employees/additional_jobs [custom_params_serializer]
+- corehr.employeesAdditionalJob.delete -> DELETE ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/:additional_job_id [custom_params_serializer]
+- corehr.employeesAdditionalJob.patch -> PATCH ${this.domain}/open-apis/corehr/v2/employees/additional_jobs/:additional_job_id [custom_params_serializer]
+- corehr.employeesBp.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/bps/batch_get [custom_params_serializer]
+- corehr.employeesInternationalAssignment.create -> POST ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer]
+- corehr.employeesInternationalAssignment.delete -> DELETE ${this.domain}/open-apis/corehr/v2/employees/international_assignments/:international_assignment_id [custom_params_serializer]
+- corehr.employeesInternationalAssignment.list -> GET ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer]
+- corehr.employeesInternationalAssignment.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/employees/international_assignments [custom_params_serializer, iterator_helper]
+- corehr.employeesInternationalAssignment.patch -> PATCH ${this.domain}/open-apis/corehr/v2/employees/international_assignments/:international_assignment_id [custom_params_serializer]
+- corehr.employeesJobData.batchGet -> POST ${this.domain}/open-apis/corehr/v2/employees/job_datas/batch_get [custom_params_serializer]
+- corehr.employeesJobData.query -> POST ${this.domain}/open-apis/corehr/v2/employees/job_datas/query [custom_params_serializer]
+- corehr.employeeType.create -> POST ${this.domain}/open-apis/corehr/v1/employee_types [custom_params_serializer] aliases: corehr.employeeType.create, corehr.v1.employeeType.create
+- corehr.employeeType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.delete, corehr.v1.employeeType.delete
+- corehr.employeeType.get -> GET ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.get, corehr.v1.employeeType.get
+- corehr.employeeType.list -> GET ${this.domain}/open-apis/corehr/v1/employee_types [custom_params_serializer] aliases: corehr.employeeType.list, corehr.v1.employeeType.list
+- corehr.employeeType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/employee_types/:employee_type_id [custom_params_serializer] aliases: corehr.employeeType.patch, corehr.v1.employeeType.patch
+- corehr.employment.create -> POST ${this.domain}/open-apis/corehr/v1/employments [custom_params_serializer] aliases: corehr.employment.create, corehr.v1.employment.create
+- corehr.employment.delete -> DELETE ${this.domain}/open-apis/corehr/v1/employments/:employment_id [custom_params_serializer] aliases: corehr.employment.delete, corehr.v1.employment.delete
+- corehr.employment.patch -> PATCH ${this.domain}/open-apis/corehr/v1/employments/:employment_id [custom_params_serializer] aliases: corehr.employment.patch, corehr.v1.employment.patch
+- corehr.enum.search -> POST ${this.domain}/open-apis/corehr/v2/enums/search [custom_params_serializer]
+- corehr.file.get -> GET ${this.domain}/open-apis/corehr/v1/files/:id [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper] aliases: corehr.file.get, corehr.v1.file.get
+- corehr.job.batchGet -> POST ${this.domain}/open-apis/corehr/v2/jobs/batch_get [custom_params_serializer]
+- corehr.job.create -> POST ${this.domain}/open-apis/corehr/v1/jobs [custom_params_serializer] aliases: corehr.job.create, corehr.v1.job.create
+- corehr.job.delete -> DELETE ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.delete, corehr.v1.job.delete
+- corehr.job.get -> GET ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.get, corehr.v1.job.get
+- corehr.job.get -> GET ${this.domain}/open-apis/corehr/v2/jobs/:job_id [custom_params_serializer]
+- corehr.job.list -> GET ${this.domain}/open-apis/corehr/v1/jobs [custom_params_serializer] aliases: corehr.job.list, corehr.v1.job.list
+- corehr.job.list -> GET ${this.domain}/open-apis/corehr/v2/jobs [custom_params_serializer]
+- corehr.job.patch -> PATCH ${this.domain}/open-apis/corehr/v1/jobs/:job_id [custom_params_serializer] aliases: corehr.job.patch, corehr.v1.job.patch
+- corehr.job.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/jobs/query_multi_timeline [custom_params_serializer]
+- corehr.job.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/jobs/query_recent_change [custom_params_serializer]
+- corehr.job.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/jobs/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobChange.create -> POST ${this.domain}/open-apis/corehr/v1/job_changes [custom_params_serializer] aliases: corehr.jobChange.create, corehr.v1.jobChange.create
+- corehr.jobChange.create -> POST ${this.domain}/open-apis/corehr/v2/job_changes [custom_params_serializer]
+- corehr.jobChange.revoke -> POST ${this.domain}/open-apis/corehr/v2/job_changes/:job_change_id/revoke [custom_params_serializer]
+- corehr.jobChange.search -> POST ${this.domain}/open-apis/corehr/v2/job_changes/search [custom_params_serializer]
+- corehr.jobChange.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/job_changes/search [custom_params_serializer, iterator_helper]
+- corehr.jobData.create -> POST ${this.domain}/open-apis/corehr/v1/job_datas [custom_params_serializer] aliases: corehr.jobData.create, corehr.v1.jobData.create
+- corehr.jobData.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.delete, corehr.v1.jobData.delete
+- corehr.jobData.get -> GET ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.get, corehr.v1.jobData.get
+- corehr.jobData.list -> GET ${this.domain}/open-apis/corehr/v1/job_datas [custom_params_serializer] aliases: corehr.jobData.list, corehr.v1.jobData.list
+- corehr.jobData.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_datas/:job_data_id [custom_params_serializer] aliases: corehr.jobData.patch, corehr.v1.jobData.patch
+- corehr.jobFamily.batchGet -> POST ${this.domain}/open-apis/corehr/v2/job_families/batch_get [custom_params_serializer]
+- corehr.jobFamily.create -> POST ${this.domain}/open-apis/corehr/v1/job_families [custom_params_serializer] aliases: corehr.jobFamily.create, corehr.v1.jobFamily.create
+- corehr.jobFamily.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.delete, corehr.v1.jobFamily.delete
+- corehr.jobFamily.get -> GET ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.get, corehr.v1.jobFamily.get
+- corehr.jobFamily.list -> GET ${this.domain}/open-apis/corehr/v1/job_families [custom_params_serializer] aliases: corehr.jobFamily.list, corehr.v1.jobFamily.list
+- corehr.jobFamily.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_families/:job_family_id [custom_params_serializer] aliases: corehr.jobFamily.patch, corehr.v1.jobFamily.patch
+- corehr.jobFamily.queryMultiTimeline -> POST ${this.domain}/open-apis/corehr/v2/job_families/query_multi_timeline [custom_params_serializer]
+- corehr.jobFamily.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_families/query_recent_change [custom_params_serializer]
+- corehr.jobFamily.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_families/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobGrade.create -> POST ${this.domain}/open-apis/corehr/v2/job_grades [custom_params_serializer]
+- corehr.jobGrade.delete -> DELETE ${this.domain}/open-apis/corehr/v2/job_grades/:job_grade_id [custom_params_serializer]
+- corehr.jobGrade.patch -> PATCH ${this.domain}/open-apis/corehr/v2/job_grades/:job_grade_id [custom_params_serializer]
+- corehr.jobGrade.query -> POST ${this.domain}/open-apis/corehr/v2/job_grades/query [custom_params_serializer]
+- corehr.jobGrade.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_grades/query_recent_change [custom_params_serializer]
+- corehr.jobGrade.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_grades/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.jobLevel.batchGet -> POST ${this.domain}/open-apis/corehr/v2/job_levels/batch_get [custom_params_serializer]
+- corehr.jobLevel.create -> POST ${this.domain}/open-apis/corehr/v1/job_levels [custom_params_serializer] aliases: corehr.jobLevel.create, corehr.v1.jobLevel.create
+- corehr.jobLevel.delete -> DELETE ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.delete, corehr.v1.jobLevel.delete
+- corehr.jobLevel.get -> GET ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.get, corehr.v1.jobLevel.get
+- corehr.jobLevel.list -> GET ${this.domain}/open-apis/corehr/v1/job_levels [custom_params_serializer] aliases: corehr.jobLevel.list, corehr.v1.jobLevel.list
+- corehr.jobLevel.patch -> PATCH ${this.domain}/open-apis/corehr/v1/job_levels/:job_level_id [custom_params_serializer] aliases: corehr.jobLevel.patch, corehr.v1.jobLevel.patch
+- corehr.jobLevel.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/job_levels/query_recent_change [custom_params_serializer]
+- corehr.jobLevel.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/job_levels/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.leave.calendarByScope -> GET ${this.domain}/open-apis/corehr/v1/leaves/calendar_by_scope [custom_params_serializer] aliases: corehr.leave.calendarByScope, corehr.v1.leave.calendarByScope
+- corehr.leave.leaveBalances -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_balances [custom_params_serializer] aliases: corehr.leave.leaveBalances, corehr.v1.leave.leaveBalances
+- corehr.leave.leaveRequestHistory -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_request_history [custom_params_serializer] aliases: corehr.leave.leaveRequestHistory, corehr.v1.leave.leaveRequestHistory
+- corehr.leave.leaveTypes -> GET ${this.domain}/open-apis/corehr/v1/leaves/leave_types [custom_params_serializer] aliases: corehr.leave.leaveTypes, corehr.v1.leave.leaveTypes
+- corehr.leave.workCalendar -> POST ${this.domain}/open-apis/corehr/v1/leaves/work_calendar [custom_params_serializer] aliases: corehr.leave.workCalendar, corehr.v1.leave.workCalendar
+- corehr.leave.workCalendarDate -> POST ${this.domain}/open-apis/corehr/v1/leaves/work_calendar_date [custom_params_serializer] aliases: corehr.leave.workCalendarDate, corehr.v1.leave.workCalendarDate
+- corehr.leaveGrantingRecord.create -> POST ${this.domain}/open-apis/corehr/v1/leave_granting_records [custom_params_serializer] aliases: corehr.leaveGrantingRecord.create, corehr.v1.leaveGrantingRecord.create
+- corehr.leaveGrantingRecord.delete -> DELETE ${this.domain}/open-apis/corehr/v1/leave_granting_records/:leave_granting_record_id [custom_params_serializer] aliases: corehr.leaveGrantingRecord.delete, corehr.v1.leaveGrantingRecord.delete
+- corehr.location.active -> POST ${this.domain}/open-apis/corehr/v2/locations/active [custom_params_serializer]
+- corehr.location.batchGet -> POST ${this.domain}/open-apis/corehr/v2/locations/batch_get [custom_params_serializer]
+- corehr.location.create -> POST ${this.domain}/open-apis/corehr/v1/locations [custom_params_serializer] aliases: corehr.location.create, corehr.v1.location.create
+- corehr.location.delete -> DELETE ${this.domain}/open-apis/corehr/v1/locations/:location_id [custom_params_serializer] aliases: corehr.location.delete, corehr.v1.location.delete
+- corehr.location.get -> GET ${this.domain}/open-apis/corehr/v1/locations/:location_id [custom_params_serializer] aliases: corehr.location.get, corehr.v1.location.get
+- corehr.location.list -> GET ${this.domain}/open-apis/corehr/v1/locations [custom_params_serializer] aliases: corehr.location.list, corehr.v1.location.list
+- corehr.location.patch -> PATCH ${this.domain}/open-apis/corehr/v2/locations/:location_id [custom_params_serializer]
+- corehr.location.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer]
+- corehr.location.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/locations/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.locationAddress.create -> POST ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses [custom_params_serializer]
+- corehr.locationAddress.delete -> DELETE ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses/:address_id [custom_params_serializer]
+- corehr.locationAddress.patch -> PATCH ${this.domain}/open-apis/corehr/v2/locations/:location_id/addresses/:address_id [custom_params_serializer]
+- corehr.nationalIdType.create -> POST ${this.domain}/open-apis/corehr/v1/national_id_types [custom_params_serializer] aliases: corehr.nationalIdType.create, corehr.v1.nationalIdType.create
+- corehr.nationalIdType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.delete, corehr.v1.nationalIdType.delete
+- corehr.nationalIdType.get -> GET ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.get, corehr.v1.nationalIdType.get
+- corehr.nationalIdType.list -> GET ${this.domain}/open-apis/corehr/v1/national_id_types [custom_params_serializer] aliases: corehr.nationalIdType.list, corehr.v1.nationalIdType.list
+- corehr.nationalIdType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/national_id_types/:national_id_type_id [custom_params_serializer] aliases: corehr.nationalIdType.patch, corehr.v1.nationalIdType.patch
+- corehr.offboarding.edit -> POST ${this.domain}/open-apis/corehr/v2/offboardings/edit [custom_params_serializer]
+- corehr.offboarding.query -> POST ${this.domain}/open-apis/corehr/v1/offboardings/query [custom_params_serializer] aliases: corehr.offboarding.query, corehr.v1.offboarding.query
+- corehr.offboarding.revoke -> POST ${this.domain}/open-apis/corehr/v2/offboardings/revoke [custom_params_serializer]
+- corehr.offboarding.search -> POST ${this.domain}/open-apis/corehr/v1/offboardings/search [custom_params_serializer] aliases: corehr.offboarding.search, corehr.v1.offboarding.search
+- corehr.offboarding.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v1/offboardings/search [custom_params_serializer, iterator_helper] aliases: corehr.offboarding.searchWithIterator, corehr.v1.offboarding.searchWithIterator
+- corehr.offboarding.submit -> POST ${this.domain}/open-apis/corehr/v1/offboardings/submit [custom_params_serializer] aliases: corehr.offboarding.submit, corehr.v1.offboarding.submit
+- corehr.offboarding.submitV2 -> POST ${this.domain}/open-apis/corehr/v2/offboardings/submit_v2 [custom_params_serializer]
+- corehr.pathway.active -> POST ${this.domain}/open-apis/corehr/v2/pathways/active [custom_params_serializer]
+- corehr.pathway.batchGet -> POST ${this.domain}/open-apis/corehr/v2/pathways/batch_get [custom_params_serializer]
+- corehr.pathway.create -> POST ${this.domain}/open-apis/corehr/v2/pathways [custom_params_serializer]
+- corehr.pathway.delete -> DELETE ${this.domain}/open-apis/corehr/v2/pathways/:pathway_id [custom_params_serializer]
+- corehr.pathway.patch -> PATCH ${this.domain}/open-apis/corehr/v2/pathways/:pathway_id [custom_params_serializer]
+- corehr.person.create -> POST ${this.domain}/open-apis/corehr/v1/persons [custom_params_serializer] aliases: corehr.person.create, corehr.v1.person.create
+- corehr.person.create -> POST ${this.domain}/open-apis/corehr/v2/persons [custom_params_serializer]
+- corehr.person.delete -> DELETE ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.delete, corehr.v1.person.delete
+- corehr.person.get -> GET ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.get, corehr.v1.person.get
+- corehr.person.patch -> PATCH ${this.domain}/open-apis/corehr/v1/persons/:person_id [custom_params_serializer] aliases: corehr.person.patch, corehr.v1.person.patch
+- corehr.person.patch -> PATCH ${this.domain}/open-apis/corehr/v2/persons/:person_id [custom_params_serializer]
+- corehr.person.upload -> POST ${this.domain}/open-apis/corehr/v1/persons/upload [custom_params_serializer] aliases: corehr.person.upload, corehr.v1.person.upload
+- corehr.position.active -> POST ${this.domain}/open-apis/corehr/v2/positions/active [custom_params_serializer]
+- corehr.position.create -> POST ${this.domain}/open-apis/corehr/v2/positions [custom_params_serializer]
+- corehr.position.delPosition -> POST ${this.domain}/open-apis/corehr/v2/positions/del_position [custom_params_serializer]
+- corehr.position.patch -> PATCH ${this.domain}/open-apis/corehr/v2/positions/:position_id [custom_params_serializer]
+- corehr.position.query -> POST ${this.domain}/open-apis/corehr/v2/positions/query [custom_params_serializer]
+- corehr.position.queryRecentChange -> GET ${this.domain}/open-apis/corehr/v2/positions/query_recent_change [custom_params_serializer]
+- corehr.position.queryRecentChangeWithIterator -> GET ${this.domain}/open-apis/corehr/v2/positions/query_recent_change [custom_params_serializer, iterator_helper]
+- corehr.preHire.complete -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id/complete [custom_params_serializer]
+- corehr.preHire.create -> POST ${this.domain}/open-apis/corehr/v2/pre_hires [custom_params_serializer]
+- corehr.preHire.delete -> DELETE ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.delete, corehr.v1.preHire.delete
+- corehr.preHire.delete -> DELETE ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id [custom_params_serializer]
+- corehr.preHire.get -> GET ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.get, corehr.v1.preHire.get
+- corehr.preHire.list -> GET ${this.domain}/open-apis/corehr/v1/pre_hires [custom_params_serializer] aliases: corehr.preHire.list, corehr.v1.preHire.list
+- corehr.preHire.patch -> PATCH ${this.domain}/open-apis/corehr/v1/pre_hires/:pre_hire_id [custom_params_serializer] aliases: corehr.preHire.patch, corehr.v1.preHire.patch
+- corehr.preHire.patch -> PATCH ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id [custom_params_serializer]
+- corehr.preHire.query -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/query [custom_params_serializer]
+- corehr.preHire.queryWithIterator -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/query [custom_params_serializer, iterator_helper]
+- corehr.preHire.restoreFlowInstance -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/restore_flow_instance [custom_params_serializer]
+- corehr.preHire.search -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/search [custom_params_serializer]
+- corehr.preHire.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/search [custom_params_serializer, iterator_helper]
+- corehr.preHire.transformOnboardingTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/transform_onboarding_task [custom_params_serializer]
+- corehr.preHire.transitTask -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/:pre_hire_id/transit_task [custom_params_serializer]
+- corehr.preHire.withdrawOnboarding -> POST ${this.domain}/open-apis/corehr/v2/pre_hires/withdraw_onboarding [custom_params_serializer]
+- corehr.probation.enableDisableAssessment -> POST ${this.domain}/open-apis/corehr/v2/probation/enable_disable_assessment [custom_params_serializer]
+- corehr.probation.search -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer]
+- corehr.probation.searchWithIterator -> POST ${this.domain}/open-apis/corehr/v2/probation/search [custom_params_serializer, iterator_helper]
+- corehr.probation.submit -> POST ${this.domain}/open-apis/corehr/v2/probation/submit [custom_params_serializer]
+- corehr.probation.withdraw -> POST ${this.domain}/open-apis/corehr/v2/probation/withdraw [custom_params_serializer]
+- corehr.probationAssessment.create -> POST ${this.domain}/open-apis/corehr/v2/probation/assessments [custom_params_serializer]
+- corehr.probationAssessment.delete -> DELETE ${this.domain}/open-apis/corehr/v2/probation/assessments/:assessment_id [custom_params_serializer]
+- corehr.probationAssessment.patch -> PATCH ${this.domain}/open-apis/corehr/v2/probation/assessments/:assessment_id [custom_params_serializer]
+- corehr.process.flowVariableData -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id/flow_variable_data [custom_params_serializer]
+- corehr.process.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id [custom_params_serializer]
+- corehr.process.list -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer]
+- corehr.process.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/processes [custom_params_serializer, iterator_helper]
+- corehr.processApprover.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/approvers/:approver_id [custom_params_serializer]
+- corehr.processExtra.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/extra [custom_params_serializer]
+- corehr.processFormVariableData.get -> GET ${this.domain}/open-apis/corehr/v1/processes/:process_id/form_variable_data [custom_params_serializer] aliases: corehr.processFormVariableData.get, corehr.v1.processFormVariableData.get
+- corehr.processFormVariableData.get -> GET ${this.domain}/open-apis/corehr/v2/processes/:process_id/form_variable_data [custom_params_serializer]
+- corehr.processRevoke.update -> PUT ${this.domain}/open-apis/corehr/v2/process_revoke/:process_id [custom_params_serializer]
+- corehr.processTransfer.update -> PUT ${this.domain}/open-apis/corehr/v2/processes/:process_id/transfer [custom_params_serializer]
+- corehr.processWithdraw.update -> PUT ${this.domain}/open-apis/corehr/v2/process_withdraw/:process_id [custom_params_serializer]
+- corehr.reportDetailRow.batchDelete -> POST ${this.domain}/open-apis/corehr/v2/report_detail_row/batchDelete [custom_params_serializer]
+- corehr.reportDetailRow.batchSave -> POST ${this.domain}/open-apis/corehr/v2/report_detail_row/batchSave [custom_params_serializer]
+- corehr.securityGroup.list -> GET ${this.domain}/open-apis/corehr/v1/security_groups [custom_params_serializer] aliases: corehr.securityGroup.list, corehr.v1.securityGroup.list
+- corehr.securityGroup.query -> POST ${this.domain}/open-apis/corehr/v1/security_groups/query [custom_params_serializer] aliases: corehr.securityGroup.query, corehr.v1.securityGroup.query
+- corehr.signatureFile.download -> POST ${this.domain}/open-apis/corehr/v2/signature_files/:signature_file_id/download [custom_params_serializer, readable_stream_helper, stream_response, write_file_helper]
+- corehr.signatureFile.list -> GET ${this.domain}/open-apis/corehr/v2/signature_files [custom_params_serializer]
+- corehr.signatureFile.listByBizId -> GET ${this.domain}/open-apis/corehr/v2/signature_files/list_by_biz_id [custom_params_serializer]
+- corehr.signatureFile.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/signature_files [custom_params_serializer, iterator_helper]
+- corehr.signatureFile.query -> POST ${this.domain}/open-apis/corehr/v2/signature_files/query [custom_params_serializer]
+- corehr.signatureFile.queryWithIterator -> POST ${this.domain}/open-apis/corehr/v2/signature_files/query [custom_params_serializer, iterator_helper]
+- corehr.signatureFile.terminate -> POST ${this.domain}/open-apis/corehr/v2/signature_files/terminate [custom_params_serializer]
+- corehr.signatureNode.listByFileId -> GET ${this.domain}/open-apis/corehr/v2/signature_nodes/list_by_file_id [custom_params_serializer]
+- corehr.signatureTemplate.search -> GET ${this.domain}/open-apis/corehr/v2/signature_templates/search [custom_params_serializer]
+- corehr.signatureTemplateInfoWithThumbnail.list -> GET ${this.domain}/open-apis/corehr/v2/signature_template_info_with_thumbnails [custom_params_serializer]
+- corehr.signatureTemplateInfoWithThumbnail.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/signature_template_info_with_thumbnails [custom_params_serializer, iterator_helper]
+- corehr.subdivision.get -> GET ${this.domain}/open-apis/corehr/v1/subdivisions/:subdivision_id [custom_params_serializer] aliases: corehr.subdivision.get, corehr.v1.subdivision.get
+- corehr.subdivision.list -> GET ${this.domain}/open-apis/corehr/v1/subdivisions [custom_params_serializer] aliases: corehr.subdivision.list, corehr.v1.subdivision.list
+- corehr.subregion.get -> GET ${this.domain}/open-apis/corehr/v1/subregions/:subregion_id [custom_params_serializer] aliases: corehr.subregion.get, corehr.v1.subregion.get
+- corehr.subregion.list -> GET ${this.domain}/open-apis/corehr/v1/subregions [custom_params_serializer] aliases: corehr.subregion.list, corehr.v1.subregion.list
+- corehr.transferReason.query -> GET ${this.domain}/open-apis/corehr/v1/transfer_reasons/query [custom_params_serializer] aliases: corehr.transferReason.query, corehr.v1.transferReason.query
+- corehr.transferType.query -> GET ${this.domain}/open-apis/corehr/v1/transfer_types/query [custom_params_serializer] aliases: corehr.transferType.query, corehr.v1.transferType.query
+- corehr.workforcePlan.list -> GET ${this.domain}/open-apis/corehr/v2/workforce_plans [custom_params_serializer]
+- corehr.workforcePlan.listWithIterator -> GET ${this.domain}/open-apis/corehr/v2/workforce_plans [custom_params_serializer, iterator_helper]
+- corehr.workforcePlanDetail.batch -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_details/batch [custom_params_serializer]
+- corehr.workforcePlanDetail.batchV2 -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_details/batch_v2 [custom_params_serializer]
+- corehr.workforcePlanDetailRow.batchDelete -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_detail_row/batchDelete [custom_params_serializer]
+- corehr.workforcePlanDetailRow.batchSave -> POST ${this.domain}/open-apis/corehr/v2/workforce_plan_detail_row/batchSave [custom_params_serializer]
+- corehr.workingHoursType.create -> POST ${this.domain}/open-apis/corehr/v1/working_hours_types [custom_params_serializer] aliases: corehr.v1.workingHoursType.create, corehr.workingHoursType.create
+- corehr.workingHoursType.delete -> DELETE ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.delete, corehr.workingHoursType.delete
+- corehr.workingHoursType.get -> GET ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.get, corehr.workingHoursType.get
+- corehr.workingHoursType.list -> GET ${this.domain}/open-apis/corehr/v1/working_hours_types [custom_params_serializer] aliases: corehr.v1.workingHoursType.list, corehr.workingHoursType.list
+- corehr.workingHoursType.patch -> PATCH ${this.domain}/open-apis/corehr/v1/working_hours_types/:working_hours_type_id [custom_params_serializer] aliases: corehr.v1.workingHoursType.patch, corehr.workingHoursType.patch
+
+## Event Handles
+
+- corehr.approval_groups.updated_v2
+- corehr.common_data.id.user_mapping_changed_v1
+- corehr.common_data.meta_data.updated_v1
+- corehr.company.created_v2
+- corehr.company.deleted_v2
+- corehr.company.updated_v2
+- corehr.contract.created_v1
+- corehr.contract.deleted_v1
+- corehr.contract.updated_v1
+- corehr.cost_center.created_v2
+- corehr.cost_center.deleted_v2
+- corehr.cost_center.updated_v2
+- corehr.custom_org.created_v2
+- corehr.custom_org.deleted_v2
+- corehr.custom_org.updated_v2
+- corehr.department.created_v1
+- corehr.department.created_v2
+- corehr.department.deleted_v1
+- corehr.department.updated_v1
+- corehr.department.updated_v2
+- corehr.employee.domain_event_v2
+- corehr.employment.converted_v1
+- corehr.employment.created_v1
+- corehr.employment.deleted_v1
+- corehr.employment.resigned_v1
+- corehr.employment.updated_v1
+- corehr.job.created_v1
+- corehr.job.deleted_v1
+- corehr.job.updated_v1
+- corehr.job_change.status_updated_v2
+- corehr.job_change.updated_v1
+- corehr.job_change.updated_v2
+- corehr.job_data.changed_v1
+- corehr.job_data.created_v1
+- corehr.job_data.deleted_v1
+- corehr.job_data.employed_v1
+- corehr.job_data.updated_v1
+- corehr.job_family.created_v2
+- corehr.job_family.deleted_v2
+- corehr.job_family.updated_v2
+- corehr.job_grade.created_v2
+- corehr.job_grade.deleted_v2
+- corehr.job_grade.updated_v2
+- corehr.job_level.created_v2
+- corehr.job_level.deleted_v2
+- corehr.job_level.updated_v2
+- corehr.location.created_v2
+- corehr.location.deleted_v2
+- corehr.location.updated_v2
+- corehr.offboarding.checklist_updated_v2
+- corehr.offboarding.status_updated_v2
+- corehr.offboarding.updated_v1
+- corehr.offboarding.updated_v2
+- corehr.org_role_authorization.updated_v1
+- corehr.pathway.created_v2
+- corehr.pathway.deleted_v2
+- corehr.pathway.updated_v2
+- corehr.person.created_v1
+- corehr.person.deleted_v1
+- corehr.person.updated_v1
+- corehr.position.created_v2
+- corehr.position.deleted_v2
+- corehr.position.updated_v2
+- corehr.pre_hire.onboarding_task_changed_v2
+- corehr.pre_hire.updated_v1
+- corehr.probation.updated_v2
+- corehr.process.approver.updated_v2
+- corehr.process.cc.updated_v2
+- corehr.process.node.updated_v2
+- corehr.process.status.update_v2
+- corehr.process.updated_v2
+- corehr.process_comment_info.updated_v2
+- corehr.signature_file.status_updated_v2
+

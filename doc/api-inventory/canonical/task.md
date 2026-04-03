@@ -1,0 +1,102 @@
+# task API Inventory
+
+- Canonical methods: 88
+- Event handles: 3
+
+## Canonical Methods
+
+- task.attachment.delete -> DELETE ${this.domain}/open-apis/task/v2/attachments/:attachment_guid [custom_params_serializer]
+- task.attachment.get -> GET ${this.domain}/open-apis/task/v2/attachments/:attachment_guid [custom_params_serializer]
+- task.attachment.list -> GET ${this.domain}/open-apis/task/v2/attachments [custom_params_serializer]
+- task.attachment.listWithIterator -> GET ${this.domain}/open-apis/task/v2/attachments [custom_params_serializer, iterator_helper]
+- task.attachment.upload -> POST ${this.domain}/open-apis/task/v2/attachments/upload [custom_params_serializer]
+- task.comment.create -> POST ${this.domain}/open-apis/task/v2/comments [custom_params_serializer]
+- task.comment.delete -> DELETE ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.comment.get -> GET ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.comment.list -> GET ${this.domain}/open-apis/task/v2/comments [custom_params_serializer]
+- task.comment.listWithIterator -> GET ${this.domain}/open-apis/task/v2/comments [custom_params_serializer, iterator_helper]
+- task.comment.patch -> PATCH ${this.domain}/open-apis/task/v2/comments/:comment_id [custom_params_serializer]
+- task.customField.add -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/add [custom_params_serializer]
+- task.customField.create -> POST ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer]
+- task.customField.get -> GET ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid [custom_params_serializer]
+- task.customField.list -> GET ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer]
+- task.customField.listWithIterator -> GET ${this.domain}/open-apis/task/v2/custom_fields [custom_params_serializer, iterator_helper]
+- task.customField.patch -> PATCH ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid [custom_params_serializer]
+- task.customField.remove -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/remove [custom_params_serializer]
+- task.customFieldOption.create -> POST ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/options [custom_params_serializer]
+- task.customFieldOption.patch -> PATCH ${this.domain}/open-apis/task/v2/custom_fields/:custom_field_guid/options/:option_guid [custom_params_serializer]
+- task.section.create -> POST ${this.domain}/open-apis/task/v2/sections [custom_params_serializer]
+- task.section.delete -> DELETE ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.get -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.list -> GET ${this.domain}/open-apis/task/v2/sections [custom_params_serializer]
+- task.section.listWithIterator -> GET ${this.domain}/open-apis/task/v2/sections [custom_params_serializer, iterator_helper]
+- task.section.patch -> PATCH ${this.domain}/open-apis/task/v2/sections/:section_guid [custom_params_serializer]
+- task.section.tasks -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid/tasks [custom_params_serializer]
+- task.section.tasksWithIterator -> GET ${this.domain}/open-apis/task/v2/sections/:section_guid/tasks [custom_params_serializer, iterator_helper]
+- task.task.addDependencies -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_dependencies [custom_params_serializer]
+- task.task.addMembers -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_members [custom_params_serializer]
+- task.task.addReminders -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_reminders [custom_params_serializer]
+- task.task.addTasklist -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/add_tasklist [custom_params_serializer]
+- task.task.batchDeleteCollaborator -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/batch_delete_collaborator [custom_params_serializer] aliases: task.task.batchDeleteCollaborator, task.v1.task.batchDeleteCollaborator
+- task.task.batchDeleteFollower -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/batch_delete_follower [custom_params_serializer] aliases: task.task.batchDeleteFollower, task.v1.task.batchDeleteFollower
+- task.task.complete -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/complete [custom_params_serializer] aliases: task.task.complete, task.v1.task.complete
+- task.task.create -> POST ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer] aliases: task.task.create, task.v1.task.create
+- task.task.create -> POST ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer]
+- task.task.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.delete, task.v1.task.delete
+- task.task.delete -> DELETE ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.get -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.get, task.v1.task.get
+- task.task.get -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.list -> GET ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer] aliases: task.task.list, task.v1.task.list
+- task.task.list -> GET ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer]
+- task.task.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks [custom_params_serializer, iterator_helper] aliases: task.task.listWithIterator, task.v1.task.listWithIterator
+- task.task.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasks [custom_params_serializer, iterator_helper]
+- task.task.patch -> PATCH ${this.domain}/open-apis/task/v1/tasks/:task_id [custom_params_serializer] aliases: task.task.patch, task.v1.task.patch
+- task.task.patch -> PATCH ${this.domain}/open-apis/task/v2/tasks/:task_guid [custom_params_serializer]
+- task.task.removeDependencies -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_dependencies [custom_params_serializer]
+- task.task.removeMembers -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_members [custom_params_serializer]
+- task.task.removeReminders -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_reminders [custom_params_serializer]
+- task.task.removeTasklist -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/remove_tasklist [custom_params_serializer]
+- task.task.tasklists -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/tasklists [custom_params_serializer]
+- task.task.uncomplete -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/uncomplete [custom_params_serializer] aliases: task.task.uncomplete, task.v1.task.uncomplete
+- task.taskCollaborator.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer] aliases: task.taskCollaborator.create, task.v1.taskCollaborator.create
+- task.taskCollaborator.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators/:collaborator_id [custom_params_serializer] aliases: task.taskCollaborator.delete, task.v1.taskCollaborator.delete
+- task.taskCollaborator.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer] aliases: task.taskCollaborator.list, task.v1.taskCollaborator.list
+- task.taskCollaborator.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/collaborators [custom_params_serializer, iterator_helper] aliases: task.taskCollaborator.listWithIterator, task.v1.taskCollaborator.listWithIterator
+- task.taskComment.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer] aliases: task.taskComment.create, task.v1.taskComment.create
+- task.taskComment.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.delete, task.v1.taskComment.delete
+- task.taskComment.get -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.get, task.v1.taskComment.get
+- task.taskComment.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer] aliases: task.taskComment.list, task.v1.taskComment.list
+- task.taskComment.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/comments [custom_params_serializer, iterator_helper] aliases: task.taskComment.listWithIterator, task.v1.taskComment.listWithIterator
+- task.taskComment.update -> PUT ${this.domain}/open-apis/task/v1/tasks/:task_id/comments/:comment_id [custom_params_serializer] aliases: task.taskComment.update, task.v1.taskComment.update
+- task.taskFollower.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer] aliases: task.taskFollower.create, task.v1.taskFollower.create
+- task.taskFollower.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/followers/:follower_id [custom_params_serializer] aliases: task.taskFollower.delete, task.v1.taskFollower.delete
+- task.taskFollower.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer] aliases: task.taskFollower.list, task.v1.taskFollower.list
+- task.taskFollower.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/followers [custom_params_serializer, iterator_helper] aliases: task.taskFollower.listWithIterator, task.v1.taskFollower.listWithIterator
+- task.tasklist.addMembers -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/add_members [custom_params_serializer]
+- task.tasklist.create -> POST ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer]
+- task.tasklist.delete -> DELETE ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.get -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.list -> GET ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer]
+- task.tasklist.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasklists [custom_params_serializer, iterator_helper]
+- task.tasklist.patch -> PATCH ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid [custom_params_serializer]
+- task.tasklist.removeMembers -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/remove_members [custom_params_serializer]
+- task.tasklist.tasks -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/tasks [custom_params_serializer]
+- task.tasklistActivitySubscription.create -> POST ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions [custom_params_serializer]
+- task.tasklistActivitySubscription.delete -> DELETE ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.tasklistActivitySubscription.get -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.tasklistActivitySubscription.list -> GET ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions [custom_params_serializer]
+- task.tasklistActivitySubscription.patch -> PATCH ${this.domain}/open-apis/task/v2/tasklists/:tasklist_guid/activity_subscriptions/:activity_subscription_guid [custom_params_serializer]
+- task.taskReminder.create -> POST ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer] aliases: task.taskReminder.create, task.v1.taskReminder.create
+- task.taskReminder.delete -> DELETE ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders/:reminder_id [custom_params_serializer] aliases: task.taskReminder.delete, task.v1.taskReminder.delete
+- task.taskReminder.list -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer] aliases: task.taskReminder.list, task.v1.taskReminder.list
+- task.taskReminder.listWithIterator -> GET ${this.domain}/open-apis/task/v1/tasks/:task_id/reminders [custom_params_serializer, iterator_helper] aliases: task.taskReminder.listWithIterator, task.v1.taskReminder.listWithIterator
+- task.taskSubtask.create -> POST ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer]
+- task.taskSubtask.list -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer]
+- task.taskSubtask.listWithIterator -> GET ${this.domain}/open-apis/task/v2/tasks/:task_guid/subtasks [custom_params_serializer, iterator_helper]
+
+## Event Handles
+
+- task.task.comment.updated_v1
+- task.task.update_tenant_v1
+- task.task.updated_v1
+

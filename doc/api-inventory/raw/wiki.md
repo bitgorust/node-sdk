@@ -1,0 +1,43 @@
+# wiki Raw API Inventory
+
+- Raw exported methods: 36
+
+## Raw Exported Methods
+
+- wiki.space.create -> POST ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer]
+- wiki.space.get -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id [custom_params_serializer]
+- wiki.space.getNode -> GET ${this.domain}/open-apis/wiki/v2/spaces/get_node [custom_params_serializer]
+- wiki.space.list -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer]
+- wiki.space.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer, iterator_helper]
+- wiki.spaceMember.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer]
+- wiki.spaceMember.delete -> DELETE ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members/:member_id [custom_params_serializer]
+- wiki.spaceMember.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer]
+- wiki.spaceNode.copy -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/copy [custom_params_serializer]
+- wiki.spaceNode.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer]
+- wiki.spaceNode.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer]
+- wiki.spaceNode.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer, iterator_helper]
+- wiki.spaceNode.move -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/move [custom_params_serializer]
+- wiki.spaceNode.moveDocsToWiki -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/move_docs_to_wiki [custom_params_serializer]
+- wiki.spaceNode.updateTitle -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title [custom_params_serializer]
+- wiki.spaceSetting.update -> PUT ${this.domain}/open-apis/wiki/v2/spaces/:space_id/setting [custom_params_serializer]
+- wiki.task.get -> GET ${this.domain}/open-apis/wiki/v2/tasks/:task_id [custom_params_serializer]
+- wiki.v1.node.search -> POST ${this.domain}/open-apis/wiki/v1/nodes/search [custom_params_serializer]
+- wiki.v1.node.searchWithIterator -> POST ${this.domain}/open-apis/wiki/v1/nodes/search [custom_params_serializer, iterator_helper]
+- wiki.v2.space.create -> POST ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer]
+- wiki.v2.space.get -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id [custom_params_serializer]
+- wiki.v2.space.getNode -> GET ${this.domain}/open-apis/wiki/v2/spaces/get_node [custom_params_serializer]
+- wiki.v2.space.list -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer]
+- wiki.v2.space.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces [custom_params_serializer, iterator_helper]
+- wiki.v2.spaceMember.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer]
+- wiki.v2.spaceMember.delete -> DELETE ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members/:member_id [custom_params_serializer]
+- wiki.v2.spaceMember.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/members [custom_params_serializer]
+- wiki.v2.spaceNode.copy -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/copy [custom_params_serializer]
+- wiki.v2.spaceNode.create -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer]
+- wiki.v2.spaceNode.list -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer]
+- wiki.v2.spaceNode.listWithIterator -> GET ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes [custom_params_serializer, iterator_helper]
+- wiki.v2.spaceNode.move -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/move [custom_params_serializer]
+- wiki.v2.spaceNode.moveDocsToWiki -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/move_docs_to_wiki [custom_params_serializer]
+- wiki.v2.spaceNode.updateTitle -> POST ${this.domain}/open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title [custom_params_serializer]
+- wiki.v2.spaceSetting.update -> PUT ${this.domain}/open-apis/wiki/v2/spaces/:space_id/setting [custom_params_serializer]
+- wiki.v2.task.get -> GET ${this.domain}/open-apis/wiki/v2/tasks/:task_id [custom_params_serializer]
+
