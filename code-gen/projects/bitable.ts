@@ -2852,8 +2852,65 @@ export default abstract class Client extends base {
             },
         },
         /**
-         * 表单
+         * 字段编组
          */
+        appTableFieldGroup: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=bitable&resource=app.table.field_group&apiName=create&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=create&project=bitable&resource=app.table.field_group&version=v1 document }
+             *
+             * 创建字段编组
+             */
+            create: async (
+                payload?: {
+                    data: {
+                        field_groups: Array<{
+                            id?: string;
+                            name: string;
+                            children: Array<{
+                                type: string;
+                                id: string;
+                            }>;
+                            description?: string;
+                        }>;
+                    };
+                    path: { app_token: string; table_id: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: { field_groups?: string };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups`,
+                            path
+                        ),
+                        method: "POST",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
+        * 表单
+        */
         appTableFormField: {
             listWithIterator: async (
                 payload?: {
@@ -3203,6 +3260,54 @@ export default abstract class Client extends base {
                             path
                         ),
                         method: "PATCH",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=bitable&resource=app.table.form&apiName=upgrade&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=upgrade&project=bitable&resource=app.table.form&version=v1 document }
+             *
+             * 升级表单
+             */
+            upgrade: async (
+                payload?: {
+                    data: { form_name: string; display_mode: string };
+                    path: {
+                        app_token: string;
+                        table_id: string;
+                        form_id: string;
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                form?: { id?: string };
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade`,
+                            path
+                        ),
+                        method: "POST",
                         data,
                         params,
                         headers,
@@ -5542,6 +5647,59 @@ export default abstract class Client extends base {
                             path
                         ),
                         method: "PUT",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
+         * app.block_workflow
+         */
+        appBlockWorkflow: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=bitable&resource=app.block_workflow&apiName=list&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=list&project=bitable&resource=app.block_workflow&version=v1 document }
+             *
+             * 列出工作流
+             */
+            list: async (
+                payload?: {
+                    path?: { app_token?: string };
+                    params?: { page_token?: string; page_size?: number };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                workflows?: Array<{
+                                    workflow_id?: string;
+                                    title?: string;
+                                    status?: string;
+                                }>;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/bitable/v1/apps/:app_token/block_workflows`,
+                            path
+                        ),
+                        method: "GET",
                         data,
                         params,
                         headers,
@@ -8422,6 +8580,63 @@ export default abstract class Client extends base {
                 },
             },
             /**
+             * 字段编组
+             */
+            appTableFieldGroup: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=bitable&resource=app.table.field_group&apiName=create&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=create&project=bitable&resource=app.table.field_group&version=v1 document }
+                 *
+                 * 创建字段编组
+                 */
+                create: async (
+                    payload?: {
+                        data: {
+                            field_groups: Array<{
+                                id?: string;
+                                name: string;
+                                children: Array<{
+                                    type: string;
+                                    id: string;
+                                }>;
+                                description?: string;
+                            }>;
+                        };
+                        path: { app_token: string; table_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: { field_groups?: string };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/field_groups`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
              * 表单
              */
             appTableFormField: {
@@ -8775,6 +8990,54 @@ export default abstract class Client extends base {
                                 path
                             ),
                             method: "PATCH",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=bitable&resource=app.table.form&apiName=upgrade&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=upgrade&project=bitable&resource=app.table.form&version=v1 document }
+                 *
+                 * 升级表单
+                 */
+                upgrade: async (
+                    payload?: {
+                        data: { form_name: string; display_mode: string };
+                        path: {
+                            app_token: string;
+                            table_id: string;
+                            form_id: string;
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    form?: { id?: string };
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/bitable/v1/apps/:app_token/tables/:table_id/forms/:form_id/upgrade`,
+                                path
+                            ),
+                            method: "POST",
                             data,
                             params,
                             headers,

@@ -2555,9 +2555,216 @@ export default abstract class Client extends aily {
                 },
             },
             /**
+             * workspace.enum
+             */
+            workspaceEnum: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=apaas&resource=workspace.enum&apiName=list&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=list&project=apaas&resource=workspace.enum&version=v1 document }
+                 *
+                 * 获取工作空间下的自定义枚举列表
+                 */
+                list: async (
+                    payload?: {
+                        params?: { page_size?: number; page_token?: string };
+                        path: { workspace_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    has_more?: boolean;
+                                    page_token?: string;
+                                    items?: Array<{
+                                        name?: string;
+                                        description?: string;
+                                        options?: Array<string>;
+                                        created_at?: number;
+                                        created_by?: {
+                                            id?: string;
+                                            name?: string;
+                                            avatar?: string;
+                                        };
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=apaas&resource=workspace.enum&apiName=enum_get&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=enum_get&project=apaas&resource=workspace.enum&version=v1 document }
+                 *
+                 * 获取自定义枚举详细信息
+                 */
+                enumGet: async (
+                    payload?: {
+                        path: { workspace_id: string; enum_name: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    name?: string;
+                                    description?: string;
+                                    options?: Array<string>;
+                                    created_at?: string;
+                                    created_by?: {
+                                        id?: string;
+                                        name?: string;
+                                        avatar?: string;
+                                    };
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/enums/:enum_name`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
              * workspace.table
              */
             workspaceTable: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=apaas&resource=workspace.table&apiName=list&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=list&project=apaas&resource=workspace.table&version=v1 document }
+                 *
+                 * 获取工作空间下的数据表列表
+                 */
+                list: async (
+                    payload?: {
+                        params?: { page_size?: number; page_token?: string };
+                        path: { workspace_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    has_more?: boolean;
+                                    page_token?: string;
+                                    items?: Array<{
+                                        name?: string;
+                                        description?: string;
+                                        columns?: string;
+                                    }>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=apaas&resource=workspace.table&apiName=table_get&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=table_get&project=apaas&resource=workspace.table&version=v1 document }
+                 *
+                 * 获取数据表详细信息
+                 */
+                tableGet: async (
+                    payload?: {
+                        path: { workspace_id: string; table_name: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    name?: string;
+                                    description?: string;
+                                    columns?: string;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/apaas/v1/workspaces/:workspace_id/tables/:table_name`,
+                                path
+                            ),
+                            method: "GET",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
                 /**
                  * {@link https://open.feishu.cn/api-explorer?project=apaas&resource=workspace.table&apiName=records_batch_update&version=v1 click to debug }
                  *
