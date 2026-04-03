@@ -46,6 +46,7 @@
 - 当同步到新的 upstream 版本时，重置内部序号为 `.1`
 - 同一个 upstream 基线上的内部补丁递增 `.2`、`.3`
 - 不发布无 tag 的提交
+- 发布配置分支不承载具体发布版本号，版本号只在实际发布前调整
 
 ## 推荐工作流
 
@@ -120,6 +121,89 @@ git push origin main --follow-tags
 ```bash
 npm pack --dry-run
 ```
+
+## 手动发布最简流程
+
+当前仓库没有 GitLab runner，默认采用手动发布。推荐把“发布配置”和“具体版本发布”拆开处理。
+
+### 1. 先合并发布配置
+
+先将私有发布配置分支合并到 `main`，但不要在这一步修改版本号。
+
+例如：
+
+```bash
+git checkout main
+git pull origin main
+git merge --ff-only chore/private-registry-publish
+git push origin main
+```
+
+### 2. 发布时再单独改版本号
+
+建议从最新 `main` 拉一个很短的发布分支：
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b chore/release-1.60.0-laipic.1
+```
+
+只修改版本号，不自动创建 commit 和 tag：
+
+```bash
+npm version 1.60.0-laipic.1 --no-git-tag-version
+```
+
+### 3. 本地验证
+
+```bash
+yarn build
+yarn test
+npm pack --dry-run
+```
+
+### 4. 提交发布版本
+
+```bash
+git add package.json
+git commit -m "chore: release 1.60.0-laipic.1"
+```
+
+### 5. 合回 main 并打 tag
+
+```bash
+git checkout main
+git merge --ff-only chore/release-1.60.0-laipic.1
+git tag v1.60.0-laipic.1
+```
+
+### 6. 发布到私库
+
+首次登录私库：
+
+```bash
+yarn login:private
+```
+
+发布：
+
+```bash
+yarn publish:private
+```
+
+推送主线和 tag：
+
+```bash
+git push origin main
+git push origin v1.60.0-laipic.1
+```
+
+## 注意事项
+
+- `npm version` 默认会自动创建 commit 和 tag，当前仓库建议使用 `--no-git-tag-version`
+- 版本号变更应只出现在实际发布分支，不应混入 `chore/private-registry-publish`
+- 如果发布失败，不要复用同一个版本号重复发布，先检查私库中的版本占用情况
 
 ## 为什么不使用 release 分支
 
