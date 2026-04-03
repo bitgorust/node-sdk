@@ -553,6 +553,70 @@ export default abstract class Client extends unified_kms_log {
             },
         },
         /**
+         * 智能纪要
+         */
+        note: {
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=vc&resource=note&apiName=get&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/note/get.md document }
+             *
+             * 获取纪要详情
+             *
+             * 获取归属于用户的智能纪要信息
+             */
+            get: async (
+                payload?: {
+                    params?: {
+                        user_id_type?: "user_id" | "union_id" | "open_id";
+                    };
+                    path: { note_id: string };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                note?: {
+                                    id?: string;
+                                    title?: string;
+                                    create_time?: string;
+                                    creator_id?: string;
+                                    summary?: string;
+                                    artifacts?: Array<{
+                                        artifact_type?: number;
+                                        doc_token?: string;
+                                        create_time?: string;
+                                    }>;
+                                };
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/vc/v1/notes/:note_id`,
+                            path
+                        ),
+                        method: "GET",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+        },
+        /**
          * 会议
          */
         meeting: {
@@ -1002,6 +1066,77 @@ export default abstract class Client extends unified_kms_log {
                             path
                         ),
                         method: "PATCH",
+                        data,
+                        params,
+                        headers,
+                        paramsSerializer: (params) =>
+                            stringify(params, { arrayFormat: "repeat" }),
+                    })
+                    .catch((e) => {
+                        this.logger.error(formatErrors(e));
+                        throw e;
+                    });
+            },
+            /**
+             * {@link https://open.feishu.cn/api-explorer?project=vc&resource=meeting&apiName=search&version=v1 click to debug }
+             *
+             * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/meeting/search.md document }
+             *
+             * 搜索会议记录
+             *
+             * 通过关键词和筛选器查询会议列表
+             */
+            search: async (
+                payload?: {
+                    params?: {
+                        page_token?: string;
+                        page_size?: number;
+                    };
+                    data?: {
+                        query?: string;
+                        meeting_filter?: {
+                            organizer_ids?: Array<string>;
+                            participant_ids?: Array<string>;
+                            open_room_ids?: Array<string>;
+                            start_time?: {
+                                start_time?: string;
+                                end_time?: string;
+                            };
+                        };
+                    };
+                },
+                options?: IRequestOptions
+            ) => {
+                const { headers, params, data, path } =
+                    await this.formatPayload(payload, options);
+
+                return this.httpInstance
+                    .request<
+                        any,
+                        {
+                            code?: number;
+                            msg?: string;
+                            data?: {
+                                total?: number;
+                                has_more?: boolean;
+                                page_token?: string;
+                                items?: Array<{
+                                    id?: string;
+                                    display_info?: string;
+                                    meta_data?: {
+                                        app_link?: string;
+                                        avatar?: string;
+                                        description?: string;
+                                    };
+                                }>;
+                            };
+                        }
+                    >({
+                        url: fillApiPath(
+                            `${this.domain}/open-apis/vc/v1/meetings/search`,
+                            path
+                        ),
+                        method: "POST",
                         data,
                         params,
                         headers,
@@ -5621,6 +5756,69 @@ export default abstract class Client extends unified_kms_log {
                             throw e;
                         });
                 },
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=vc&resource=meeting&apiName=search&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/vc-v1/meeting/search.md document }
+                 *
+                 * 搜索会议记录
+                 *
+                 * 通过关键词和筛选器查询会议列表
+                 */
+                search: async (
+                    payload?: {
+                        params?: {
+                            page_token?: string;
+                            page_size?: number;
+                        };
+                        data?: {
+                            query?: string;
+                            meeting_filter?: {
+                                organizer_ids?: Array<string>;
+                                participant_ids?: Array<string>;
+                                open_room_ids?: Array<string>;
+                                start_time?: {
+                                    start_time?: string;
+                                    end_time?: string;
+                                };
+                            };
+                        };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    total?: number;
+                                    has_more?: boolean;
+                                    page_token?: string;
+                                    items?: Array<any>;
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/vc/v1/meetings/search`,
+                                path
+                            ),
+                            method: "POST",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
             },
             /**
              * 录制
@@ -5800,6 +5998,65 @@ export default abstract class Client extends unified_kms_log {
                                 path
                             ),
                             method: "PATCH",
+                            data,
+                            params,
+                            headers,
+                            paramsSerializer: (params) =>
+                                stringify(params, { arrayFormat: "repeat" }),
+                        })
+                        .catch((e) => {
+                            this.logger.error(formatErrors(e));
+                            throw e;
+                        });
+                },
+            },
+            /**
+             * 纪要
+             */
+            note: {
+                /**
+                 * {@link https://open.feishu.cn/api-explorer?project=vc&resource=note&apiName=get&version=v1 click to debug }
+                 *
+                 * {@link https://open.feishu.cn/api-explorer?from=op_doc_tab&apiName=get&project=vc&resource=note&version=v1 document }
+                 *
+                 * 获取纪要详情
+                 */
+                get: async (
+                    payload?: {
+                        params?: {
+                            user_id_type?:
+                                | "user_id"
+                                | "union_id"
+                                | "open_id";
+                        };
+                        path: { note_id: string };
+                    },
+                    options?: IRequestOptions
+                ) => {
+                    const { headers, params, data, path } =
+                        await this.formatPayload(payload, options);
+
+                    return this.httpInstance
+                        .request<
+                            any,
+                            {
+                                code?: number;
+                                msg?: string;
+                                data?: {
+                                    note?: {
+                                        creator_id?: string;
+                                        create_time?: string;
+                                        artifacts?: Array<any>;
+                                        references?: Array<any>;
+                                    };
+                                };
+                            }
+                        >({
+                            url: fillApiPath(
+                                `${this.domain}/open-apis/vc/v1/notes/:note_id`,
+                                path
+                            ),
+                            method: "GET",
                             data,
                             params,
                             headers,
