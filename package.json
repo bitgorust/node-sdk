@@ -1,6 +1,6 @@
 {
   "name": "@laipic/node-sdk",
-  "version": "1.60.0",
+  "version": "1.60.0-laipic.1",
   "description": "larksuite open sdk for nodejs",
   "keywords": [
     "feishu",
