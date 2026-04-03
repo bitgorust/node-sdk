@@ -9,10 +9,10 @@ import { IPayload } from "@node-sdk/client/types";
 import { HttpInstance } from "@node-sdk/typings/http";
 import { Readable } from "stream";
 import { stringify } from "qs";
-import verification from "./verification";
+import spark from "./spark";
 
 // auto gen
-export default abstract class Client extends verification {
+export default abstract class Client extends spark {
     declare tokenManager;
 
     declare domain;
